@@ -19,7 +19,6 @@
 	ui_name = "AntagInfoHeretic"
 	job_rank = ROLE_HERETIC
 	antag_hud_name = "heretic"
-	hijack_speed = 0.5
 	suicide_cry = "THE MANSUS SMILES UPON ME!!"
 	preview_outfit = /datum/outfit/heretic
 	/// Whether we give this antagonist objectives on gain.

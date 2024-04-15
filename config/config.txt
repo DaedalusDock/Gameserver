@@ -173,6 +173,9 @@ LOG_CLONING
 ## log shuttle actions
 LOG_SHUTTLE
 
+## log evacuation actions
+LOG_EVACUATION
+
 ## log tool interactions [/atom/proc/tool_act]
 LOG_TOOLS
 

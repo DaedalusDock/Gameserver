@@ -173,13 +173,13 @@
 				return
 			message.answered = answer_index
 			message.answer_callback.InvokeAsync()
-		if ("callShuttle")
+		if ("startEvac")
 			if (!authenticated(usr) || syndicate)
 				return
 			var/reason = trim(params["reason"], MAX_MESSAGE_LEN)
-			if (length(reason) < CALL_SHUTTLE_REASON_LENGTH)
+			if (length(reason) < EVAC_REASON_LENGTH)
 				return
-			SSshuttle.requestEvac(usr, reason)
+			SSevacuation.request_evacuation(usr, reason, params["evacController"])
 			post_status("shuttle")
 		if ("changeSecurityLevel")
 			if (!authenticated_as_silicon_or_captain(usr))
@@ -275,12 +275,12 @@
 			if (bank_account.account_balance < shuttle.credit_cost)
 				return
 			SSshuttle.shuttle_purchased = SHUTTLEPURCHASE_PURCHASED
-			for(var/datum/round_event_control/shuttle_insurance/insurance_event in SSevents.control)
-				insurance_event.weight *= 20
 			SSshuttle.unload_preview()
-			SSshuttle.existing_shuttle = SSshuttle.emergency
+			SSshuttle.existing_shuttle = GLOB.emergency_shuttle
 			SSshuttle.action_load(shuttle, replace = TRUE)
 			bank_account.adjust_money(-shuttle.credit_cost)
+
+			SSevacuation.escape_shuttle_replaced()
 
 			var/purchaser_name = (obj_flags & EMAGGED) ? scramble_message_replace_chars("AUTHENTICATION FAILURE: CVE-2018-17107", 60) : usr.real_name
 			minor_announce("[purchaser_name] has purchased [shuttle.name] for [shuttle.credit_cost] credits.[shuttle.extra_desc ? " [shuttle.extra_desc]" : ""]" , "Shuttle Purchase")
@@ -289,11 +289,11 @@
 			log_shuttle("[key_name(usr)] has purchased [shuttle.name].")
 			SSblackbox.record_feedback("text", "shuttle_purchase", 1, shuttle.name)
 			state = STATE_MAIN
-		if ("recallShuttle")
+		if ("cancelEvac")
 			// AIs cannot recall the shuttle
 			if (!authenticated(usr) || issilicon(usr) || syndicate)
 				return
-			SSshuttle.cancelEvac(usr)
+			SSevacuation.request_cancel(usr, params["evacController"])
 		if ("requestNukeCodes")
 			if (!authenticated_as_non_silicon_captain(usr))
 				return
@@ -509,21 +509,18 @@
 				data["canBuyShuttles"] = can_buy_shuttles(user)
 				data["canMakeAnnouncement"] = FALSE
 				data["canMessageAssociates"] = FALSE
-				data["canRecallShuttles"] = !issilicon(user)
+				data["canRecallEvac"] = !issilicon(user)
 				data["canRequestNuke"] = FALSE
 				data["canSendToSectors"] = FALSE
 				data["canSetAlertLevel"] = FALSE
 				data["canToggleEmergencyAccess"] = FALSE
 				data["importantActionReady"] = COOLDOWN_FINISHED(src, important_action_cooldown)
-				data["shuttleCalled"] = FALSE
-				data["shuttleLastCalled"] = FALSE
+				data["evacStarted"] = FALSE
+				data["evacLastCalled"] = FALSE
 				data["aprilFools"] = SSevents.holidays && SSevents.holidays[APRIL_FOOLS]
 				data["alertLevel"] = get_security_level()
 				data["authorizeName"] = authorize_name
 				data["canLogOut"] = !issilicon(user)
-				data["shuttleCanEvacOrFailReason"] = SSshuttle.canEvac(user)
-				if(syndicate)
-					data["shuttleCanEvacOrFailReason"] = "You cannot summon the shuttle from this console!"
 
 				if (authenticated_as_non_silicon_captain(user))
 					data["canMessageAssociates"] = TRUE
@@ -552,14 +549,9 @@
 				else if(syndicate)
 					data["canMakeAnnouncement"] = TRUE
 
-				if (SSshuttle.emergency.mode != SHUTTLE_IDLE && SSshuttle.emergency.mode != SHUTTLE_RECALL)
-					data["shuttleCalled"] = TRUE
-					data["shuttleRecallable"] = SSshuttle.canRecall() || syndicate
+				data["canRequestEvac"] = !syndicate
+				data["evacOptions"] = SSevacuation.get_evac_ui_data(user)
 
-				if (SSshuttle.emergencyCallAmount)
-					data["shuttleCalledPreviously"] = TRUE
-					if (SSshuttle.emergency_last_call_loc)
-						data["shuttleLastCalled"] = format_text(SSshuttle.emergency_last_call_loc.name)
 			if (STATE_MESSAGES)
 				data["messages"] = list()
 
@@ -573,6 +565,7 @@
 							"possibleAnswers" = message.possible_answers,
 						))
 			if (STATE_BUYING_SHUTTLE)
+				data["shuttleToReplace"] = SSevacuation.get_customizable_shuttles()
 				var/datum/bank_account/bank_account = SSeconomy.department_accounts_by_id[ACCOUNT_CAR]
 				var/list/shuttles = list()
 
@@ -611,7 +604,7 @@
 
 /obj/machinery/computer/communications/ui_static_data(mob/user)
 	return list(
-		"callShuttleReasonMinLength" = CALL_SHUTTLE_REASON_LENGTH,
+		"callShuttleReasonMinLength" = EVAC_REASON_LENGTH,
 		"maxStatusLineLength" = MAX_STATUS_LINE_LENGTH,
 		"maxMessageLength" = MAX_MESSAGE_LEN,
 	)
@@ -669,8 +662,8 @@
 	if (!has_access)
 		return FALSE
 
-	if (SSshuttle.emergency.mode != SHUTTLE_RECALL && SSshuttle.emergency.mode != SHUTTLE_IDLE)
-		return "The shuttle is already in transit."
+	//if (SSevacuation.controller.state != EVACUATION_STATE_IDLE)
+	//	return "The shuttle is already in transit."
 	if (SSshuttle.shuttle_purchased == SHUTTLEPURCHASE_PURCHASED)
 		return "A replacement shuttle has already been purchased."
 	if (SSshuttle.shuttle_purchased == SHUTTLEPURCHASE_FORCED)
@@ -755,7 +748,7 @@
 /obj/machinery/computer/communications/Destroy()
 	UNSET_TRACKING(__TYPE__)
 	UNSET_TRACKING(TRACKING_KEY_SHUTTLE_CALLER)
-	SSshuttle.autoEvac()
+	SSevacuation.trigger_auto_evac(EVACUATION_REASON_CONSOLE_DESTROYED)
 	return ..()
 
 /// Override the cooldown for special actions

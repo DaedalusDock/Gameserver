@@ -36,6 +36,6 @@ SUBSYSTEM_DEF(autotransfer)
 		targettime = targettime + voteinterval
 		curvotes++
 	else
-		SSshuttle.autoEnd()
+		SSevacuation.trigger_auto_evac(EVACUATION_REASON_LONG_ROUND)
 
 #undef NO_MAXVOTES_CAP

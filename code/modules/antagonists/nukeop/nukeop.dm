@@ -5,7 +5,6 @@
 	job_rank = ROLE_OPERATIVE
 	antag_hud_name = "synd"
 	show_to_ghosts = TRUE
-	hijack_speed = 2 //If you can't take out the station, take the shuttle instead.
 	suicide_cry = "FOR THE SYNDICATE!!"
 	var/datum/team/nuclear/nuke_team
 	var/always_new_team = FALSE //If not assigned a team by default ops will try to join existing ones, set this to TRUE to always create new team.
@@ -338,12 +337,9 @@
 /datum/team/nuclear/proc/disk_rescued()
 	for(var/obj/item/disk/nuclear/D in SSpoints_of_interest.real_nuclear_disks)
 		//If emergency shuttle is in transit disk is only safe on it
-		if(SSshuttle.emergency.mode == SHUTTLE_ESCAPE)
-			if(!SSshuttle.emergency.is_in_shuttle_bounds(D))
-				return FALSE
-		//If shuttle escaped check if it's on centcom side
-		else if(SSshuttle.emergency.mode == SHUTTLE_ENDGAME)
-			if(!D.onCentCom())
+		if(SSevacuation.evacuation_finished())
+			var/list/area/evac_areas = SSevacuation.get_endgame_areas()
+			if(!D.onCentCom() && !evac_areas[get_area(D)])
 				return FALSE
 		else //Otherwise disk is safe when on station
 			var/turf/T = get_turf(D)
@@ -359,7 +355,6 @@
 	return TRUE
 
 /datum/team/nuclear/proc/get_result()
-	var/evacuation = EMERGENCY_ESCAPED_OR_ENDGAMED
 	var/disk_rescued = disk_rescued()
 	var/syndies_didnt_escape = !syndies_escaped()
 	var/station_was_nuked = GLOB.station_was_nuked
@@ -375,13 +370,13 @@
 		return NUKE_RESULT_WRONG_STATION
 	else if (!disk_rescued && !station_was_nuked && station_nuke_source && syndies_didnt_escape)
 		return NUKE_RESULT_WRONG_STATION_DEAD
-	else if ((disk_rescued && evacuation) && operatives_dead())
+	else if (disk_rescued && operatives_dead())
 		return NUKE_RESULT_CREW_WIN_SYNDIES_DEAD
 	else if (disk_rescued)
 		return NUKE_RESULT_CREW_WIN
 	else if (!disk_rescued && operatives_dead())
 		return NUKE_RESULT_DISK_LOST
-	else if (!disk_rescued && evacuation)
+	else if (!disk_rescued)
 		return NUKE_RESULT_DISK_STOLEN
 	else
 		return //Undefined result

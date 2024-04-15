@@ -7,7 +7,6 @@
 	name = "\improper Enemy of the State"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
-	hijack_speed = 2 //not like they have much to do
 	suicide_cry = "FOR THE ETERNAL REVOLUTION!!"
 
 /datum/antagonist/enemy_of_the_state/proc/forge_objectives()
@@ -16,11 +15,6 @@
 	exile_choice.owner = owner
 	exile_choice.objective_name = "Choice"
 	objectives += exile_choice
-
-	var/datum/objective/hijack/hijack_choice = new
-	hijack_choice.owner = owner
-	hijack_choice.objective_name = "Choice"
-	objectives += hijack_choice
 
 /datum/antagonist/enemy_of_the_state/on_gain()
 	owner.special_role = "exiled headrev"
@@ -45,23 +39,16 @@
 	//needs to complete only one objective, not all
 
 	var/option_chosen = FALSE
-	var/badass = FALSE
 	if(objectives.len)
 		report += printobjectives(objectives)
 		for(var/datum/objective/objective in objectives)
 			if(objective.check_completion())
 				option_chosen = TRUE
-				if(istype(objective, /datum/objective/hijack))
-					badass = TRUE
 				break
 
 	if(objectives.len == 0 || option_chosen)
-		if(badass)
-			report += "<span class='greentext big'>Major [name] Victory</span>"
-			report += "<B>[name] chose the badass option, and hijacked the shuttle!</B>"
-		else
-			report += "<span class='greentext big'>Minor [name] Victory</span>"
-			report += "<B>[name] has survived as an exile!</B>"
+		report += "<span class='greentext big'>[name] Victory</span>"
+		report += "<B>[name] has survived as an exile!</B>"
 	else
 		report += "<span class='redtext big'>The [name] has failed!</span>"
 

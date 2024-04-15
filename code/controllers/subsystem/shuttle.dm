@@ -26,39 +26,8 @@ SUBSYSTEM_DEF(shuttle)
 	/// An associative list of the mobile docking ports that have failed a transit request, with the amount of times they've actually failed that transit request, up to MAX_TRANSIT_REQUEST_RETRIES
 	var/list/transit_request_failures = list()
 
-	/**
-	 * Emergency shuttle stuff
-	 */
-
-	/// The mobile docking port of the emergency shuttle.
-	var/obj/docking_port/mobile/emergency/emergency
 	/// The mobile docking port of the arrivals shuttle.
 	var/obj/docking_port/mobile/arrivals/arrivals
-	/// The mobile docking port of the backup emergency shuttle.
-	var/obj/docking_port/mobile/emergency/backup/backup_shuttle
-	/// Time taken for emergency shuttle to reach the station when called (in deciseconds).
-	var/emergency_call_time = 10 MINUTES
-	/// Time taken for emergency shuttle to leave again once it has docked (in deciseconds).
-	var/emergency_dock_time = 3 MINUTES
-	/// Time taken for emergency shuttle to reach a safe distance after leaving station (in deciseconds).
-	var/emergency_escape_time = 2 MINUTES
-	/// Where was the emergency shuttle last called from?
-	var/area/emergency_last_call_loc
-	/// How many times was the escape shuttle called?
-	var/emergencyCallAmount = 0
-	/// Is the departure of the shuttle currently prevented? FALSE for no, any other number for yes (thanks shuttle code).
-	var/emergency_no_escape = FALSE
-	/// Do we prevent the recall of the shuttle?
-	var/emergency_no_recall = FALSE
-	/// Did admins force-prevent the recall of the shuttle?
-	var/admin_emergency_no_recall = FALSE
-	/// Previous mode of the shuttle before it was forcefully disabled by admins.
-	var/last_mode = SHUTTLE_IDLE
-	/// Previous time left to the call, only useful for disabling and re-enabling the shuttle for admins so it doesn't have to start the whole timer again.
-	var/last_call_time = 10 MINUTES
-
-	/// Things blocking escape shuttle from leaving.
-	var/list/hostile_environments = list()
 
 	/**
 	 * Supply shuttle stuff
@@ -106,8 +75,6 @@ SUBSYSTEM_DEF(shuttle)
 	/// The current shuttle loan event, if any.
 	var/datum/round_event/shuttle_loan/shuttle_loan
 
-	/// If the event happens where the crew can purchase shuttle insurance, catastrophe can't run.
-	var/shuttle_insurance = FALSE
 	// If the station has purchased a replacement escape shuttle this round.
 	var/shuttle_purchased = SHUTTLEPURCHASE_PURCHASABLE
 	/// For keeping track of ingame events that would unlock new shuttles, such as defeating a boss or discovering a secret item.
@@ -158,10 +125,6 @@ SUBSYSTEM_DEF(shuttle)
 
 	if(!arrivals)
 		log_mapping("No /obj/docking_port/mobile/arrivals placed on the map!")
-	if(!emergency)
-		log_mapping("No /obj/docking_port/mobile/emergency placed on the map!")
-	if(!backup_shuttle)
-		log_mapping("No /obj/docking_port/mobile/emergency/backup placed on the map!")
 	if(!supply)
 		log_mapping("No /obj/docking_port/mobile/supply placed on the map!")
 
@@ -196,7 +159,6 @@ SUBSYSTEM_DEF(shuttle)
 			var/not_in_use = (!T.get_docked())
 			if(idle && not_centcom_evac && not_in_use)
 				qdel(T, force=TRUE)
-	CheckAutoEvac()
 
 	if(!SSmapping.clearing_reserved_turfs)
 		while(transit_requesters.len)
@@ -212,47 +174,6 @@ SUBSYSTEM_DEF(shuttle)
 			if(MC_TICK_CHECK)
 				break
 
-/datum/controller/subsystem/shuttle/proc/CheckAutoEvac()
-	if(emergency_no_escape || admin_emergency_no_recall || emergency_no_recall || !emergency || !SSticker.HasRoundStarted())
-		return
-
-	var/threshold = CONFIG_GET(number/emergency_shuttle_autocall_threshold)
-	if(!threshold)
-		return
-
-	var/alive = 0
-	for(var/I in GLOB.player_list)
-		var/mob/M = I
-		if(M.stat != DEAD)
-			++alive
-
-	var/total = GLOB.joined_player_list.len
-	if(total <= 0)
-		return //no players no autoevac
-
-	if(alive / total <= threshold)
-		var/msg = "Automatically dispatching emergency shuttle due to crew death."
-		message_admins(msg)
-		log_shuttle("[msg] Alive: [alive], Roundstart: [total], Threshold: [threshold]")
-		emergency_no_recall = TRUE
-		priority_announce("Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.")
-		if(emergency.timeLeft(1) > emergency_call_time * 0.4)
-			emergency.request(null, set_coefficient = 0.4)
-
-/datum/controller/subsystem/shuttle/proc/block_recall(lockout_timer)
-	if(admin_emergency_no_recall)
-		priority_announce("Error!", sub_title = "Emergency Shuttle Uplink Alert", sound_type = 'sound/misc/announce_dig.ogg')
-		addtimer(CALLBACK(src, PROC_REF(unblock_recall)), lockout_timer)
-		return
-	emergency_no_recall = TRUE
-	addtimer(CALLBACK(src, PROC_REF(unblock_recall)), lockout_timer)
-
-/datum/controller/subsystem/shuttle/proc/unblock_recall()
-	if(admin_emergency_no_recall)
-		priority_announce("Error!", sub_title = "Emergency Shuttle Uplink Alert", sound_type = 'sound/misc/announce_dig.ogg')
-		return
-	emergency_no_recall = FALSE
-
 /datum/controller/subsystem/shuttle/proc/getShuttle(id)
 	for(var/obj/docking_port/mobile/M in mobile_docking_ports)
 		if(M.id == id)
@@ -265,170 +186,6 @@ SUBSYSTEM_DEF(shuttle)
 			return S
 	WARNING("couldn't find dock with id: [id]")
 
-/// Check if we can call the evac shuttle.
-/// Returns TRUE if we can. Otherwise, returns a string detailing the problem.
-/datum/controller/subsystem/shuttle/proc/canEvac(mob/user)
-	var/srd = CONFIG_GET(number/shuttle_refuel_delay)
-	if(world.time - SSticker.round_start_time < srd)
-		return "The emergency shuttle is refueling. Please wait [DisplayTimeText(srd - (world.time - SSticker.round_start_time))] before attempting to call."
-
-	switch(emergency.mode)
-		if(SHUTTLE_RECALL)
-			return "The emergency shuttle may not be called while returning to CentCom."
-		if(SHUTTLE_CALL)
-			return "The emergency shuttle is already on its way."
-		if(SHUTTLE_DOCKED)
-			return "The emergency shuttle is already here."
-		if(SHUTTLE_IGNITING)
-			return "The emergency shuttle is firing its engines to leave."
-		if(SHUTTLE_ESCAPE)
-			return "The emergency shuttle is moving away to a safe distance."
-		if(SHUTTLE_STRANDED)
-			return "The emergency shuttle has been disabled by CentCom."
-
-	return TRUE
-
-/datum/controller/subsystem/shuttle/proc/requestEvac(mob/user, call_reason)
-	if(!emergency)
-		WARNING("requestEvac(): There is no emergency shuttle, but the \
-			shuttle was called. Using the backup shuttle instead.")
-		if(!backup_shuttle)
-			CRASH("requestEvac(): There is no emergency shuttle, \
-			or backup shuttle! The game will be unresolvable. This is \
-			possibly a mapping error, more likely a bug with the shuttle \
-			manipulation system, or badminry. It is possible to manually \
-			resolve this problem by loading an emergency shuttle template \
-			manually, and then calling register() on the mobile docking port. \
-			Good luck.")
-		emergency = backup_shuttle
-
-	var/can_evac_or_fail_reason = SSshuttle.canEvac(user)
-	if(can_evac_or_fail_reason != TRUE)
-		to_chat(user, span_alert("[can_evac_or_fail_reason]"))
-		return
-
-	call_reason = trim(html_encode(call_reason))
-
-	if(length(call_reason) < CALL_SHUTTLE_REASON_LENGTH && seclevel2num(get_security_level()) > SEC_LEVEL_GREEN)
-		to_chat(user, span_alert("You must provide a reason."))
-		return
-
-	var/area/signal_origin = get_area(user)
-	var/emergency_reason = "\nNature of emergency:\n\n[call_reason]"
-	var/security_num = seclevel2num(get_security_level())
-	switch(security_num)
-		if(SEC_LEVEL_RED,SEC_LEVEL_DELTA)
-			emergency.request(null, signal_origin, html_decode(emergency_reason), 1) //There is a serious threat we gotta move no time to give them five minutes.
-		else
-			emergency.request(null, signal_origin, html_decode(emergency_reason), 0)
-
-	var/datum/radio_frequency/frequency = SSpackets.return_frequency(FREQ_STATUS_DISPLAYS)
-
-	if(!frequency)
-		return
-
-	var/datum/signal/status_signal = new(src, list("command" = "update")) // Start processing shuttle-mode displays to display the timer
-	frequency.post_signal(status_signal)
-
-	var/area/A = get_area(user)
-
-	log_shuttle("[key_name(user)] has called the emergency shuttle.")
-	deadchat_broadcast(" has called the shuttle at [span_name("[A.name]")].", span_name("[user.real_name]"), user, message_type=DEADCHAT_ANNOUNCEMENT)
-	if(call_reason)
-		SSblackbox.record_feedback("text", "shuttle_reason", 1, "[call_reason]")
-		log_shuttle("Shuttle call reason: [call_reason]")
-		SSticker.emergency_reason = call_reason
-	message_admins("[ADMIN_LOOKUPFLW(user)] has called the shuttle. (<A HREF='?_src_=holder;[HrefToken()];trigger_centcom_recall=1'>TRIGGER CENTCOM RECALL</A>)")
-
-/datum/controller/subsystem/shuttle/proc/centcom_recall(old_timer, admiral_message)
-	if(emergency.mode != SHUTTLE_CALL || emergency.timer != old_timer)
-		return
-	emergency.cancel()
-
-	if(!admiral_message)
-		admiral_message = pick(GLOB.admiral_messages)
-	var/intercepttext = "<font size = 3><b>Daedalus Industries Update</b>: Request For Shuttle.</font><hr>\
-						To whom it may concern:<br><br>\
-						We have taken note of the situation upon [station_name()] and have come to the \
-						conclusion that it does not warrant the abandonment of the station.<br>\
-						If you do not agree with our opinion we suggest that you open a direct \
-						line with us and explain the nature of your crisis.<br><br>\
-						<i>This message has been automatically generated based upon readings from long \
-						range diagnostic tools. To assure the quality of your request every finalized report \
-						is reviewed by an on-call rear admiral.<br>\
-						<b>Rear Admiral's Notes:</b> \
-						[admiral_message]"
-	print_command_report(intercepttext, announce = TRUE)
-
-// Called when an emergency shuttle mobile docking port is
-// destroyed, which will only happen with admin intervention
-/datum/controller/subsystem/shuttle/proc/emergencyDeregister()
-	// When a new emergency shuttle is created, it will override the
-	// backup shuttle.
-	src.emergency = src.backup_shuttle
-
-/datum/controller/subsystem/shuttle/proc/cancelEvac(mob/user)
-	if(canRecall())
-		emergency.cancel(get_area(user))
-		log_shuttle("[key_name(user)] has recalled the shuttle.")
-		message_admins("[ADMIN_LOOKUPFLW(user)] has recalled the shuttle.")
-		deadchat_broadcast(" has recalled the shuttle from [span_name("[get_area_name(user, TRUE)]")].", span_name("[user.real_name]"), user, message_type=DEADCHAT_ANNOUNCEMENT)
-		return 1
-
-/datum/controller/subsystem/shuttle/proc/canRecall()
-	if(!emergency || emergency.mode != SHUTTLE_CALL || admin_emergency_no_recall || emergency_no_recall)
-		return
-	var/security_num = seclevel2num(get_security_level())
-	switch(security_num)
-		if(SEC_LEVEL_GREEN)
-			if(emergency.timeLeft(1) < emergency_call_time)
-				return
-		if(SEC_LEVEL_BLUE)
-			if(emergency.timeLeft(1) < emergency_call_time * 0.5)
-				return
-		else
-			if(emergency.timeLeft(1) < emergency_call_time * 0.25)
-				return
-	return 1
-
-/datum/controller/subsystem/shuttle/proc/autoEvac()
-	if (!SSticker.IsRoundInProgress())
-		return
-
-	var/callShuttle = TRUE
-
-	for(var/thing in INSTANCES_OF(TRACKING_KEY_SHUTTLE_CALLER))
-		if(isAI(thing))
-			var/mob/living/silicon/ai/AI = thing
-			if(AI.deployed_shell && !AI.deployed_shell.client)
-				continue
-			if(AI.stat || !AI.client)
-				continue
-		else if(istype(thing, /obj/machinery/computer/communications))
-			var/obj/machinery/computer/communications/C = thing
-			if(C.machine_stat & BROKEN)
-				continue
-
-		var/turf/T = get_turf(thing)
-		if(T && is_station_level(T.z))
-			callShuttle = FALSE
-			break
-
-	if(callShuttle)
-		if(EMERGENCY_IDLE_OR_RECALLED)
-			emergency.request(null, set_coefficient = 2.5)
-			log_shuttle("There is no means of calling the emergency shuttle anymore. Shuttle automatically called.")
-			message_admins("All the communications consoles were destroyed and all AIs are inactive. Shuttle called.")
-
-/datum/controller/subsystem/shuttle/proc/registerHostileEnvironment(datum/bad)
-	hostile_environments[bad] = TRUE
-	checkHostileEnvironment()
-
-/datum/controller/subsystem/shuttle/proc/clearHostileEnvironment(datum/bad)
-	hostile_environments -= bad
-	checkHostileEnvironment()
-
-
 /datum/controller/subsystem/shuttle/proc/registerTradeBlockade(datum/bad)
 	trade_blockade[bad] = TRUE
 	checkTradeBlockade()
@@ -436,7 +193,6 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/proc/clearTradeBlockade(datum/bad)
 	trade_blockade -= bad
 	checkTradeBlockade()
-
 
 /datum/controller/subsystem/shuttle/proc/checkTradeBlockade()
 	for(var/datum/d in trade_blockade)
@@ -451,32 +207,6 @@ SUBSYSTEM_DEF(shuttle)
 	if(!supply_blocked && (supply.mode == SHUTTLE_STRANDED))
 		supply.mode = SHUTTLE_DOCKED
 		//Make all cargo consoles speak up
-
-/datum/controller/subsystem/shuttle/proc/checkHostileEnvironment()
-	for(var/datum/d in hostile_environments)
-		if(!istype(d) || QDELETED(d))
-			hostile_environments -= d
-	emergency_no_escape = hostile_environments.len
-
-	if(emergency_no_escape && (emergency.mode == SHUTTLE_IGNITING))
-		emergency.mode = SHUTTLE_STRANDED
-		emergency.timer = null
-		emergency.sound_played = FALSE
-		priority_announce("Hostile environment detected. \
-			Departure has been postponed indefinitely pending \
-			conflict resolution.",
-			"LRSV Icarus Announcement",
-			do_not_modify = TRUE
-		)
-	if(!emergency_no_escape && (emergency.mode == SHUTTLE_STRANDED))
-		emergency.mode = SHUTTLE_DOCKED
-		emergency.setTimer(emergency_dock_time)
-		priority_announce("Hostile environment resolved. \
-			You have 3 minutes to board the Emergency Shuttle.",
-			"LRSV Icarus Announcement",
-			sound_type = ANNOUNCER_SHUTTLEDOCK,
-			do_not_modify = TRUE
-		)
 
 //try to move/request to dock_home if possible, otherwise dock_away. Mainly used for admin buttons
 /datum/controller/subsystem/shuttle/proc/toggleShuttle(shuttle_id, dock_home, dock_away, timed)
@@ -622,18 +352,8 @@ SUBSYSTEM_DEF(shuttle)
 	if (istype(SSshuttle.transit_request_failures))
 		transit_request_failures = SSshuttle.transit_request_failures
 
-	if (istype(SSshuttle.emergency))
-		emergency = SSshuttle.emergency
 	if (istype(SSshuttle.arrivals))
 		arrivals = SSshuttle.arrivals
-	if (istype(SSshuttle.backup_shuttle))
-		backup_shuttle = SSshuttle.backup_shuttle
-
-	if (istype(SSshuttle.emergency_last_call_loc))
-		emergency_last_call_loc = SSshuttle.emergency_last_call_loc
-
-	if (istype(SSshuttle.hostile_environments))
-		hostile_environments = SSshuttle.hostile_environments
 
 	if (istype(SSshuttle.supply))
 		supply = SSshuttle.supply
@@ -658,8 +378,6 @@ SUBSYSTEM_DEF(shuttle)
 	centcom_message = SSshuttle.centcom_message
 	order_number = SSshuttle.order_number
 	points = D.account_balance
-	emergency_no_escape = SSshuttle.emergency_no_escape
-	emergencyCallAmount = SSshuttle.emergencyCallAmount
 	shuttle_purchased = SSshuttle.shuttle_purchased
 	lockdown = SSshuttle.lockdown
 
@@ -997,11 +715,9 @@ SUBSYSTEM_DEF(shuttle)
 				shuttle_loading = FALSE
 
 		if("replace")
-			if(existing_shuttle == backup_shuttle)
-				// TODO make the load button disabled
-				WARNING("The shuttle that the selected shuttle will replace \
-					is the backup shuttle. Backup shuttle is required to be \
-					intact for round sanity.")
+			if(existing_shuttle == GLOB.backup_shuttle)
+				WARNING("The shuttle to be replaced is marked as important. \
+					Replacing it may cause issues with the round.")
 			else if(S && !shuttle_loading)
 				. = TRUE
 				shuttle_loading = TRUE
@@ -1013,7 +729,7 @@ SUBSYSTEM_DEF(shuttle)
 					log_admin("[key_name(usr)] load/replaced [mdp] with the shuttle manipulator.</span>")
 					SSblackbox.record_feedback("text", "shuttle_manipulator", 1, "[mdp.name]")
 				shuttle_loading = FALSE
-				if(emergency == mdp) //you just changed the emergency shuttle, there are events in game + captains that can change your snowflake choice.
+				if(istype(mdp, /obj/docking_port/mobile/emergency)) //you just changed the emergency shuttle, there are events in game + captains that can change your snowflake choice.
 					var/set_purchase = tgui_alert(usr, "Do you want to also disable shuttle purchases/random events that would change the shuttle?", "Butthurt Admin Prevention", list("Yes, disable purchases/events", "No, I want to possibly get owned"))
 					if(set_purchase == "Yes, disable purchases/events")
 						SSshuttle.shuttle_purchased = SHUTTLEPURCHASE_FORCED

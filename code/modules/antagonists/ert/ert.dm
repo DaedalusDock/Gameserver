@@ -5,7 +5,6 @@
 
 /datum/antagonist/ert
 	name = "Emergency Response Officer"
-	can_elimination_hijack = ELIMINATION_PREVENT
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
 	suicide_cry = "FOR NANOTRASEN!!"

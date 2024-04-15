@@ -70,13 +70,6 @@
 /obj/machinery/vending/games,
 /turf/open/floor/eighties,
 /area/shuttle/escape)
-"ns" = (
-/obj/structure/table/wood/shuttle_bar,
-/obj/effect/fun_balloon/sentience/emergency_shuttle{
-	group_name = "snack bar drone at Uncle Pete's Rollerdome"
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "nw" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks{
@@ -464,7 +457,7 @@ dJ
 Cg
 Cg
 ce
-ns
+Ky
 Qv
 JR
 KJ

@@ -217,7 +217,7 @@
 /mob/living/silicon/ai/Destroy()
 	GLOB.ai_list -= src
 	UNSET_TRACKING(TRACKING_KEY_SHUTTLE_CALLER)
-	SSshuttle.autoEvac()
+	SSevacuation.trigger_auto_evac(EVACUATION_REASON_AI_DESTROYED)
 	QDEL_NULL(eyeobj) // No AI, no Eye
 	QDEL_NULL(spark_system)
 	QDEL_NULL(malf_picker)
@@ -306,29 +306,29 @@
 		Model: [connected_robot.designation] | Loc: [get_area_name(connected_robot, TRUE)] | Status: [robot_status]"
 	. += "AI shell beacons detected: [LAZYLEN(GLOB.available_ai_shells)]" //Count of total AI shells
 
-/mob/living/silicon/ai/proc/ai_call_shuttle()
+/mob/living/silicon/ai/proc/ai_start_evacuation()
 	if(control_disabled)
 		to_chat(usr, span_warning("Wireless control is disabled!"))
 		return
 
-	var/can_evac_or_fail_reason = SSshuttle.canEvac(src)
+	var/list/evacuation_means = SSevacuation.get_controllers_list_ai()
+	var/identifier = tgui_input_list(src, "Choose means of evacuation", "Evacuation", evacuation_means)
+
+	var/can_evac_or_fail_reason = SSevacuation.can_evac(src, identifier)
 	if(can_evac_or_fail_reason != TRUE)
 		to_chat(usr, span_alert("[can_evac_or_fail_reason]"))
 		return
 
-	var/reason = tgui_input_text(src, "What is the nature of your emergency? ([CALL_SHUTTLE_REASON_LENGTH] characters required.)", "Confirm Shuttle Call")
+	var/reason = tgui_input_text(src, "What is the nature of your emergency? ([EVAC_REASON_LENGTH] characters required.)", "Confirm Shuttle Call")
 
 	if(incapacitated())
 		return
 
-	if(trim(reason))
-		SSshuttle.requestEvac(src, reason)
-
-	// hack to display shuttle timer
-	if(!EMERGENCY_IDLE_OR_RECALLED)
-		var/obj/machinery/computer/communications/C = locate() in INSTANCES_OF(/obj/machinery/computer/communications)
-		if(C)
-			C.post_status("shuttle")
+	if(length(trim(reason)) >= EVAC_REASON_LENGTH)
+		if(SSevacuation.request_evacuation(src, reason, identifier))
+			var/obj/machinery/computer/communications/C = locate() in INSTANCES_OF(/obj/machinery/computer/communications)
+			if(C)
+				C.post_status("shuttle")
 
 /mob/living/silicon/ai/can_interact_with(atom/A)
 	. = ..()

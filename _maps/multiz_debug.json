@@ -3,6 +3,9 @@
 	"map_name": "MultiZ Debug",
 	"map_path": "map_files/debug",
 	"map_file": "multiz.dmm",
+	"evacuation_controllers": [
+		"/datum/evacuation_controller/emergency_shuttle"
+	],
 	"traits": [
 		{
 			"Up": 1,

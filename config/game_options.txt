@@ -376,8 +376,8 @@ ARRIVALS_SHUTTLE_REQUIRE_UNDOCKED
 
 MICE_ROUNDSTART 10
 
-## If the percentage of players alive (doesn't count conversions) drops below this threshold the emergency shuttle will be forcefully called (provided it can be)
-#EMERGENCY_SHUTTLE_AUTOCALL_THRESHOLD 0.2
+## If the percentage of players alive (doesn't count conversions) drops below this threshold the evacuation will be forcefully started (provided it can be)
+#EVACUATION_AUTOCALL_THRESHOLD 0.2
 
 ## Uncomment to allow roundstart quirk selection in the character setup menu.
 ## This used to be named traits, hence the config name, but it handles quirks, not the other kind of trait!

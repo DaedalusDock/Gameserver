@@ -155,12 +155,12 @@
 			episode_names += new /datum/episode_name/rare("[pick("WHERE NO DOG HAS GONE BEFORE", "IAN SAYS", "IAN'S DAY OUT", "EVERY DOG HAS ITS DAY", "THE ONE WITH THE MAGIC PUPPY")]", "You know what you did.", 1000)
 			break
 
-	if(!EMERGENCY_ESCAPED_OR_ENDGAMED)
+	if(!SSevacuation.station_evacuated())
 		return
 
 	var/dead = GLOB.joined_player_list.len - SSticker.popcount[POPCOUNT_ESCAPEES]
 	var/escaped = SSticker.popcount[POPCOUNT_ESCAPEES]
-	var/escaped_on_shuttle = SSticker.popcount[POPCOUNT_SHUTTLE_ESCAPEES]
+	var/escaped_on_shuttle = SSticker.popcount[POPCOUNT_EVAC_ESCAPEES]
 	var/human_escapees = SSticker.popcount[POPCOUNT_ESCAPEES_HUMANONLY]
 	if((REALTIMEOFDAY - SSticker.round_start_timeofday) < 20 MINUTES) //shuttle docked in less than 16 minutes!!
 		episode_names += new /datum/episode_name/rare("[pick("THE CAPTAIN STUBS THEIR TOE", "QUICK GETAWAY", "A MOST EFFICIENT APOCALYPSE", "THE CREW'S [round((REALTIMEOFDAY - SSticker.round_start_timeofday)/60)] MINUTES OF FAME", "ON SECOND THOUGHT, LET'S NOT GO TO [uppr_name]. 'TIS A SILLY PLACE.")]", "This round was about as short as they come.", 750)
@@ -168,7 +168,7 @@
 			episode_names += new /datum/episode_name/rare("DRY RUN", "This round was as short as they come, and there were no escapees.", 2500)
 	if(dead == 0)
 		episode_names += new /datum/episode_name/rare("[pick("EMPLOYEE TRANSFER", "LIVE LONG AND PROSPER", "PEACE AND QUIET IN [uppr_name]", "THE ONE WITHOUT ALL THE FIGHTING", "THE CREW TRIES TO KILL A FLY FOR [round((REALTIMEOFDAY - SSticker.round_start_timeofday)/60)] MINUTES")]", "No-one died this round.", 2500) //in practice, this one is very very very rare, so if it happens let's pick it more often
-	if(escaped == 0 || SSshuttle.emergency.is_hijacked())
+	if(escaped == 0)
 		episode_names += new /datum/episode_name("[pick("DEAD SPACE", "THE CREW GOES MISSING", "LOST IN TRANSLATION", "[uppr_name]: DELETED SCENES", "WHAT HAPPENS IN [uppr_name], STAYS IN [uppr_name]", "MISSING IN ACTION", "SCOOBY-DOO, WHERE'S THE CREW?")]", "There were no escapees on the shuttle.", 300)
 	if(escaped < 6 && escaped > 0 && dead > escaped*2)
 		episode_names += new /datum/episode_name("[pick("AND THEN THERE WERE FEWER", "THE 'FUN' IN 'FUNERAL'", "FREEDOM RIDE OR DIE", "THINGS WE LOST IN [uppr_name]", "GONE WITH [uppr_name]", "LAST TANGO IN [uppr_name]", "GET BUSY LIVING OR GET BUSY DYING", "THE CREW FUCKING DIES", "WISH YOU WERE HERE")]", "[dead] people died this round.", 400)
@@ -224,8 +224,6 @@
 
 		if(voxcount / human_escapees > 0.6 && human_escapees > 2)
 			episode_names += new /datum/episode_name/rare("BIRDS OF A FEATHER...", "Most of the survivors were Vox.", min(1500, voxcount*250))
-		if(voxcount / human_escapees > 0.6 && SSshuttle.emergency.launch_status == EARLY_LAUNCHED)
-			episode_names += new /datum/episode_name/rare("EARLY BIRD GETS THE WORM", "Most or all of the survivors were Vox, and the shuttle timer was shortened.", 1500)
 		//if(voxcount / human_escapees.len > 0.6 && score.shuttlebombed > 3)
 		//	episode_names += new /datum/episode_name/rare("SITTING DUCKS", "Most or all of the survivors were Vox, and the shuttle was bombed.", min(1500,score.shuttlebombed*3))
 		if(baldycount / human_escapees> 0.6 && human_escapees > 3)

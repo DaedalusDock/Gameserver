@@ -29,9 +29,8 @@
 		eyeobj.setLoc(get_turf(src))
 		set_eyeobj_visible(FALSE)
 
-
 	UNSET_TRACKING(TRACKING_KEY_SHUTTLE_CALLER)
-	SSshuttle.autoEvac()
+	SSevacuation.trigger_auto_evac(EVACUATION_REASON_AI_DESTROYED)
 
 	ShutOffDoomsdayDevice()
 

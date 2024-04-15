@@ -72,13 +72,14 @@ GLOBAL_LIST_EMPTY(objectives) //PARIAH EDIT
 		return TRUE
 	if(SSticker.force_ending || GLOB.station_was_nuked) // Just let them win.
 		return TRUE
-	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
+	if(SSevacuation.evacuation_finished())
 		return FALSE
 	var/area/current_area = get_area(M.current)
 	if(!current_area || istype(current_area, /area/shuttle/escape/brig)) // Fails if they are in the shuttle brig
 		return FALSE
 	var/turf/current_turf = get_turf(M.current)
-	return current_turf.onCentCom() || current_turf.onSyndieBase()
+	var/list/area/evac_areas = SSevacuation.get_endgame_areas()
+	return current_turf.onCentCom() || current_turf.onSyndieBase() || evac_areas[current_area]
 
 /datum/objective/proc/check_completion()
 	return completed
@@ -259,60 +260,6 @@ GLOBAL_LIST_EMPTY(objectives) //PARIAH EDIT
 		explanation_text = "Ensure that [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role] is alive and in custody."
 	else
 		explanation_text = "Free Objective"
-
-/datum/objective/hijack
-	name = "hijack"
-	explanation_text = "Hijack the emergency shuttle by hacking its navigational protocols through the control console (alt click emergency shuttle console)."
-	team_explanation_text = "Hijack the emergency shuttle by hacking its navigational protocols through the control console (alt click emergency shuttle console). Leave no team member behind."
-
-	/// Overrides the hijack speed of any antagonist datum it is on ONLY, no other datums are impacted.
-	var/hijack_speed_override = 1
-
-/datum/objective/hijack/check_completion() // Requires all owners to escape.
-	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
-		return FALSE
-	var/list/datum/mind/owners = get_owners()
-	for(var/datum/mind/M in owners)
-		if(!considered_alive(M) || !SSshuttle.emergency.shuttle_areas[get_area(M.current)])
-			return FALSE
-	return SSshuttle.emergency.is_hijacked()
-
-/datum/objective/elimination
-	name = "elimination"
-	explanation_text = "Slaughter all loyalist crew aboard the shuttle. You, and any likeminded individuals, must be the only remaining people on the shuttle."
-	team_explanation_text = "Slaughter all loyalist crew aboard the shuttle. You, and any likeminded individuals, must be the only remaining people on the shuttle. Leave no team member behind."
-
-/datum/objective/elimination/check_completion()
-	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
-		return FALSE
-	var/list/datum/mind/owners = get_owners()
-	for(var/datum/mind/M in owners)
-		if(!considered_alive(M, enforce_human = FALSE) || !SSshuttle.emergency.shuttle_areas[get_area(M.current)])
-			return FALSE
-	return SSshuttle.emergency.elimination_hijack()
-
-/datum/objective/elimination/highlander
-	name="highlander elimination"
-	explanation_text = "Escape on the shuttle alone. Ensure that nobody else makes it out."
-
-/datum/objective/elimination/highlander/check_completion()
-	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
-		return FALSE
-	var/list/datum/mind/owners = get_owners()
-	for(var/datum/mind/M in owners)
-		if(!considered_alive(M, enforce_human = FALSE) || !SSshuttle.emergency.shuttle_areas[get_area(M.current)])
-			return FALSE
-	return SSshuttle.emergency.elimination_hijack(filter_by_human = FALSE, solo_hijack = TRUE)
-
-/datum/objective/purge/check_completion()
-	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
-		return TRUE
-	for(var/mob/living/player in GLOB.player_list)
-		if((get_area(player) in SSshuttle.emergency.shuttle_areas) && player.mind && player.stat != DEAD && ishuman(player))
-			var/mob/living/carbon/human/H = player
-			if(H.dna.species.id != SPECIES_HUMAN)
-				return FALSE
-	return TRUE
 
 /// Escape. Should not be given to anyone straight up. Exists for Escape with Identity.
 /datum/objective/escape

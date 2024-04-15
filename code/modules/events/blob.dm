@@ -9,7 +9,7 @@
 	dynamic_should_hijack = TRUE
 
 /datum/round_event_control/blob/canSpawnEvent(players)
-	if(EMERGENCY_PAST_POINT_OF_NO_RETURN) // no blobs if the shuttle is past the point of no return
+	if(SSevacuation.station_evacuated()) // no blobs if the shuttle is past the point of no return
 		return FALSE
 
 	return ..()

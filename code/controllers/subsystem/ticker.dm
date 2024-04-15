@@ -601,8 +601,6 @@ SUBSYSTEM_DEF(ticker)
 			news_message = "Tensions have flared with the Space Wizard Federation following the death of one of their members aboard [decoded_station_name]."
 		if(STATION_NUKED)
 			news_message = "[decoded_station_name] activated its self-destruct device for unknown reasons. Attempts to clone the Captain for arrest and execution are underway."
-		if(SHUTTLE_HIJACK)
-			news_message = "During routine evacuation procedures, the emergency shuttle of [decoded_station_name] had its navigation protocols corrupted and went off course, but was recovered shortly after."
 		if(GANG_OPERATING)
 			news_message = "The company would like to state that any rumors of criminal organizing on board stations such as [decoded_station_name] are falsehoods, and not to be emulated."
 		if(GANG_DESTROYED)

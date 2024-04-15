@@ -555,19 +555,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"bV" = (
-/obj/structure/table/wood/shuttle_bar{
-	boot_dir = 8
-	},
-/obj/effect/fun_balloon/sentience/emergency_shuttle{
-	group_name = "bar staff on the Emergency Escape Bar"
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/iron,
-/area/shuttle/escape)
 "bW" = (
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/iron/grimy,
@@ -810,7 +797,7 @@ bG
 aE
 aO
 aR
-bV
+aR
 aR
 aR
 aR

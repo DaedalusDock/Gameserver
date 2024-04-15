@@ -70,7 +70,7 @@
 	msg += "</UL></BODY></HTML>"
 	src << browse(msg.Join(), "window=Player_playtime_check")
 
-/client/proc/trigger_centcom_recall()
+/client/proc/trigger_centcom_recall(identifier)
 	if(!check_rights(R_ADMIN))
 		return
 	var/message = pick(GLOB.admiral_messages)
@@ -81,7 +81,7 @@
 
 	message_admins("[key_name_admin(usr)] triggered a CentCom recall, with the admiral message of: [message]")
 	log_game("[key_name(usr)] triggered a CentCom recall, with the message of: [message]")
-	SSshuttle.centcom_recall(SSshuttle.emergency.timer, message)
+	SSevacuation.centcom_recall(identifier, message)
 
 /datum/admins/proc/cmd_show_exp_panel(client/client_to_check)
 	if(!check_rights(R_ADMIN))

@@ -158,6 +158,9 @@
 /// log shuttle related actions, ie shuttle computers, shuttle manipulator, emergency console
 /datum/config_entry/flag/log_shuttle
 
+/// log evacuation related actions, ie when triggered, reasons, etc
+/datum/config_entry/flag/log_evacuation
+
 /// logs all timers in buckets on automatic bucket reset (Useful for timer debugging)
 /datum/config_entry/flag/log_timers_on_bucket_reset
 

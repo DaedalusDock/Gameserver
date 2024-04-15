@@ -1,7 +1,7 @@
 import { sortBy } from "common/collections";
 import { capitalize } from "common/string";
 import { useBackend, useLocalState } from "../backend";
-import { Blink, Box, Button, Dimmer, Flex, Icon, Input, Modal, Section, TextArea } from "../components";
+import { Blink, Box, Button, Dimmer, Divider, Flex, Icon, Input, Modal, Section, Stack, TextArea } from "../components";
 import { Window } from "../layouts";
 import { sanitizeText } from "../sanitize";
 
@@ -311,7 +311,6 @@ const PageMain = (props, context) => {
     canBuyShuttles,
     canMakeAnnouncement,
     canMessageAssociates,
-    canRecallShuttles,
     canRequestNuke,
     canSendToSectors,
     canSetAlertLevel,
@@ -321,15 +320,11 @@ const PageMain = (props, context) => {
     emergencyAccess,
     importantActionReady,
     sectors,
-    shuttleCalled,
-    shuttleCalledPreviously,
-    shuttleCanEvacOrFailReason,
-    shuttleLastCalled,
-    shuttleRecallable,
+    evacOptions,
   } = data;
 
-  const [callingShuttle, setCallingShuttle] = useLocalState(
-    context, "calling_shuttle", false);
+  const [callingEvac, setCallingEvac] = useLocalState(
+    context, "calling_shuttle", null);
   const [messagingAssociates, setMessagingAssociates] = useLocalState(
     context, "messaging_associates", false);
   const [messagingSector, setMessagingSector] = useLocalState(
@@ -345,47 +340,36 @@ const PageMain = (props, context) => {
   return (
     <Box>
       {!syndicate && (
-        <Section title="Emergency Shuttle">
-          {!!shuttleCalled && (
-            <Button.Confirm
-              icon="space-shuttle"
-              content="Recall Emergency Shuttle"
-              color="bad"
-              disabled={!canRecallShuttles || !shuttleRecallable}
-              tooltip={(
-                canRecallShuttles && (
-                  !shuttleRecallable && "It's too late for the emergency shuttle to be recalled."
-                ) || (
-                  "You do not have permission to recall the emergency shuttle."
-                )
-              )}
-              tooltipPosition="bottom-end"
-              onClick={() => act("recallShuttle")}
-            />
-          ) || (
-            <Button
-              icon="space-shuttle"
-              content="Call Emergency Shuttle"
-              disabled={shuttleCanEvacOrFailReason !== 1}
-              tooltip={
-                shuttleCanEvacOrFailReason !== 1
-                  ? shuttleCanEvacOrFailReason
-                  : undefined
-              }
-              tooltipPosition="bottom-end"
-              onClick={() => setCallingShuttle(true)}
-            />
-          )}
-          {!!shuttleCalledPreviously && (
-            shuttleLastCalled && (
-              <Box>
-                Most recent shuttle call/recall traced to:
-                {" "}<b>{shuttleLastCalled}</b>
-              </Box>
-            ) || (
-              <Box>Unable to trace most recent shuttle/recall signal.</Box>
-            )
-          )}
+        <Section title="Evacuation Options">
+          <Stack vertical>
+            {
+              evacOptions.map((option, index) => (
+                <>
+                  <Stack.Item>
+                    <Button
+                      icon={option.icon}
+                      tooltip={option.canEvacRecall !== 1 ? option.canEvacRecall : undefined}
+                      onClick={() => {
+                        option.started ? act("cancelEvac", { evacController: option.id }) : setCallingEvac(option);
+                      }}>
+                      {option.actionName}
+                    </Button>
+                  </Stack.Item>
+                  {option.status && (
+                    <Stack.Item>
+                      <Box>{option.status}</Box>
+                    </Stack.Item>
+                  )}
+                  {option.traceString &&(
+                    <Stack.Item>
+                      <Box>{option.traceString}</Box>
+                    </Stack.Item>
+                  )}
+                  {index < evacOptions.length - 1 && <Divider />}
+                </>
+              ))
+            }
+          </Stack>
         </Section>
       )}
 
@@ -458,7 +442,6 @@ const PageMain = (props, context) => {
             // canBuyShuttles is a string detailing the fail reason
             // if one can be given
             tooltip={canBuyShuttles !== 1 ? canBuyShuttles : undefined}
-            tooltipPosition="right"
             onClick={() => act("setState", { state: STATE_BUYING_SHUTTLE })}
           />}
 
@@ -512,17 +495,15 @@ const PageMain = (props, context) => {
         }}
       />}
 
-      {!!callingShuttle && <MessageModal
+      {callingEvac !== null && <MessageModal
         label="Nature of emergency"
-        icon="space-shuttle"
-        buttonText="Call Shuttle"
+        icon={callingEvac.icon}
+        buttonText={callingEvac.actionName}
         minLength={callShuttleReasonMinLength}
-        onBack={() => setCallingShuttle(false)}
-        onSubmit={reason => {
-          setCallingShuttle(false);
-          act("callShuttle", {
-            reason,
-          });
+        onBack={() => setCallingEvac(null)}
+        onSubmit={sumbitted => {
+          setCallingEvac(null);
+          act("startEvac", { reason: sumbitted, evacController: callingEvac.id });
         }}
       />}
 

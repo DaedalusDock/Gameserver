@@ -4,7 +4,6 @@
 	antagpanel_category = "Traitor"
 	job_rank = ROLE_TRAITOR
 	antag_hud_name = "traitor"
-	hijack_speed = 0.5 //10 seconds per hijack stage by default
 	ui_name = "AntagInfoTraitor"
 	suicide_cry = "FOR THE SYNDICATE!!"
 	preview_outfit = /datum/outfit/traitor
@@ -12,8 +11,6 @@
 	var/should_give_codewords = FALSE
 	///give this traitor an uplink?
 	var/give_uplink = TRUE
-	///if TRUE, this traitor will always get hijacking as their final objective
-	var/is_hijacker = FALSE
 
 	///the name of the antag flavor this traitor has.
 	var/employer

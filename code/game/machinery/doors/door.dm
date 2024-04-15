@@ -193,7 +193,7 @@ DEFINE_INTERACTABLE(/obj/machinery/door)
  * * source The datum source of the signal
  * * new_level The new security level that is in effect
  */
-/obj/machinery/door/proc/check_security_level(datum/source, new_level)
+/obj/machinery/door/proc/check_security_level(datum/source, old_level, new_level)
 	SIGNAL_HANDLER
 
 	if(new_level <= SEC_LEVEL_BLUE)

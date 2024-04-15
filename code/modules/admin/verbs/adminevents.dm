@@ -149,12 +149,13 @@
 
 /client/proc/admin_call_shuttle()
 	set category = "Admin.Events"
-	set name = "Call Shuttle"
-
-	if(EMERGENCY_AT_LEAST_DOCKED)
-		return
+	set name = "Start Evacuation"
 
 	if(!check_rights(R_ADMIN))
+		return
+
+	var/identifier = tgui_input_list(usr, "Choose evacuation option", "Evacuation", SSevacuation.get_controllers_names())
+	if(identifier == null)
 		return
 
 	var/confirm = tgui_alert(usr, "You sure?", "Confirm", list("Yes", "Yes (No Recall)", "No"))
@@ -162,89 +163,68 @@
 		if(null, "No")
 			return
 		if("Yes (No Recall)")
-			SSshuttle.admin_emergency_no_recall = TRUE
-			SSshuttle.emergency.mode = SHUTTLE_IDLE
+			SSevacuation.block_cancel(identifier)
 
-	SSshuttle.emergency.request()
+	SSevacuation.request_evacuation(usr, null, identifier, admin = TRUE)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Call Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
-	message_admins(span_adminnotice("[key_name_admin(usr)] admin-called the emergency shuttle[confirm == "Yes (No Recall)" ? " (non-recallable)" : ""]."))
+	log_admin("[key_name(usr)] admin-started the evacuation.")
+	message_admins(span_adminnotice("[key_name_admin(usr)] admin-started the evacuation[confirm == "Yes (No Recall)" ? " (non-recallable)" : ""]."))
 	return
 
 /client/proc/admin_cancel_shuttle()
 	set category = "Admin.Events"
-	set name = "Cancel Shuttle"
+	set name = "Cancel Evacuation"
+
 	if(!check_rights(0))
 		return
+
+	var/identifier = tgui_input_list(usr, "Choose evacuation option", "Evacuation", SSevacuation.get_controllers_names(TRUE))
+	if(identifier == null)
+		return
+
 	if(tgui_alert(usr, "You sure?", "Confirm", list("Yes", "No")) != "Yes")
 		return
 
-	if(SSshuttle.admin_emergency_no_recall)
-		SSshuttle.admin_emergency_no_recall = FALSE
-
-	if(EMERGENCY_AT_LEAST_DOCKED)
-		return
-
-	SSshuttle.emergency.cancel()
+	SSevacuation.unblock_cancel(identifier)
+	SSevacuation.request_cancel(usr, identifier)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Cancel Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
 	message_admins(span_adminnotice("[key_name_admin(usr)] admin-recalled the emergency shuttle."))
 
 	return
 
-/client/proc/admin_disable_shuttle()
+/client/proc/admin_disable_evac()
 	set category = "Admin.Events"
-	set name = "Disable Shuttle"
+	set name = "Disable Evacuation"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(SSshuttle.emergency.mode == SHUTTLE_DISABLED)
-		to_chat(usr, span_warning("Error, shuttle is already disabled."))
+	var/identifier = tgui_input_list(usr, "Choose evacuation option", "Evacuation", SSevacuation.get_controllers_names())
+	if(identifier == null)
 		return
 
 	if(tgui_alert(usr, "You sure?", "Confirm", list("Yes", "No")) != "Yes")
 		return
 
-	message_admins(span_adminnotice("[key_name_admin(usr)] disabled the shuttle."))
+	message_admins(span_adminnotice("[key_name_admin(usr)] disabled the [identifier] evacuation option."))
+	SSevacuation.disable_evacuation(identifier)
 
-	SSshuttle.last_mode = SSshuttle.emergency.mode
-	SSshuttle.last_call_time = SSshuttle.emergency.timeLeft(1)
-	SSshuttle.admin_emergency_no_recall = TRUE
-	SSshuttle.emergency.setTimer(0)
-	SSshuttle.emergency.mode = SHUTTLE_DISABLED
-	priority_announce(
-		"Warning: Emergency Shuttle uplink failure, shuttle disabled until further notice.",
-		"LRSV Icarus Announcement",
-		"Emergency Shuttle Uplink Alert",
-		'sound/misc/announce_dig.ogg'
-	)
-
-/client/proc/admin_enable_shuttle()
+/client/proc/admin_enable_evac()
 	set category = "Admin.Events"
-	set name = "Enable Shuttle"
+	set name = "Enable Evacuation"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(SSshuttle.emergency.mode != SHUTTLE_DISABLED)
-		to_chat(usr, span_warning("Error, shuttle not disabled."))
+	var/identifier = tgui_input_list(usr, "Choose evacuation option", "Evacuation", SSevacuation.get_controllers_names())
+	if(identifier == null)
 		return
 
 	if(tgui_alert(usr, "You sure?", "Confirm", list("Yes", "No")) != "Yes")
 		return
 
-	message_admins(span_adminnotice("[key_name_admin(usr)] enabled the emergency shuttle."))
-	SSshuttle.admin_emergency_no_recall = FALSE
-	SSshuttle.emergency_no_recall = FALSE
-	if(SSshuttle.last_mode == SHUTTLE_DISABLED) //If everything goes to shit, fix it.
-		SSshuttle.last_mode = SHUTTLE_IDLE
-
-	SSshuttle.emergency.mode = SSshuttle.last_mode
-	if(SSshuttle.last_call_time < 10 SECONDS && SSshuttle.last_mode != SHUTTLE_IDLE)
-		SSshuttle.last_call_time = 10 SECONDS //Make sure no insta departures.
-	SSshuttle.emergency.setTimer(SSshuttle.last_call_time)
-	priority_announce("Warning: Emergency Shuttle uplink reestablished, shuttle enabled.", "LRSV Icarus Announcement", "Emergency Shuttle Uplink Alert", 'sound/misc/announce_dig.ogg')
+	SSevacuation.enable_evacuation(identifier)
 
 /client/proc/toggle_nuke(obj/machinery/nuclearbomb/N in INSTANCES_OF(/obj/machinery/nuclearbomb))
 	set category = "Admin.Events"

@@ -513,13 +513,15 @@ Striking a noncultist, however, will tear their flesh."}
 	list_reagents = list(/datum/reagent/fuel/unholywater = 50)
 
 ///how many times can the shuttle be cursed?
-#define MAX_SHUTTLE_CURSES 3
+#define MAX_EVAC_CURSES 3
 ///if the max number of shuttle curses are used within this duration, the entire cult gets an achievement
 #define SHUTTLE_CURSE_OMFG_TIMESPAN 10 SECONDS
+///how long is the evacuation delayed by?
+#define EVAC_DELAY 3 MINUTES
 
 /obj/item/shuttle_curse
 	name = "cursed orb"
-	desc = "You peer within this smokey orb and glimpse terrible fates befalling the emergency escape shuttle. "
+	desc = "You peer within this smokey orb and glimpse terrible fates befalling people during the evacuation. "
 	icon = 'icons/obj/cult/items_and_weapons.dmi'
 	icon_state = "shuttlecurse"
 	///how many times has the shuttle been cursed so far?
@@ -535,58 +537,47 @@ Striking a noncultist, however, will tear their flesh."}
 		user.Paralyze(100)
 		to_chat(user, span_warning("A powerful force shoves you away from [src]!"))
 		return
-	if(totalcurses >= MAX_SHUTTLE_CURSES)
+	if(totalcurses >= MAX_EVAC_CURSES)
 		to_chat(user, span_warning("You try to shatter the orb, but it remains as solid as a rock!"))
-		to_chat(user, span_danger(span_big("It seems that the blood cult has exhausted its ability to curse the emergency escape shuttle. It would be unwise to create more cursed orbs or to continue to try to shatter this one.")))
+		to_chat(user, span_danger(span_big("It seems that the blood cult has exhausted its ability to curse the evacuation. It would be unwise to create more cursed orbs or to continue to try to shatter this one.")))
 		return
 	if(locate(/obj/narsie) in SSpoints_of_interest.narsies)
 		to_chat(user, span_warning("Nar'Sie is already on this plane, there is no delaying the end of all things."))
 		return
 
-	if(SSshuttle.emergency.mode == SHUTTLE_CALL)
-		var/cursetime = 3 MINUTES
-		var/timer = SSshuttle.emergency.timeLeft(1) + cursetime
-		var/security_num = seclevel2num(get_security_level())
-		var/set_coefficient = 1
+	var/identifier = SSevacuation.get_initiated_controller()
+	if(!identifier)
+		return
 
-		if(totalcurses == 0)
-			first_curse_time = world.time
+	SSevacuation.delay_evacuation(identifier, 3 MINUTES)
 
-		switch(security_num)
-			if(SEC_LEVEL_GREEN)
-				set_coefficient = 1
-			else
-				set_coefficient = 0.5
+	totalcurses++
+	to_chat(user, span_danger("You shatter the orb! A dark essence spirals into the air, then disappears."))
+	playsound(user.loc, 'sound/effects/glassbr1.ogg', 50, TRUE)
 
-		var/surplus = timer - (SSshuttle.emergency_call_time * set_coefficient)
-		SSshuttle.emergency.setTimer(timer)
-		if(surplus > 0)
-			SSshuttle.block_recall(surplus)
-		totalcurses++
-		to_chat(user, span_danger("You shatter the orb! A dark essence spirals into the air, then disappears."))
-		playsound(user.loc, 'sound/effects/glassbr1.ogg', 50, TRUE)
+	if(!remaining_curses)
+		remaining_curses = strings(CULT_SHUTTLE_CURSE, "curse_announce")
 
-		if(!remaining_curses)
-			remaining_curses = strings(CULT_SHUTTLE_CURSE, "curse_announce")
+	var/curse_message = pick_n_take(remaining_curses) || "Something has gone horrendously wrong..."
 
-		var/curse_message = pick_n_take(remaining_curses) || "Something has gone horrendously wrong..."
+	curse_message += " The shuttle will be delayed by three minutes."
+	priority_announce("[curse_message]", "LSRV Icarus Announcement", "System Failure", 'sound/misc/notice1.ogg')
+	if(MAX_EVAC_CURSES-totalcurses <= 0)
+		to_chat(user, span_danger(span_big("You sense that the emergency escape shuttle can no longer be cursed. It would be unwise to create more cursed orbs.")))
+	else if(MAX_EVAC_CURSES-totalcurses == 1)
+		to_chat(user, span_danger(span_big("You sense that the emergency escape shuttle can only be cursed one more time.")))
+	else
+		to_chat(user, span_danger(span_big("You sense that the emergency escape shuttle can only be cursed [MAX_EVAC_CURSES-totalcurses] more times.")))
 
-		curse_message += " The shuttle will be delayed by three minutes."
-		priority_announce("[curse_message]", "LSRV Icarus Announcement", "System Failure", 'sound/misc/notice1.ogg')
-		if(MAX_SHUTTLE_CURSES-totalcurses <= 0)
-			to_chat(user, span_danger(span_big("You sense that the emergency escape shuttle can no longer be cursed. It would be unwise to create more cursed orbs.")))
-		else if(MAX_SHUTTLE_CURSES-totalcurses == 1)
-			to_chat(user, span_danger(span_big("You sense that the emergency escape shuttle can only be cursed one more time.")))
-		else
-			to_chat(user, span_danger(span_big("You sense that the emergency escape shuttle can only be cursed [MAX_SHUTTLE_CURSES-totalcurses] more times.")))
+	if(totalcurses >= MAX_EVAC_CURSES && (world.time < first_curse_time + SHUTTLE_CURSE_OMFG_TIMESPAN))
+		var/omfg_message = pick_list(CULT_SHUTTLE_CURSE, "omfg_announce") || "LEAVE US ALONE!"
+		addtimer(CALLBACK(GLOBAL_PROC,PROC_REF(priority_announce),omfg_message,"Daedalus Industries Shuttle Dispatch","FUCK OFF",'sound/misc/notice1.ogg'), rand(2 SECONDS, 6 SECONDS))
 
-		if(totalcurses >= MAX_SHUTTLE_CURSES && (world.time < first_curse_time + SHUTTLE_CURSE_OMFG_TIMESPAN))
-			var/omfg_message = pick_list(CULT_SHUTTLE_CURSE, "omfg_announce") || "LEAVE US ALONE!"
-			addtimer(CALLBACK(GLOBAL_PROC,PROC_REF(priority_announce),omfg_message,"Daedalus Industries Shuttle Dispatch","FUCK OFF",'sound/misc/notice1.ogg'), rand(2 SECONDS, 6 SECONDS))
+	qdel(src)
 
-		qdel(src)
-
-#undef MAX_SHUTTLE_CURSES
+#undef SHUTTLE_CURSE_OMFG_TIMESPAN
+#undef EVAC_DELAY
+#undef MAX_EVAC_CURSES
 
 /obj/item/cult_shift
 	name = "veil shifter"

@@ -6,7 +6,7 @@
 ///from SSsun when the sun changes position : (azimuth)
 #define COMSIG_SUN_MOVED "sun_moved"
 
-///from SSsecurity_level when the security level changes : (new_level)
+///from SSsecurity_level when the security level changes : (old_level, new_level)
 #define COMSIG_SECURITY_LEVEL_CHANGED "security_level_changed"
 
 ///from SSshuttle when the supply shuttle starts spawning orders : ()

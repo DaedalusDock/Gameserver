@@ -375,13 +375,8 @@
 	GLOB.joined_player_list += character.ckey
 
 	if(CONFIG_GET(flag/allow_latejoin_antagonists) && humanc) //Borgs aren't allowed to be antags. Will need to be tweaked if we get true latejoin ais.
-		if(SSshuttle.emergency)
-			switch(SSshuttle.emergency.mode)
-				if(SHUTTLE_RECALL, SHUTTLE_IDLE)
-					SSticker.mode.make_antag_chance(humanc)
-				if(SHUTTLE_CALL)
-					if(SSshuttle.emergency.timeLeft(1) > initial(SSshuttle.emergency_call_time)*0.5)
-						SSticker.mode.make_antag_chance(humanc)
+		if(SSevacuation.evacuation_can_be_cancelled())
+			SSticker.mode.make_antag_chance(humanc)
 
 	if((job.job_flags & JOB_ASSIGN_QUIRKS) && humanc && CONFIG_GET(flag/roundstart_traits))
 		SSquirks.AssignQuirks(humanc, humanc.client)
@@ -404,13 +399,10 @@
 	if(SSlag_switch.measures[DISABLE_NON_OBSJOBS])
 		dat += "<div class='notice red' style='font-size: 125%'>Only Observers may join at this time.</div><br>"
 	dat += "<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>"
-	if(SSshuttle.emergency)
-		switch(SSshuttle.emergency.mode)
-			if(SHUTTLE_ESCAPE)
-				dat += "<div class='notice red'>The station has been evacuated.</div><br>"
-			if(SHUTTLE_CALL)
-				if(!SSshuttle.canRecall())
-					dat += "<div class='notice red'>The station is currently undergoing evacuation procedures.</div><br>"
+	if(SSevacuation.evacuation_in_progress())
+		dat += "<div class='notice red'>The station is currently undergoing evacuation procedures.</div><br>"
+	else if(SSevacuation.station_evacuated())
+		dat += "<div class='notice red'>The station has been evacuated.</div><br>"
 	for(var/datum/job/prioritized_job in SSjob.prioritized_jobs)
 		if(prioritized_job.current_positions >= prioritized_job.total_positions)
 			SSjob.prioritized_jobs -= prioritized_job

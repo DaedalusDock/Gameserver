@@ -11,11 +11,6 @@
 #define SHUTTLE_RECHARGING "recharging"
 #define SHUTTLE_PREARRIVAL "landing"
 
-#define EMERGENCY_IDLE_OR_RECALLED (SSshuttle.emergency && ((SSshuttle.emergency.mode == SHUTTLE_IDLE) || (SSshuttle.emergency.mode == SHUTTLE_RECALL)))
-#define EMERGENCY_ESCAPED_OR_ENDGAMED (SSshuttle.emergency && ((SSshuttle.emergency.mode == SHUTTLE_ESCAPE) || (SSshuttle.emergency.mode == SHUTTLE_ENDGAME)))
-#define EMERGENCY_AT_LEAST_DOCKED (SSshuttle.emergency && SSshuttle.emergency.mode != SHUTTLE_IDLE && SSshuttle.emergency.mode != SHUTTLE_RECALL && SSshuttle.emergency.mode != SHUTTLE_CALL)
-#define EMERGENCY_PAST_POINT_OF_NO_RETURN ((SSshuttle.emergency && SSshuttle.emergency.mode == SHUTTLE_CALL && !SSshuttle.canRecall()) || EMERGENCY_AT_LEAST_DOCKED)
-
 // Shuttle return values
 #define SHUTTLE_CAN_DOCK "can_dock"
 #define SHUTTLE_NOT_A_DOCKING_PORT "not a docking port"
@@ -53,7 +48,7 @@
 #define HYPERSPACE_LAUNCH 2
 #define HYPERSPACE_END 3
 
-#define CALL_SHUTTLE_REASON_LENGTH 12
+#define EVAC_REASON_LENGTH 12
 
 //Engine related
 #define ENGINE_COEFF_MIN 0.5

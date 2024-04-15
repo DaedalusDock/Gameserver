@@ -30,6 +30,7 @@
 	dat += "<hr/>"
 	if(SSticker.IsRoundInProgress())
 		dat += "<a href='?src=[REF(src)];[HrefToken()];gamemode_panel=1'>(Game Mode Panel)</a><BR>"
+		dat += "<a href='?src=[REF(src)];[HrefToken()];evac_panel=1'>(Evacuation Panel)</a><BR>"
 	dat += {"
 		<BR>
 		<A href='?src=[REF(src)];[HrefToken()];create_object=1'>Create Object</A><br>

@@ -98,16 +98,6 @@
 		body.key = C.key
 		new /obj/effect/temp_visual/gravpush(get_turf(body))
 
-// ----------- Emergency Shuttle Balloon
-/obj/effect/fun_balloon/sentience/emergency_shuttle
-	name = "shuttle sentience fun balloon"
-	var/trigger_time = 60
-
-/obj/effect/fun_balloon/sentience/emergency_shuttle/check()
-	. = FALSE
-	if(SSshuttle.emergency && (SSshuttle.emergency.timeLeft() <= trigger_time) && (SSshuttle.emergency.mode == SHUTTLE_CALL))
-		. = TRUE
-
 // ----------- Scatter Balloon
 /obj/effect/fun_balloon/scatter
 	name = "scatter fun balloon"

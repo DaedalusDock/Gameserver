@@ -37,10 +37,7 @@ SUBSYSTEM_DEF(statpanels)
 			"Players Playing/Connected: [get_active_player_count()]/[length(GLOB.clients)]"
 		)
 
-		if(SSshuttle.emergency)
-			var/ETA = SSshuttle.emergency.getModeStr()
-			if(ETA)
-				global_data += "[ETA] [SSshuttle.emergency.getTimerStr()]"
+		global_data += SSevacuation.get_stat_data()
 		src.currentrun = GLOB.clients.Copy()
 		mc_data = null
 

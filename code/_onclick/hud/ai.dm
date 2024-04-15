@@ -103,15 +103,15 @@
 	var/mob/living/silicon/ai/AI = usr
 	AI.announcement()
 
-/atom/movable/screen/ai/call_shuttle
-	name = "Call Emergency Shuttle"
+/atom/movable/screen/ai/call_evac
+	name = "Start Evacuation"
 	icon_state = "call_shuttle"
 
-/atom/movable/screen/ai/call_shuttle/Click()
+/atom/movable/screen/ai/call_evac/Click()
 	if(..())
 		return
 	var/mob/living/silicon/ai/AI = usr
-	AI.ai_call_shuttle()
+	AI.ai_start_evacuation()
 
 /atom/movable/screen/ai/state_laws
 	name = "State Laws"
@@ -232,9 +232,9 @@
 	using.screen_loc = ui_ai_announcement
 	static_inventory += using
 
-//Shuttle
-	using = new /atom/movable/screen/ai/call_shuttle(null, src)
-	using.screen_loc = ui_ai_shuttle
+//Evac
+	using = new /atom/movable/screen/ai/call_evac(null, src)
+	using.screen_loc = ui_ai_evac
 	static_inventory += using
 
 //Laws

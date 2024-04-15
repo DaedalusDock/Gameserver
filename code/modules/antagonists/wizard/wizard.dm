@@ -7,7 +7,6 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	antagpanel_category = "Wizard"
 	job_rank = ROLE_WIZARD
 	antag_hud_name = "wizard"
-	hijack_speed = 0.5
 	ui_name = "AntagInfoWizard"
 	suicide_cry = "FOR THE FEDERATION!!"
 	preview_outfit = /datum/outfit/wizard

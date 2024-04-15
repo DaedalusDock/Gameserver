@@ -55,6 +55,8 @@ GLOBAL_VAR(tgui_log)
 GLOBAL_PROTECT(tgui_log)
 GLOBAL_VAR(world_shuttle_log)
 GLOBAL_PROTECT(world_shuttle_log)
+GLOBAL_VAR(world_evacuation_log)
+GLOBAL_PROTECT(world_evacuation_log)
 
 GLOBAL_VAR(filter_log)
 GLOBAL_PROTECT(filter_log)

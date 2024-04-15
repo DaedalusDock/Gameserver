@@ -59,7 +59,7 @@
 /datum/game_mode/proc/check_finished(force_ending) //to be called by SSticker
 	if(!SSticker.setup_done)
 		return FALSE
-	if(SSshuttle.emergency && (SSshuttle.emergency.mode == SHUTTLE_ENDGAME))
+	if(SSevacuation.evacuation_finished())
 		return TRUE
 	if(GLOB.station_was_nuked)
 		return TRUE
@@ -196,10 +196,8 @@
 	SSticker.mode_result = "undefined"
 	if(GLOB.station_was_nuked)
 		SSticker.news_report = STATION_DESTROYED_NUKE
-	if(EMERGENCY_ESCAPED_OR_ENDGAMED)
+	if(SSevacuation.evacuation_finished())
 		SSticker.news_report = STATION_EVACUATED
-		if(SSshuttle.emergency.is_hijacked())
-			SSticker.news_report = SHUTTLE_HIJACK
 
 /// Mode specific admin panel.
 /datum/game_mode/proc/admin_panel()

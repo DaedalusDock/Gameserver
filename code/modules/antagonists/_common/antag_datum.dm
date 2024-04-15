@@ -26,10 +26,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/antag_memory = ""
 	///typepath of moodlet that the mob will gain when granted this antagonist type.
 	var/antag_moodlet
-	///If these antags are alone when a shuttle elimination happens.
-	var/can_elimination_hijack = ELIMINATION_NEUTRAL
-	///If above 0, this is the multiplier for the speed at which we hijack the shuttle. Do not directly read, use hijack_speed().
-	var/hijack_speed = 0
 	///The antag hud's icon file
 	var/hud_icon = 'icons/mob/huds/antag_hud.dmi'
 	///Name of the antag hud we provide to this mob.
@@ -383,14 +379,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 	if (isnull(new_memo))
 		return
 	antag_memory = new_memo
-
-/**
- * Gets how fast we can hijack the shuttle, return 0 for can not hijack.
- * Defaults to hijack_speed var, override for custom stuff like buffing hijack speed for hijack objectives or something.
- */
-/datum/antagonist/proc/hijack_speed()
-	var/datum/objective/hijack/H = locate() in objectives
-	return H?.hijack_speed_override || hijack_speed
 
 /// Adds a HUD that will show you other members with the same antagonist.
 /// If an antag typepath is passed to `antag_to_check`, will check that, otherwise will use the source type.

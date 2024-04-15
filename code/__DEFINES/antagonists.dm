@@ -38,14 +38,6 @@
 #define DEATHSQUAD "ds"
 #define DEATHSQUAD_LEADER "ds_leader"
 
-//Shuttle elimination hijacking
-/// Does not stop elimination hijacking but itself won't elimination hijack
-#define ELIMINATION_NEUTRAL 0
-/// Needs to be present for shuttle to be elimination hijacked
-#define ELIMINATION_ENABLED 1
-/// Prevents elimination hijack same way as non-antags
-#define ELIMINATION_PREVENT 2
-
 //Syndicate Contracts
 #define CONTRACT_STATUS_INACTIVE 1
 #define CONTRACT_STATUS_ACTIVE 2
@@ -124,12 +116,6 @@
 
 /// JSON string file for all of our heretic influence flavors
 #define HERETIC_INFLUENCE_FILE "antagonist_flavor/heretic_influences.json"
-
-///employers who hire agents to do the hijack
-GLOBAL_LIST_INIT(hijack_employers, list(
-	"Legal Trouble",
-	"Gone Postal",
-))
 
 ///employers who hire agents to do a task and escape...
 GLOBAL_LIST_INIT(normal_employers, list(

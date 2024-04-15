@@ -230,11 +230,7 @@
 	.["popcap"] = max(CONFIG_GET(number/soft_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/extreme_popcap)) //generalized field for this concept for use across ss13 codebases
 	.["bunkered"] = CONFIG_GET(flag/panic_bunker) || FALSE
 	.["interviews"] = CONFIG_GET(flag/panic_bunker_interview) || FALSE
-	if(SSshuttle?.emergency)
-		.["shuttle_mode"] = SSshuttle.emergency.mode
-		// Shuttle status, see /__DEFINES/stat.dm
-		.["shuttle_timer"] = SSshuttle.emergency.timeLeft()
-		// Shuttle timer, in seconds
+	. += SSevacuation.get_world_topic_status()
 
 //Status Cog Support Code
 /datum/world_topic/whois

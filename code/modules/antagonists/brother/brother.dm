@@ -4,7 +4,6 @@
 	job_rank = ROLE_BROTHER
 	var/special_role = ROLE_BROTHER
 	antag_hud_name = "brother"
-	hijack_speed = 0.5
 	ui_name = "AntagInfoBrother"
 	suicide_cry = "FOR MY BROTHER!!"
 	var/datum/team/brother_team/team

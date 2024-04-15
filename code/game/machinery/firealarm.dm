@@ -176,7 +176,7 @@ DEFINE_INTERACTABLE(/obj/machinery/firealarm)
  * * source The datum source of the signal
  * * new_level The new security level that is in effect
  */
-/obj/machinery/firealarm/proc/check_security_level(datum/source, new_level)
+/obj/machinery/firealarm/proc/check_security_level(datum/source, old_level, new_level)
 	SIGNAL_HANDLER
 
 	if(is_station_level(z))

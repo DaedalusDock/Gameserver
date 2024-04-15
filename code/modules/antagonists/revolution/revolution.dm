@@ -414,7 +414,7 @@
 	else
 		return
 
-	SSshuttle.clearHostileEnvironment(src)
+	SSevacuation.remove_evacuation_blocker(src)
 	save_members()
 
 	var/charter_given = FALSE

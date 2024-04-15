@@ -255,10 +255,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			round_state = "Round has not started"
 		if(GAME_STATE_PLAYING)
 			round_state = "Round is ongoing."
-			if(SSshuttle.emergency.getModeStr())
-				round_state += "\n[SSshuttle.emergency.getModeStr()]: [SSshuttle.emergency.getTimerStr()]"
-				if(SSticker.emergency_reason)
-					round_state += ", Shuttle call reason: [SSticker.emergency_reason]"
+			round_state += SSevacuation.get_discord_status()
 		if(GAME_STATE_FINISHED)
 			round_state = "Round has ended"
 	var/list/admin_counts = get_admin_counts(R_BAN)

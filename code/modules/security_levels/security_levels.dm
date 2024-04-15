@@ -15,44 +15,20 @@
 			if(SEC_LEVEL_GREEN)
 				priority_announce(CONFIG_GET(string/alert_green), sub_title = "Security level lowered to green.", do_not_modify = TRUE)
 
-				if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
-					if(SSsecurity_level.current_level >= SEC_LEVEL_RED)
-						SSshuttle.emergency.modTimer(4)
-					else
-						SSshuttle.emergency.modTimer(2)
-
 			if(SEC_LEVEL_BLUE)
 				if(SSsecurity_level.current_level < SEC_LEVEL_BLUE)
 					priority_announce(CONFIG_GET(string/alert_blue_upto), sub_title = "Security level elevated to blue.", do_not_modify = TRUE, sound_type = ANNOUNCER_ALERT)
-
-					if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
-						SSshuttle.emergency.modTimer(0.5)
-
 				else
 					priority_announce(CONFIG_GET(string/alert_blue_downto), sub_title = "Security level lowered to blue.", do_not_modify = TRUE, sound_type = ANNOUNCER_ALERT)
-					if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
-						SSshuttle.emergency.modTimer(2)
 
 			if(SEC_LEVEL_RED)
 				if(SSsecurity_level.current_level < SEC_LEVEL_RED)
 					priority_announce(CONFIG_GET(string/alert_red_upto), sub_title = "Security level elevated to red.", do_not_modify = TRUE, sound_type = ANNOUNCER_ALERT)
-
-					if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
-						if(SSsecurity_level.current_level == SEC_LEVEL_GREEN)
-							SSshuttle.emergency.modTimer(0.25)
-						else
-							SSshuttle.emergency.modTimer(0.5)
 				else
 					priority_announce(CONFIG_GET(string/alert_red_upto), sub_title = "Security level lowered to red.", do_not_modify = TRUE, sound_type = ANNOUNCER_ALERT)
 
 			if(SEC_LEVEL_DELTA)
 				priority_announce(CONFIG_GET(string/alert_delta), sub_title = "Security level elevated to delta.", do_not_modify = TRUE, sound_type = ANNOUNCER_ALERT)
-
-				if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
-					if(SSsecurity_level.current_level == SEC_LEVEL_GREEN)
-						SSshuttle.emergency.modTimer(0.25)
-					else if(SSsecurity_level.current_level == SEC_LEVEL_BLUE)
-						SSshuttle.emergency.modTimer(0.5)
 
 		SSsecurity_level.set_level(level)
 

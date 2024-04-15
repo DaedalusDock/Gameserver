@@ -249,6 +249,10 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 	if (CONFIG_GET(flag/log_shuttle))
 		WRITE_LOG(GLOB.world_shuttle_log, "SHUTTLE: [text]")
 
+/proc/log_evacuation(text)
+	if (CONFIG_GET(flag/log_evacuation))
+		WRITE_LOG(GLOB.world_evacuation_log, "EVACUATION: [text]")
+
 /proc/log_topic(text)
 	WRITE_LOG(GLOB.world_game_log, "TOPIC: [text]")
 

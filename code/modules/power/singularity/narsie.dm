@@ -239,7 +239,7 @@
 ///security level and shuttle lockdowns for [/proc/begin_the_end()]
 /proc/narsie_start_destroy_station()
 	set_security_level("delta")
-	SSshuttle.registerHostileEnvironment(GLOB.cult_narsie)
+	SSevacuation.add_evacuation_blocker(GLOB.cult_narsie)
 	SSshuttle.lockdown = TRUE
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(narsie_apocalypse)), 1 MINUTES)
 
@@ -247,7 +247,7 @@
 /proc/narsie_apocalypse()
 	if(QDELETED(GLOB.cult_narsie)) // tres
 		priority_announce("Normalization detected! Abort the solution package!","Ananke Research Higher Dimensional Affairs", sound_type = 'sound/misc/notice1.ogg')
-		SSshuttle.clearHostileEnvironment(GLOB.cult_narsie)
+		SSevacuation.remove_evacuation_blocker(GLOB.cult_narsie)
 		GLOB.cult_narsie = null
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(narsie_last_second_win)), 2 SECONDS)
 		return

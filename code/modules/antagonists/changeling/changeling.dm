@@ -12,7 +12,6 @@
 	antagpanel_category = "Changeling"
 	job_rank = ROLE_CHANGELING
 	antag_hud_name = "changeling"
-	hijack_speed = 0.5
 	ui_name = "AntagInfoChangeling"
 	suicide_cry = "FOR THE HIVE!!"
 	/// Whether to give this changeling objectives or not

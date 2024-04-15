@@ -3,7 +3,6 @@
 	antagpanel_category = "Space Ninja"
 	job_rank = ROLE_NINJA
 	antag_hud_name = "space_ninja"
-	hijack_speed = 1
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
 	suicide_cry = "FOR THE SPIDER CLAN!!"

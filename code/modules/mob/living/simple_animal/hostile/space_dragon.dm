@@ -126,7 +126,7 @@
 		consumed_mob.Paralyze(50)
 	if(!mind.has_antag_datum(/datum/antagonist/space_dragon))
 		return
-	if((rifts_charged == 3 || (SSshuttle.emergency.mode == SHUTTLE_DOCKED && rifts_charged > 0)) && !objective_complete)
+	if(rifts_charged == 3 && !objective_complete)
 		victory()
 	if(riftTimer == -1)
 		return

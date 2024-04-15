@@ -32,6 +32,10 @@
 		"whiteship" = "whiteship_box",
 		"emergency" = "emergency_box")
 
+	var/evacuation_controllers = list(
+		/datum/evacuation_controller/emergency_shuttle
+	)
+
 	/// Dictionary of job sub-typepath to template changes dictionary
 	var/job_changes = list()
 	/// List of additional areas that count as a part of the library
@@ -192,6 +196,23 @@
 				stack_trace("Invalid path in mapping config for additional library areas: \[[path_as_text]\]")
 				continue
 			library_areas += path
+
+	evacuation_controllers = list()
+	if("evacuation_controllers" in json)
+		if(!islist(json["evacuation_controllers"]))
+			log_world("map_config \"evacuation_controllers\" field is missing or invalid!")
+			return
+
+		for(var/path_as_text in json["evacuation_controllers"])
+			var/path = text2path(path_as_text)
+			if(!ispath(path, /datum/evacuation_controller))
+				stack_trace("Invalid path in mapping config for evacuation controllers: \[[path_as_text]\]")
+				continue
+			evacuation_controllers += path
+
+		if(!length(evacuation_controllers))
+			log_world("map_config \"evacuation_controllers\" field is empty!")
+			return
 
 	defaulted = FALSE
 	return TRUE

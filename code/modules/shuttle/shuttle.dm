@@ -412,6 +412,9 @@
 	///Bolt doors on take off, unbolt on arrival?
 	var/bolt_doors = FALSE
 
+	///Prevents admins from replacing it with a new shuttle
+	var/important = FALSE
+
 /obj/docking_port/mobile/register(replace = FALSE)
 	. = ..()
 	if(!id)

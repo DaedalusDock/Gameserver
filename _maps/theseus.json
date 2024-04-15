@@ -4,6 +4,9 @@
 	"map_path": "map_files/Theseus",
 	"map_file": "Theseus.dmm",
 	"webmap_id": "Theseus",
+	"evacuation_controllers": [
+		"/datum/evacuation_controller/emergency_shuttle"
+	],
 	"shuttles": {
 		"cargo": "cargo_box",
 		"ferry": "ferry_fancy",
