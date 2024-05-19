@@ -271,3 +271,6 @@
 	//screen_text vars
 	///lazylist of screen_texts for this client, first in this list is the one playing
 	var/list/atom/movable/screen/text/screen_text/screen_texts
+
+	/// The next in line media datum to play for lobby music
+	var/datum/media/next_in_line

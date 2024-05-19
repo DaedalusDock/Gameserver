@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(ticker)
 	var/list/mob/dead/new_player/ready_players
 
 	///Media track for the music played in the lobby
-	var/datum/media/login_music
+	var/list/datum/media/login_music = list()
 	///Media track for the round end music.
 	var/datum/media/credits_music
 
@@ -715,14 +715,15 @@ SUBSYSTEM_DEF(ticker)
 	if(!istype(track))
 		CRASH("Non-datum/media given to set_login_music()!")
 
-	if(credits_music == login_music)
-		credits_music = track
-	login_music = track
+	login_music -= track
+	login_music.Insert(1, track)
 
+	var/sound/S = sound(channel = CHANNEL_LOBBYMUSIC)
 	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
 		if(!player.client)
 			continue
-		player.client.playtitlemusic()
+		player.client.next_in_line = track
+		SEND_SOUND(player.client, S) //triggers the client's callback
 
 /datum/controller/subsystem/ticker/proc/pick_login_music()
 	var/list/title_music_data = SSmedia.get_track_pool(MEDIA_TAG_LOBBYMUSIC_COMMON)
@@ -734,6 +735,7 @@ SUBSYSTEM_DEF(ticker)
 
 	if(rustg_file_exists("data/last_round_lobby_music.txt")) //The define isn't truthy
 		old_login_music_t = rustg_file_read("data/last_round_lobby_music.txt")
+
 	var/list/music_tracks = title_music_data + rare_music_data
 	//Filter map-specific tracks
 	for(var/datum/media/music_filtered as anything in music_tracks)
@@ -742,6 +744,7 @@ SUBSYSTEM_DEF(ticker)
 		if(music_filtered.map && music_filtered.map != SSmapping.config.map_name)
 			rare_music_data -= music_filtered
 			title_music_data -= music_filtered
+
 	//Remove the previous song
 	if(old_login_music)
 		//Remove the old login music from the current pool if it wouldn't empty the pool.
@@ -750,22 +753,23 @@ SUBSYSTEM_DEF(ticker)
 		else if(length(title_music_data) > 1)
 			title_music_data -= old_login_music
 
+	if(length(title_music_data))
+		login_music += shuffle(title_music_data)
+
 	//Try to set a song json
 	var/use_rare_music = prob(10)
 	if(use_rare_music && length(rare_music_data))
-		login_music = pick(rare_music_data)
-	if(!login_music && length(title_music_data))
-		login_music = pick(title_music_data)
+		login_music.Insert(1, pick(rare_music_data))
 
 	//If there's no valid jsons, fallback to the classic ROUND_START_MUSIC_LIST.
-	if(!login_music)
-		var/music = pick(world.file2list(ROUND_START_MUSIC_LIST, "\n"))
-		var/list/split_path = splittext(music, "/")
+	if(!length(login_music))
 		//Construct a minimal music track to satisfy the system.
-		login_music = new(name = split_path[length(split_path)], path = music)
+		for(var/music in shuffle(world.file2list(ROUND_START_MUSIC_LIST)))
+			var/list/split_path = splittext(music, "/")
+			login_music += new /datum/media(name = split_path[length(split_path)], path = music)
 
 	//Write the last round file to our current choice
-	rustg_file_write(login_music.path, "data/last_round_lobby_music.txt")
+	rustg_file_write(login_music[1].path, "data/last_round_lobby_music.txt")
 
 /datum/controller/subsystem/ticker/proc/pick_credits_music()
 	var/list/music_data = SSmedia.get_track_pool(MEDIA_TAG_ROUNDEND_COMMON)
@@ -780,6 +784,11 @@ SUBSYSTEM_DEF(ticker)
 
 	if(!credits_music)
 		credits_music = login_music
+
+/datum/controller/subsystem/ticker/proc/get_login_song(idx)
+	RETURN_TYPE(/datum/media)
+	idx = (idx %% (length(login_music) + 1)) || 1
+	return login_music[idx]
 
 ///Generate a list of gamemodes we can play.
 /datum/controller/subsystem/ticker/proc/draft_gamemodes()
