@@ -1413,7 +1413,6 @@
 		A.state = AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS
 		A.created_name = name
 		A.previous_assembly = previous_airlock
-		A.update_name()
 		A.update_appearance()
 
 		if(!disassembled)

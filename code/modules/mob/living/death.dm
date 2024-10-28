@@ -73,13 +73,14 @@
 	set_stat(DEAD)
 	unset_machine()
 
+	died_as_name = name
 	timeofdeath = world.time
-	tod = stationtime2text()
+	timeofdeath_as_ingame = stationtime2text()
 
 	// tgchat displays doc strings with formatting, so we do stupid shit instead
 	var/list/death_message = list(
-		"<div style='text-align:center'>[span_statsbad("<span style='font-size: 300%;font-style: normal'>You Died</span>")]</div>",
-		"<div style='text-align:center'>[span_statsbad("<span style='font-size: 200%;font-style: normal'>Cause of Death: [cause_of_death]</span>")]</div>",
+		"<div style='text-align:center'><i>[span_statsbad("<span style='font-size: 300%;font-style: normal'>You Died</span>")]</i></div>",
+		"<div style='text-align:center'><i>[span_statsbad("<span style='font-size: 200%;font-style: normal'>Cause of Death: [cause_of_death]</span>")]</i></div>",
 		"<hr>",
 		span_obviousnotice("Your story may not be over yet. You are able to be resuscitated as long as your brain was not destroyed, and you have not been dead for 10 minutes."),
 	)
@@ -92,10 +93,14 @@
 	death_message = examine_block(jointext(death_message, ""))
 	to_chat(src, death_message)
 
+	playsound_local(src, 'goon/sounds/revfocus.ogg', 50, vary = FALSE, pressure_affected = FALSE)
+
 	var/turf/T = get_turf(src)
 
-	if(mind && mind.name && mind.active && !istype(T.loc, /area/centcom/ctf))
-		deadchat_broadcast(" has died at <b>[get_area_name(T)]</b>.", "<b>[mind.name]</b>", follow_target = src, turf_target = T, message_type=DEADCHAT_DEATHRATTLE)
+	if(mind && mind.name && mind.active)
+		if(!istype(T.loc, /area/centcom/ctf))
+			deadchat_broadcast(" has died at <b>[get_area_name(T)]</b>.", "<b>[mind.name]</b>", follow_target = src, turf_target = T, message_type=DEADCHAT_DEATHRATTLE)
+
 		if(SSlag_switch.measures[DISABLE_DEAD_KEYLOOP] && !client?.holder)
 			to_chat(src, span_deadsay(span_big("Observer freelook is disabled.\nPlease use Orbit, Teleport, and Jump to look around.")))
 			ghostize(TRUE)

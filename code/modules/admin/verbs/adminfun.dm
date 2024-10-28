@@ -249,3 +249,28 @@
 	message_admins(msg)
 	admin_ticket_log(whom, msg)
 	log_admin("[key_name(src)] punished [key_name(whom)] with [punishment].")
+
+/client/proc/restore_ghost_character()
+	set category = "Admin.Fun"
+	set name = "Restore Ghost Character"
+	set desc = "Sets your deadchat name and ghost appearance to your \
+		roundstart character."
+
+	if(!check_rights())
+		return
+
+	if(!isobserver(mob))
+		return
+
+	var/mob/dead/observer/observer_mob = mob
+	var/mob/living/carbon/human/dummy/consistent/template = new
+	if(prefs)
+		var/real_name = prefs.read_preference(/datum/preference/name/real_name)
+		observer_mob.deadchat_name = real_name
+		if(observer_mob.mind)
+			observer_mob.mind.ghostname = real_name
+		observer_mob.set_real_name(real_name)
+		prefs.apply_prefs_to(template)
+
+	observer_mob.set_ghost_appearance(template)
+	qdel(template)

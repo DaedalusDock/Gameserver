@@ -49,16 +49,6 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 		SSblackbox.ReportDeath(src)
 		log_message("has died (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()], CLONE: [src.getCloneLoss()])", LOG_ATTACK)
 
-	for(var/mob/living/L in viewers(src, world.view) - src)
-		if(L.is_blind() || L.stat != CONSCIOUS || !L.client)
-			continue
-
-		var/datum/roll_result/result = L.stat_roll(7, /datum/rpg_skill/willpower)
-		switch(result.outcome)
-			if(FAILURE, CRIT_FAILURE)
-				if(L.apply_status_effect(/datum/status_effect/skill_mod/witness_death))
-					to_chat(L, result.create_tooltip("For but a moment, there is nothing. Nothing but the gnawing realisation of what you have just witnessed."))
-
 /mob/living/carbon/human/proc/makeSkeleton()
 	ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	set_species(/datum/species/skeleton)
@@ -79,6 +69,9 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 
 /mob/living/carbon/human/proc/show_death_stats(mob/user)
 	var/list/scan = time_of_death_stats
+	if(!length(scan))
+		return
+
 	var/list/ui_content = list()
 
 	var/datum/browser/popup = new(user, "timeofdeathinfo", "Time of Death Information", 600, 800)

@@ -10,9 +10,4 @@
 	if(!istype(M))
 		return
 
-	if(value && !M.started_as_observer)
-		if(locate(/datum/client_colour/ghostmono) in M.client_colours)
-			return
-		M.add_client_colour(/datum/client_colour/ghostmono)
-	else
-		M.remove_client_colour(/datum/client_colour/ghostmono)
+	M.update_monochrome()

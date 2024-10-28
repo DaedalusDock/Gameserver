@@ -129,11 +129,19 @@
 
 /// Called when a status effect of status_type STATUS_EFFECT_REFRESH
 /// has its duration refreshed in apply_status_effect - is passed New() args
-/datum/status_effect/proc/refresh(effect, ...)
+/datum/status_effect/proc/refresh(mob/living/parent, effect_path, ...)
 	var/original_duration = initial(duration)
 	if(original_duration == -1)
 		return
 	duration = world.time + original_duration
+
+/// Called when a status effect of status_type STATUS_EFFECT_EXTEND
+/// has its duration extended in apply_status_effect - is passed New() args
+/datum/status_effect/proc/extend(mob/living/parent, effect_path, ...)
+	var/original_duration = initial(duration)
+	if(original_duration == -1)
+		return
+	duration += original_duration
 
 /// Adds nextmove modifier multiplicatively to the owner while applied
 /datum/status_effect/proc/nextmove_modifier()

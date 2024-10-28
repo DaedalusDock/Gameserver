@@ -36,7 +36,7 @@
 		usr.name_archive = ""
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
-			H.update_name()
+			H.update_appearance(UPDATE_NAME)
 
 	usr.forceMove(get_turf(usr.control_object))
 	usr.reset_perspective()

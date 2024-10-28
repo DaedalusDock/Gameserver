@@ -12,4 +12,4 @@
 
 /mob/living/carbon/human/proc/do_name_update(datum/source)
 	SIGNAL_HANDLER
-	update_name()
+	update_appearance(UPDATE_NAME)

@@ -15,7 +15,7 @@
 			E.Grant(src)
 			revive(full_heal = TRUE, admin_revive = FALSE)
 			regenerate_icons()
-			update_name()
+			update_appearance(UPDATE_NAME)
 			return
 
 	if(buckled)

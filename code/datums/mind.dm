@@ -36,6 +36,9 @@
 	var/mob/living/current
 	var/active = FALSE
 
+	/// A copy of a corpse appearance, set when transferring a mind to a brainmob.
+	var/mutable_appearance/body_appearance
+
 	///a list of /datum/memories. assoc type of memory = memory datum. only one type of memory will be stored, new ones of the same type overriding the last.
 	var/list/memories = list()
 	///reference to the memory panel tgui

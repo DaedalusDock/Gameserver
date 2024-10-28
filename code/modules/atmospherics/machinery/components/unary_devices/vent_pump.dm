@@ -197,7 +197,7 @@
 	if(!GLOB.air_vent_names[id_tag])
 		// If we do not have a name, assign one.
 		// Produces names like "Port Quarter Solar vent pump hZ2l6".
-		update_name()
+		update_appearance(UPDATE_NAME)
 		GLOB.air_vent_names[id_tag] = name
 
 	vent_area.air_vent_info[id_tag] = signal.data

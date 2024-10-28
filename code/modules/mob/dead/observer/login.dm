@@ -16,5 +16,4 @@
 	client.set_right_click_menu_mode(FALSE)
 	lighting_alpha = default_lighting_alpha()
 	update_sight()
-
-
+	update_monochrome()

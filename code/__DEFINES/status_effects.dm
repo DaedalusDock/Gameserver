@@ -6,6 +6,8 @@
 #define STATUS_EFFECT_REPLACE 2
 /// if it only allows one, and new instances just instead refresh the timer
 #define STATUS_EFFECT_REFRESH 3
+/// if it only allows one, and new instances add to the timer
+#define STATUS_EFFECT_EXTEND 4
 
 ///Processing flags - used to define the speed at which the status will work
 ///This is fast - 0.2s between ticks (I believe!)

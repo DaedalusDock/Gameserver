@@ -76,10 +76,11 @@
 		stack_trace("There's no freaking observer landmark available on this map or you're making observers before the map is initialised")
 	observer.key = key
 	observer.client = client
-	observer.restore_ghost_appearance()
+
 	if(observer.client && observer.client.prefs)
 		observer.set_real_name(observer.client.prefs.read_preference(/datum/preference/name/real_name))
 		observer.client.init_verbs()
+
 	observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 	deadchat_broadcast(" has observed.", "<b>[observer.real_name]</b>", follow_target = observer, turf_target = get_turf(observer), message_type = DEADCHAT_DEATHRATTLE)
 	QDEL_NULL(mind)

@@ -64,13 +64,14 @@ DEFINE_INTERACTABLE(/mob/living)
 	var/hallucination = 0 ///Directly affects how long a mob will hallucinate for
 
 	var/last_special = 0 ///Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
+	/// Time of death as world.time
 	var/timeofdeath = 0
 
 	/// Helper vars for quick access to firestacks, these should be updated every time firestacks are adjusted
 	var/on_fire = FALSE
 	var/fire_stacks = 0
 
-	/**
+	/**			mind.mob_appearance = appearance
 	  * Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
 	  *
 	  * FALSE is off, [INCORPOREAL_MOVE_BASIC] is normal, [INCORPOREAL_MOVE_SHADOW] is for ninjas
@@ -90,8 +91,8 @@ DEFINE_INTERACTABLE(/mob/living)
 
 	var/cameraFollow = null
 
-	/// Time of death
-	var/tod = null
+	/// Time of death in the in-game time format
+	var/timeofdeath_as_ingame = null
 
 	var/limb_destroyer = 0 //1 Sets AI behavior that allows mobs to target and dismember limbs with their basic attack.
 

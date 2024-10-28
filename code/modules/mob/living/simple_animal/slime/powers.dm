@@ -144,7 +144,7 @@
 			var/datum/action/innate/slime/reproduce/reproduce_action = new
 			reproduce_action.Grant(src)
 			regenerate_icons()
-			update_name()
+			update_appearance(UPDATE_NAME)
 		else
 			to_chat(src, "<i>I am not ready to evolve yet...</i>")
 	else

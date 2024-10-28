@@ -45,7 +45,6 @@
 	has_fill_overlays = initial(airlock_cast.has_fill_overlays)
 
 	update_appearance()
-	update_name()
 
 	AddComponent(/datum/component/simple_rotation)
 
@@ -299,7 +298,7 @@
 				qdel(src)
 	else
 		return ..()
-	update_name()
+
 	update_appearance()
 
 /obj/structure/door_assembly/update_overlays()
@@ -350,7 +349,6 @@
 		target.electronics = source.electronics
 		source.electronics.forceMove(target)
 	target.update_appearance()
-	target.update_name()
 	qdel(source)
 
 /obj/structure/door_assembly/deconstruct(disassembled = TRUE)

@@ -317,14 +317,14 @@
 		belt = null
 		if(!QDELETED(src))
 			update_slots_for_item(I, ITEM_SLOT_BELT)
-			update_name()
+			update_appearance(UPDATE_NAME)
 
 	else if(I == wear_id)
 		wear_id = null
 		sec_hud_set_ID()
 		if(!QDELETED(src))
 			update_slots_for_item(I, ITEM_SLOT_ID)
-			update_name()
+			update_appearance(UPDATE_NAME)
 
 	else if(I == r_store)
 		r_store = null
@@ -389,7 +389,7 @@
 	if(I.flags_inv & HIDEEYES)
 		update_worn_glasses()
 	sec_hud_set_security_status()
-	update_name()
+	update_appearance(UPDATE_NAME)
 	..()
 
 /mob/living/carbon/human/proc/equipOutfit(outfit, visualsOnly = FALSE)

@@ -190,7 +190,7 @@
 		return
 	label = new_label
 	balloon_alert(user, "name set")
-	update_name()
+	update_appearance(UPDATE_NAME)
 
 /obj/item/clothing/neck/link_scryer/process(delta_time)
 	if(!mod_link.link_call)

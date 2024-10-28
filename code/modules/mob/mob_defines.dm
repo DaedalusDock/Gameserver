@@ -93,6 +93,8 @@
 	var/eye_blurry = 0 //Carbon
 	/// What is the mobs real name (name is overridden for disguises etc)
 	var/real_name = null
+	/// The name this mob had when it died. Used by dead say.
+	var/died_as_name = ""
 
 	/**
 	  * back up of the real name during admin possession

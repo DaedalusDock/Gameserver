@@ -91,6 +91,6 @@
 			balloon_alert(user, "new label set")
 		else
 			labelled = FALSE
-			update_name()
+			update_appearance(UPDATE_NAME)
 	else
 		return ..()

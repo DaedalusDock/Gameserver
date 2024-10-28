@@ -657,7 +657,7 @@
 	REMOVE_TRAIT(src, TRAIT_FAKEDEATH, source)
 	REMOVE_TRAIT(src, TRAIT_DEATHCOMA, source)
 	if(stat != DEAD)
-		tod = null
+		timeofdeath_as_ingame = null
 
 /// Induces fake death on a living mob.
 /mob/living/proc/fakedeath(source, silent = FALSE)
@@ -667,7 +667,7 @@
 		emote("deathgasp")
 	ADD_TRAIT(src, TRAIT_FAKEDEATH, source)
 	ADD_TRAIT(src, TRAIT_DEATHCOMA, source)
-	tod = stationtime2text()
+	timeofdeath_as_ingame = stationtime2text()
 
 
 ///Unignores all slowdowns that lack the IGNORE_NOSLOW flag.

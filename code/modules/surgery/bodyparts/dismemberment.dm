@@ -318,7 +318,7 @@
 	var/mob/living/carbon/human/old_owner = owner
 	. = ..()
 
-	old_owner.update_name()
+	old_owner.update_appearance(UPDATE_NAME)
 
 	if(!special)
 		if(brain?.brainmob)

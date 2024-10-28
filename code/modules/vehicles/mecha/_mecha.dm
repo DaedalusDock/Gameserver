@@ -1276,7 +1276,7 @@
 			A.rounds = A.rounds - ammo_needed
 			if(A.custom_materials)
 				A.set_custom_materials(A.custom_materials, A.rounds / initial(A.rounds))
-			A.update_name()
+			A.update_appearance(UPDATE_NAME)
 			return TRUE
 
 		if(A.direct_load)
@@ -1287,7 +1287,7 @@
 		to_chat(user, span_notice("You add [A.rounds] [A.ammo_type][A.rounds > 1?"s":""] to the [gun.name]"))
 		A.rounds = 0
 		A.set_custom_materials(list(/datum/material/iron=2000))
-		A.update_name()
+		A.update_appearance(UPDATE_NAME)
 		return TRUE
 	if(!fail_chat_override)
 		if(found_gun)

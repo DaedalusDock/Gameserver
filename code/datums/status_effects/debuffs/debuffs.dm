@@ -217,7 +217,7 @@
 		var/delta = world.time - last_dead_time
 		var/new_timeofdeath = owner.timeofdeath + delta
 		owner.timeofdeath = new_timeofdeath
-		owner.tod = stationtime2text(reference_time=new_timeofdeath)
+		owner.timeofdeath_as_ingame = stationtime2text(reference_time=new_timeofdeath)
 		last_dead_time = null
 	if(owner.stat == DEAD)
 		last_dead_time = world.time

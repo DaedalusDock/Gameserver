@@ -636,11 +636,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/pipe/Initialize(mapload)
 	. = ..()
-	update_name()
+	update_appearance(UPDATE_NAME)
 
 /obj/item/clothing/mask/cigarette/pipe/update_name()
-	. = ..()
 	name = packeditem ? "[packeditem]-packed [initial(name)]" : "empty [initial(name)]"
+	return ..()
 
 /obj/item/clothing/mask/cigarette/pipe/put_out(mob/user, done_early = FALSE)
 	lit = FALSE
@@ -672,7 +672,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	to_chat(user, span_notice("You stuff [to_smoke] into [src]."))
 	smoketime = 13 MINUTES
 	packeditem = to_smoke.name
-	update_name()
+	update_appearance(UPDATE_NAME)
 	if(to_smoke.reagents)
 		to_smoke.reagents.trans_to(src, to_smoke.reagents.total_volume, transfered_by = user)
 	qdel(to_smoke)
@@ -686,7 +686,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		packeditem = null
 		smoketime = 0
 		reagents.clear_reagents()
-		update_name()
+		update_appearance(UPDATE_NAME)
 		return
 	return ..()
 

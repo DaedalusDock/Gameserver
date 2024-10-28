@@ -354,7 +354,7 @@
 		// Update name if we are changing face visibility
 		var/face_coverage_changed = updated_slots & HIDEFACE
 		if(face_coverage_changed)
-			update_name()
+			update_appearance(UPDATE_NAME)
 
 		// Update body incase any bodyparts or organs changed visibility
 		var/bodypart_coverage_changed = updated_slots & BODYPART_HIDE_FLAGS

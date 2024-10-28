@@ -66,7 +66,7 @@
 
 /obj/machinery/atmospherics/LateInitialize()
 	. = ..()
-	update_name()
+	update_appearance(UPDATE_NAME)
 
 /obj/machinery/atmospherics/examine(mob/user)
 	. = ..()
@@ -482,7 +482,7 @@ GLOBAL_REAL_VAR(atmos_machinery_default_armor) = list(BLUNT = 25, PUNCTURE = 10,
 	if(can_unwrench)
 		add_atom_colour(obj_color, FIXED_COLOUR_PRIORITY)
 		pipe_color = obj_color
-	update_name()
+	update_appearance(UPDATE_NAME)
 	set_piping_layer(set_layer)
 	atmos_init()
 	var/list/nodes = pipeline_expansion()

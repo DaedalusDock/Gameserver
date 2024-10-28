@@ -35,7 +35,12 @@
 					existing_effect.be_replaced()
 				// Refresh the existing type, then early return
 				if(STATUS_EFFECT_REFRESH)
+					arguments.Insert(1, new_effect)
 					existing_effect.refresh(arglist(arguments))
+					return
+				if(STATUS_EFFECT_EXTEND)
+					arguments.Insert(1, new_effect)
+					existing_effect.extend(arglist(arguments))
 					return
 
 	// Create the status effect with our mob + our arguments

@@ -65,9 +65,6 @@
 
 ///Speak as a dead person (ghost etc)
 /mob/proc/say_dead(message)
-	var/name = real_name
-	var/alt_name = ""
-
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
@@ -94,19 +91,24 @@
 		if(src.client.handle_spam_prevention(message,MUTE_DEADCHAT))
 			return
 
+	var/display_name = real_name
+	var/name_append = ""
 	var/mob/dead/observer/O = src
 	if(isobserver(src) && O.deadchat_name)
-		name = "[O.deadchat_name]"
+		display_name = "[O.deadchat_name]"
+		if(died_as_name && (real_name != died_as_name))
+			name_append = " (died as [died_as_name])"
 	else
 		if(mind?.name)
-			name = "[mind.name]"
+			display_name = "[mind.name]"
 		else
-			name = real_name
-		if(name != real_name)
-			alt_name = " (died as [real_name])"
+			display_name = real_name
+
+		if(display_name != died_as_name)
+			name_append = " (died as [died_as_name])"
 
 	var/spanned = say_quote(say_emphasis(message))
-	var/source = "<span class='game'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name]"
+	var/source = "<span class='game'><span class='prefix'>DEAD:</span> <span class='name'>[display_name]</span>[name_append]"
 	var/rendered = " <span class='message'>[emoji_parse(spanned)]</span></span>"
 	log_talk(message, LOG_SAY, tag="DEAD")
 	if(SEND_SIGNAL(src, COMSIG_MOB_DEADSAY, message) & MOB_DEADSAY_SIGNAL_INTERCEPT)

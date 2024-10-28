@@ -166,7 +166,7 @@
 
 	var/area/vent_area = get_area(src)
 	if(!GLOB.air_vent_names[id_tag])
-		update_name()
+		update_appearance(UPDATE_NAME)
 		GLOB.air_vent_names[id_tag] = name
 
 	vent_area.air_vent_info[id_tag] = signal.data
