@@ -20,7 +20,7 @@ export const AirAlarm = (props) => {
   const { act, data } = useBackend();
   const locked = data.locked && !data.siliconUser;
   return (
-    <Window width={440} height={650}>
+    <Window width={440} height={670}>
       <Window.Content scrollable>
         <InterfaceLockNoticeBox />
         <ThermostatControl />
@@ -52,7 +52,7 @@ const AirAlarmStatus = (props) => {
   };
   const localStatus = dangerMap[data.danger_level] || dangerMap[0];
   return (
-    <Section title="Air Status">
+    <Section title="Air Status" crtFitted>
       <LabeledList>
         {(entries.length > 0 && (
           <>
@@ -127,7 +127,7 @@ const ThermostatControl = (props) => {
                   fluid
                   position="absolute"
                   top="16px"
-                  right="-20px"
+                  right="-28px"
                   color="transparent"
                   icon="undo"
                   onClick={() =>

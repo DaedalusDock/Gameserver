@@ -351,7 +351,7 @@ export class Changelog extends Component {
         ));
 
     return (
-      <Window title="Changelog" width={675} height={650}>
+      <Window title="Changelog" width={675} height={650} theme={'nanotrasen'}>
         <Window.Content scrollable>
           {header}
           {changes}

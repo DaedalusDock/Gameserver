@@ -33,7 +33,7 @@ export const InterfaceLockNoticeBox = (props) => {
           <Flex.Item>
             <Button
               m={0}
-              color={locked ? 'red' : 'green'}
+              selected={!!locked}
               icon={locked ? 'lock' : 'unlock'}
               content={locked ? 'Locked' : 'Unlocked'}
               onClick={() => {

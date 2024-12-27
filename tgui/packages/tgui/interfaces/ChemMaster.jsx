@@ -110,7 +110,7 @@ const ChemMasterContent = (props) => {
           ))}
         </ChemicalBuffer>
       </Section>
-      <Section title="Packaging">
+      <Section title="Packaging" crtFitted>
         <PackagingControls />
       </Section>
       {!!isPillBottleLoaded && (

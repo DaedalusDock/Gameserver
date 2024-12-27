@@ -101,6 +101,7 @@ const CargoStatus = (props) => {
   return (
     <Section
       title="Cargo"
+      crtFitted
       buttons={
         <Box inline bold>
           <AnimatedNumber
@@ -275,7 +276,7 @@ export const CargoCatalog = (props) => {
                   <Table.Cell collapsing color="label" textAlign="right">
                     {tags.join(', ')}
                   </Table.Cell>
-                  <Table.Cell collapsing textAlign="right">
+                  <Table.Cell fluid collapsing textAlign="right">
                     <Button
                       fluid
                       tooltip={pack.desc}

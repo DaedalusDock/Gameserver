@@ -3,12 +3,10 @@
 $light: #00e94e;
 $dark: #001100;
 
-@use '../../base.scss' with (
+@use '../crt.scss' with (
   $color-bg: $dark,
   $color-fg: $light
 );
-
-@use '../crt.scss';
 
 .theme-crtgreen {
   @extend %theme-crt;

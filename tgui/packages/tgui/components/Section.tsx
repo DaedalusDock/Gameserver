@@ -13,6 +13,8 @@ import { BoxProps, computeBoxClassName, computeBoxProps } from './Box';
 interface SectionProps extends BoxProps {
   buttons?: ReactNode;
   className?: string;
+  // Property used to cleanly hide the borders of tables using the crt theme
+  crtFitted?: boolean;
   fill?: boolean;
   fitted?: boolean;
   /** @deprecated This property no longer works, please remove it. */
@@ -52,6 +54,7 @@ export class Section extends Component<SectionProps> {
       buttons,
       fill,
       fitted,
+      crtFitted,
       scrollable,
       children,
       ...rest
@@ -63,6 +66,7 @@ export class Section extends Component<SectionProps> {
           'Section',
           fill && 'Section--fill',
           fitted && 'Section--fitted',
+          !fitted && crtFitted && 'Section--crtfitted',
           scrollable && 'Section--scrollable',
           className,
           computeBoxClassName(rest),

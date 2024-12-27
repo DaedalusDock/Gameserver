@@ -20,9 +20,9 @@ export const DisposalUnit = (props) => {
     stateText = 'Off';
   }
   return (
-    <Window width={300} height={180}>
+    <Window width={300} height={200}>
       <Window.Content>
-        <Section>
+        <Section crtFitted>
           <LabeledList>
             <LabeledList.Item label="State" color={stateColor}>
               {stateText}

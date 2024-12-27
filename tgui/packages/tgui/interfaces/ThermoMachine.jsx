@@ -15,7 +15,7 @@ export const ThermoMachine = (props) => {
   return (
     <Window width={300} height={350}>
       <Window.Content>
-        <Section title="Status">
+        <Section title="Status" crtFitted>
           <LabeledList>
             <LabeledList.Item label="Temperature">
               <AnimatedNumber
@@ -35,6 +35,7 @@ export const ThermoMachine = (props) => {
         </Section>
         <Section
           title="Controls"
+          crtFitted
           buttons={
             <Button
               icon={data.on ? 'power-off' : 'times'}

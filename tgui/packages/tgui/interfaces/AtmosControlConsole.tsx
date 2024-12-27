@@ -70,7 +70,7 @@ export const AtmosControlConsole = (props) => {
           )}
         </Section>
         {!!selectedChamber && !!data.control && (
-          <Section title="Chamber Controls">
+          <Section title="Chamber Controls" crtFitted>
             <Stack>
               <Stack.Item grow>
                 {selectedChamber.input_info ? (

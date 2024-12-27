@@ -66,6 +66,7 @@ export const NtosNetChat = (props) => {
     all_channels = [],
     clients = [],
     messages = [],
+    PC_device_theme,
   } = data;
   const in_channel = active_channel !== null;
   const authorized = authed || adminmode;
@@ -96,7 +97,7 @@ export const NtosNetChat = (props) => {
   // client from this computer!
   const this_client = clients.find((client) => client.ref === selfref);
   return (
-    <NtosWindow width={1000} height={675}>
+    <NtosWindow width={1000} height={675} theme={PC_device_theme}>
       <NtosWindow.Content>
         <Stack fill>
           <Stack.Item>

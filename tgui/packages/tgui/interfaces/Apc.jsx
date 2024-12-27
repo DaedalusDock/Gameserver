@@ -12,7 +12,7 @@ import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
 export const Apc = (props) => {
   return (
-    <Window width={450} height={432}>
+    <Window width={450} height={500}>
       <Window.Content>
         <ApcContent />
       </Window.Content>
@@ -93,11 +93,12 @@ const ApcContent = (props) => {
       <InterfaceLockNoticeBox />
       <Section
         title="Power Status"
+        crtFitted
         buttons={
           <Button
             icon={data.mainLights ? 'lightbulb' : 'lightbulb-o'}
             content="Main Lights"
-            color={data.mainLights ? 'green' : 'red'}
+            selected={!!data.mainLights}
             onClick={() => act('main_lights')}
           />
         }
@@ -108,6 +109,8 @@ const ApcContent = (props) => {
             color={externalPowerStatus.color}
             buttons={
               <Button
+                fluid
+                verticalFluid
                 icon={data.isOperating ? 'power-off' : 'times'}
                 content={data.isOperating ? 'On' : 'Off'}
                 selected={data.isOperating && !locked}
@@ -126,6 +129,7 @@ const ApcContent = (props) => {
             color={chargingStatus.color}
             buttons={
               <Button
+                verticalFluid
                 icon={data.chargeMode ? 'sync' : 'times'}
                 content={data.chargeMode ? 'Auto' : 'Off'}
                 disabled={locked}
@@ -137,7 +141,7 @@ const ApcContent = (props) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section title="Power Channels">
+      <Section title="Power Channels" crtFitted>
         <LabeledList>
           {channelArray.map((channel) => {
             const { topicParams } = channel;
@@ -155,6 +159,8 @@ const ApcContent = (props) => {
                       {channel.status >= 2 ? 'On' : 'Off'}
                     </Box>
                     <Button
+                      verticalFluid
+                      buttonList
                       icon="sync"
                       content="Auto"
                       selected={
@@ -165,6 +171,8 @@ const ApcContent = (props) => {
                       onClick={() => act('channel', topicParams.auto)}
                     />
                     <Button
+                      verticalFluid
+                      buttonList
                       icon="power-off"
                       content="On"
                       selected={!locked && channel.status === 2}
@@ -172,6 +180,8 @@ const ApcContent = (props) => {
                       onClick={() => act('channel', topicParams.on)}
                     />
                     <Button
+                      verticalFluid
+                      buttonList
                       icon="times"
                       content="Off"
                       selected={!locked && channel.status === 0}
@@ -192,6 +202,7 @@ const ApcContent = (props) => {
       </Section>
       <Section
         title="Misc"
+        crtFitted
         buttons={
           !!data.siliconUser && (
             <>
@@ -217,8 +228,12 @@ const ApcContent = (props) => {
             label="Cover Lock"
             buttons={
               <Button
+                verticalFluid
                 icon={data.coverLocked ? 'lock' : 'unlock'}
                 content={data.coverLocked ? 'Engaged' : 'Disengaged'}
+                width={8.5}
+                textAlign="left"
+                selected={data.coverLocked}
                 disabled={locked}
                 onClick={() => act('cover')}
               />
@@ -228,9 +243,10 @@ const ApcContent = (props) => {
             label="Emergency Lighting"
             buttons={
               <Button
+                verticalFluid
                 icon={data.emergencyLights ? 'lightbulb' : 'lightbulb-o'}
                 content={data.emergencyLights ? 'Enabled' : 'Disabled'}
-                width={6.6}
+                width={8.5}
                 textAlign="left"
                 selected={data.emergencyLights}
                 disabled={locked}
@@ -242,11 +258,13 @@ const ApcContent = (props) => {
             label="Night Shift Lighting"
             buttons={
               <Button
+                verticalFluid
                 icon={data.nightshiftLights ? 'lightbulb' : 'lightbulb-o'}
                 content={data.nightshiftLights ? 'Enabled' : 'Disabled'}
-                width={6.6}
+                width={8.5}
                 textAlign="left"
                 selected={data.nightshiftLights}
+                disabled={locked}
                 onClick={() => act('toggle_nightshift')}
               />
             }

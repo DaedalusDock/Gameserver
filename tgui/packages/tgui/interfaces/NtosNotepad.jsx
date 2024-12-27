@@ -4,9 +4,9 @@ import { NtosWindow } from '../layouts';
 
 export const NtosNotepad = (props) => {
   const { act, data } = useBackend();
-  const { note } = data;
+  const { note, PC_device_theme } = data;
   return (
-    <NtosWindow width={600} height={800}>
+    <NtosWindow width={600} height={800} theme={PC_device_theme}>
       <NtosWindow.Content>
         <Stack fill vertical direction="column" justify="space-between">
           <Stack.Item>

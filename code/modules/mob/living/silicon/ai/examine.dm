@@ -16,7 +16,7 @@
 		if(deployed_shell)
 			. += "The wireless networking light is blinking.\n"
 		else if (!shunted && !client)
-			. += "[src]Core.exe has stopped responding! NTOS is searching for a solution to the problem...\n"
+			. += "[src]Core.exe has stopped responding! ThinkDOS is searching for a solution to the problem...\n"
 	//. += "*---------*</span>" PARIAH EDIT REMOVAL
 
 	. += ..()

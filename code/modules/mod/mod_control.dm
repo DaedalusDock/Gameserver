@@ -36,7 +36,7 @@
 	/// Looks of the MOD.
 	var/skin = "standard"
 	/// Theme of the MOD TGUI
-	var/ui_theme = "ntos"
+	var/ui_theme = PDA_DEFAULT_THEME
 	/// If the suit is deployed and turned on.
 	var/active = FALSE
 	/// If the suit wire/module hatch is open.

@@ -20,6 +20,7 @@ export const MechBayPowerConsole = (props) => {
         <Section
           title="Mech status"
           textAlign="center"
+          crtFitted
           buttons={
             <Button
               icon="sync"

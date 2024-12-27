@@ -41,13 +41,14 @@ export const TableRow = (props) => {
 };
 
 export const TableCell = (props) => {
-  const { className, collapsing, header, ...rest } = props;
+  const { className, collapsing, header, fluid, ...rest } = props;
   return (
     <td
       className={classes([
         'Table__cell',
         collapsing && 'Table__cell--collapsing',
         header && 'Table__cell--header',
+        fluid && 'Table__cell--fluid',
         className,
         computeBoxClassName(props),
       ])}

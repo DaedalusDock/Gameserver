@@ -19,9 +19,11 @@ $color-bg-end: color.adjust(
   $lightness: -$color-bg-grad-spread
 ) !default;
 
+$border-radius: 0em !default;
+
 $unit: 12px;
 $font-size: 1 * $unit !default;
-$border-radius: 0em !default;
+$font-family: (Verdana, Geneva, sans-serif) !default;
 
 @function em($px) {
   @return 1em * math.div($px, $unit);

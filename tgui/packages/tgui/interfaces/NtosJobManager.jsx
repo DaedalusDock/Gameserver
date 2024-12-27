@@ -3,8 +3,10 @@ import { Box, Button, Dimmer, NoticeBox, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosJobManager = (props) => {
+  const { act, data } = useBackend();
+  const { PC_device_theme } = data;
   return (
-    <NtosWindow width={400} height={620}>
+    <NtosWindow width={400} height={620} theme={PC_device_theme}>
       <NtosWindow.Content scrollable>
         <NtosJobManagerContent />
       </NtosWindow.Content>

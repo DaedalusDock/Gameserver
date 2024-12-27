@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(TabletMessengers) // a list of all active messengers, similar 
 	var/upgradable = TRUE // whether or not the computer can be upgraded
 	var/deconstructable = TRUE // whether or not the computer can be deconstructed
 	var/screen_on = 1 // Whether the computer is active/opened/it's screen is on.
-	var/device_theme = "ntos" // Sets the theme for the main menu, hardware config, and file browser apps. Overridden by certain non-NT devices.
+	var/device_theme = PDA_DEFAULT_THEME // Sets the theme for the main menu, hardware config, and file browser apps. Overridden by certain non-NT devices.
 	var/datum/computer_file/program/active_program = null // A currently active program running on the computer.
 	var/hardware_flag = 0 // A flag that describes this device type
 	var/last_power_usage = 0

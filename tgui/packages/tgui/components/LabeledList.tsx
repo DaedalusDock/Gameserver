@@ -42,7 +42,7 @@ const LabeledListItem = (props: LabeledListItemProps) => {
     buttons,
     content,
     children,
-    verticalAlign = 'baseline',
+    verticalAlign = 'middle',
   } = props;
   return (
     <tr className={classes(['LabeledList__row', className])}>

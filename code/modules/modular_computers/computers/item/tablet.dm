@@ -27,7 +27,7 @@
 	var/obj/item/insert_type = /obj/item/pen
 	var/obj/item/inserted_item
 
-	var/note = "Congratulations on your station upgrading to the new NtOS and Thinktronic based collaboration effort, bringing you the best in electronics and software since 2467!"  // the note used by the notekeeping app, stored here for convenience
+	var/note = "Congratulations on your new ThinkTronic Personal Digital Assistant."  // the note used by the notekeeping app, stored here for convenience
 
 /obj/item/modular_computer/tablet/Destroy()
 	QDEL_NULL(inserted_item)

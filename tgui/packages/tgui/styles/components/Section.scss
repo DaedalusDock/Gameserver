@@ -55,6 +55,11 @@ $separator-color: colors.$primary !default;
   padding: 0;
 }
 
+.Section--crtfitted > .Section__rest > .Section__content {
+  padding-top: 3px;
+  padding-bottom: 0;
+}
+
 .Section--fill {
   display: flex;
   flex-direction: column;

@@ -23,15 +23,16 @@ export const AiAirlock = (props) => {
   const statusBackup = dangerMap[data.power.backup] || dangerMap[0];
   const statusElectrify = dangerMap[data.shock] || dangerMap[0];
   return (
-    <Window width={500} height={390}>
+    <Window width={500} height={505}>
       <Window.Content>
-        <Section title="Power Status">
+        <Section title="Power Status" crtFitted>
           <LabeledList>
             <LabeledList.Item
               label="Main"
               color={statusMain.color}
               buttons={
                 <Button
+                  verticalFluid
                   icon="lightbulb-o"
                   disabled={!data.power.main}
                   content="Disrupt"
@@ -50,6 +51,7 @@ export const AiAirlock = (props) => {
               color={statusBackup.color}
               buttons={
                 <Button
+                  verticalFluid
                   icon="lightbulb-o"
                   disabled={!data.power.backup}
                   content="Disrupt"
@@ -69,18 +71,21 @@ export const AiAirlock = (props) => {
               buttons={
                 <>
                   <Button
+                    fluid
                     icon="wrench"
                     disabled={!(data.wires.shock && data.shock === 0)}
                     content="Restore"
                     onClick={() => act('shock-restore')}
                   />
                   <Button
+                    fluid
                     icon="bolt"
                     disabled={!data.wires.shock}
                     content="Temporary"
                     onClick={() => act('shock-temp')}
                   />
                   <Button
+                    fluid
                     icon="bolt"
                     disabled={!data.wires.shock}
                     content="Permanent"
@@ -96,13 +101,15 @@ export const AiAirlock = (props) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Access and Door Control">
+        <Section title="Access and Door Control" crtFitted>
           <LabeledList>
             <LabeledList.Item
               label="ID Scan"
               color="bad"
               buttons={
                 <Button
+                  fluid
+                  verticalFluid
                   icon={data.id_scanner ? 'power-off' : 'times'}
                   content={data.id_scanner ? 'Enabled' : 'Disabled'}
                   selected={data.id_scanner}
@@ -117,6 +124,8 @@ export const AiAirlock = (props) => {
               label="Emergency Access"
               buttons={
                 <Button
+                  fluid
+                  verticalFluid
                   icon={data.emergency ? 'power-off' : 'times'}
                   content={data.emergency ? 'Enabled' : 'Disabled'}
                   selected={data.emergency}
@@ -130,6 +139,8 @@ export const AiAirlock = (props) => {
               color="bad"
               buttons={
                 <Button
+                  fluid
+                  verticalFluid
                   icon={data.locked ? 'lock' : 'unlock'}
                   content={data.locked ? 'Lowered' : 'Raised'}
                   selected={data.locked}
@@ -145,6 +156,8 @@ export const AiAirlock = (props) => {
               color="bad"
               buttons={
                 <Button
+                  fluid
+                  verticalFluid
                   icon={data.lights ? 'power-off' : 'times'}
                   content={data.lights ? 'Enabled' : 'Disabled'}
                   selected={data.lights}
@@ -160,6 +173,8 @@ export const AiAirlock = (props) => {
               color="bad"
               buttons={
                 <Button
+                  fluid
+                  verticalFluid
                   icon={data.safe ? 'power-off' : 'times'}
                   content={data.safe ? 'Enabled' : 'Disabled'}
                   selected={data.safe}
@@ -175,6 +190,8 @@ export const AiAirlock = (props) => {
               color="bad"
               buttons={
                 <Button
+                  fluid
+                  verticalFluid
                   icon={data.speed ? 'power-off' : 'times'}
                   content={data.speed ? 'Enabled' : 'Disabled'}
                   selected={data.speed}
@@ -191,6 +208,8 @@ export const AiAirlock = (props) => {
               color="bad"
               buttons={
                 <Button
+                  fluid
+                  verticalFluid
                   icon={data.opened ? 'sign-out-alt' : 'sign-in-alt'}
                   content={data.opened ? 'Open' : 'Closed'}
                   selected={data.opened}

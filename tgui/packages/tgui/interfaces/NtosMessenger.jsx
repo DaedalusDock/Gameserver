@@ -41,10 +41,11 @@ export const NtosMessenger = (props) => {
     isSilicon,
     virus_attach,
     sending_virus,
+    PC_device_theme,
   } = data;
   if (viewing_messages) {
     return (
-      <NtosWindow width={600} height={800}>
+      <NtosWindow width={600} height={800} theme={PC_device_theme}>
         <NtosWindow.Content>
           <Stack vertical>
             <Section fill>
@@ -95,7 +96,7 @@ export const NtosMessenger = (props) => {
     );
   }
   return (
-    <NtosWindow width={600} height={800}>
+    <NtosWindow width={600} height={800} theme={PC_device_theme}>
       <NtosWindow.Content>
         <Stack vertical>
           <Section fill textAlign="center">

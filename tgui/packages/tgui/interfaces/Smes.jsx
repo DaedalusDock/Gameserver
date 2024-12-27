@@ -36,7 +36,7 @@ export const Smes = (props) => {
   const outputState =
     (outputting && 'good') || (charge > 0 && 'average') || 'bad';
   return (
-    <Window width={340} height={350}>
+    <Window width={340} height={390}>
       <Window.Content>
         <Section title="Stored Energy">
           <ProgressBar
@@ -57,6 +57,7 @@ export const Smes = (props) => {
                   icon={inputAttempt ? 'sync-alt' : 'times'}
                   selected={inputAttempt}
                   onClick={() => act('tryinput')}
+                  verticalFluid
                 >
                   {inputAttempt ? 'Auto' : 'Off'}
                 </Button>
@@ -139,6 +140,8 @@ export const Smes = (props) => {
               label="Output Mode"
               buttons={
                 <Button
+                  fluid
+                  verticalFluid
                   icon={outputAttempt ? 'power-off' : 'times'}
                   selected={outputAttempt}
                   onClick={() => act('tryoutput')}

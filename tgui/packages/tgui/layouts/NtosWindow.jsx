@@ -10,7 +10,13 @@ import { Box, Button } from '../components';
 import { Window } from './Window';
 
 export const NtosWindow = (props) => {
-  const { title, width = 575, height = 700, theme = 'ntos', children } = props;
+  const {
+    title,
+    width = 575,
+    height = 700,
+    theme = 'crtntos',
+    children,
+  } = props;
   const { act, data } = useBackend();
   const {
     PC_device_theme,
@@ -34,6 +40,7 @@ export const NtosWindow = (props) => {
             <Box inline italic mr={2} opacity={0.33}>
               {PC_device_theme === 'ntos' && 'NtOS'}
               {PC_device_theme === 'syndicate' && 'Syndix'}
+              {PC_device_theme === 'crtntos' && 'ThinkDOS'}
             </Box>
           </div>
           <div className="NtosHeader__right">

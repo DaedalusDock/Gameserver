@@ -63,13 +63,15 @@ const FileTable = (props) => {
         <Table.Cell>File</Table.Cell>
         <Table.Cell collapsing>Type</Table.Cell>
         <Table.Cell collapsing>Size</Table.Cell>
+        <Table.Cell collapsing>Actions</Table.Cell>
       </Table.Row>
       {files.map((file) => (
         <Table.Row key={file.name} className="candystripe">
-          <Table.Cell>
+          <Table.Cell fluid>
             {!file.undeletable ? (
               <Button.Input
                 fluid
+                verticalFluid
                 content={file.name}
                 currentValue={file.name}
                 tooltip="Rename"
@@ -81,9 +83,11 @@ const FileTable = (props) => {
           </Table.Cell>
           <Table.Cell>{file.type}</Table.Cell>
           <Table.Cell>{file.size}</Table.Cell>
-          <Table.Cell collapsing>
+          <Table.Cell collapsing fluid>
             {!!file.alert_able && (
               <Button
+                verticalFluid
+                buttonList
                 icon={file.alert_silenced ? 'bell-slash' : 'bell'}
                 color={file.alert_silenced ? 'red' : 'default'}
                 tooltip={file.alert_silenced ? 'Unmute Alerts' : 'Mute Alerts'}
@@ -93,6 +97,8 @@ const FileTable = (props) => {
             {!file.undeletable && (
               <>
                 <Button.Confirm
+                  verticalFluid
+                  buttonList
                   icon="trash"
                   confirmIcon="times"
                   confirmContent=""
@@ -102,12 +108,16 @@ const FileTable = (props) => {
                 {!!usbconnected &&
                   (usbmode ? (
                     <Button
+                      verticalFluid
+                      buttonList
                       icon="download"
                       tooltip="Download"
                       onClick={() => onUpload(file.name)}
                     />
                   ) : (
                     <Button
+                      verticalFluid
+                      buttonList
                       icon="upload"
                       tooltip="Upload"
                       onClick={() => onUpload(file.name)}

@@ -4,10 +4,10 @@ import { NtosWindow } from '../layouts';
 
 export const NtosStatus = (props) => {
   const { act, data } = useBackend();
-  const { upper, lower } = data;
+  const { upper, lower, PC_device_theme } = data;
 
   return (
-    <NtosWindow width={310} height={200}>
+    <NtosWindow width={310} height={200} theme={PC_device_theme}>
       <NtosWindow.Content>
         <Section>
           <Input

@@ -104,6 +104,28 @@ $bg-map: colors.$bg-map !default;
   margin-right: 0;
 }
 
+.Button--verticalFluid {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 100%;
+}
+
+.Button--buttonList {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: base.em(2px);
+  margin-right: base.em(2px);
+
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
 .Button--circular {
   border-radius: 50%;
 }

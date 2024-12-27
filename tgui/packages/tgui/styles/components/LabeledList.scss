@@ -5,6 +5,8 @@
 
 @use '../base.scss';
 
+$height: 0px !default;
+
 .LabeledList {
   display: table;
   // IE8: Does not support calc
@@ -16,10 +18,12 @@
   margin: -0.25em -0.5em;
   margin-bottom: 0;
   padding: 0;
+  font-family: base.$font-family;
 }
 
 .LabeledList__row {
   display: table-row;
+  height: $height;
 }
 
 .LabeledList__row:last-child .LabeledList__cell {
@@ -44,6 +48,5 @@
   width: 0.1%;
   white-space: nowrap;
   text-align: right;
-  padding-top: base.em(1px);
-  padding-bottom: 0;
+  padding: 0;
 }

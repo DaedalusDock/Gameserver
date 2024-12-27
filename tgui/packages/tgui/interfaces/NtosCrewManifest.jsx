@@ -13,9 +13,9 @@ import { NtosWindow } from '../layouts';
 
 export const NtosCrewManifest = (props) => {
   const { act, data } = useBackend();
-  const { have_printer, manifest = {}, manifest_key } = data;
+  const { have_printer, manifest = {}, PC_device_theme, manifest_key } = data;
   return (
-    <NtosWindow width={500} height={480}>
+    <NtosWindow width={500} height={480} theme={PC_device_theme}>
       <NtosWindow.Content scrollable>
         <Section
           title="Staff Manifest"

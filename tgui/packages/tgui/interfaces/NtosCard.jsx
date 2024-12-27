@@ -14,8 +14,10 @@ import { NtosWindow } from '../layouts';
 import { AccessList } from './common/AccessList';
 
 export const NtosCard = (props) => {
+  const { act, data } = useBackend();
+  const { PC_device_theme } = data;
   return (
-    <NtosWindow width={500} height={670}>
+    <NtosWindow width={500} height={670} theme={PC_device_theme}>
       <NtosWindow.Content scrollable>
         <NtosCardContent />
       </NtosWindow.Content>

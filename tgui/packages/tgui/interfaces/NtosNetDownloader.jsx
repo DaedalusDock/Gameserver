@@ -45,7 +45,7 @@ export const NtosNetDownloader = (props) => {
       filter((program) => program.category === selectedCategory),
     // This filters the list to only contain verified programs
     !emagged &&
-      PC_device_theme === 'ntos' &&
+      PC_device_theme === 'crtntos' &&
       filter((program) => program.verifiedsource === 1),
     // This sorts all programs in the lists by name and compatibility
     sortBy(
@@ -211,9 +211,9 @@ const Program = (props) => {
       <Box mt={1} italic color="label">
         {program.fileinfo}
       </Box>
-      {!program.verifiedsource && PC_device_theme === 'ntos' && (
+      {!program.verifiedsource && PC_device_theme === 'crtntos' && (
         <NoticeBox mt={1} mb={0} danger fontSize="12px">
-          Unverified source. Please note that Nanotrasen does not recommend
+          Unverified source. Please note that ThinkTronic does not recommend
           download and usage of software from non-official servers.
         </NoticeBox>
       )}
