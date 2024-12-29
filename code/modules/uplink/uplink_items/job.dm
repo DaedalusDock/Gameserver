@@ -59,7 +59,7 @@
 	progression_minimum = 10 MINUTES
 	item = /obj/item/mmi/syndie
 	cost = 2
-	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_MEDICAL_DIRECTOR)
+	restricted_roles = list(JOB_ACOLYTE, JOB_AUGUR)
 	surplus = 0
 
 /datum/uplink_item/role_restricted/explosive_hot_potato
@@ -149,7 +149,7 @@
 	progression_minimum = 30 MINUTES
 	item = /obj/item/gun/chem
 	cost = 12
-	restricted_roles = list(JOB_CHEMIST, JOB_MEDICAL_DIRECTOR, JOB_BOTANIST)
+	restricted_roles = list(JOB_CHEMIST, JOB_AUGUR, JOB_BOTANIST)
 
 /datum/uplink_item/role_restricted/pie_cannon
 	name = "Banana Cream Pie Cannon"

@@ -13,8 +13,8 @@
 /datum/job/chief_engineer
 	alt_titles = list(JOB_CHIEF_ENGINEER)
 
-/datum/job/chief_medical_officer
-	alt_titles = list(JOB_MEDICAL_DIRECTOR)
+/datum/job/augur
+	alt_titles = list(JOB_AUGUR)
 
 /datum/job/head_of_security
 	alt_titles = list(JOB_SECURITY_MARSHAL)
@@ -35,8 +35,8 @@
 
 // Medical
 
-/datum/job/doctor
-	alt_titles = list(JOB_MEDICAL_DOCTOR, "Surgeon", "Physician")
+/datum/job/acolyte
+	alt_titles = list(JOB_ACOLYTE)
 
 /datum/job/paramedic
 	alt_titles = list(JOB_PARAMEDIC)

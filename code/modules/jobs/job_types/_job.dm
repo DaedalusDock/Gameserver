@@ -13,8 +13,8 @@ GLOBAL_LIST_INIT(job_display_order, list(
 	/datum/job/station_engineer,
 	/datum/job/atmospheric_technician,
 	// Medical
-	/datum/job/chief_medical_officer,
-	/datum/job/doctor,
+	/datum/job/augur,
+	/datum/job/acolyte,
 	/datum/job/paramedic,
 	/datum/job/chemist,
 	/datum/job/virologist,
@@ -321,7 +321,6 @@ GLOBAL_LIST_INIT(job_display_order, list(
 	uniform = /obj/item/clothing/under/color/grey
 	id = /obj/item/card/id/advanced
 	ears = /obj/item/radio/headset
-	belt = /obj/item/modular_computer/tablet/pda
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	box = /obj/item/storage/box/survival

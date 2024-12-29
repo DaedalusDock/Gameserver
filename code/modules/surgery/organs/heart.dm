@@ -52,19 +52,24 @@
 
 /obj/item/organ/heart/Remove(mob/living/carbon/heartless, special = 0)
 	..()
-	if(!special)
-		addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 120)
+	if(special)
+		return
 
+	addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 2 MINUTES)
 	heartless.med_hud_set_health()
 	update_moodlet()
 
 /obj/item/organ/heart/proc/Restart()
+	if(organ_flags & ORGAN_DEAD)
+		return FALSE
+
 	pulse = PULSE_NORM
 	update_appearance(UPDATE_ICON_STATE)
 	update_movespeed()
 	update_moodlet()
 
 	owner?.med_hud_set_health()
+	return TRUE
 
 /obj/item/organ/heart/proc/Stop()
 	pulse = PULSE_NONE
@@ -108,7 +113,7 @@
 
 /obj/item/organ/heart/on_death(delta_time, times_fired)
 	. = ..()
-	if(pulse)
+	if(pulse && owner)
 		Stop()
 
 /obj/item/organ/heart/on_life(delta_time, times_fired)

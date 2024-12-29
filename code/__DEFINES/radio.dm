@@ -107,6 +107,7 @@
 #define RADIO_AIRLOCK "airlock"
 #define RADIO_MAGNETS "magnets"
 #define RADIO_PDAMESSAGE "pdamessage"
+#define RADIO_PAGER_MESSAGE "pager_message"
 
 #define DEFAULT_SIGNALER_CODE 30
 

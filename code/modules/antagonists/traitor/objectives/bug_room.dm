@@ -20,7 +20,7 @@
 	progression_maximum = 30 MINUTES
 
 	var/list/applicable_heads = list(
-		JOB_MEDICAL_DIRECTOR = /area/station/command/heads_quarters/cmo,
+		JOB_AUGUR = /area/station/command/heads_quarters/cmo,
 		JOB_CHIEF_ENGINEER = /area/station/command/heads_quarters/ce,
 		JOB_HEAD_OF_PERSONNEL = /area/station/command/heads_quarters/hop,
 		JOB_CAPTAIN = /area/station/command/heads_quarters/captain, // For head roles so that they can still get this objective.

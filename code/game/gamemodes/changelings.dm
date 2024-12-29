@@ -13,7 +13,7 @@
 		JOB_SECURITY_MARSHAL,
 		JOB_CAPTAIN,
 		JOB_CHIEF_ENGINEER,
-		JOB_MEDICAL_DIRECTOR
+		JOB_AUGUR
 	)
 
 	antag_datum = /datum/antagonist/changeling

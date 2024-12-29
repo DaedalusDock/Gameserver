@@ -22,7 +22,7 @@
 	minbodytemp = 0
 	status_flags = CANPUSH
 	del_on_death = 1
-	var/zombiejob = JOB_MEDICAL_DOCTOR
+	var/zombiejob = JOB_ACOLYTE
 	var/infection_chance = 0
 
 /mob/living/simple_animal/hostile/zombie/Initialize(mapload)

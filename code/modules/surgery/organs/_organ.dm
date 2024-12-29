@@ -269,17 +269,16 @@ INITIALIZE_IMMEDIATE(/obj/item/organ)
 	on_death(delta_time, times_fired) //Kinda hate doing it like this, but I really don't want to call process directly.
 
 
-/// This is on_life() but for when the organ is dead or outside of a mob. Bad name.
+/// This is on_life() but for when the owner is dead or outside of a mob. Bad name.
 /obj/item/organ/proc/on_death(delta_time, times_fired)
 	if(organ_flags & (ORGAN_SYNTHETIC|ORGAN_FROZEN|ORGAN_DEAD))
 		return
 
-	if(isnull(owner))
+	germ_level += rand(1,3)
+	if(germ_level >= INFECTION_LEVEL_TWO)
 		germ_level += rand(1,3)
-		if(germ_level >= INFECTION_LEVEL_TWO)
-			germ_level += rand(1,3)
-		if(germ_level >= INFECTION_LEVEL_THREE)
-			set_organ_dead(TRUE, "Necrosis")
+	if(germ_level >= INFECTION_LEVEL_THREE)
+		set_organ_dead(TRUE, "Necrosis")
 
 /// Called once every life tick on every organ in a carbon's body
 /// NOTE: THIS IS VERY HOT. Be careful what you put in here

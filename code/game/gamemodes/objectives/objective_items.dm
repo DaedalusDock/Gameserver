@@ -67,7 +67,7 @@
 	excludefromjob = list(
 		JOB_CAPTAIN,
 		JOB_CHIEF_ENGINEER,
-		JOB_MEDICAL_DIRECTOR,
+		JOB_AUGUR,
 		JOB_SECURITY_MARSHAL,
 		JOB_STATION_ENGINEER,
 		JOB_ATMOSPHERIC_TECHNICIAN,
@@ -195,7 +195,7 @@
 	name = "the hypospray"
 	targetitem = /obj/item/hypospray/mkii/cmo //PARIAH EDIT
 	difficulty = 5
-	excludefromjob = list(JOB_MEDICAL_DIRECTOR)
+	excludefromjob = list(JOB_AUGUR)
 	exists_on_map = TRUE
 
 /obj/item/hypospray/mkii/cmo/add_stealing_item_objective() //PARIAH EDIT

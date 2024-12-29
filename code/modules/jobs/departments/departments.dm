@@ -83,7 +83,7 @@
 /datum/job_department/medical
 	department_name = DEPARTMENT_MEDICAL
 	department_bitflags = DEPARTMENT_BITFLAG_MEDICAL
-	department_head = /datum/job/chief_medical_officer
+	department_head = /datum/job/augur
 	department_experience_type = EXP_TYPE_MEDICAL
 	display_order = 4
 	label_class = "medical"

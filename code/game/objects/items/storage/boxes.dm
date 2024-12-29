@@ -213,11 +213,13 @@
 
 /obj/item/storage/box/syringes
 	name = "box of syringes"
-	desc = "A box full of syringes."
+	desc = "A box able to fit 9 syringes."
 	illustration = "syringe"
 
+	storage_type = /datum/storage/box/syringe
+
 /obj/item/storage/box/syringes/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in 1 to 9)
 		new /obj/item/reagent_containers/syringe(src)
 
 /obj/item/storage/box/syringes/variety
@@ -233,6 +235,8 @@
 	name = "box of medipens"
 	desc = "A box full of epinephrine MediPens."
 	illustration = "epipen"
+
+	storage_type = /datum/storage/box/syringe
 
 /obj/item/storage/box/medipens/PopulateContents()
 	for(var/i in 1 to 7)

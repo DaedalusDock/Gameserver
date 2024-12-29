@@ -36,7 +36,7 @@
 		/obj/item/stack/medical/mesh = 2,
 		/obj/item/reagent_containers/hypospray/medipen = 1,
 		/obj/item/stack/splint = 1
-		)
+	)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/emergency

@@ -1280,6 +1280,7 @@
 		I.add_trace_DNA(user.get_trace_dna())
 	else
 		add_trace_DNA(user.get_trace_dna())
+
 /mob/living/carbon/human/fire_act(exposed_temperature, exposed_volume, turf/adjacent)
 	. = ..()
 	var/head_exposure = 1

@@ -93,6 +93,10 @@
 		to_chat(user, span_warning("There is no evidence on [target]."))
 		return
 
+	if(istype(target, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = target
+		swabbed_forensics.add_blood_DNA(S.dirty_blood_DNA)
+
 	swabbed_forensics.add_trace_DNA(target.return_trace_DNA())
 	swabbed_forensics.add_blood_DNA(target.return_blood_DNA())
 	swabbed_forensics.add_gunshot_residue_list(target.return_gunshot_residue())
@@ -106,4 +110,11 @@
 	update_appearance()
 
 /obj/item/swab/proc/is_valid_target(atom/target)
-	return length(target.return_blood_DNA()) && length(target.return_trace_DNA()) && length(target.return_gunshot_residue())
+	if(length(target.return_blood_DNA()) || length(target.return_trace_DNA()) || length(target.return_gunshot_residue()))
+		return TRUE
+
+	if(istype(target, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = target
+		if(length(S.dirty_blood_DNA))
+			return TRUE
+	return FALSE

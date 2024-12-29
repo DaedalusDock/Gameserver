@@ -997,7 +997,7 @@
 	if(current_cycle in SECONDS_TO_REAGENT_CYCLES(10) to SECONDS_TO_REAGENT_CYCLES(14)) // Seconds 10-14 stop ya heart. (2.5 to 3.5)
 		if(C.set_heartattack(TRUE))
 			log_health(C, "Heart stopped due to adenosine misdose.")
-			C.Unconscious(3 SECONDS)
+			C.Unconscious(10 SECONDS)
 		return
 
 	if(current_cycle == SECONDS_TO_REAGENT_CYCLES(16)) // Restart heart after 16 seconds (exactly 4u)

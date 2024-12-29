@@ -489,14 +489,18 @@
 
 /datum/status_effect/stacking/saw_bleed
 	id = "saw_bleed"
-	tick_interval = 6
+
+	tick_interval = 0.6 SECONDS
+
+	stack_decay = 1
 	delay_before_decay = 5
 	stack_threshold = 10
 	max_stacks = 10
+
+	consumed_on_threshold = TRUE
+
 	overlay_file = 'icons/effects/bleed.dmi'
-	underlay_file = 'icons/effects/bleed.dmi'
 	overlay_state = "bleed"
-	underlay_state = "bleed"
 	var/bleed_damage = 200
 
 /datum/status_effect/stacking/saw_bleed/fadeout_effect()
@@ -509,6 +513,15 @@
 	for(var/d in GLOB.alldirs)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(T, d)
 	playsound(T, SFX_DESECRATION, 100, TRUE, -1)
+
+/// Return FALSE if the owner is not in a valid state (self-deletes the effect), or TRUE otherwise
+/datum/status_effect/stacking/saw_bleed/can_have_status()
+	return owner.stat != DEAD
+
+/// Whether the owner can currently gain stacks or not
+/// Return FALSE if the owner is not in a valid state, or TRUE otherwise
+/datum/status_effect/stacking/saw_bleed/can_gain_stacks()
+	return owner.stat != DEAD
 
 /datum/status_effect/stacking/saw_bleed/bloodletting
 	id = "bloodletting"

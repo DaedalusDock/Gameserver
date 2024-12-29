@@ -129,7 +129,6 @@
 	satchel = /obj/item/storage/backpack/cultpack
 
 	chameleon_extras = /obj/item/stamp/chap
-	skillchips = list(/obj/item/skillchip/entrails_reader)
 
 /datum/outfit/job/chaplain/plasmaman
 	name = "Chaplain (Plasmaman)"

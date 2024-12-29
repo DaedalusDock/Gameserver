@@ -38,6 +38,12 @@
 /// Network Class of a device, used as part of ping replies.
 #define PACKET_NETCLASS "netclass"
 
+// Pagers
+/// Packet arg for pager types
+#define PACKET_ARG_PAGER_CLASS "pager_class"
+/// Packet arg for the message sent
+#define PACKET_ARG_PAGER_MESSAGE "pager_message"
+
 // Special addresses
 #define NET_ADDRESS_PING "ping"
 

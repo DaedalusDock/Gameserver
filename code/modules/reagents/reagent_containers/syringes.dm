@@ -14,8 +14,16 @@
 	reagent_flags = TRANSPARENT
 	custom_price = PAYCHECK_EASY * 0.5
 	sharpness = SHARP_POINTY
+
 	/// Flags used by the injection
 	var/inject_flags = NONE
+
+	/// Tracks if the below lists are populated.
+	var/sterile = TRUE
+	/// Lazylist. If it exists that means the syringe is non-sterile.
+	var/list/dirty_blood_DNA
+	/// Lazylist. Contains disease datums. K:V of disease_id : disease datum.
+	var/list/dirty_pathogens
 
 /obj/item/reagent_containers/syringe/Initialize(mapload)
 	. = ..()
@@ -46,6 +54,9 @@
 /obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 
+	if(DOING_INTERACTION(user, ref(src)))
+		return
+
 	if (!try_syringe(target, user, proximity))
 		return
 
@@ -68,24 +79,36 @@
 		var/mob/living/living_target = target
 		if(!living_target.try_inject(user, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE|inject_flags))
 			return
+
 		if(living_target != user)
-			living_target.visible_message(span_danger("[user] is trying to inject [living_target]!"), \
-									span_userdanger("[user] is trying to inject you!"))
-			if(!do_after(user, living_target, CHEM_INTERACT_DELAY(3 SECONDS, user), DO_PUBLIC, extra_checks = CALLBACK(living_target, TYPE_PROC_REF(/mob/living, try_inject), user, null, INJECT_TRY_SHOW_ERROR_MESSAGE|inject_flags), display = src))
+			living_target.visible_message(
+				span_notice("[user] is trying to inject [living_target] with [src]."),
+			)
+			if(!do_after(user, living_target, CHEM_INTERACT_DELAY(3 SECONDS, user), DO_PUBLIC, extra_checks = CALLBACK(living_target, TYPE_PROC_REF(/mob/living, try_inject), user, null, INJECT_TRY_SHOW_ERROR_MESSAGE|inject_flags), interaction_key = ref(src), display = src))
 				return
 			if(!reagents.total_volume)
 				return
 			if(living_target.reagents.total_volume >= living_target.reagents.maximum_volume)
 				return
-			living_target.visible_message(span_danger("[user] injects [living_target] with the syringe!"), \
-							span_userdanger("[user] injects you with the syringe!"))
+
+			living_target.visible_message(
+				span_notice("[user] injects [living_target] with [src]."),
+			)
 
 		if (living_target == user)
+			living_target.visible_message(span_notice("[user] injects [user.p_them()]self with [src]."))
 			living_target.log_message("injected themselves ([contained]) with [name]", LOG_ATTACK, color="orange")
 		else
 			log_combat(user, living_target, "injected", src, addition="which had [contained]")
+
+		contaminate_mob(living_target)
+		// Only show the flavor message once.
+		if(!LAZYLEN(dirty_blood_DNA))
+			user.visible_message(span_subtle("Blood fills [src]'s needle."), vision_distance = 1)
+		contaminate(living_target.get_blood_dna_list(), living_target.diseases)
+
 	reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user, methods = INJECT)
-	to_chat(user, span_notice("You inject [amount_per_transfer_from_this] units of the solution. The syringe now contains [reagents.total_volume] units."))
+	to_chat(user, span_obviousnotice("You inject [amount_per_transfer_from_this] units of the solution. \The [src] now contains [reagents.total_volume] units."))
 
 /obj/item/reagent_containers/syringe/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
 	if (!try_syringe(target, user, proximity_flag))
@@ -99,28 +122,34 @@
 		var/mob/living/living_target = target
 		var/drawn_amount = reagents.maximum_volume - reagents.total_volume
 		if(target != user)
-			target.visible_message(span_danger("[user] is trying to take a blood sample from [target]!"), \
-							span_userdanger("[user] is trying to take a blood sample from you!"))
-			if(!do_after(user, target, CHEM_INTERACT_DELAY(3 SECONDS, user), DO_PUBLIC, extra_checks = CALLBACK(living_target, TYPE_PROC_REF(/mob/living, try_inject), user, null, INJECT_TRY_SHOW_ERROR_MESSAGE|inject_flags), display = src))
+			target.visible_message(
+				span_notice("[user] is trying to take a blood sample from [target]."),
+			)
+
+			if(!do_after(user, target, CHEM_INTERACT_DELAY(3 SECONDS, user), DO_PUBLIC, extra_checks = CALLBACK(living_target, TYPE_PROC_REF(/mob/living, try_inject), user, null, INJECT_TRY_SHOW_ERROR_MESSAGE|inject_flags), interaction_key = ref(src), display = src))
 				return SECONDARY_ATTACK_CONTINUE_CHAIN
 			if(reagents.total_volume >= reagents.maximum_volume)
 				return SECONDARY_ATTACK_CONTINUE_CHAIN
+
+		var/target_str = living_target == user ? "[user.p_them()]self" : "[living_target]"
 		if(living_target.transfer_blood_to(src, drawn_amount))
-			user.visible_message(span_notice("[user] takes a blood sample from [living_target]."))
+			contaminate_mob(living_target)
+			user.visible_message(span_notice("[user] takes a blood sample from [target_str] with [src]."))
+			contaminate(living_target.get_blood_dna_list(), living_target.diseases)
 		else
-			to_chat(user, span_warning("You are unable to draw any blood from [living_target]!"))
+			to_chat(user, span_warning("You are unable to draw any blood from [target_str]."))
 	else
 		if(!target.reagents.total_volume)
 			to_chat(user, span_warning("[target] is empty!"))
 			return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 		if(!target.is_drawable(user))
-			to_chat(user, span_warning("You cannot directly remove reagents from [target]!"))
+			to_chat(user, span_warning("You cannot directly remove reagents from [target]."))
 			return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transfered_by = user) // transfer from, transfer to - who cares?
 
-		to_chat(user, span_notice("You fill [src] with [trans] units of the solution. It now contains [reagents.total_volume] units."))
+		to_chat(user, span_obviousnotice("You fill [src] with [trans] units of the solution. It now contains [reagents.total_volume] units."))
 	playsound(src, 'sound/effects/syringe_extract.ogg', 50)
 	return SECONDARY_ATTACK_CONTINUE_CHAIN
 
@@ -150,11 +179,52 @@
 		filling_overlay.color = mix_color_from_reagents(reagents.reagent_list)
 		. += filling_overlay
 
+	if(!sterile)
+		. += image(icon, "tainted_overlay")
+
 ///Used by update_appearance() and update_overlays()
 /obj/item/reagent_containers/syringe/proc/get_rounded_vol()
 	if(!reagents?.total_volume)
 		return 0
 	return clamp(round((reagents.total_volume / volume * 15), 5), 1, 15)
+
+/// Remove unsterile things.
+/obj/item/reagent_containers/syringe/proc/sterilize()
+	LAZYNULL(dirty_blood_DNA)
+	QDEL_LIST(dirty_pathogens)
+	sterile = TRUE
+	update_appearance(UPDATE_OVERLAYS)
+
+/// Contaminates the syringe with the given blood DNA and pathogens. Copies the pathogens.
+/obj/item/reagent_containers/syringe/proc/contaminate(list/blood_DNA, list/pathogens_to_copy)
+	if(!length(blood_DNA))
+		return
+
+	for(var/datum/pathogen/P in pathogens_to_copy)
+		if(!(P.spread_flags & PATHOGEN_SPREAD_BLOOD))
+			continue
+
+		var/id = P.get_id()
+		if(dirty_pathogens?[id])
+			continue
+
+		LAZYSET(dirty_pathogens, id, P.Copy())
+
+	LAZYOR(dirty_blood_DNA, blood_DNA)
+	sterile = FALSE
+	update_appearance(UPDATE_OVERLAYS)
+
+/// Spread the icky bad stuff in the syringe to a mob.
+/obj/item/reagent_containers/syringe/proc/contaminate_mob(mob/living/carbon/human/H)
+	if(sterile || !ishuman(H))
+		return
+
+	for(var/disease_id in dirty_pathogens)
+		var/datum/pathogen/P = dirty_pathogens[disease_id]
+		H.try_contract_pathogen(P, make_copy = TRUE) // It's probably a good idea to not leave refs to an active disease in the syringe.
+
+	#warn add some kind of bloodborne disease here?
+	H.germ_level = max(H.germ_level, INFECTION_LEVEL_TWO)
 
 /obj/item/reagent_containers/syringe/epinephrine
 	name = "syringe (epinephrine)"

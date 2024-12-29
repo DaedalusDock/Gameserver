@@ -278,6 +278,11 @@
 	LAZYNULL(fibers)
 	return TRUE
 
+/// Clear the trace DNA list
+/datum/forensics/proc/wipe_trace_DNA()
+	LAZYNULL(trace_DNA)
+	return TRUE
+
 /// Clear the gunshot residue list.
 /datum/forensics/proc/wipe_gunshot_residue()
 	LAZYNULL(gunshot_residue)

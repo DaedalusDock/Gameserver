@@ -159,8 +159,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	icon_state = JOB_STATION_ENGINEER
 
 /obj/effect/landmark/start/medical_doctor
-	name = JOB_MEDICAL_DOCTOR
-	icon_state = JOB_MEDICAL_DOCTOR
+	name = JOB_ACOLYTE
+	icon_state = JOB_ACOLYTE
 
 /obj/effect/landmark/start/paramedic
 	name = JOB_PARAMEDIC
@@ -172,8 +172,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 
 
 /obj/effect/landmark/start/chief_medical_officer
-	name = JOB_MEDICAL_DIRECTOR
-	icon_state = JOB_MEDICAL_DIRECTOR
+	name = JOB_AUGUR
+	icon_state = JOB_AUGUR
 
 /obj/effect/landmark/start/virologist
 	name = JOB_VIROLOGIST

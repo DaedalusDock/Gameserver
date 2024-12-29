@@ -52,8 +52,8 @@
 #define JOB_STATION_ENGINEER "Station Engineer"
 #define JOB_ATMOSPHERIC_TECHNICIAN "Atmospheric Technician"
 //Medical
-#define JOB_MEDICAL_DIRECTOR "Medical Director"
-#define JOB_MEDICAL_DOCTOR "General Practitioner"
+#define JOB_AUGUR "Augur"
+#define JOB_ACOLYTE "Acolyte"
 #define JOB_PARAMEDIC "Paramedic"
 #define JOB_CHEMIST "Chemist"
 #define JOB_VIROLOGIST "Virologist"

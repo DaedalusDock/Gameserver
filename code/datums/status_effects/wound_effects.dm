@@ -75,6 +75,9 @@
 	if(right)
 		UnregisterSignal(right, COMSIG_LIMB_UPDATE_INTERACTION_SPEED)
 
+	left = null
+	right = null
+
 /atom/movable/screen/alert/status_effect/limp
 	name = "Limping"
 	desc = "One or more of your legs has been wounded, slowing down steps with that leg! Get it fixed, or at least in a sling of gauze!"

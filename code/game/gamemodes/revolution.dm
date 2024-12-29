@@ -14,7 +14,7 @@
 		list(JOB_HEAD_OF_PERSONNEL = 1),
 		list(JOB_SECURITY_MARSHAL = 1),
 		list(JOB_CHIEF_ENGINEER = 1),
-		list(JOB_MEDICAL_DIRECTOR = 1),
+		list(JOB_AUGUR = 1),
 		list(JOB_RESEARCH_DIRECTOR = 1)
 	)
 

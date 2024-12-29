@@ -59,8 +59,8 @@
 		JOB_ATMOSPHERIC_TECHNICIAN = "Technician",
 	)
 	var/static/list/medical_titles = list(
-		JOB_MEDICAL_DIRECTOR = "C.M.O.",
-		JOB_MEDICAL_DOCTOR = "M.D.",
+		JOB_AUGUR = "C.M.O.",
+		JOB_ACOLYTE = "M.D.",
 		JOB_CHEMIST = "Pharm.D.",
 	)
 	var/static/list/legal_titles = list(

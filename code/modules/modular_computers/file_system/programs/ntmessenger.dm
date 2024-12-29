@@ -208,7 +208,7 @@
 		inbound_message = emoji_parse(inbound_message)
 
 		if(ringer_status)
-			to_chat(L, "<span class='infoplain'>[icon2html(src)] <b>PDA message from [hrefstart][signal_data["name"]][job_string][hrefend], </b>[inbound_message] [reply]</span>")
+			to_chat(L, "<span class='infoplain'>[icon2html(src, L)] <b>PDA message from [hrefstart][signal_data["name"]][job_string][hrefend], </b>[inbound_message] [reply]</span>")
 
 /datum/computer_file/program/messenger/Topic(href, href_list)
 	..()

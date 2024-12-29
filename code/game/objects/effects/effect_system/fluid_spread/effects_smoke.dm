@@ -114,8 +114,9 @@
 			break
 		if(locate(type) in spread_turf)
 			continue // Don't spread smoke where there's already smoke!
-		for(var/mob/living/smoker in spread_turf)
-			smoke_mob(smoker, seconds_per_tick)
+		for(var/mob/living/carbon/smoker in spread_turf)
+			if(can_affect_mob(smoker))
+				smoke_mob(smoker, seconds_per_tick)
 
 		var/obj/effect/particle_effect/fluid/smoke/spread_smoke = new type(spread_turf, group, src)
 		reagents.copy_to(spread_smoke, reagents.total_volume)
@@ -131,8 +132,22 @@
 	if(lifetime <= 0)
 		kill_smoke()
 		return FALSE
-	for(var/mob/living/smoker in loc) // In case smoke somehow winds up in a locker or something this should still behave sanely.
-		smoke_mob(smoker, seconds_per_tick)
+	for(var/mob/living/carbon/smoker in loc) // In case smoke somehow winds up in a locker or something this should still behave sanely.
+		if(can_affect_mob(smoker))
+			smoke_mob(smoker, seconds_per_tick)
+	return TRUE
+
+/// Returns TRUE if the given mob can be affected.
+/obj/effect/particle_effect/fluid/smoke/proc/can_affect_mob(mob/living/carbon/smoker)
+	if(!istype(smoker))
+		return FALSE
+	if(lifetime < 1)
+		return FALSE
+	if(smoker.internal != null || smoker.has_smoke_protection())
+		return FALSE
+	if(HAS_TRAIT(smoker, TRAIT_AFFECTED_BY_SMOKE_RECENTLY))
+		return FALSE
+
 	return TRUE
 
 /**
@@ -145,18 +160,10 @@
  * Returns whether the smoke effect was applied to the mob.
  */
 /obj/effect/particle_effect/fluid/smoke/proc/smoke_mob(mob/living/carbon/smoker, seconds_per_tick)
-	if(!istype(smoker))
-		return FALSE
-	if(lifetime < 1)
-		return FALSE
-	if(smoker.internal != null || smoker.has_smoke_protection())
-		return FALSE
-	if(smoker.smoke_delay)
-		return FALSE
+	SHOULD_CALL_PARENT(TRUE)
 
-	smoker.smoke_delay = TRUE
-	addtimer(VARSET_CALLBACK(smoker, smoke_delay, FALSE), 1 SECONDS)
-	return TRUE
+	ADD_TRAIT(smoker, TRAIT_AFFECTED_BY_SMOKE_RECENTLY, ref(src))
+	addtimer(TRAIT_CALLBACK_REMOVE(smoker, TRAIT_AFFECTED_BY_SMOKE_RECENTLY, ref(src)), 1 SECONDS)
 
 /**
  * Makes the smoke react to nearby opening/closing airlocks and the like.
@@ -224,6 +231,7 @@
 /// Smoke that makes you cough and reduces the power of lasers.
 /obj/effect/particle_effect/fluid/smoke/bad
 	lifetime = 16 SECONDS
+	var/drop_items = TRUE
 
 /obj/effect/particle_effect/fluid/smoke/bad/Initialize(mapload)
 	. = ..()
@@ -233,11 +241,10 @@
 	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/effect/particle_effect/fluid/smoke/bad/smoke_mob(mob/living/carbon/smoker)
-	. = ..()
-	if(!.)
-		return
+	..()
 
-	smoker.drop_all_held_items()
+	if(drop_items)
+		smoker.drop_all_held_items()
 	smoker.adjustOxyLoss(1)
 	smoker.emote("cough")
 
@@ -283,6 +290,26 @@
 /// A factory which produces black smoke that makes you cough.
 /datum/effect_system/fluid_spread/smoke/bad/black
 	effect_type = /obj/effect/particle_effect/fluid/smoke/bad/black
+
+/// Blood smoke, used by the vanishing act spell
+/obj/effect/particle_effect/fluid/smoke/bad/blood
+	color = COLOR_HUMAN_BLOOD
+	lifetime = 8 SECONDS
+	drop_items = FALSE
+
+/obj/effect/particle_effect/fluid/smoke/bad/blood/smoke_mob(mob/living/carbon/smoker)
+	..()
+	smoker.adjustBloodVolume(-5)
+	smoker.adjustBruteLoss(-1)
+	to_chat(smoker, span_alert("You feel a prickling sensation inside your veins."))
+
+/obj/effect/particle_effect/fluid/smoke/bad/blood/can_affect_mob(mob/living/carbon/smoker)
+	. = ..()
+	if(locate(/datum/action/cooldown/spell/vanishing_act) in smoker.actions)
+		return FALSE
+
+/datum/effect_system/fluid_spread/smoke/bad/blood
+	effect_type = /obj/effect/particle_effect/fluid/smoke/bad/blood
 
 /////////////////////////////////////////////
 // Nanofrost smoke
@@ -376,10 +403,9 @@
 	lifetime = 20 SECONDS
 
 /obj/effect/particle_effect/fluid/smoke/sleeping/smoke_mob(mob/living/carbon/smoker, seconds_per_tick)
-	if(..())
-		smoker.Sleeping(20 SECONDS)
-		smoker.emote("cough")
-		return TRUE
+	..()
+	smoker.Sleeping(20 SECONDS)
+	smoker.emote("cough")
 
 /// A factory which produces sleeping smoke.
 /datum/effect_system/fluid_spread/smoke/sleeping
@@ -413,17 +439,11 @@
 	return TRUE
 
 /obj/effect/particle_effect/fluid/smoke/chem/smoke_mob(mob/living/carbon/smoker, seconds_per_tick)
-	if(lifetime < 1)
-		return FALSE
-	if(!istype(smoker))
-		return FALSE
-	if(smoker.internal != null || smoker.has_smoke_protection())
-		return FALSE
+	SHOULD_CALL_PARENT(FALSE)
 
 	var/fraction = (seconds_per_tick SECONDS) / initial(lifetime)
 	reagents.copy_to(smoker, reagents.total_volume, fraction)
 	reagents.expose(smoker, INGEST, fraction)
-	return TRUE
 
 /// Helper to quickly create a cloud of reagent smoke
 /proc/do_chem_smoke(range = 0, amount = DIAMOND_AREA(range), atom/holder = null, location = null, reagent_type = /datum/reagent/water, reagent_volume = 10, log = FALSE)

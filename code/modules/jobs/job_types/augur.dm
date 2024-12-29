@@ -1,5 +1,5 @@
-/datum/job/chief_medical_officer
-	title = JOB_MEDICAL_DIRECTOR
+/datum/job/augur
+	title = JOB_AUGUR
 	description = "Coordinate doctors and other medbay employees, ensure they \
 		know how to save lives, check for injuries on the crew monitor."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
@@ -49,27 +49,23 @@
 	voice_of_god_power = 1.4 //Command staff has authority
 
 
-/datum/job/chief_medical_officer/get_captaincy_announcement(mob/living/captain)
+/datum/job/augur/get_captaincy_announcement(mob/living/captain)
 	return "Due to staffing shortages, newly promoted Acting Captain [captain.real_name] on deck!"
 
 
 /datum/outfit/job/cmo
-	name = "Medical Director"
-	jobtype = /datum/job/chief_medical_officer
+	name = JOB_AUGUR
+	jobtype = /datum/job/augur
 
 	id = /obj/item/card/id/advanced/silver
 	id_trim = /datum/id_trim/job/chief_medical_officer
 	uniform = /obj/item/clothing/under/rank/medical/chief_medical_officer
-	backpack_contents = list(
-		/obj/item/assembly/flash/handheld
-	)
 	suit = /obj/item/clothing/suit/toggle/labcoat/cmo
-	suit_store = /obj/item/flashlight/pen/paramedic
-	belt = /obj/item/modular_computer/tablet/pda/heads/cmo
+	belt = /obj/item/pager/aether
 	ears = /obj/item/radio/headset/heads/cmo
 	shoes = /obj/item/clothing/shoes/sneakers/blue
 	l_pocket = /obj/item/pinpointer/crew
-	l_hand = /obj/item/storage/medkit/surgery
+	l_hand = /obj/item/aether_tome
 
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
@@ -79,11 +75,10 @@
 	chameleon_extras = list(
 		/obj/item/gun/syringe,
 		/obj/item/stamp/cmo,
-		)
-	skillchips = list(/obj/item/skillchip/entrails_reader)
+	)
 
 /datum/outfit/job/cmo/plasmaman
-	name = "Medical Director (Plasmaman)"
+	name = JOB_AUGUR + " (Plasmaman)"
 
 	uniform = /obj/item/clothing/under/plasmaman/chief_medical_officer
 	gloves = /obj/item/clothing/gloves/color/plasmaman/white
@@ -92,13 +87,12 @@
 	r_hand = /obj/item/tank/internals/plasmaman/belt/full
 
 /datum/outfit/job/cmo/mod
-	name = "Medical Director (MODsuit)"
+	name = JOB_AUGUR + " (MODsuit)"
 
 	suit_store = /obj/item/tank/internals/oxygen
 	back = /obj/item/mod/control/pre_equipped/rescue
 	suit = null
 	mask = /obj/item/clothing/mask/breath/medical
-	r_pocket = /obj/item/flashlight/pen/paramedic
 	internals_slot = ITEM_SLOT_SUITSTORE
 	backpack_contents = null
 	box = null

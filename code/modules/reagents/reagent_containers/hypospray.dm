@@ -101,20 +101,26 @@
 //MediPens
 
 /obj/item/reagent_containers/hypospray/medipen
-	name = "emergency medipen"
-	desc = "A rapid and safe way to stabilize patients in critical condition for personnel without advanced medical knowledge."
+	name = "emergency autoinjector"
+	desc = "A device for simple subcutaneous injection of chemicals."
 	icon_state = "medipen"
 	inhand_icon_state = "medipen"
 	worn_icon_state = "medipen"
 	base_icon_state = "medipen"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	amount_per_transfer_from_this = 15
-	volume = 15
-	ignore_flags = 1 //so you can medipen through spacesuits
+	amount_per_transfer_from_this = 30
+	volume = 30
 	reagent_flags = DRAWABLE
 	flags_1 = null
-	list_reagents = list(/datum/reagent/medicine/inaprovaline = 10, /datum/reagent/medicine/peridaxon = 10, /datum/reagent/medicine/coagulant = 5)
+
+	list_reagents = list(
+		/datum/reagent/medicine/inaprovaline = 10,
+		/datum/reagent/medicine/peridaxon = 10,
+		/datum/reagent/medicine/coagulant = 5,
+		/datum/reagent/medicine/adenosine = 5,
+	)
+
 	custom_price = PAYCHECK_MEDIUM
 	custom_premium_price = PAYCHECK_HARD
 

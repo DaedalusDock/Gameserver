@@ -2,7 +2,7 @@
 	title = JOB_VIROLOGIST
 	description = "Study the effects of various diseases and synthesize a \
 		vaccine for them. Engineer beneficial viruses."
-	department_head = list(JOB_MEDICAL_DIRECTOR)
+	department_head = list(JOB_AUGUR)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1

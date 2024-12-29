@@ -116,6 +116,9 @@
 	  */
 	var/list/skillchips = null
 
+	/// List of languages to grant upon equipping.
+	var/list/grant_languages
+
 	///Should we preload some of this job's items?
 	var/preload = FALSE
 
@@ -258,8 +261,10 @@
 
 	if(!visualsOnly)
 		apply_fingerprints(H)
+
 		if(internals_slot)
 			H.open_internals(H.get_item_by_slot(internals_slot))
+
 		if(implants)
 			for(var/implant_type in implants)
 				var/obj/item/implant/I = SSwardrobe.provide_type(implant_type, H)
@@ -279,6 +284,9 @@
 				if(activate_msg)
 					CRASH("Failed to activate [H]'s [skillchip_instance], on job [src]. Failure message: [activate_msg]")
 
+		if(LAZYLEN(grant_languages))
+			for(var/language_path in grant_languages)
+				H.grant_language(language_path)
 
 	H.update_body()
 	return TRUE

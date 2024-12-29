@@ -22,7 +22,7 @@
 			/mob/living/simple_animal/pet/dog/corgi/puppy/ian
 		),
 		JOB_CAPTAIN = /mob/living/simple_animal/pet/fox/renault,
-		JOB_MEDICAL_DIRECTOR = /mob/living/simple_animal/pet/cat/runtime,
+		JOB_AUGUR = /mob/living/simple_animal/pet/cat/runtime,
 		JOB_CHIEF_ENGINEER = /mob/living/simple_animal/parrot/poly,
 	)
 	/// The head that we are targetting

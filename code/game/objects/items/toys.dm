@@ -1057,7 +1057,7 @@
 	toysay = "One day while..."
 
 /obj/item/toy/figure/md
-	name = "\improper " + JOB_MEDICAL_DOCTOR + "action figure"
+	name = "\improper " + JOB_ACOLYTE + "action figure"
 	icon_state = "md"
 	toysay = "The patient is already dead!"
 
