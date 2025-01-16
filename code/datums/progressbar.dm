@@ -163,7 +163,7 @@
 			underlay = image(underlay, dir = SOUTH)
 			underlay.filters += filter(type = "outline", size = 1)
 
-		underlay.pixel_y += 2
+		underlay.pixel_y = 2
 		underlay.alpha = 200
 		underlay.plane = GAME_PLANE
 		underlay.layer = FLY_LAYER

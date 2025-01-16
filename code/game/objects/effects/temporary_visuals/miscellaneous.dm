@@ -571,3 +571,10 @@
 	pixel_y = -16
 	base_pixel_y = -16
 	duration = 10
+
+/obj/effect/temp_visual/vamp_glare
+	icon = 'goon/icons/64x64.dmi'
+	icon_state = "glare"
+	pixel_x = -16
+	pixel_y = -8
+	duration = 2 SECONDS

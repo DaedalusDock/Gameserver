@@ -110,10 +110,14 @@
 /obj/item/hand_item/grab/Destroy()
 	if(affecting)
 		LAZYREMOVE(affecting.grabbed_by, src)
-		affecting.update_offsets()
 
 	else if(is_valid)
 		stack_trace("Grab (\ref[src]) qdeleted while not having a victim.")
+
+	if(assailant)
+		LAZYREMOVE(assailant.active_grabs, src)
+	else
+		stack_trace("Grab (\ref[src]) qdeleted while not having an assailant.")
 
 	if(affecting && assailant && current_grab)
 		current_grab.let_go(src)
@@ -122,10 +126,7 @@
 		stack_trace("Grab (\ref[src]) qdeleted while not having a grab datum.")
 
 	if(assailant)
-		LAZYREMOVE(assailant.active_grabs, src)
 		assailant.after_grab_release(affecting)
-	else
-		stack_trace("Grab (\ref[src]) qdeleted while not having an assailant.")
 
 	//DEBUG CODE
 	if(HAS_TRAIT_FROM(affecting, TRAIT_AGGRESSIVE_GRAB, ref(src)))
@@ -324,6 +325,8 @@
 	adjust_position()
 	update_appearance()
 
+	SEND_SIGNAL(assailant, COMSIG_LIVING_GRAB_UPGRADE)
+
 /obj/item/hand_item/grab/proc/downgrade(silent)
 	var/datum/grab/downgrab = current_grab.downgrade(src)
 	var/datum/grab/oldgrab = current_grab
@@ -336,15 +339,16 @@
 	current_grab = downgrab
 	current_grab.update_stage_effects(src, oldgrab)
 
-	if(!current_grab.enter_as_down(src))
+	if(!current_grab.enter_as_down(src, silent))
 		return
 
 	if(is_grab_unique(current_grab))
 		current_grab.apply_unique_grab_effects(affecting)
 
-	current_grab.enter_as_down(src, silent)
 	adjust_position()
 	update_appearance()
+
+	SEND_SIGNAL(assailant, COMSIG_LIVING_GRAB_DOWNGRADE)
 
 /// Used to prevent repeated effect application or early effect removal
 /obj/item/hand_item/grab/proc/is_grab_unique(datum/grab/grab_datum)

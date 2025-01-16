@@ -1,11 +1,11 @@
-/datum/status_effect/concussion
+/datum/status_effect/grouped/concussion
 	id = "concussion"
 	duration = -1
 	tick_interval = -1
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = null
 
-/datum/status_effect/concussion/on_apply()
+/datum/status_effect/grouped/concussion/on_apply()
 	. = ..()
 	if(!.)
 		return
@@ -16,12 +16,12 @@
 	if(owner.hud_used)
 		apply_blur()
 
-/datum/status_effect/concussion/on_remove()
+/datum/status_effect/grouped/concussion/on_remove()
 	. = ..()
 	UnregisterSignal(owner, list(COMSIG_MOB_HUD_CREATED, COMSIG_MOB_MOTION_SICKNESS_UPDATE))
 	remove_blur()
 
-/datum/status_effect/concussion/proc/apply_blur(datum/source)
+/datum/status_effect/grouped/concussion/proc/apply_blur(datum/source)
 	SIGNAL_HANDLER
 
 	if(owner.client?.prefs?.read_preference(/datum/preference/toggle/motion_sickness))
@@ -39,7 +39,7 @@
 	animate(size = 0, time = 2 SECONDS, SINE_EASING|EASE_OUT)
 	animate(size = 0, time = 18.3 SECONDS) // I just want to offset it from life ticks, so it feels more random.
 
-/datum/status_effect/concussion/proc/remove_blur()
+/datum/status_effect/grouped/concussion/proc/remove_blur()
 	if(!owner.hud_used)
 		return
 
@@ -47,7 +47,7 @@
 	PM.remove_filter("concussion_radial_blur")
 	PM.remove_filter("concussion_angular_blur")
 
-/datum/status_effect/concussion/proc/pref_update(datum/source, new_value)
+/datum/status_effect/grouped/concussion/proc/pref_update(datum/source, new_value)
 	SIGNAL_HANDLER
 
 	if(new_value)

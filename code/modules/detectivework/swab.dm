@@ -106,4 +106,4 @@
 	update_appearance()
 
 /obj/item/swab/proc/is_valid_target(atom/target)
-	return length(target.return_blood_DNA()) && length(target.return_trace_DNA()) && length(target.return_gunshot_residue())
+	return length(target.return_blood_DNA()) || length(target.return_trace_DNA()) || length(target.return_gunshot_residue())

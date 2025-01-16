@@ -19,6 +19,11 @@
 #define COMSIG_LIVING_TRY_GRAB "living_try_pull"
 	#define COMSIG_LIVING_CANCEL_GRAB (1 << 0)
 
+///called on /living when it downgrades a grab
+#define COMSIG_LIVING_GRAB_DOWNGRADE "living_grab_downgrade"
+///called on /living when it upgrades a grab
+#define COMSIG_LIVING_GRAB_UPGRADE "living_grab_upgrade"
+
 /// Called from /mob/living/PushAM -- Called when this mob is about to push a movable, but before it moves
 /// (aotm/movable/being_pushed)
 #define COMSIG_LIVING_PUSHING_MOVABLE "living_pushing_movable"

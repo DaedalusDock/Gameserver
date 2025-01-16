@@ -3,8 +3,9 @@
 /mob/living/proc/has_pathogen(datum/pathogen/D)
 	for(var/datum/pathogen/DD in diseases)
 		if(D.IsSame(DD))
-			return TRUE
-	return FALSE
+			return DD
+
+	return null
 
 /// Returns TRUE if src can contract the passed pathogen.
 /// Note: This does not mean that the pathogen will be able to be applied to this mob.

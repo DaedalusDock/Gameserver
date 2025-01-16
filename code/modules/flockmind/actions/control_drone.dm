@@ -38,7 +38,7 @@
 
 	if(isturf(target))
 		selected_bird.ai_controller.queue_behavior(/datum/ai_behavior/flock/find_conversion_target, target)
-		var/image/pointer = flock_pointer(selected_bird, target)
+		var/image/pointer = pointer_image_to(selected_bird, target)
 
 		animate(pointer, time = 2 SECONDS, alpha = 0)
 		ghost_bird.flock.add_ping_image(ghost_bird.client, pointer, 2 SECONDS)

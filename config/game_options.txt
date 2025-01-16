@@ -83,6 +83,9 @@ STATION_GOAL_BUDGET 1
 ## Uncomment to not send a roundstart intercept report. Gamemodes may override this.
 #NO_INTERCEPT_REPORT
 
+## Uncomment to hide the gamemode name from players.
+#HIDE_GAMEMODE_NAME
+
 ## The amount of time it takes for the emergency shuttle to be called, from round start.
 SHUTTLE_REFUEL_DELAY 12000
 

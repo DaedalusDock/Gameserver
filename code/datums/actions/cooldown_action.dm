@@ -1,5 +1,3 @@
-#define COOLDOWN_NO_DISPLAY_TIME (180 SECONDS)
-
 /// Preset for an action that has a cooldown.
 /datum/action/cooldown
 	check_flags = NONE
@@ -67,19 +65,22 @@
 /datum/action/cooldown/create_button()
 	var/atom/movable/screen/movable/action_button/button = ..()
 	button.maptext = ""
-	button.maptext_x = 6
+	button.maptext_x = 3
 	button.maptext_y = 2
-	button.maptext_width = 24
+	button.maptext_width = 28
 	button.maptext_height = 12
 	return button
 
 /datum/action/cooldown/update_button_status(atom/movable/screen/movable/action_button/button, force = FALSE)
 	. = ..()
 	var/time_left = max(next_use_time - world.time, 0)
-	if(!text_cooldown || !owner || time_left == 0 || time_left >= COOLDOWN_NO_DISPLAY_TIME)
+	if(!text_cooldown || !owner || time_left == 0)
 		button.maptext = ""
 	else
-		button.maptext = MAPTEXT("<b>[round(time_left/10, 0.1)]</b>")
+		if(time_left > 60 SECONDS)
+			button.maptext = MAPTEXT("<b>[ceil(time_left/600)] min")
+		else
+			button.maptext = MAPTEXT("<b>[round(time_left/10, 0.1)]</b>")
 
 	if(!IsAvailable() || !is_action_active(button))
 		return

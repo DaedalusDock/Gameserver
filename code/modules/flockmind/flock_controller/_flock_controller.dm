@@ -342,7 +342,7 @@
 		if(ghost_bird == pinger)
 			continue
 
-		var/image/pointer = flock_pointer(ghost_bird, T)
+		var/image/pointer = pointer_image_to(ghost_bird, T)
 		//T._AddComponent(list(/datum/component/flock_ping, 5 SECONDS))
 
 		animate(pointer, time = 3 SECONDS, alpha = 0)

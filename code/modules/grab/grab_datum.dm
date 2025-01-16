@@ -107,15 +107,21 @@ GLOBAL_LIST_EMPTY(all_grabstates)
 		to_chat(G.assailant, span_warning("[string_process(G, fail_down)]"))
 		return
 
+/// DO NOT CALL THIS DIRECTLY GOOD LORD!!! This should ONLY be called by /obj/item/hand_item/grab/Destroy()
 /datum/grab/proc/let_go(obj/item/hand_item/grab/G)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!G)
 		return
 
-	let_go_effect(G)
+	remove_bodyzone_effects(G, G.target_zone)
+	if(G.is_grab_unique(src))
+		remove_unique_grab_effects(G.affecting)
 
-	if(!QDELETED(G))
-		qdel(G)
+	update_stage_effects(G, src, TRUE)
+	G.affecting.update_offsets()
+
+	SEND_SIGNAL(G.affecting, COMSIG_ATOM_NO_LONGER_GRABBED, G.assailant)
+	SEND_SIGNAL(G.assailant, COMSIG_LIVING_NO_LONGER_GRABBING, G.affecting)
 
 /datum/grab/proc/on_target_change(obj/item/hand_item/grab/G, old_zone, new_zone)
 	remove_bodyzone_effects(G, old_zone, new_zone)
@@ -211,6 +217,7 @@ GLOBAL_LIST_EMPTY(all_grabstates)
 
 // What happens when you downgrade from one grab state to the next.
 /datum/grab/proc/downgrade_effect(obj/item/hand_item/grab/G)
+	SEND_SIGNAL(G.assailant, COMSIG_LIVING_GRAB_DOWNGRADE, G)
 	return
 
 // Conditions to see if downgrading is possible
@@ -220,14 +227,16 @@ GLOBAL_LIST_EMPTY(all_grabstates)
 // What happens when you let go of someone by either dropping the grab
 // or by downgrading from the lowest grab state.
 /datum/grab/proc/let_go_effect(obj/item/hand_item/grab/G)
-	SEND_SIGNAL(G.affecting, COMSIG_ATOM_NO_LONGER_GRABBED, G.assailant)
-	SEND_SIGNAL(G.assailant, COMSIG_LIVING_NO_LONGER_GRABBING, G.affecting)
+	PRIVATE_PROC(TRUE)
 
 	remove_bodyzone_effects(G, G.target_zone)
 	if(G.is_grab_unique(src))
 		remove_unique_grab_effects(G.affecting)
 
 	update_stage_effects(G, src, TRUE)
+
+	SEND_SIGNAL(G.affecting, COMSIG_ATOM_NO_LONGER_GRABBED, G.assailant)
+	SEND_SIGNAL(G.assailant, COMSIG_LIVING_NO_LONGER_GRABBING, G.affecting)
 
 /// Add effects that apply based on damage_stage here
 /datum/grab/proc/update_stage_effects(obj/item/hand_item/grab/G, datum/grab/old_grab, dropping_grab)
@@ -244,6 +253,7 @@ GLOBAL_LIST_EMPTY(all_grabstates)
 			if(old_damage_stage >= GRAB_AGGRESSIVE)
 				REMOVE_TRAIT(affected_movable, TRAIT_AGGRESSIVE_GRAB, trait_source)
 				REMOVE_TRAIT(affected_movable, TRAIT_FLOORED, trait_source)
+				affected_movable.layer -= 0.001
 
 		if(GRAB_AGGRESSIVE)
 			if(old_damage_stage >= GRAB_NECK) // Grab got downgraded.
@@ -252,10 +262,12 @@ GLOBAL_LIST_EMPTY(all_grabstates)
 				ADD_TRAIT(affected_movable, TRAIT_IMMOBILIZED, trait_source)
 				ADD_TRAIT(affected_movable, TRAIT_HANDS_BLOCKED, trait_source)
 				ADD_TRAIT(affected_movable, TRAIT_AGGRESSIVE_GRAB, trait_source)
+				affected_movable.layer += 0.001
 
 		if(GRAB_NECK, GRAB_KILL)
 			if(old_damage_stage < GRAB_AGGRESSIVE)
 				ADD_TRAIT(affected_movable, TRAIT_AGGRESSIVE_GRAB, REF(G))
+				affected_movable.layer += 0.001
 			if(old_damage_stage <= GRAB_AGGRESSIVE)
 				ADD_TRAIT(affected_movable, TRAIT_FLOORED, REF(G))
 				ADD_TRAIT(affected_movable, TRAIT_HANDS_BLOCKED, REF(G))

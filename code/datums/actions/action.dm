@@ -151,21 +151,21 @@
 		return FALSE
 	if((check_flags & AB_CHECK_HANDS_BLOCKED) && HAS_TRAIT(owner, TRAIT_HANDS_BLOCKED))
 		if (feedback)
-			to_chat(owner, span_warning("You cannot use [name] without hands!"))
+			to_chat(owner, span_warning("You cannot use [name] without hands."))
 		return FALSE
 	if((check_flags & AB_CHECK_IMMOBILE) && HAS_TRAIT(owner, TRAIT_IMMOBILIZED))
 		if (feedback)
-			to_chat(owner, span_warning("You cannot use [name] while immobilized!"))
+			to_chat(owner, span_warning("You cannot use [name] while immobilized."))
 		return FALSE
 	if((check_flags & AB_CHECK_LYING) && isliving(owner))
 		var/mob/living/action_owner = owner
 		if(action_owner.body_position == LYING_DOWN)
 			if (feedback)
-				to_chat(owner, span_warning("You cannot use [name] while lying down!"))
+				to_chat(owner, span_warning("You cannot use [name] while lying down."))
 			return FALSE
 	if((check_flags & AB_CHECK_CONSCIOUS) && owner.stat != CONSCIOUS)
 		if (feedback)
-			to_chat(owner, span_warning("You cannot use [name] while unconscious!"))
+			to_chat(owner, span_warning("You cannot use [name] while unconscious."))
 		return FALSE
 	return TRUE
 

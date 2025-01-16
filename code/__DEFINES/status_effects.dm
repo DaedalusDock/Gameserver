@@ -43,6 +43,9 @@
 
 #define STASIS_DEBUG_HEALTH "stasis_debug_health"
 
+#define BROKEN_SKULL_EFFECT "broken_head"
+#define VAMPIRE_EFFECT "vampire_effect"
+
 // Status effect application helpers.
 // These are macros for easier use of adjust_timed_status_effect and set_timed_status_effect.
 //
