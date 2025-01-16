@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;pathogen - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/pathogen.html#var">Var Details</a> - <a href="datum/pathogen.html#proc">Proc Details</a></header>
+<main>
+<h1>pathogen <aside>/<a href="datum.html">datum</a>/<a href="datum/pathogen.html">pathogen</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/pathogen.html#var/affected_mob">affected_mob</a></th><td>The mob affected by this disease. Can be null.</td></tr>
+            <tr><th><a href="datum/pathogen.html#var/affected_mob_is_only_carrier">affected_mob_is_only_carrier</a></th><td>If TRUE, the mob is a carrier only and does not feel the effects of the disease.</td></tr>
+            <tr><th><a href="datum/pathogen.html#var/bypasses_immunity">bypasses_immunity</a></th><td>If TRUE, this disease can infact mobs that have the VIRUSIMMUNITY trait.</td></tr>
+            <tr><th><a href="datum/pathogen.html#var/contraction_chance_modifier">contraction_chance_modifier</a></th><td>A modifier applied to contraction chance.</td></tr>
+            <tr><th><a href="datum/pathogen.html#var/copy_type">copy_type</a></th><td>An optional typepath of disease to provide when Copy() is run.</td></tr>
+            <tr><th><a href="datum/pathogen.html#var/cure_chance">cure_chance</a></th><td>The probability of this infection being cured every second the cure is present</td></tr>
+            <tr><th><a href="datum/pathogen.html#var/cures">cures</a></th><td>A list of reagent typepaths that are cures for the disease.</td></tr>
+            <tr><th><a href="datum/pathogen.html#var/infectable_biotypes">infectable_biotypes</a></th><td>Biotypes that this pathogen can infect.</td></tr>
+            <tr><th><a href="datum/pathogen.html#var/infectivity">infectivity</a></th><td>The probability of spreading through the air every second</td></tr>
+            <tr><th><a href="datum/pathogen.html#var/process_dead">process_dead</a></th><td>If TRUE, stage_act() will be run even if the host is dead.</td></tr>
+            <tr><th><a href="datum/pathogen.html#var/required_organs">required_organs</a></th><td>A list of organ and bodypart typepaths that are needed for this disease to be contracted.</td></tr>
+            <tr><th><a href="datum/pathogen.html#var/severity">severity</a></th><td>The arbitrary severity of the disease</td></tr>
+            <tr><th><a href="datum/pathogen.html#var/stage_prob">stage_prob</a></th><td>The probability of this infection advancing a stage every second the cure is not present.</td></tr>
+            <tr><th><a href="datum/pathogen.html#var/viable_mobtypes">viable_mobtypes</a></th><td>A list of mob typepaths that can carry this disease.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/pathogen.html#proc/admin_details">admin_details</a></th><td>Return a string for admin logging uses, should describe the disease in detail</td></tr>
+            <tr><th><a href="datum/pathogen.html#proc/airborne_spread">airborne_spread</a></th><td>Attempt to spread to nearby mobs through the air.</td></tr>
+            <tr><th><a href="datum/pathogen.html#proc/can_cure_affected">can_cure_affected</a></th><td>Returns TRUE if the affected mob can be cured.</td></tr>
+            <tr><th><a href="datum/pathogen.html#proc/force_cure">force_cure</a></th><td>Cure the disease and delete it.</td></tr>
+            <tr><th><a href="datum/pathogen.html#proc/force_infect">force_infect</a></th><td>Infect a mob with absolutely no safety checks.</td></tr>
+            <tr><th><a href="datum/pathogen.html#proc/is_viable_mobtype">is_viable_mobtype</a></th><td>Checks the given typepath against the list of viable mobtypes.</td></tr>
+            <tr><th><a href="datum/pathogen.html#proc/on_infect_mob">on_infect_mob</a></th><td>Called by force_infect() upon infecting a mob.</td></tr>
+            <tr><th><a href="datum/pathogen.html#proc/on_process">on_process</a></th><td>Proc to process the disease and decide on whether to advance, cure or make the sympthoms appear.
+Returns a boolean on whether to continue acting on the symptoms or not.</td></tr>
+            <tr><th><a href="datum/pathogen.html#proc/remove_disease_from_host">remove_disease_from_host</a></th><td>Removes the disease from the host mob.</td></tr>
+            <tr><th><a href="datum/pathogen.html#proc/set_stage">set_stage</a></th><td>Setter for the stage var, returns the old stage.</td></tr>
+            <tr><th><a href="datum/pathogen.html#proc/try_infect">try_infect</a></th><td>Attempt to infect a mob with this disease. Currently, only advance diseases can fail this. Returns TRUE on success.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/affected_mob"><aside class="declaration">var </aside>affected_mob
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 3"/></a></h3>
+        <p>The mob affected by this disease. Can be null.</p><h3 id="var/affected_mob_is_only_carrier"><aside class="declaration">var </aside>affected_mob_is_only_carrier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 51"/></a></h3>
+        <p>If TRUE, the mob is a carrier only and does not feel the effects of the disease.</p><h3 id="var/bypasses_immunity"><aside class="declaration">var </aside>bypasses_immunity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 35"/></a></h3>
+        <p>If TRUE, this disease can infact mobs that have the VIRUSIMMUNITY trait.</p><h3 id="var/contraction_chance_modifier"><aside class="declaration">var </aside>contraction_chance_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 37"/></a></h3>
+        <p>A modifier applied to contraction chance.</p><h3 id="var/copy_type"><aside class="declaration">var </aside>copy_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 45"/></a></h3>
+        <p>An optional typepath of disease to provide when Copy() is run.</p><h3 id="var/cure_chance"><aside class="declaration">var </aside>cure_chance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 29"/></a></h3>
+        <p>The probability of this infection being cured every second the cure is present</p><h3 id="var/cures"><aside class="declaration">var </aside>cures
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 27"/></a></h3>
+        <p>A list of reagent typepaths that are cures for the disease.</p><h3 id="var/infectable_biotypes"><aside class="declaration">var </aside>infectable_biotypes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 41"/></a></h3>
+        <p>Biotypes that this pathogen can infect.</p><h3 id="var/infectivity"><aside class="declaration">var </aside>infectivity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 33"/></a></h3>
+        <p>The probability of spreading through the air every second</p><h3 id="var/process_dead"><aside class="declaration">var </aside>process_dead
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 43"/></a></h3>
+        <p>If TRUE, stage_act() will be run even if the host is dead.</p><h3 id="var/required_organs"><aside class="declaration">var </aside>required_organs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 39"/></a></h3>
+        <p>A list of organ and bodypart typepaths that are needed for this disease to be contracted.</p><h3 id="var/severity"><aside class="declaration">var </aside>severity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 49"/></a></h3>
+        <p>The arbitrary severity of the disease</p><h3 id="var/stage_prob"><aside class="declaration">var </aside>stage_prob
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 21"/></a></h3>
+        <p>The probability of this infection advancing a stage every second the cure is not present.</p><h3 id="var/viable_mobtypes"><aside class="declaration">var </aside>viable_mobtypes
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 25"/></a></h3>
+        <p>A list of mob typepaths that can carry this disease.</p><h2 id="proc">Proc Details</h2><h3 id="proc/admin_details"><aside class="declaration">proc </aside>admin_details<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 103"/></a></aside>
+        </h3>
+        <p>Return a string for admin logging uses, should describe the disease in detail</p><h3 id="proc/airborne_spread"><aside class="declaration">proc </aside>airborne_spread<aside>(force_spread, check_mob_spreadability) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L142">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 142"/></a></aside>
+        </h3>
+        <p>Attempt to spread to nearby mobs through the air.</p><h3 id="proc/can_cure_affected"><aside class="declaration">proc </aside>can_cure_affected<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 129"/></a></aside>
+        </h3>
+        <p>Returns TRUE if the affected mob can be cured.</p><h3 id="proc/force_cure"><aside class="declaration">proc </aside>force_cure<aside>(add_resistance) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 92"/></a></aside>
+        </h3>
+        <p>Cure the disease and delete it.</p><h3 id="proc/force_infect"><aside class="declaration">proc </aside>force_infect<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/infectee, make_copy) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 74"/></a></aside>
+        </h3>
+        <p>Infect a mob with absolutely no safety checks.</p><h3 id="proc/is_viable_mobtype"><aside class="declaration">proc </aside>is_viable_mobtype<aside>(mob_type) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L233">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 233"/></a></aside>
+        </h3>
+        <p>Checks the given typepath against the list of viable mobtypes.</p>
+<p>Returns TRUE if the mob_type path is derived from of any entry in the viable_mobtypes list.
+Returns FALSE otherwise.</p>
+<p>Arguments:</p>
+<ul>
+<li>mob_type - Type path to check against the viable_mobtypes list.</li>
+</ul><h3 id="proc/on_infect_mob"><aside class="declaration">proc </aside>on_infect_mob<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 87"/></a></aside>
+        </h3>
+        <p>Called by force_infect() upon infecting a mob.</p><h3 id="proc/on_process"><aside class="declaration">proc </aside>on_process<aside>(delta_time, times_fired) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 108"/></a></aside>
+        </h3>
+        <p>Proc to process the disease and decide on whether to advance, cure or make the sympthoms appear.
+Returns a boolean on whether to continue acting on the symptoms or not.</p><h3 id="proc/remove_disease_from_host"><aside class="declaration">proc </aside>remove_disease_from_host<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 60"/></a></aside>
+        </h3>
+        <p>Removes the disease from the host mob.</p><h3 id="proc/set_stage"><aside class="declaration">proc </aside>set_stage<aside>(new_stage) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 124"/></a></aside>
+        </h3>
+        <p>Setter for the stage var, returns the old stage.</p><h3 id="proc/try_infect"><aside class="declaration">proc </aside>try_infect<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/infectee, make_copy) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/_pathogen.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;_pathogen.dm 69"/></a></aside>
+        </h3>
+        <p>Attempt to infect a mob with this disease. Currently, only advance diseases can fail this. Returns TRUE on success.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

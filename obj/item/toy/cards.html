@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;toy&#x2F;cards - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/toy/cards.html#var">Var Details</a> - <a href="obj/item/toy/cards.html#proc">Proc Details</a></header>
+<main>
+<h1>cards <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/toy/cards.html">toy/cards</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/cards/cards.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;cards&#x2F;cards.dm 4"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/toy/cards.html#var/can_play_52_card_pickup">can_play_52_card_pickup</a></th><td>Do all the cards drop to the floor when thrown at a person</td></tr>
+            <tr><th><a href="obj/item/toy/cards.html#var/cards">cards</a></th><td>List of cards for a hand or deck</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/toy/cards.html#proc/draw">draw</a></th><td>Draws a card from the deck or hand of cards.</td></tr>
+            <tr><th><a href="obj/item/toy/cards.html#proc/insert">insert</a></th><td>This is used to insert a list of cards into a deck or cardhand</td></tr>
+            <tr><th><a href="obj/item/toy/cards.html#proc/throw_impact">throw_impact</a></th><td>This is how we play 52 card pickup</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/can_play_52_card_pickup"><aside class="declaration">var </aside>can_play_52_card_pickup
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/cards/cards.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;cards&#x2F;cards.dm 8"/></a></h3>
+        <p>Do all the cards drop to the floor when thrown at a person</p><h3 id="var/cards"><aside class="declaration">var </aside>cards
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/cards/cards.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;cards&#x2F;cards.dm 10"/></a></h3>
+        <p>List of cards for a hand or deck</p><h2 id="proc">Proc Details</h2><h3 id="proc/draw"><aside class="declaration">proc </aside>draw<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/toy/singlecard.html">toy/singlecard</a>/card) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/cards/cards.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;cards&#x2F;cards.dm 100"/></a></aside>
+        </h3>
+        <p>Draws a card from the deck or hand of cards.</p>
+<p>Draws the top card unless a card arg is supplied then it picks that specific card
+and returns it (the card arg is used by the radial menu for cardhands to select
+specific cards out of the cardhand)
+Arguments:</p>
+<ul>
+<li>mob/living/user - The user drawing the card.</li>
+<li>obj/item/toy/singlecard/card (optional) - The card drawn from the hand</li>
+</ul><h3 id="proc/insert"><aside class="declaration">proc </aside>insert<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/toy/card_item) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/cards/cards.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;cards&#x2F;cards.dm 61"/></a></aside>
+        </h3>
+        <p>This is used to insert a list of cards into a deck or cardhand</p>
+<p>All cards that are inserted have their angle and pixel offsets reset to zero however their
+flip state does not change unless it's being inserted into a deck which is always facedown
+(see the deck/insert proc)</p>
+<p>Arguments:</p>
+<ul>
+<li>card_item - Either a singlecard or cardhand that gets inserted into the src</li>
+</ul><h3 id="proc/throw_impact">throw_impact<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target, /<a href="datum.html">datum</a>/<a href="datum/thrownthing.html">thrownthing</a>/throwingdatum) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/cards/cards.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;cards&#x2F;cards.dm 18"/></a></aside>
+        </h3>
+        <p>This is how we play 52 card pickup</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

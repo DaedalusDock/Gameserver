@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;modules&#x2F;modular_computers&#x2F;hardware&#x2F;virus_disk.dm - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/modules/modular_computers/hardware/virus_disk.html#define">Define Details</a></header>
+<main>
+<h1>code/modules/modular_computers/hardware/virus_disk.dm 
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/modular_computers/hardware/virus_disk.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;hardware&#x2F;virus_disk.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/modules/modular_computers/hardware/virus_disk.html#define/VIRUS_MODE_ABORT">VIRUS_MODE_ABORT</a></th><td>Completely give up sending the virus. Returns immediately.</td></tr>
+        <tr><th><a href="code/modules/modular_computers/hardware/virus_disk.html#define/VIRUS_MODE_GENERIC">VIRUS_MODE_GENERIC</a></th><td>'Generic' mode. Assumes no more than the magic packet is required, and simply adds some bogus registers to cover up the real fields.</td></tr>
+        <tr><th><a href="code/modules/modular_computers/hardware/virus_disk.html#define/VIRUS_MODE_RAW_SIGNAL">VIRUS_MODE_RAW_SIGNAL</a></th><td>Throw out the old signal and provide an entirely unique one. Use this if you need to mark a packet inviolable.</td></tr>
+        <tr><th><a href="code/modules/modular_computers/hardware/virus_disk.html#define/VIRUS_MODE_EXTRA_STAPLE">VIRUS_MODE_EXTRA_STAPLE</a></th><td>Add a list of extra fields to the packet.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/VIRUS_MODE_ABORT"><aside class="declaration">#define </aside>VIRUS_MODE_ABORT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/modular_computers/hardware/virus_disk.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;hardware&#x2F;virus_disk.dm 3"/></a>
+    </h3>
+    <p>Completely give up sending the virus. Returns immediately.</p><h3 id="define/VIRUS_MODE_EXTRA_STAPLE"><aside class="declaration">#define </aside>VIRUS_MODE_EXTRA_STAPLE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/modular_computers/hardware/virus_disk.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;hardware&#x2F;virus_disk.dm 9"/></a>
+    </h3>
+    <p>Add a list of extra fields to the packet.</p><h3 id="define/VIRUS_MODE_GENERIC"><aside class="declaration">#define </aside>VIRUS_MODE_GENERIC
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/modular_computers/hardware/virus_disk.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;hardware&#x2F;virus_disk.dm 5"/></a>
+    </h3>
+    <p>'Generic' mode. Assumes no more than the magic packet is required, and simply adds some bogus registers to cover up the real fields.</p><h3 id="define/VIRUS_MODE_RAW_SIGNAL"><aside class="declaration">#define </aside>VIRUS_MODE_RAW_SIGNAL
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/modular_computers/hardware/virus_disk.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;hardware&#x2F;virus_disk.dm 7"/></a>
+    </h3>
+    <p>Throw out the old signal and provide an entirely unique one. Use this if you need to mark a packet inviolable.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

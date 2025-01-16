@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;maths.dm - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/maths.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/maths.dm 
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maths.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/maths.html#define/SIGN">SIGN</a></th><td>Gets the sign of x, returns -1 if negative, 0 if 0, 1 if positive</td></tr>
+        <tr><th><a href="code/__DEFINES/maths.html#define/WRAP_UP">WRAP_UP</a></th><td>Increments a value and wraps it if it exceeds some value. Can be used to circularly iterate through a list through <code>idx = WRAP_UP(idx, length_of_list)</code>.</td></tr>
+        <tr><th><a href="code/__DEFINES/maths.html#define/TOBITSHIFT">TOBITSHIFT</a></th><td>Gets shift x that would be required the bitflag (1&lt;&lt;x)</td></tr>
+        <tr><th><a href="code/__DEFINES/maths.html#define/REVERSE_ANGLE">REVERSE_ANGLE</a></th><td>Reverse an angle. 45 -&gt; 225, 0 -&gt; 180, etc</td></tr>
+        <tr><th><a href="code/__DEFINES/maths.html#define/DT_PROB_RATE">DT_PROB_RATE</a></th><td>Converts a probability/second chance to probability/delta_time chance
+For example, if you want an event to happen with a 10% per second chance, but your proc only runs every 5 seconds, do <code>if(prob(100*DT_PROB_RATE(0.1, 5)))</code></td></tr>
+        <tr><th><a href="code/__DEFINES/maths.html#define/DT_PROB">DT_PROB</a></th><td>Like DT_PROB_RATE but easier to use, simply put <code>if(DT_PROB(10, 5))</code></td></tr>
+        <tr><th><a href="code/__DEFINES/maths.html#define/DIAMOND_AREA">DIAMOND_AREA</a></th><td>The number of cells in a taxicab circle (rasterized diamond) of radius X.</td></tr>
+        <tr><th><a href="code/__DEFINES/maths.html#define/MAPCLAMP">MAPCLAMP</a></th><td>See above, but clamps the resulting value between omin and omax</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/DIAMOND_AREA"><aside class="declaration">#define </aside>DIAMOND_AREA
+            <aside>(X)</aside>
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maths.dm#L242">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm 242"/></a>
+    </h3>
+    <p>The number of cells in a taxicab circle (rasterized diamond) of radius X.</p><h3 id="define/DT_PROB"><aside class="declaration">#define </aside>DT_PROB
+            <aside>(prob_per_second_percent, delta_time)</aside>
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maths.dm#L235">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm 235"/></a>
+    </h3>
+    <p>Like DT_PROB_RATE but easier to use, simply put <code>if(DT_PROB(10, 5))</code></p><h3 id="define/DT_PROB_RATE"><aside class="declaration">#define </aside>DT_PROB_RATE
+            <aside>(prob_per_second, delta_time)</aside>
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maths.dm#L232">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm 232"/></a>
+    </h3>
+    <p>Converts a probability/second chance to probability/delta_time chance
+For example, if you want an event to happen with a 10% per second chance, but your proc only runs every 5 seconds, do <code>if(prob(100*DT_PROB_RATE(0.1, 5)))</code></p><h3 id="define/MAPCLAMP"><aside class="declaration">#define </aside>MAPCLAMP
+            <aside>(x, imin, imax, omin, omax)</aside>
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maths.dm#L249">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm 249"/></a>
+    </h3>
+    <p>See above, but clamps the resulting value between omin and omax</p><h3 id="define/REVERSE_ANGLE"><aside class="declaration">#define </aside>REVERSE_ANGLE
+            <aside>(angle)</aside>
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maths.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm 127"/></a>
+    </h3>
+    <p>Reverse an angle. 45 -&gt; 225, 0 -&gt; 180, etc</p><h3 id="define/SIGN"><aside class="declaration">#define </aside>SIGN
+            <aside>(x)</aside>
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maths.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm 39"/></a>
+    </h3>
+    <p>Gets the sign of x, returns -1 if negative, 0 if 0, 1 if positive</p><h3 id="define/TOBITSHIFT"><aside class="declaration">#define </aside>TOBITSHIFT
+            <aside>(bit)</aside>
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maths.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm 124"/></a>
+    </h3>
+    <p>Gets shift x that would be required the bitflag (1&lt;&lt;x)</p><h3 id="define/WRAP_UP"><aside class="declaration">#define </aside>WRAP_UP
+            <aside>(val, max)</aside>
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maths.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maths.dm 52"/></a>
+    </h3>
+    <p>Increments a value and wraps it if it exceeds some value. Can be used to circularly iterate through a list through <code>idx = WRAP_UP(idx, length_of_list)</code>.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

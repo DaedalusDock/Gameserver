@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;game_mode - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/game_mode.html#var">Var Details</a> - <a href="datum/game_mode.html#proc">Proc Details</a></header>
+<main>
+<h1>game_mode <aside>/<a href="datum.html">datum</a>/<a href="datum/game_mode.html">game_mode</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 15"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/game_mode.html#var/antag_datum">antag_datum</a></th><td>Typepath of the antagonist datum to hand out at round start</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/antag_flag">antag_flag</a></th><td>The antagonist flag to check player prefs for, for example ROLE_WIZARD</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/antag_flag_to_ban_check">antag_flag_to_ban_check</a></th><td>If a role is to be considered another for the purpose of banning.</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/antag_preference">antag_preference</a></th><td>If set, will check this preference instead of antag_flag.</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/antagonists">antagonists</a></th><td>ALL antagonists, not just the roundstart ones</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/death_timers">death_timers</a></th><td>A k:v list of mind:time of death.</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/exclusive_roles">exclusive_roles</a></th><td>If set, rule will only accept candidates from those roles. If on a roundstart ruleset, requires the player to have the correct antag pref enabled and any of the possible roles enabled.</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/force_pre_setup_check">force_pre_setup_check</a></th><td>Even if the mode has no antag datum, force possible_antags to be built</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/max_pop">max_pop</a></th><td>The maximum players this gamemode can roll</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/min_pop">min_pop</a></th><td>The minimum players this gamemode can roll</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/permadead_antag_pool">permadead_antag_pool</a></th><td>A list of names of antagonists who are permanantly. This list will be cut down to spend on midrounds.</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/possible_antags">possible_antags</a></th><td>A list of minds that are elligible to be given antagonist at roundstart</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/protected_jobs">protected_jobs</a></th><td>A list of jobs that should not be this antagonist</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/recommended_enemies">recommended_enemies</a></th><td>The recommended number of antag players for this round type</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/required_enemies">required_enemies</a></th><td>The number of antag players required for this round type to be considered</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/required_jobs">required_jobs</a></th><td>Jobs required for this round type to function, k:v list of JOB_TITLE : NUM_JOB. list(list(cap=1),list(hos=1,sec=2)) translates to one captain OR one hos and two secmans</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/restricted_jobs">restricted_jobs</a></th><td>A list of jobs cannot physically be this antagonist, typically AI and borgs.</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/setup_error">setup_error</a></th><td>Dynamically set to what the problem was. Or the first problem, anyway.</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/votable">votable</a></th><td>Is the gamemode votable? !Not implimented!</td></tr>
+            <tr><th><a href="datum/game_mode.html#var/weight">weight</a></th><td>This is a WEIGHT not a PROBABILITY</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/game_mode.html#proc/admin_panel">admin_panel</a></th><td>Mode specific admin panel.</td></tr>
+            <tr><th><a href="datum/game_mode.html#proc/check_for_errors">check_for_errors</a></th><td>Pass in a list of players about to participate in roundstart, returns an error as a string if the round cannot start.</td></tr>
+            <tr><th><a href="datum/game_mode.html#proc/execute_roundstart">execute_roundstart</a></th><td>Try to start this gamemode, called by SSticker. Returns FALSE if it fails.</td></tr>
+            <tr><th><a href="datum/game_mode.html#proc/give_antag_datums">give_antag_datums</a></th><td>Actually send out the antag datums</td></tr>
+            <tr><th><a href="datum/game_mode.html#proc/init_mob_signals">init_mob_signals</a></th><td>Setup signals for the antagonist's mind and mob. Make sure it gets cleared in handle_antagonist_mind_transfer.</td></tr>
+            <tr><th><a href="datum/game_mode.html#proc/make_antag_chance">make_antag_chance</a></th><td>Handles late-join antag assignments</td></tr>
+            <tr><th><a href="datum/game_mode.html#proc/on_failed_execute">on_failed_execute</a></th><td>Clean up a mess we may have made during set up.</td></tr>
+            <tr><th><a href="datum/game_mode.html#proc/post_setup">post_setup</a></th><td>Everyone should now be on the station and have their normal gear.  This is the place to give the special roles extra things</td></tr>
+            <tr><th><a href="datum/game_mode.html#proc/pre_setup">pre_setup</a></th><td>Populate the possible_antags list of minds, and any child behavior.</td></tr>
+            <tr><th><a href="datum/game_mode.html#proc/process">process</a></th><td>Stub for reference that gamemodes do infact, process.</td></tr>
+            <tr><th><a href="datum/game_mode.html#proc/select_antagonist">select_antagonist</a></th><td>Add a mind to pre_setup_antags and perform any work on it.</td></tr>
+            <tr><th><a href="datum/game_mode.html#proc/setup_antags">setup_antags</a></th><td>The absolute last thing called before the round starts. Setup gamemode info/antagonists.</td></tr>
+            <tr><th><a href="datum/game_mode.html#proc/trim_candidates">trim_candidates</a></th><td>Return a list of players that have our antag flag checked in prefs and are not banned, among other criteria.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/antag_datum"><aside class="declaration">var </aside>antag_datum
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/antagonist.html">antagonist</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 37"/></a></h3>
+        <p>Typepath of the antagonist datum to hand out at round start</p><h3 id="var/antag_flag"><aside class="declaration">var </aside>antag_flag
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 49"/></a></h3>
+        <p>The antagonist flag to check player prefs for, for example ROLE_WIZARD</p><h3 id="var/antag_flag_to_ban_check"><aside class="declaration">var </aside>antag_flag_to_ban_check
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 51"/></a></h3>
+        <p>If a role is to be considered another for the purpose of banning.</p><h3 id="var/antag_preference"><aside class="declaration">var </aside>antag_preference
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 53"/></a></h3>
+        <p>If set, will check this preference instead of antag_flag.</p><h3 id="var/antagonists"><aside class="declaration">var </aside>antagonists
+            <aside>&ndash; /list/datum/mind</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 60"/></a></h3>
+        <p>ALL antagonists, not just the roundstart ones</p><h3 id="var/death_timers"><aside class="declaration">var </aside>death_timers
+            <aside>&ndash; /list/datum/mind</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 62"/></a></h3>
+        <p>A k:v list of mind:time of death.</p><h3 id="var/exclusive_roles"><aside class="declaration">var </aside>exclusive_roles
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 46"/></a></h3>
+        <p>If set, rule will only accept candidates from those roles. If on a roundstart ruleset, requires the player to have the correct antag pref enabled and any of the possible roles enabled.</p><h3 id="var/force_pre_setup_check"><aside class="declaration">var </aside>force_pre_setup_check
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 55"/></a></h3>
+        <p>Even if the mode has no antag datum, force possible_antags to be built</p><h3 id="var/max_pop"><aside class="declaration">var </aside>max_pop
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 30"/></a></h3>
+        <p>The maximum players this gamemode can roll</p><h3 id="var/min_pop"><aside class="declaration">var </aside>min_pop
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 28"/></a></h3>
+        <p>The minimum players this gamemode can roll</p><h3 id="var/permadead_antag_pool"><aside class="declaration">var </aside>permadead_antag_pool
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 64"/></a></h3>
+        <p>A list of names of antagonists who are permanantly. This list will be cut down to spend on midrounds.</p><h3 id="var/possible_antags"><aside class="declaration">var </aside>possible_antags
+            <aside>&ndash; /list/datum/mind</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 58"/></a></h3>
+        <p>A list of minds that are elligible to be given antagonist at roundstart</p><h3 id="var/protected_jobs"><aside class="declaration">var </aside>protected_jobs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 42"/></a></h3>
+        <p>A list of jobs that should not be this antagonist</p><h3 id="var/recommended_enemies"><aside class="declaration">var </aside>recommended_enemies
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 34"/></a></h3>
+        <p>The recommended number of antag players for this round type</p><h3 id="var/required_enemies"><aside class="declaration">var </aside>required_enemies
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 32"/></a></h3>
+        <p>The number of antag players required for this round type to be considered</p><h3 id="var/required_jobs"><aside class="declaration">var </aside>required_jobs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 44"/></a></h3>
+        <p>Jobs required for this round type to function, k:v list of JOB_TITLE : NUM_JOB. list(list(cap=1),list(hos=1,sec=2)) translates to one captain OR one hos and two secmans</p><h3 id="var/restricted_jobs"><aside class="declaration">var </aside>restricted_jobs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 40"/></a></h3>
+        <p>A list of jobs cannot physically be this antagonist, typically AI and borgs.</p><h3 id="var/setup_error"><aside class="declaration">var </aside>setup_error
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 25"/></a></h3>
+        <p>Dynamically set to what the problem was. Or the first problem, anyway.</p><h3 id="var/votable"><aside class="declaration">var </aside>votable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 22"/></a></h3>
+        <p>Is the gamemode votable? !Not implimented!</p><h3 id="var/weight"><aside class="declaration">var </aside>weight
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 20"/></a></h3>
+        <p>This is a WEIGHT not a PROBABILITY</p><h2 id="proc">Proc Details</h2><h3 id="proc/admin_panel"><aside class="declaration">proc </aside>admin_panel<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L347">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 347"/></a></aside>
+        </h3>
+        <p>Mode specific admin panel.</p><h3 id="proc/check_for_errors"><aside class="declaration">proc </aside>check_for_errors<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 67"/></a></aside>
+        </h3>
+        <p>Pass in a list of players about to participate in roundstart, returns an error as a string if the round cannot start.</p><h3 id="proc/execute_roundstart"><aside class="declaration">proc </aside>execute_roundstart<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 82"/></a></aside>
+        </h3>
+        <p>Try to start this gamemode, called by SSticker. Returns FALSE if it fails.</p><h3 id="proc/give_antag_datums"><aside class="declaration">proc </aside>give_antag_datums<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L142">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 142"/></a></aside>
+        </h3>
+        <p>Actually send out the antag datums</p><h3 id="proc/init_mob_signals"><aside class="declaration">proc </aside>init_mob_signals<aside>(/<a href="mob.html">mob</a>/M) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L404">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 404"/></a></aside>
+        </h3>
+        <p>Setup signals for the antagonist's mind and mob. Make sure it gets cleared in handle_antagonist_mind_transfer.</p><h3 id="proc/make_antag_chance"><aside class="declaration">proc </aside>make_antag_chance<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/character) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L195">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 195"/></a></aside>
+        </h3>
+        <p>Handles late-join antag assignments</p><h3 id="proc/on_failed_execute"><aside class="declaration">proc </aside>on_failed_execute<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L147">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 147"/></a></aside>
+        </h3>
+        <p>Clean up a mess we may have made during set up.</p><h3 id="proc/post_setup"><aside class="declaration">proc </aside>post_setup<aside>(report) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 157"/></a></aside>
+        </h3>
+        <p>Everyone should now be on the station and have their normal gear.  This is the place to give the special roles extra things</p><h3 id="proc/pre_setup"><aside class="declaration">proc </aside>pre_setup<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 110"/></a></aside>
+        </h3>
+        <p>Populate the possible_antags list of minds, and any child behavior.</p><h3 id="proc/process"><aside class="parent"><a title="/datum" href="datum.html#proc/process">&uarr;</a></aside>process<aside>(delta_time) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L400">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 400"/></a></aside>
+        </h3>
+        <p>Stub for reference that gamemodes do infact, process.</p><h3 id="proc/select_antagonist"><aside class="declaration">proc </aside>select_antagonist<aside>(/<a href="datum.html">datum</a>/<a href="datum/mind.html">mind</a>/M, /<a href="datum.html">datum</a>/<a href="datum/antagonist.html">antagonist</a>/antag_path) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 98"/></a></aside>
+        </h3>
+        <p>Add a mind to pre_setup_antags and perform any work on it.</p><h3 id="proc/setup_antags"><aside class="declaration">proc </aside>setup_antags<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 132"/></a></aside>
+        </h3>
+        <p>The absolute last thing called before the round starts. Setup gamemode info/antagonists.</p><h3 id="proc/trim_candidates"><aside class="declaration">proc </aside>trim_candidates<aside>(/list/candidates) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/gamemodes/game_mode.dm#L351">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;game_mode.dm 351"/></a></aside>
+        </h3>
+        <p>Return a list of players that have our antag flag checked in prefs and are not banned, among other criteria.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

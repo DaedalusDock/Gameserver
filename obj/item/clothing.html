@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;clothing - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/clothing.html#var">Var Details</a> - <a href="obj/item/clothing.html#proc">Proc Details</a></header>
+<main>
+<h1>clothing <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/clothing.html">clothing</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/clothing_flags">clothing_flags</a></th><td>Flags for clothing</td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/clothing_traits">clothing_traits</a></th><td>Trait modification, lazylist of traits to add/take away, on equipment/drop in the correct slot</td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/damage_by_parts">damage_by_parts</a></th><td>How much clothing damage has been dealt to each of the limbs of the clothing, assuming it covers more than one limb</td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/fallback_colors">fallback_colors</a></th><td>Needs to follow this syntax: either a <code>list()</code> with the x and y coordinates of the pixel you want to get the colour from, or a hexcolour. Colour one replaces red, two replaces blue, and three replaces green in the icon state.</td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/fallback_icon_state">fallback_icon_state</a></th><td>Needs to be a RGB-greyscale format icon state in all species' fallback icon files.</td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/fiber_name">fiber_name</a></th><td>An alternative name to be used for fibers, forensics stuffs</td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/flash_protect">flash_protect</a></th><td>What level of bright light protection item has.</td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/limb_integrity">limb_integrity</a></th><td>How much integrity is in a specific limb before that limb is disabled (for use in <a href="obj/item/clothing.html#proc/take_damage_zone" title="/obj/item/clothing">/obj/item/clothing/proc/take_damage_zone</a>, and only if we cover multiple zones.) Set to 0 to disable shredding.</td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/moth_snack">moth_snack</a></th><td>A lazily initiated &quot;food&quot; version of the clothing for moths</td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/repairable_by">repairable_by</a></th><td>What items can be consumed to repair this clothing (must by an /obj/item/stack)</td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/zones_disabled">zones_disabled</a></th><td>How many zones (body parts, not precise) we have disabled so far, for naming purposes</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/clothing.html#proc/armor_to_protection_class">armor_to_protection_class</a></th><td>Rounds armor_value down to the nearest 10, divides it by 10 and then converts it to Roman numerals.</td></tr>
+            <tr><th><a href="obj/item/clothing.html#proc/attach_clothing_traits">attach_clothing_traits</a></th><td>Inserts a trait (or multiple traits) into the clothing traits list</td></tr>
+            <tr><th><a href="obj/item/clothing.html#proc/bristle">bristle</a></th><td>If we're a clothing with at least 1 shredded/disabled zone, give the wearer a periodic heads up letting them know their clothes are damaged</td></tr>
+            <tr><th><a href="obj/item/clothing.html#proc/detach_clothing_traits">detach_clothing_traits</a></th><td>Removes a trait (or multiple traits) from the clothing traits list</td></tr>
+            <tr><th><a href="obj/item/clothing.html#proc/disable_zone">disable_zone</a></th><td>disable_zone() is used to disable a given bodypart's protection on our clothing item, mainly from <a href="obj/item/clothing.html#proc/take_damage_zone" title="/obj/item/clothing">/obj/item/clothing/proc/take_damage_zone</a></td></tr>
+            <tr><th><a href="obj/item/clothing.html#proc/generate_fallback_clothing">generate_fallback_clothing</a></th><td>Generates a 'fallback' sprite from <code>fallback_colors</code> and <code>fallback_icon_state</code>, then adds it to <code>GLOB.fallback_clothing_icons</code>.</td></tr>
+            <tr><th><a href="obj/item/clothing.html#proc/repair">repair</a></th><td>Set the clothing's integrity back to 100%, remove all damage to bodyparts, and generally fix it up</td></tr>
+            <tr><th><a href="obj/item/clothing.html#proc/take_damage_zone">take_damage_zone</a></th><td>take_damage_zone() is used for dealing damage to specific bodyparts on a worn piece of clothing, meant to be called from [/obj/item/bodypart/proc/check_woundings_mods]</td></tr>
+            <tr><th><a href="obj/item/clothing.html#proc/wear_fallback_version">wear_fallback_version</a></th><td>Returns a mutable_appearance of this clothing's fallback sprite.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/clothing_flags"><aside class="declaration">var </aside>clothing_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 35"/></a></h3>
+        <p>Flags for clothing</p><h3 id="var/clothing_traits"><aside class="declaration">var </aside>clothing_traits
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 47"/></a></h3>
+        <p>Trait modification, lazylist of traits to add/take away, on equipment/drop in the correct slot</p><h3 id="var/damage_by_parts"><aside class="declaration">var </aside>damage_by_parts
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 58"/></a></h3>
+        <p>How much clothing damage has been dealt to each of the limbs of the clothing, assuming it covers more than one limb</p><h3 id="var/fallback_colors"><aside class="declaration">var </aside>fallback_colors
+            <aside>&ndash; /list/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 51"/></a></h3>
+        <p>Needs to follow this syntax: either a <code>list()</code> with the x and y coordinates of the pixel you want to get the colour from, or a hexcolour. Colour one replaces red, two replaces blue, and three replaces green in the icon state.</p><h3 id="var/fallback_icon_state"><aside class="declaration">var </aside>fallback_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 53"/></a></h3>
+        <p>Needs to be a RGB-greyscale format icon state in all species' fallback icon files.</p><h3 id="var/fiber_name"><aside class="declaration">var </aside>fiber_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 14"/></a></h3>
+        <p>An alternative name to be used for fibers, forensics stuffs</p><h3 id="var/flash_protect"><aside class="declaration">var </aside>flash_protect
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 18"/></a></h3>
+        <p>What level of bright light protection item has.</p><h3 id="var/limb_integrity"><aside class="declaration">var </aside>limb_integrity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 60"/></a></h3>
+        <p>How much integrity is in a specific limb before that limb is disabled (for use in <a href="obj/item/clothing.html#proc/take_damage_zone" title="/obj/item/clothing">/obj/item/clothing/proc/take_damage_zone</a>, and only if we cover multiple zones.) Set to 0 to disable shredding.</p><h3 id="var/moth_snack"><aside class="declaration">var </aside>moth_snack
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/food.html">food</a>/<a href="obj/item/food/clothing.html">clothing</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 67"/></a></h3>
+        <p>A lazily initiated &quot;food&quot; version of the clothing for moths</p><h3 id="var/repairable_by"><aside class="declaration">var </aside>repairable_by
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 40"/></a></h3>
+        <p>What items can be consumed to repair this clothing (must by an /obj/item/stack)</p><h3 id="var/zones_disabled"><aside class="declaration">var </aside>zones_disabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 62"/></a></h3>
+        <p>How many zones (body parts, not precise) we have disabled so far, for naming purposes</p><h2 id="proc">Proc Details</h2><h3 id="proc/armor_to_protection_class"><aside class="declaration">proc </aside>armor_to_protection_class<aside>(armor_value) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L381">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 381"/></a></aside>
+        </h3>
+        <p>Rounds armor_value down to the nearest 10, divides it by 10 and then converts it to Roman numerals.</p>
+<p>Arguments:</p>
+<ul>
+<li>armor_value - Number we're converting</li>
+</ul><h3 id="proc/attach_clothing_traits"><aside class="declaration">proc </aside>attach_clothing_traits<aside>(trait_or_traits) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L348">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 348"/></a></aside>
+        </h3>
+        <p>Inserts a trait (or multiple traits) into the clothing traits list</p>
+<p>If worn, then we will also give the wearer the trait as if equipped</p>
+<p>This is so you can add clothing traits without worrying about needing to equip or unequip them to gain effects</p><h3 id="proc/bristle"><aside class="declaration">proc </aside>bristle<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L539">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 539"/></a></aside>
+        </h3>
+        <p>If we're a clothing with at least 1 shredded/disabled zone, give the wearer a periodic heads up letting them know their clothes are damaged</p><h3 id="proc/detach_clothing_traits"><aside class="declaration">proc </aside>detach_clothing_traits<aside>(trait_or_traits) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L365">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 365"/></a></aside>
+        </h3>
+        <p>Removes a trait (or multiple traits) from the clothing traits list</p>
+<p>If worn, then we will also remove the trait from the wearer as if unequipped</p>
+<p>This is so you can add clothing traits without worrying about needing to equip or unequip them to gain effects</p><h3 id="proc/disable_zone"><aside class="declaration">proc </aside>disable_zone<aside>(def_zone, damage_type) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L253">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 253"/></a></aside>
+        </h3>
+        <p>disable_zone() is used to disable a given bodypart's protection on our clothing item, mainly from <a href="obj/item/clothing.html#proc/take_damage_zone" title="/obj/item/clothing">/obj/item/clothing/proc/take_damage_zone</a></p>
+<p>This proc disables all protection on the specified bodypart for this piece of clothing: it'll be as if it doesn't cover it at all anymore (because it won't!)
+If every possible bodypart has been disabled on the clothing, we put it out of commission entirely and mark it as shredded, whereby it will have to be repaired in
+order to equip it again. Also note we only consider it damaged if there's more than one bodypart disabled.</p>
+<p>Arguments:</p>
+<ul>
+<li>def_zone: The bodypart zone we're disabling</li>
+<li>damage_type: Only really relevant for the verb for describing the breaking, and maybe atom_destruction()</li>
+</ul><h3 id="proc/generate_fallback_clothing"><aside class="declaration">proc </aside>generate_fallback_clothing<aside>(file2use, state2use, species_file, list_key) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L449">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 449"/></a></aside>
+        </h3>
+        <p>Generates a 'fallback' sprite from <code>fallback_colors</code> and <code>fallback_icon_state</code>, then adds it to <code>GLOB.fallback_clothing_icons</code>.</p>
+<p>The fallback sprite is created by getting each colour specified in [fallback_colors],
+then mapping each of them to the red, green, and blue sections of the sprite specified by [fallback_icon_state].</p>
+<p>Arguments:</p>
+<ul>
+<li>file2use - The normal <code>icon</code> for this item.</li>
+<li>state2use - The normal <code>icon_state</code> for this item.</li>
+<li>species_file - The <a href="datum/species.html#var/fallback_clothing_path" title="/datum/species">/datum/species/var/fallback_clothing_path</a> of the species trying to wear this item.</li>
+<li>list_key - The key that this icon will be saved under in the global list. (Either [&quot;path/to/file.dmi-jumpsuit&quot;], or [&quot;#ffe14d-jumpsuit&quot;] if GAGS is used)</li>
+</ul><h3 id="proc/repair"><aside class="declaration">proc </aside>repair<aside>(/<a href="mob.html">mob</a>/user, params) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 204"/></a></aside>
+        </h3>
+        <p>Set the clothing's integrity back to 100%, remove all damage to bodyparts, and generally fix it up</p><h3 id="proc/take_damage_zone"><aside class="declaration">proc </aside>take_damage_zone<aside>(def_zone, damage_amount, damage_type, armor_penetration) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/clothing/clothing.dm#L229">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 229"/></a></aside>
+        </h3>
+        <p>take_damage_zone() is used for dealing damage to specific bodyparts on a worn piece of clothing, meant to be called from [/obj/item/bodypart/proc/check_woundings_mods]</p>
+<p>This proc only matters when a bodypart that this clothing is covering is harmed by a direct attack (being on fire or in space need not apply), and only if this clothing covers
+more than one bodypart to begin with. No point in tracking damage by zone for a hat, and I'm not cruel enough to let you fully break them in a few shots.
+Also if limb_integrity is 0, then this clothing doesn't have bodypart damage enabled so skip it.</p>
+<p>Arguments:</p>
+<ul>
+<li>def_zone: The bodypart zone in question</li>
+<li>damage_amount: Incoming damage</li>
+<li>damage_type: BRUTE or BURN</li>
+<li>armor_penetration: If the attack had armor_penetration</li>
+</ul><h3 id="proc/wear_fallback_version"><aside class="parent"><a title="/obj/item" href="obj/item.html#proc/wear_fallback_version">&uarr;</a></aside>wear_fallback_version<aside>(file2use, state2use, layer, species_file) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_update_icons.dm#L799">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_update_icons.dm 799"/></a></aside>
+        </h3>
+        <p>Returns a mutable_appearance of this clothing's fallback sprite.</p>
+<p>If a sprite for this item hasn't already been generated, a new one is made in [generate_fallback_clothing], and added to <code>GLOB.fallback_clothing_icons</code>.</p>
+<p>Arguments:</p>
+<ul>
+<li>file2use - The normal <code>icon</code> for this item.</li>
+<li>state2use - The normal <code>icon_state</code> for this item.</li>
+<li>layer - The layer that the final sprite should be rendered on.</li>
+<li>species_file - The <a href="datum/species.html#var/fallback_clothing_path" title="/datum/species">/datum/species/var/fallback_clothing_path</a> of the species trying to wear this item.</li>
+</ul></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

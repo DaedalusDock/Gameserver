@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;pai - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/pai.html#var">Var Details</a> - <a href="datum/controller/subsystem/pai.html#proc">Proc Details</a></header>
+<main>
+<h1>pai <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/pai.html">pai</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/pai.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;pai.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/pai.html#var/candidates">candidates</a></th><td>List of pAI candidates, including those not submitted.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/pai.html#var/pai_card_list">pai_card_list</a></th><td>All pAI cards on the map.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/pai.html#var/request_spam">request_spam</a></th><td>Prevents a crew member from hitting &quot;request pAI&quot;</td></tr>
+            <tr><th><a href="datum/controller/subsystem/pai.html#var/submit_spam">submit_spam</a></th><td>Prevents a pAI from submitting itself repeatedly and sounding an alert.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/pai.html#proc/check_candidate">check_candidate</a></th><td>The matching candidate from search
+Finds the candidate in question from the list of candidates.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/pai.html#proc/check_ready">check_ready</a></th><td>Checks if a candidate is ready so that they may be displayed in the pAI
+card's candidate window</td></tr>
+            <tr><th><a href="datum/controller/subsystem/pai.html#proc/findPAI">findPAI</a></th><td>Pings ghosts to announce that someone is requesting a pAI</td></tr>
+            <tr><th><a href="datum/controller/subsystem/pai.html#proc/recruitWindow">recruitWindow</a></th><td>This is the primary window proc when the pAI candidate
+hud menu is pressed by observers.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/pai.html#proc/submit_alert">submit_alert</a></th><td>Finds a matching candidate.
+Pings all pAI cards on the station that new candidates are available.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/pai.html#proc/ui_act">ui_act</a></th><td>The matching candidate from search</td></tr>
+            <tr><th><a href="datum/controller/subsystem/pai.html#proc/ui_state">ui_state</a></th><td>Searches for a previous candidate upon opening the menu</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/candidates"><aside class="declaration">var </aside>candidates
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/pai.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;pai.dm 7"/></a></h3>
+        <p>List of pAI candidates, including those not submitted.</p><h3 id="var/pai_card_list"><aside class="declaration">var </aside>pai_card_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/pai.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;pai.dm 13"/></a></h3>
+        <p>All pAI cards on the map.</p><h3 id="var/request_spam"><aside class="declaration">var </aside>request_spam
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/pai.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;pai.dm 9"/></a></h3>
+        <p>Prevents a crew member from hitting &quot;request pAI&quot;</p><h3 id="var/submit_spam"><aside class="declaration">var </aside>submit_spam
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/pai.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;pai.dm 11"/></a></h3>
+        <p>Prevents a pAI from submitting itself repeatedly and sounding an alert.</p><h2 id="proc">Proc Details</h2><h3 id="proc/check_candidate"><aside class="declaration">proc </aside>check_candidate<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/pai.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;pai.dm 126"/></a></aside>
+        </h3>
+        <p>The matching candidate from search
+Finds the candidate in question from the list of candidates.</p><h3 id="proc/check_ready"><aside class="declaration">proc </aside>check_ready<aside>(/<a href="datum.html">datum</a>/<a href="datum/pai_candidate.html">pai_candidate</a>/candidate) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/pai.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;pai.dm 160"/></a></aside>
+        </h3>
+        <p>Checks if a candidate is ready so that they may be displayed in the pAI
+card's candidate window</p><h3 id="proc/findPAI"><aside class="declaration">proc </aside>findPAI<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/paicard.html">paicard</a>/pai, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/pai.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;pai.dm 35"/></a></aside>
+        </h3>
+        <p>Pings ghosts to announce that someone is requesting a pAI</p>
+<p>Arguments
+@pai - The card requesting assistance
+@user - The player requesting a pAI</p><h3 id="proc/recruitWindow"><aside class="declaration">proc </aside>recruitWindow<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/pai.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;pai.dm 57"/></a></aside>
+        </h3>
+        <p>This is the primary window proc when the pAI candidate
+hud menu is pressed by observers.</p>
+<p>Arguments
+@user - The ghost doing the pressing.</p><h3 id="proc/submit_alert"><aside class="declaration">proc </aside>submit_alert<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/pai.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;pai.dm 138"/></a></aside>
+        </h3>
+        <p>Finds a matching candidate.
+Pings all pAI cards on the station that new candidates are available.</p><h3 id="proc/ui_act"><aside class="parent"><a title="/datum" href="datum.html#proc/ui_act">&uarr;</a></aside>ui_act<aside>(action, /list/params, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/pai.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;pai.dm 88"/></a></aside>
+        </h3>
+        <p>The matching candidate from search</p><h3 id="proc/ui_state"><aside class="parent"><a title="/datum" href="datum.html#proc/ui_state">&uarr;</a></aside>ui_state<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/pai.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;pai.dm 66"/></a></aside>
+        </h3>
+        <p>Searches for a previous candidate upon opening the menu</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

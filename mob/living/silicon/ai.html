@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob/living/silicon/ai.html#var">Var Details</a> - <a href="mob/living/silicon/ai.html#proc">Proc Details</a></header>
+<main>
+<h1>ai <aside>/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/silicon.html">silicon</a>/<a href="mob/living/silicon/ai.html">ai</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/ai/ai.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 15"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/aiMulti">aiMulti</a></th><td>Used as a fake multitoool in tcomms machinery</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/alert_control">alert_control</a></th><td>Station alert datum for showing alerts UI</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/bot_ref">bot_ref</a></th><td>Weakref to the bot the ai's commanding right now</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/command_report_cd">command_report_cd</a></th><td>Command report cooldown</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/lastloc">lastloc</a></th><td>remember AI's last location</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/sense_of_self">sense_of_self</a></th><td>An image to add to client.images so the AI player can see their own eye sprite.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/remove_malf_abilities">remove_malf_abilities</a></th><td>Removes all malfunction-related abilities from the AI</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/setAiRestorePowerRoutine">setAiRestorePowerRoutine</a></th><td>Proc to hook behavior to the changes of the value of [aiRestorePowerRoutine].</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/aiMulti"><aside class="declaration">var </aside>aiMulti
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/multitool</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/ai/ai.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 45"/></a></h3>
+        <p>Used as a fake multitoool in tcomms machinery</p><h3 id="var/alert_control"><aside class="declaration">var </aside>alert_control
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/station_alert.html">station_alert</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/ai/ai.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 104"/></a></h3>
+        <p>Station alert datum for showing alerts UI</p><h3 id="var/bot_ref"><aside class="declaration">var </aside>bot_ref
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weakref.html">weakref</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/ai/ai.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 47"/></a></h3>
+        <p>Weakref to the bot the ai's commanding right now</p><h3 id="var/command_report_cd"><aside class="declaration">var </aside>command_report_cd
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/ai/ai.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 112"/></a></h3>
+        <p>Command report cooldown</p><h3 id="var/lastloc"><aside class="declaration">var </aside>lastloc
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/ai/ai.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 106"/></a></h3>
+        <p>remember AI's last location</p><h3 id="var/sense_of_self"><aside class="declaration">var </aside>sense_of_self
+            <aside>&ndash; /image</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/ai/ai.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 116"/></a></h3>
+        <p>An image to add to client.images so the AI player can see their own eye sprite.</p><h2 id="proc">Proc Details</h2><h3 id="proc/remove_malf_abilities"><aside class="declaration">proc </aside>remove_malf_abilities<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/ai/ai.dm#L242">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 242"/></a></aside>
+        </h3>
+        <p>Removes all malfunction-related abilities from the AI</p><h3 id="proc/setAiRestorePowerRoutine"><aside class="declaration">proc </aside>setAiRestorePowerRoutine<aside>(new_value) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/ai/ai.dm#L1043">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 1043"/></a></aside>
+        </h3>
+        <p>Proc to hook behavior to the changes of the value of [aiRestorePowerRoutine].</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

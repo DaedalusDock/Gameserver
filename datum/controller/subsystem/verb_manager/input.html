@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;verb_manager&#x2F;input - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/verb_manager/input.html#var">Var Details</a></header>
+<main>
+<h1>input <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/verb_manager.html">verb_manager</a>/<a href="datum/controller/subsystem/verb_manager/input.html">input</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/input.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;input.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/verb_manager/input.html#var/average_click_delay">average_click_delay</a></th><td>running average of the amount of real time clicks take to truly execute after the command is originally sent to the server.
+if a click isnt delayed at all then it counts as 0 deciseconds.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/verb_manager/input.html#var/classic_only_set">classic_only_set</a></th><td>Macros applied onlt to classic users</td></tr>
+            <tr><th><a href="datum/controller/subsystem/verb_manager/input.html#var/clicks_per_second">clicks_per_second</a></th><td>running average of how many clicks inputted by a player the server processes every second. used for the subsystem stat entry</td></tr>
+            <tr><th><a href="datum/controller/subsystem/verb_manager/input.html#var/current_clicks">current_clicks</a></th><td>count of how many clicks onto atoms have elapsed before being cleared by fire(). used to average with clicks_per_second.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/verb_manager/input.html#var/delayed_clicks_per_second">delayed_clicks_per_second</a></th><td>acts like clicks_per_second but only counts the clicks actually processed by SSinput itself while clicks_per_second counts all clicks</td></tr>
+            <tr><th><a href="datum/controller/subsystem/verb_manager/input.html#var/hotkey_only_set">hotkey_only_set</a></th><td>Macros applied only to hotkey users</td></tr>
+            <tr><th><a href="datum/controller/subsystem/verb_manager/input.html#var/macro_set">macro_set</a></th><td>Standard macroset <em>ALL</em> players get</td></tr>
+            <tr><th><a href="datum/controller/subsystem/verb_manager/input.html#var/movements_per_second">movements_per_second</a></th><td>running average of how many movement iterations from player input the server processes every second. used for the subsystem stat entry</td></tr>
+            <tr><th><a href="datum/controller/subsystem/verb_manager/input.html#var/protected_macro_ids">protected_macro_ids</a></th><td>Macro IDs we shouldn't clear during client.clear_macros()</td></tr>
+            <tr><th><a href="datum/controller/subsystem/verb_manager/input.html#var/unprintables_cache">unprintables_cache</a></th><td>Typecache of all unprintable keys that are safe for classic to bind</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/average_click_delay"><aside class="declaration">var </aside>average_click_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/input.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;input.dm 31"/></a></h3>
+        <p>running average of the amount of real time clicks take to truly execute after the command is originally sent to the server.
+if a click isnt delayed at all then it counts as 0 deciseconds.</p><h3 id="var/classic_only_set"><aside class="declaration">var </aside>classic_only_set
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/input.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;input.dm 15"/></a></h3>
+        <p>Macros applied onlt to classic users</p><h3 id="var/clicks_per_second"><aside class="declaration">var </aside>clicks_per_second
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/input.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;input.dm 22"/></a></h3>
+        <p>running average of how many clicks inputted by a player the server processes every second. used for the subsystem stat entry</p><h3 id="var/current_clicks"><aside class="declaration">var </aside>current_clicks
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/input.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;input.dm 24"/></a></h3>
+        <p>count of how many clicks onto atoms have elapsed before being cleared by fire(). used to average with clicks_per_second.</p><h3 id="var/delayed_clicks_per_second"><aside class="declaration">var </aside>delayed_clicks_per_second
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/input.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;input.dm 26"/></a></h3>
+        <p>acts like clicks_per_second but only counts the clicks actually processed by SSinput itself while clicks_per_second counts all clicks</p><h3 id="var/hotkey_only_set"><aside class="declaration">var </aside>hotkey_only_set
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/input.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;input.dm 13"/></a></h3>
+        <p>Macros applied only to hotkey users</p><h3 id="var/macro_set"><aside class="declaration">var </aside>macro_set
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/input.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;input.dm 11"/></a></h3>
+        <p>Standard macroset <em>ALL</em> players get</p><h3 id="var/movements_per_second"><aside class="declaration">var </aside>movements_per_second
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/input.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;input.dm 28"/></a></h3>
+        <p>running average of how many movement iterations from player input the server processes every second. used for the subsystem stat entry</p><h3 id="var/protected_macro_ids"><aside class="declaration">var </aside>protected_macro_ids
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/input.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;input.dm 19"/></a></h3>
+        <p>Macro IDs we shouldn't clear during client.clear_macros()</p><h3 id="var/unprintables_cache"><aside class="declaration">var </aside>unprintables_cache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/input.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;input.dm 17"/></a></h3>
+        <p>Typecache of all unprintable keys that are safe for classic to bind</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

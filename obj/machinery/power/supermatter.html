@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;power&#x2F;supermatter - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/power/supermatter.html#var">Var Details</a> - <a href="obj/machinery/power/supermatter.html#proc">Proc Details</a></header>
+<main>
+<h1>supermatter <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/power/supermatter.html">power/supermatter</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 13"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/common_channel">common_channel</a></th><td>The common channel</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/damage_rate_limit">damage_rate_limit</a></th><td>damage rate cap at power = 300, scales linearly with power</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/decay_factor">decay_factor</a></th><td>Affects how fast the supermatter power decays</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/engineering_channel">engineering_channel</a></th><td>The engineering channel</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/gl_uid">gl_uid</a></th><td>The amount of supermatters that have been created this round</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/has_been_powered">has_been_powered</a></th><td>Used to track when the SM is first turned on for admin logging.</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/include_in_cims">include_in_cims</a></th><td>Can include in CIMs</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/movable">movable</a></th><td>Idk why this exists actually, i think its for unwrenching behavior</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/nitrogen_retardation_factor">nitrogen_retardation_factor</a></th><td>Higher == N2 slows reaction more</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/oxygen_release_modifier">oxygen_release_modifier</a></th><td>Higher == less oxygen released at high temperature/power</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/phoron_release_modifier">phoron_release_modifier</a></th><td>Higher == less phoron released by reaction</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/power_factor">power_factor</a></th><td>Controls how much power is produced by each collector in range - this is the main parameter for tweaking SM balance, as it basically controls how the power variable relates to the rest of the game.</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/radiation_release_modifier">radiation_release_modifier</a></th><td>Higher == more radiation released with more power.</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/radio">radio</a></th><td>Our internal radio</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/radio_key">radio_key</a></th><td>The key our internal radio uses</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/reaction_power_modifier">reaction_power_modifier</a></th><td>Higher == more overall power</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/thermal_release_modifier">thermal_release_modifier</a></th><td>Higher == more heat released during reaction</td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#var/uid">uid</a></th><td>This supermatter's number</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/power/supermatter.html#proc/tram_contents_consume">tram_contents_consume</a></th><td>Consume things that run into the supermatter from the tram. The tram calls forceMove (doesn't call Bump/ed) and not Move, and I'm afraid changing it will do something chaotic</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/common_channel"><aside class="declaration">var </aside>common_channel
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 104"/></a></h3>
+        <p>The common channel</p><h3 id="var/damage_rate_limit"><aside class="declaration">var </aside>damage_rate_limit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 47"/></a></h3>
+        <p>damage rate cap at power = 300, scales linearly with power</p><h3 id="var/decay_factor"><aside class="declaration">var </aside>decay_factor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 43"/></a></h3>
+        <p>Affects how fast the supermatter power decays</p><h3 id="var/engineering_channel"><aside class="declaration">var </aside>engineering_channel
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 102"/></a></h3>
+        <p>The engineering channel</p><h3 id="var/gl_uid"><aside class="declaration">var </aside>gl_uid
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 113"/></a></h3>
+        <p>The amount of supermatters that have been created this round</p><h3 id="var/has_been_powered"><aside class="declaration">var </aside>has_been_powered
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 108"/></a></h3>
+        <p>Used to track when the SM is first turned on for admin logging.</p><h3 id="var/include_in_cims"><aside class="declaration">var </aside>include_in_cims
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 117"/></a></h3>
+        <p>Can include in CIMs</p><h3 id="var/movable"><aside class="declaration">var </aside>movable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 110"/></a></h3>
+        <p>Idk why this exists actually, i think its for unwrenching behavior</p><h3 id="var/nitrogen_retardation_factor"><aside class="declaration">var </aside>nitrogen_retardation_factor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 28"/></a></h3>
+        <p>Higher == N2 slows reaction more</p><h3 id="var/oxygen_release_modifier"><aside class="declaration">var </aside>oxygen_release_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 34"/></a></h3>
+        <p>Higher == less oxygen released at high temperature/power</p><h3 id="var/phoron_release_modifier"><aside class="declaration">var </aside>phoron_release_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 32"/></a></h3>
+        <p>Higher == less phoron released by reaction</p><h3 id="var/power_factor"><aside class="declaration">var </aside>power_factor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 41"/></a></h3>
+        <p>Controls how much power is produced by each collector in range - this is the main parameter for tweaking SM balance, as it basically controls how the power variable relates to the rest of the game.</p><h3 id="var/radiation_release_modifier"><aside class="declaration">var </aside>radiation_release_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 36"/></a></h3>
+        <p>Higher == more radiation released with more power.</p><h3 id="var/radio"><aside class="declaration">var </aside>radio
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/radio.html">radio</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 98"/></a></h3>
+        <p>Our internal radio</p><h3 id="var/radio_key"><aside class="declaration">var </aside>radio_key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 100"/></a></h3>
+        <p>The key our internal radio uses</p><h3 id="var/reaction_power_modifier"><aside class="declaration">var </aside>reaction_power_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 38"/></a></h3>
+        <p>Higher == more overall power</p><h3 id="var/thermal_release_modifier"><aside class="declaration">var </aside>thermal_release_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 30"/></a></h3>
+        <p>Higher == more heat released during reaction</p><h3 id="var/uid"><aside class="declaration">var </aside>uid
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter.dm 115"/></a></h3>
+        <p>This supermatter's number</p><h2 id="proc">Proc Details</h2><h3 id="proc/tram_contents_consume"><aside class="declaration">proc </aside>tram_contents_consume<aside>(/<a href="datum.html">datum</a>/source, /list/tram_contents) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/supermatter/nupermatter_hit_procs.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;nupermatter_hit_procs.dm 2"/></a></aside>
+        </h3>
+        <p>Consume things that run into the supermatter from the tram. The tram calls forceMove (doesn't call Bump/ed) and not Move, and I'm afraid changing it will do something chaotic</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

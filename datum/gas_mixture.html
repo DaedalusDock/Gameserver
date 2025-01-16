@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;gas_mixture - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/gas_mixture.html#proc">Proc Details</a></header>
+<main>
+<h1>gas_mixture <aside>/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/add">add</a></th><td>Simpler version of merge(), adjusts gas amounts directly and doesn't account for temperature or group_multiplier.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/adjustGas">adjustGas</a></th><td>Takes a gas string and the amount of moles to adjust by. Calls updateValues() if update isn't 0.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/adjustGasWithTemp">adjustGasWithTemp</a></th><td>Same as adjustGas(), but takes a temperature which is mixed in with the gas.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/adjustMultipleGases">adjustMultipleGases</a></th><td>Variadic version of adjustGas().  Takes any number of gas and mole pairs and applies them.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/adjustMultipleGasesWithTemp">adjustMultipleGasesWithTemp</a></th><td>Variadic version of adjustGasWithTemp().  Takes any number of gas, mole and temperature associations and applies them.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/adjustThermalEnergy">adjustThermalEnergy</a></th><td>Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/checkTileGraphic">checkTileGraphic</a></th><td>If check_vacuum is TRUE, if one of the mixtures is a vacuum, return FALSE until both are or neither are.
+Rechecks the gas_mixture and adjusts the graphic list if needed. ///Two lists can be passed by reference if you need know specifically which graphics were added and removed.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/compare">compare</a></th><td>Checks if we are within acceptable range of another gas_mixture to suspend processing or merge.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/copy">copy</a></th><td>Returns a gas_mixture datum with identical contents.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/copyFrom">copyFrom</a></th><td>Copies gas and temperature from another gas_mixture.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/divide">divide</a></th><td>Divide all gas amounts by a factor.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/equalize">equalize</a></th><td>Used to equalize the mixture between two zones before sleeping an edge.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/garbageCollect">garbageCollect</a></th><td>Updates the total_moles count and trims any empty gases.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/getBreathPartialPressure">getBreathPartialPressure</a></th><td>Takes the amount of the gas you want to PP as an argument
+So I don't have to do some hacky switches/defines/magic strings
+eg:
+Plas_PP = get_partial_pressure(gas_mixture.plasma)
+O2_PP = get_partial_pressure(gas_mixture.oxygen)
+getBreathPartialPressure(gas_pp) --&gt; gas_pp/get_moles()<em>breath_pp = pp
+getTrueBreathPressure(pp) --&gt; gas_pp = pp/breath_pp</em>get_moles()</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/getByFlag">getByFlag</a></th><td>Returns the amount of gas that has the given flag, in moles..</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/getGroupGas">getGroupGas</a></th><td>Returns the volume of a specific gas within the entire zone.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/getGroupMoles">getGroupMoles</a></th><td>Returns the volume of the entire zone's gas contents.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/getHeatCapacity">getHeatCapacity</a></th><td>Returns the heat capacity of the gas mix based on the specific heat of the gases.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/getThermalEnergyChange">getThermalEnergyChange</a></th><td>Returns the thermal energy change required to get to a new temperature</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/getTileOverlay">getTileOverlay</a></th><td>Inlined getTileOverlay(g)
+End inline</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/getTrueBreathPressure">getTrueBreathPressure</a></th><td>inverse</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/get_volume">get_volume</a></th><td>LINDA COMPATABILITY PROCS</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/hasGas">hasGas</a></th><td>Returns TRUE if the given gas has a volume equal to or greater than the given amount in one group share of gas.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/isEqual">isEqual</a></th><td>Compares the contents of two mixtures to see if they are identical.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/merge">merge</a></th><td>Merges all the gas from another mixture into this one.  Respects group_multipliers and adjusts temperature correctly. Does not modify giver in any way.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/multiply">multiply</a></th><td>Multiply all gas amounts by a factor.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/remove">remove</a></th><td>Removes moles from the gas mixture and returns a gas_mixture containing the removed air.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/removeByFlag">removeByFlag</a></th><td>Removes moles from the gas mixture, limited by a given flag.  Returns a gax_mixture containing the removed air.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/removeRatio">removeRatio</a></th><td>Removes a ratio of gas from the mixture and returns a gas_mixture containing the removed air.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/removeVolume">removeVolume</a></th><td>Removes a volume of gas from the mixture and returns a gas_mixture containing the removed air with the given volume.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/returnPressure">returnPressure</a></th><td>Returns the pressure of the gas mix.  Only accurate if there have been no gas modifications since updateValues() has been called.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/setGasMoles">setGasMoles</a></th><td>Sets the given gas id's mole count to the specified amount.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/shareRatio">shareRatio</a></th><td>Shares gas with another gas_mixture based on the amount of connecting tiles and a fixed lookup table.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/shareSpace">shareSpace</a></th><td>A wrapper around share_ratio for spacing gas at the same rate as if it were going into a large airless room.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/specificGroupEntropy">specificGroupEntropy</a></th><td>Returns the ideal gas specific entropy of the whole mix. This is the entropy per mole of /mixed/ gas.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/subtract">subtract</a></th><td>Simpler version of remove(), adjusts gas amounts directly and doesn't account for group_multiplier.</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/add"><aside class="declaration">proc </aside>add<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/right_side) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L431">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 431"/></a></aside>
+        </h3>
+        <p>Simpler version of merge(), adjusts gas amounts directly and doesn't account for temperature or group_multiplier.</p><h3 id="proc/adjustGas"><aside class="declaration">proc </aside>adjustGas<aside>(gasid, moles, update) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 37"/></a></aside>
+        </h3>
+        <p>Takes a gas string and the amount of moles to adjust by. Calls updateValues() if update isn't 0.</p><h3 id="proc/adjustGasWithTemp"><aside class="declaration">proc </aside>adjustGasWithTemp<aside>(gasid, moles, temp, update) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 61"/></a></aside>
+        </h3>
+        <p>Same as adjustGas(), but takes a temperature which is mixed in with the gas.</p><h3 id="proc/adjustMultipleGases"><aside class="declaration">proc </aside>adjustMultipleGases<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 82"/></a></aside>
+        </h3>
+        <p>Variadic version of adjustGas().  Takes any number of gas and mole pairs and applies them.</p><h3 id="proc/adjustMultipleGasesWithTemp"><aside class="declaration">proc </aside>adjustMultipleGasesWithTemp<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 92"/></a></aside>
+        </h3>
+        <p>Variadic version of adjustGasWithTemp().  Takes any number of gas, mole and temperature associations and applies them.</p><h3 id="proc/adjustThermalEnergy"><aside class="declaration">proc </aside>adjustThermalEnergy<aside>(thermal_energy) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 157"/></a></aside>
+        </h3>
+        <p>Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.</p><h3 id="proc/checkTileGraphic"><aside class="declaration">proc </aside>checkTileGraphic<aside>(/list/graphic_add, /list/graphic_remove) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L365">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 365"/></a></aside>
+        </h3>
+        <p>If check_vacuum is TRUE, if one of the mixtures is a vacuum, return FALSE until both are or neither are.
+Rechecks the gas_mixture and adjusts the graphic list if needed. ///Two lists can be passed by reference if you need know specifically which graphics were added and removed.</p><h3 id="proc/compare"><aside class="declaration">proc </aside>compare<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/sample, check_vacuum) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L324">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 324"/></a></aside>
+        </h3>
+        <p>Checks if we are within acceptable range of another gas_mixture to suspend processing or merge.</p><h3 id="proc/copy"><aside class="declaration">proc </aside>copy<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L562">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 562"/></a></aside>
+        </h3>
+        <p>Returns a gas_mixture datum with identical contents.</p><h3 id="proc/copyFrom"><aside class="declaration">proc </aside>copyFrom<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/sample, ratio) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L310">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 310"/></a></aside>
+        </h3>
+        <p>Copies gas and temperature from another gas_mixture.</p><h3 id="proc/divide"><aside class="declaration">proc </aside>divide<aside>(factor) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L457">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 457"/></a></aside>
+        </h3>
+        <p>Divide all gas amounts by a factor.</p><h3 id="proc/equalize"><aside class="declaration">proc </aside>equalize<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/sharer) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 124"/></a></aside>
+        </h3>
+        <p>Used to equalize the mixture between two zones before sleeping an edge.</p><h3 id="proc/garbageCollect"><aside class="declaration">proc </aside>garbageCollect<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L219">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 219"/></a></aside>
+        </h3>
+        <p>Updates the total_moles count and trims any empty gases.</p><h3 id="proc/getBreathPartialPressure"><aside class="declaration">proc </aside>getBreathPartialPressure<aside>(gas_pressure) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L605">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 605"/></a></aside>
+        </h3>
+        <p>Takes the amount of the gas you want to PP as an argument
+So I don't have to do some hacky switches/defines/magic strings
+eg:
+Plas_PP = get_partial_pressure(gas_mixture.plasma)
+O2_PP = get_partial_pressure(gas_mixture.oxygen)
+getBreathPartialPressure(gas_pp) --&gt; gas_pp/get_moles()<em>breath_pp = pp
+getTrueBreathPressure(pp) --&gt; gas_pp = pp/breath_pp</em>get_moles()</p>
+<p>10/20<em>5 = 2.5
+10 = 2.5/5</em>20</p><h3 id="proc/getByFlag"><aside class="declaration">proc </aside>getByFlag<aside>(flag) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L303">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 303"/></a></aside>
+        </h3>
+        <p>Returns the amount of gas that has the given flag, in moles..</p><h3 id="proc/getGroupGas"><aside class="declaration">proc </aside>getGroupGas<aside>(gasid) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 27"/></a></aside>
+        </h3>
+        <p>Returns the volume of a specific gas within the entire zone.</p><h3 id="proc/getGroupMoles"><aside class="declaration">proc </aside>getGroupMoles<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 33"/></a></aside>
+        </h3>
+        <p>Returns the volume of the entire zone's gas contents.</p><h3 id="proc/getHeatCapacity"><aside class="declaration">proc </aside>getHeatCapacity<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L149">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 149"/></a></aside>
+        </h3>
+        <p>Returns the heat capacity of the gas mix based on the specific heat of the gases.</p><h3 id="proc/getThermalEnergyChange"><aside class="declaration">proc </aside>getThermalEnergyChange<aside>(new_temperature) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L172">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 172"/></a></aside>
+        </h3>
+        <p>Returns the thermal energy change required to get to a new temperature</p><h3 id="proc/getTileOverlay"><aside class="declaration">proc </aside>getTileOverlay<aside>(gas_id) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L425">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 425"/></a></aside>
+        </h3>
+        <p>Inlined getTileOverlay(g)
+End inline</p><h3 id="proc/getTrueBreathPressure"><aside class="declaration">proc </aside>getTrueBreathPressure<aside>(partial_pressure) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L608">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 608"/></a></aside>
+        </h3>
+        <p>inverse</p><h3 id="proc/get_volume"><aside class="declaration">proc </aside>get_volume<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L553">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 553"/></a></aside>
+        </h3>
+        <p>LINDA COMPATABILITY PROCS</p><h3 id="proc/hasGas"><aside class="declaration">proc </aside>hasGas<aside>(gas_id, required_amount) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L548">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 548"/></a></aside>
+        </h3>
+        <p>Returns TRUE if the given gas has a volume equal to or greater than the given amount in one group share of gas.</p><h3 id="proc/isEqual"><aside class="declaration">proc </aside>isEqual<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/other) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L527">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 527"/></a></aside>
+        </h3>
+        <p>Compares the contents of two mixtures to see if they are identical.</p><h3 id="proc/merge"><aside class="declaration">proc </aside>merge<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/giver) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 102"/></a></aside>
+        </h3>
+        <p>Merges all the gas from another mixture into this one.  Respects group_multipliers and adjusts temperature correctly. Does not modify giver in any way.</p><h3 id="proc/multiply"><aside class="declaration">proc </aside>multiply<aside>(factor) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L449">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 449"/></a></aside>
+        </h3>
+        <p>Multiply all gas amounts by a factor.</p><h3 id="proc/remove"><aside class="declaration">proc </aside>remove<aside>(amount) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L231">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 231"/></a></aside>
+        </h3>
+        <p>Removes moles from the gas mixture and returns a gas_mixture containing the removed air.</p><h3 id="proc/removeByFlag"><aside class="declaration">proc </aside>removeByFlag<aside>(flag, amount) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L280">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 280"/></a></aside>
+        </h3>
+        <p>Removes moles from the gas mixture, limited by a given flag.  Returns a gax_mixture containing the removed air.</p><h3 id="proc/removeRatio"><aside class="declaration">proc </aside>removeRatio<aside>(ratio, out_group_multiplier) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L252">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 252"/></a></aside>
+        </h3>
+        <p>Removes a ratio of gas from the mixture and returns a gas_mixture containing the removed air.</p><h3 id="proc/removeVolume"><aside class="declaration">proc </aside>removeVolume<aside>(removed_volume) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L274">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 274"/></a></aside>
+        </h3>
+        <p>Removes a volume of gas from the mixture and returns a gas_mixture containing the removed air with the given volume.</p><h3 id="proc/returnPressure"><aside class="declaration">proc </aside>returnPressure<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L224">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 224"/></a></aside>
+        </h3>
+        <p>Returns the pressure of the gas mix.  Only accurate if there have been no gas modifications since updateValues() has been called.</p><h3 id="proc/setGasMoles"><aside class="declaration">proc </aside>setGasMoles<aside>(gasid, moles, update, divide_among_group) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 50"/></a></aside>
+        </h3>
+        <p>Sets the given gas id's mole count to the specified amount.</p><h3 id="proc/shareRatio"><aside class="declaration">proc </aside>shareRatio<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/other, connecting_tiles, share_size, one_way) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L466">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 466"/></a></aside>
+        </h3>
+        <p>Shares gas with another gas_mixture based on the amount of connecting tiles and a fixed lookup table.</p><h3 id="proc/shareSpace"><aside class="declaration">proc </aside>shareSpace<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/unsim_air) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L514">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 514"/></a></aside>
+        </h3>
+        <p>A wrapper around share_ratio for spacing gas at the same rate as if it were going into a large airless room.</p><h3 id="proc/specificGroupEntropy"><aside class="declaration">proc </aside>specificGroupEntropy<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L181">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 181"/></a></aside>
+        </h3>
+        <p>Returns the ideal gas specific entropy of the whole mix. This is the entropy per mole of /mixed/ gas.</p><h3 id="proc/subtract"><aside class="declaration">proc </aside>subtract<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/right_side) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/XGM/xgm_gas_mixture.dm#L440">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;XGM&#x2F;xgm_gas_mixture.dm 440"/></a></aside>
+        </h3>
+        <p>Simpler version of remove(), adjusts gas amounts directly and doesn't account for group_multiplier.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

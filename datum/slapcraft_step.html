@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;slapcraft_step - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/slapcraft_step.html#var">Var Details</a> - <a href="datum/slapcraft_step.html#proc">Proc Details</a></header>
+<main>
+<h1>slapcraft_step <aside>/<a href="datum.html">datum</a>/<a href="datum/slapcraft_step.html">slapcraft_step</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/blacklist_item_types">blacklist_item_types</a></th><td>Item types to make a typecache of for blacklisting.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/blacklist_typecache">blacklist_typecache</a></th><td>Typecache of the blacklist</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/check_if_mob_can_drop_item">check_if_mob_can_drop_item</a></th><td>If the user is holding the item, check if they need to be able to drop it to be able to craft with it.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/check_types">check_types</a></th><td>Whether we should check the types of the item, if FALSE then make sure <code>can_perform()</code> checks conditions.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/desc">desc</a></th><td>The description of the step, it shows in the slapcraft handbook</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/finish_msg">finish_msg</a></th><td>Visible message when you finish the step.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/finish_msg_self">finish_msg_self</a></th><td>Personalized visible message when you finish the step.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/finished_desc">finished_desc</a></th><td>The description of the finished step when you examine the assembly.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/insert_item">insert_item</a></th><td>Whether we insert the valid item in the assembly.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/insert_item_into_result">insert_item_into_result</a></th><td>Whether we insert the item into the resulting item's contents</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/item_types">item_types</a></th><td>List of types of items that can be used. Only relevant if <code>check_types</code> is TRUE</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/list_desc">list_desc</a></th><td>Quantified description of the required element of this step. &quot;screwdriver&quot; or &quot;15 cable&quot;, or &quot;can with 50u. fuel&quot; etc.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/optional">optional</a></th><td>Whether this step is optional. This is forbidden for first and last steps of recipes, and cannot be used on recipes with an order of SLAP_ORDER_FIRST_THEN_FREEFORM</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/perform_time">perform_time</a></th><td>How long does it take to perform the step.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/recipe_link">recipe_link</a></th><td>The recipe this step can link to. Make sure to include %LINK% and %ENDLINK% in <code>desc</code> to properly linkify it.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/start_msg">start_msg</a></th><td>Visible message when you start the step.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/start_msg_self">start_msg_self</a></th><td>Personalized visible message when you start the step.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/todo_desc">todo_desc</a></th><td>The description of the step when it's the next one to perform in the assembly.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#var/typecache">typecache</a></th><td>The typecache of types of the items.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/can_perform">can_perform</a></th><td>Below are virtual procs I allow steps to override for their specific behaviours.
+Checks whether a user can perform this step with an item. Exists so steps can override this proc for their own behavioural checks.
+<code>assembly</code> can be null here, when the recipe finding checks are trying to figure out what recipe we can make.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/check_type">check_type</a></th><td>Checks whether a type is in the typecache of the step.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/get_speed_multiplier">get_speed_multiplier</a></th><td>Returns a speed multiplier to the time it takes for the step to complete. Useful for tool-related steps</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/make_desc">make_desc</a></th><td>Makes a description for the step.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/make_finish_msg">make_finish_msg</a></th><td>Makes a description for the visible message of finishing a step.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/make_finish_msg_self">make_finish_msg_self</a></th><td>Makes a personalized description for the visible message of finishing a step.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/make_finished_desc">make_finished_desc</a></th><td>Makes a finished description for the step.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/make_list_desc">make_list_desc</a></th><td>Makes a list description for the item.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/make_start_msg">make_start_msg</a></th><td>Makes a description for the visible message of starting a step that requires some time to perform.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/make_start_msg_self">make_start_msg_self</a></th><td>Makes a personalized description for the visible message of starting a step that requires some time to perform.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/make_todo_desc">make_todo_desc</a></th><td>Makes a todo description for the step.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/move_item_to_assembly">move_item_to_assembly</a></th><td>Behaviour to move the item into the assembly. Stackable items may want to change how they do this.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/on_perform">on_perform</a></th><td>Behaviour to happen on performing this step. Perhaps removing a portion of reagents to create an IED or something.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/perform">perform</a></th><td>Make a user perform this step, by using an item on the assembly, trying to progress the assembly.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/perform_check">perform_check</a></th><td>Checks if the passed item is a proper type to perform this step, and whether it passes the <code>can_perform()</code> check. Assembly can be null</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/perform_do_after">perform_do_after</a></th><td>Proc to perform handling a do_after, return FALSE if it failed, TRUE if succeeded.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/play_perform_sound">play_perform_sound</a></th><td>Plays a sound on successfully performing the step.</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/progress_crafting">progress_crafting</a></th><td>Whether the step progresses towards the next step when successfully performed.
+This can be used to allow &quot;freeform&quot; crafting to put more things into an assembly than required, possibly utilizing it for things like custom burgers</td></tr>
+            <tr><th><a href="datum/slapcraft_step.html#proc/step_replace_text">step_replace_text</a></th><td>Text replacing for sending visibile messages when the steps are happening.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/blacklist_item_types"><aside class="declaration">var </aside>blacklist_item_types
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 37"/></a></h3>
+        <p>Item types to make a typecache of for blacklisting.</p><h3 id="var/blacklist_typecache"><aside class="declaration">var </aside>blacklist_typecache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 39"/></a></h3>
+        <p>Typecache of the blacklist</p><h3 id="var/check_if_mob_can_drop_item"><aside class="declaration">var </aside>check_if_mob_can_drop_item
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 23"/></a></h3>
+        <p>If the user is holding the item, check if they need to be able to drop it to be able to craft with it.</p><h3 id="var/check_types"><aside class="declaration">var </aside>check_types
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 31"/></a></h3>
+        <p>Whether we should check the types of the item, if FALSE then make sure <code>can_perform()</code> checks conditions.</p><h3 id="var/desc"><aside class="declaration">var </aside>desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 4"/></a></h3>
+        <p>The description of the step, it shows in the slapcraft handbook</p><h3 id="var/finish_msg"><aside class="declaration">var </aside>finish_msg
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 14"/></a></h3>
+        <p>Visible message when you finish the step.</p><h3 id="var/finish_msg_self"><aside class="declaration">var </aside>finish_msg_self
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 18"/></a></h3>
+        <p>Personalized visible message when you finish the step.</p><h3 id="var/finished_desc"><aside class="declaration">var </aside>finished_desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 6"/></a></h3>
+        <p>The description of the finished step when you examine the assembly.</p><h3 id="var/insert_item"><aside class="declaration">var </aside>insert_item
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 25"/></a></h3>
+        <p>Whether we insert the valid item in the assembly.</p><h3 id="var/insert_item_into_result"><aside class="declaration">var </aside>insert_item_into_result
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 27"/></a></h3>
+        <p>Whether we insert the item into the resulting item's contents</p><h3 id="var/item_types"><aside class="declaration">var </aside>item_types
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 33"/></a></h3>
+        <p>List of types of items that can be used. Only relevant if <code>check_types</code> is TRUE</p><h3 id="var/list_desc"><aside class="declaration">var </aside>list_desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 11"/></a></h3>
+        <p>Quantified description of the required element of this step. &quot;screwdriver&quot; or &quot;15 cable&quot;, or &quot;can with 50u. fuel&quot; etc.</p><h3 id="var/optional"><aside class="declaration">var </aside>optional
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 43"/></a></h3>
+        <p>Whether this step is optional. This is forbidden for first and last steps of recipes, and cannot be used on recipes with an order of SLAP_ORDER_FIRST_THEN_FREEFORM</p><h3 id="var/perform_time"><aside class="declaration">var </aside>perform_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 29"/></a></h3>
+        <p>How long does it take to perform the step.</p><h3 id="var/recipe_link"><aside class="declaration">var </aside>recipe_link
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 41"/></a></h3>
+        <p>The recipe this step can link to. Make sure to include %LINK% and %ENDLINK% in <code>desc</code> to properly linkify it.</p><h3 id="var/start_msg"><aside class="declaration">var </aside>start_msg
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 16"/></a></h3>
+        <p>Visible message when you start the step.</p><h3 id="var/start_msg_self"><aside class="declaration">var </aside>start_msg_self
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 20"/></a></h3>
+        <p>Personalized visible message when you start the step.</p><h3 id="var/todo_desc"><aside class="declaration">var </aside>todo_desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 8"/></a></h3>
+        <p>The description of the step when it's the next one to perform in the assembly.</p><h3 id="var/typecache"><aside class="declaration">var </aside>typecache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 35"/></a></h3>
+        <p>The typecache of types of the items.</p><h2 id="proc">Proc Details</h2><h3 id="proc/can_perform"><aside class="declaration">proc </aside>can_perform<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly, /list/error_list) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L153">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 153"/></a></aside>
+        </h3>
+        <p>Below are virtual procs I allow steps to override for their specific behaviours.
+Checks whether a user can perform this step with an item. Exists so steps can override this proc for their own behavioural checks.
+<code>assembly</code> can be null here, when the recipe finding checks are trying to figure out what recipe we can make.</p><h3 id="proc/check_type"><aside class="declaration">proc </aside>check_type<aside>(checked_type) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 72"/></a></aside>
+        </h3>
+        <p>Checks whether a type is in the typecache of the step.</p><h3 id="proc/get_speed_multiplier"><aside class="declaration">proc </aside>get_speed_multiplier<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L177">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 177"/></a></aside>
+        </h3>
+        <p>Returns a speed multiplier to the time it takes for the step to complete. Useful for tool-related steps</p><h3 id="proc/make_desc"><aside class="declaration">proc </aside>make_desc<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L198">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 198"/></a></aside>
+        </h3>
+        <p>Makes a description for the step.</p><h3 id="proc/make_finish_msg"><aside class="declaration">proc </aside>make_finish_msg<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L226">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 226"/></a></aside>
+        </h3>
+        <p>Makes a description for the visible message of finishing a step.</p><h3 id="proc/make_finish_msg_self"><aside class="declaration">proc </aside>make_finish_msg_self<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L240">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 240"/></a></aside>
+        </h3>
+        <p>Makes a personalized description for the visible message of finishing a step.</p><h3 id="proc/make_finished_desc"><aside class="declaration">proc </aside>make_finished_desc<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L205">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 205"/></a></aside>
+        </h3>
+        <p>Makes a finished description for the step.</p><h3 id="proc/make_list_desc"><aside class="declaration">proc </aside>make_list_desc<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L219">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 219"/></a></aside>
+        </h3>
+        <p>Makes a list description for the item.</p><h3 id="proc/make_start_msg"><aside class="declaration">proc </aside>make_start_msg<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L233">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 233"/></a></aside>
+        </h3>
+        <p>Makes a description for the visible message of starting a step that requires some time to perform.</p><h3 id="proc/make_start_msg_self"><aside class="declaration">proc </aside>make_start_msg_self<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L247">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 247"/></a></aside>
+        </h3>
+        <p>Makes a personalized description for the visible message of starting a step that requires some time to perform.</p><h3 id="proc/make_todo_desc"><aside class="declaration">proc </aside>make_todo_desc<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L212">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 212"/></a></aside>
+        </h3>
+        <p>Makes a todo description for the step.</p><h3 id="proc/move_item_to_assembly"><aside class="declaration">proc </aside>move_item_to_assembly<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 166"/></a></aside>
+        </h3>
+        <p>Behaviour to move the item into the assembly. Stackable items may want to change how they do this.</p><h3 id="proc/on_perform"><aside class="declaration">proc </aside>on_perform<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 162"/></a></aside>
+        </h3>
+        <p>Behaviour to happen on performing this step. Perhaps removing a portion of reagents to create an IED or something.</p><h3 id="proc/perform"><aside class="declaration">proc </aside>perform<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly, instant, silent, /list/error_list) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 107"/></a></aside>
+        </h3>
+        <p>Make a user perform this step, by using an item on the assembly, trying to progress the assembly.</p><h3 id="proc/perform_check"><aside class="declaration">proc </aside>perform_check<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly, check_type_only, error_list) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 83"/></a></aside>
+        </h3>
+        <p>Checks if the passed item is a proper type to perform this step, and whether it passes the <code>can_perform()</code> check. Assembly can be null</p><h3 id="proc/perform_do_after"><aside class="declaration">proc </aside>perform_do_after<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly, time_to_do) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L181">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 181"/></a></aside>
+        </h3>
+        <p>Proc to perform handling a do_after, return FALSE if it failed, TRUE if succeeded.</p><h3 id="proc/play_perform_sound"><aside class="declaration">proc </aside>play_perform_sound<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L191">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 191"/></a></aside>
+        </h3>
+        <p>Plays a sound on successfully performing the step.</p><h3 id="proc/progress_crafting"><aside class="declaration">proc </aside>progress_crafting<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 173"/></a></aside>
+        </h3>
+        <p>Whether the step progresses towards the next step when successfully performed.
+This can be used to allow &quot;freeform&quot; crafting to put more things into an assembly than required, possibly utilizing it for things like custom burgers</p><h3 id="proc/step_replace_text"><aside class="declaration">proc </aside>step_replace_text<aside>(msg, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_step.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_step.dm 143"/></a></aside>
+        </h3>
+        <p>Text replacing for sending visibile messages when the steps are happening.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

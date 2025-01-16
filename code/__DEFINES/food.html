@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;food.dm - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/food.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/food.dm 
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/food.html#define/FOOD_FLAGS">FOOD_FLAGS</a></th><td>A list of food type names, in order of their flags</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/FOOD_SILVER_SPAWNED">FOOD_SILVER_SPAWNED</a></th><td>Is this food item spawned from a silver slime? Prevent it from exporting for profit from cargo.</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/CRAFTED_FOOD_BASE_REAGENT_MODIFIER">CRAFTED_FOOD_BASE_REAGENT_MODIFIER</a></th><td>Amount of reagents you start with on crafted food excluding the used parts</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/CRAFTED_FOOD_INGREDIENT_REAGENT_MODIFIER">CRAFTED_FOOD_INGREDIENT_REAGENT_MODIFIER</a></th><td>Modifier of reagents you get when crafting food from the parts used</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/FOOD_TRASH_POPABLE">FOOD_TRASH_POPABLE</a></th><td>Food trash flags</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/FOOD_LIKED">FOOD_LIKED</a></th><td>Food preference enums</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/VENUE_BAR_MINIMUM_REAGENTS">VENUE_BAR_MINIMUM_REAGENTS</a></th><td>Venue reagent requirement</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/FOOD_PRICE_WORTHLESS">FOOD_PRICE_WORTHLESS</a></th><td><em><strong>Food price classes</strong></em>
+Foods that are meant to have no value, such as lollypops from medborgs.</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/FOOD_PRICE_TRASH">FOOD_PRICE_TRASH</a></th><td>cheap and quick foods, like those from vending machines.</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/FOOD_PRICE_CHEAP">FOOD_PRICE_CHEAP</a></th><td>In line with prices of cheap snacks and foods you find in vending machine, practically disposable.</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/FOOD_PRICE_NORMAL">FOOD_PRICE_NORMAL</a></th><td>Half a crate of profit, selling 4 of these lets you buy a kitchen crate from cargo.</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/FOOD_PRICE_EXOTIC">FOOD_PRICE_EXOTIC</a></th><td>Making one of these should be worth the time investment, solid chunk of profit.</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/FOOD_PRICE_LEGENDARY">FOOD_PRICE_LEGENDARY</a></th><td>Large windfall for making something from this list.</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/DRINK_PRICE_STOCK">DRINK_PRICE_STOCK</a></th><td><em><strong>Drink price classes</strong></em>
+Drinks that are only limited by a single click of the dispenser.</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/DRINK_PRICE_EASY">DRINK_PRICE_EASY</a></th><td>Drinks that are made through very basic processing.</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/DRINK_PRICE_MEDIUM">DRINK_PRICE_MEDIUM</a></th><td>Drinks that are made through more basic processing, or multiple steps.</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/DRINK_PRICE_HIGH">DRINK_PRICE_HIGH</a></th><td>Drinks that are made through rare ingredients, or high levels of processing.</td></tr>
+        <tr><th><a href="code/__DEFINES/food.html#define/ICE_CREAM_VANILLA">ICE_CREAM_VANILLA</a></th><td>Flavour defines (also names) for GLOB.ice_cream_flavours list access. Safer from mispelling than plain text.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/CRAFTED_FOOD_BASE_REAGENT_MODIFIER"><aside class="declaration">#define </aside>CRAFTED_FOOD_BASE_REAGENT_MODIFIER
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 64"/></a>
+    </h3>
+    <p>Amount of reagents you start with on crafted food excluding the used parts</p><h3 id="define/CRAFTED_FOOD_INGREDIENT_REAGENT_MODIFIER"><aside class="declaration">#define </aside>CRAFTED_FOOD_INGREDIENT_REAGENT_MODIFIER
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 66"/></a>
+    </h3>
+    <p>Modifier of reagents you get when crafting food from the parts used</p><h3 id="define/DRINK_PRICE_EASY"><aside class="declaration">#define </aside>DRINK_PRICE_EASY
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 105"/></a>
+    </h3>
+    <p>Drinks that are made through very basic processing.</p><h3 id="define/DRINK_PRICE_HIGH"><aside class="declaration">#define </aside>DRINK_PRICE_HIGH
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 109"/></a>
+    </h3>
+    <p>Drinks that are made through rare ingredients, or high levels of processing.</p><h3 id="define/DRINK_PRICE_MEDIUM"><aside class="declaration">#define </aside>DRINK_PRICE_MEDIUM
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 107"/></a>
+    </h3>
+    <p>Drinks that are made through more basic processing, or multiple steps.</p><h3 id="define/DRINK_PRICE_STOCK"><aside class="declaration">#define </aside>DRINK_PRICE_STOCK
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 103"/></a>
+    </h3>
+    <p><em><strong>Drink price classes</strong></em>
+Drinks that are only limited by a single click of the dispenser.</p><h3 id="define/FOOD_FLAGS"><aside class="declaration">#define </aside>FOOD_FLAGS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 21"/></a>
+    </h3>
+    <p>A list of food type names, in order of their flags</p><h3 id="define/FOOD_LIKED"><aside class="declaration">#define </aside>FOOD_LIKED
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 78"/></a>
+    </h3>
+    <p>Food preference enums</p><h3 id="define/FOOD_PRICE_CHEAP"><aside class="declaration">#define </aside>FOOD_PRICE_CHEAP
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 93"/></a>
+    </h3>
+    <p>In line with prices of cheap snacks and foods you find in vending machine, practically disposable.</p><h3 id="define/FOOD_PRICE_EXOTIC"><aside class="declaration">#define </aside>FOOD_PRICE_EXOTIC
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 97"/></a>
+    </h3>
+    <p>Making one of these should be worth the time investment, solid chunk of profit.</p><h3 id="define/FOOD_PRICE_LEGENDARY"><aside class="declaration">#define </aside>FOOD_PRICE_LEGENDARY
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 99"/></a>
+    </h3>
+    <p>Large windfall for making something from this list.</p><h3 id="define/FOOD_PRICE_NORMAL"><aside class="declaration">#define </aside>FOOD_PRICE_NORMAL
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 95"/></a>
+    </h3>
+    <p>Half a crate of profit, selling 4 of these lets you buy a kitchen crate from cargo.</p><h3 id="define/FOOD_PRICE_TRASH"><aside class="declaration">#define </aside>FOOD_PRICE_TRASH
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 91"/></a>
+    </h3>
+    <p>cheap and quick foods, like those from vending machines.</p><h3 id="define/FOOD_PRICE_WORTHLESS"><aside class="declaration">#define </aside>FOOD_PRICE_WORTHLESS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 89"/></a>
+    </h3>
+    <p><em><strong>Food price classes</strong></em>
+Foods that are meant to have no value, such as lollypops from medborgs.</p><h3 id="define/FOOD_SILVER_SPAWNED"><aside class="declaration">#define </aside>FOOD_SILVER_SPAWNED
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 53"/></a>
+    </h3>
+    <p>Is this food item spawned from a silver slime? Prevent it from exporting for profit from cargo.</p><h3 id="define/FOOD_TRASH_POPABLE"><aside class="declaration">#define </aside>FOOD_TRASH_POPABLE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 72"/></a>
+    </h3>
+    <p>Food trash flags</p><h3 id="define/ICE_CREAM_VANILLA"><aside class="declaration">#define </aside>ICE_CREAM_VANILLA
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 113"/></a>
+    </h3>
+    <p>Flavour defines (also names) for GLOB.ice_cream_flavours list access. Safer from mispelling than plain text.</p><h3 id="define/VENUE_BAR_MINIMUM_REAGENTS"><aside class="declaration">#define </aside>VENUE_BAR_MINIMUM_REAGENTS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/food.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;food.dm 83"/></a>
+    </h3>
+    <p>Venue reagent requirement</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

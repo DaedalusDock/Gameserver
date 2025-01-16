@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__HELPERS&#x2F;paths&#x2F;path.dm - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>code/__HELPERS/paths/path.dm 
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/paths/path.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;paths&#x2F;path.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th>/proc/<a href="global.html#proc/jps_path_to">jps_path_to</a></th>
+                <td>These are generally cheaper than looping contents so they go first
+This file contains the stuff you need for using JPS (Jump Point Search) pathing, an alternative to A* that skips
+over large numbers of uninteresting tiles resulting in much quicker pathfinding solutions. Mind that diagonals
+cost the same as cardinal moves currently, so paths may look a bit strange, but should still be optimal.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/pathfinding_finished">pathfinding_finished</a></th>
+                <td>Uses funny pass by reference bullshit to take the path created by pathfinding, and insert it into a return list
+We'll be able to use this return list to tell a sleeping proc to continue execution</td></tr>
+        <tr><th><a href="datum&#x2F;pathfind_packet.html">&#x2F;datum&#x2F;pathfind_packet</a></th><td>Wrapper around the path list since we play with refs.</td></tr>
+        <tr><th><a href="datum&#x2F;can_pass_info.html">&#x2F;datum&#x2F;can_pass_info</a></th><td>Holds all information about what an atom can move through
+Passed into CanAStarPass to provide context for a pathing attempt</td></tr></table></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;_compile_options.dm - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/_compile_options.html#define">Define Details</a></header>
+<main>
+<h1>code/_compile_options.dm 
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_compile_options.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_compile_options.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/_compile_options.html#define/BYPASS_JOB_LIMITS_WHEN_DEBUGGING">BYPASS_JOB_LIMITS_WHEN_DEBUGGING</a></th><td>//////////////////// DEBUGGING &amp; PROFILING
+By using the testing(&quot;message&quot;) proc you can create debug-feedback for people with this
+uncommented, but not visible in the release version)
+Enables the ability to cache datum vars and retrieve later for debugging which vars changed.
+If this is uncommented, will profile mapload atom initializations
+Enables debug messages for every single reaction step. This is 1 message per 0.5s for a SINGLE reaction.
+Useful for tracking down bugs/asking me for help in the main reaction handiler (equilibrium.dm).
+<del>Requires TESTING to be defined to work</del>
+If defined, we will compile with FULL timer debug info, rather then a limited scope
+Be warned, this increases timer creation cost by 5x
+If this is uncommented, force our verb processing into just the 2% of a tick
+We normally reserve for it
+NEVER run this on live, it's for simulating highpop only
+Uncomment this to force all verbs to run into overtime all of the time
+Essentially negating the reserve 2%
+<del>Requires VERB_STRESS_TEST to be defined</del>
+Uncomment this to enable a set of debugging verbs for client macros
+This ability is given to all clients, and I'm not going to bother vetting how safe this is.
+This will generate a compile warning.
+Uncomment this to wire the ruin budgets to zero. This prevents them spawning.
+Useful for measuring performance of specific systems with more reliability.
+Uncomment this to assert INSTANCES_OF() is running on valid lists.
+Uncomment this to enable debugging tools for map making.
+Set this value to FALSE to test job requirements working.</td></tr>
+        <tr><th><a href="code/_compile_options.html#define/MULTIZAS">MULTIZAS</a></th><td>Force codex SQLite generation and loading despite being a debug server. Also forces the codex to always regenerate on world start.
+Enable DEBUG_AI_LOG
+//////////////////// REFERENCE TRACKING
+Used to find the sources of harddels, quite laggy, don't be surpised if it freezes your client for a good while
+Used for doing dry runs of the reference finder, to test for feature completeness
+Slightly slower, higher in memory. Just not optimal
+<del>Requires REFERENCE_TRACKING to be defined</del>
+Run a lookup on things hard deleting by default.
+If this is uncommented, we set up the ref tracker to be used in a live environment
+And to log events to [log_dir]/harddels.log
+//////////////////// UNIT TESTING
+//////////////////// AUTO WIKI
+If this is uncommented, Autowiki will generate edits and shut down the server.
+Prefer the autowiki build target instead.
+//////////////////// ZONE ATMOSPHERIC SYSTEM
+Enables verbose debugging and the debug overlay. NOTE: Debug Overlay does not report MultiZAS information at this time.
+Enables multi-Z air movement. Zones do not merge across Z levels.</td></tr>
+        <tr><th><a href="code/_compile_options.html#define/ZMIMIC_MULTIZ_SPEECH">ZMIMIC_MULTIZ_SPEECH</a></th><td>//////////////////// ZMIMIC
+Enables multi-z speech</td></tr>
+        <tr><th><a href="code/_compile_options.html#define/MAX_ATOM_OVERLAYS">MAX_ATOM_OVERLAYS</a></th><td>//////////////////// MISC PERFORMANCE
+A reasonable number of maximum overlays an object needs
+If you think you need more, rethink it</td></tr>
+        <tr><th><a href="code/_compile_options.html#define/PRELOAD_RSC">PRELOAD_RSC</a></th><td>0 to allow using external resources or on-demand behaviour;
+1 to use the default behaviour;
+2 for preloading absolutely everything;</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/BYPASS_JOB_LIMITS_WHEN_DEBUGGING"><aside class="declaration">#define </aside>BYPASS_JOB_LIMITS_WHEN_DEBUGGING
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_compile_options.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_compile_options.dm 110"/></a>
+    </h3>
+    <p>//////////////////// DEBUGGING &amp; PROFILING
+By using the testing(&quot;message&quot;) proc you can create debug-feedback for people with this
+uncommented, but not visible in the release version)
+Enables the ability to cache datum vars and retrieve later for debugging which vars changed.
+If this is uncommented, will profile mapload atom initializations
+Enables debug messages for every single reaction step. This is 1 message per 0.5s for a SINGLE reaction.
+Useful for tracking down bugs/asking me for help in the main reaction handiler (equilibrium.dm).
+<del>Requires TESTING to be defined to work</del>
+If defined, we will compile with FULL timer debug info, rather then a limited scope
+Be warned, this increases timer creation cost by 5x
+If this is uncommented, force our verb processing into just the 2% of a tick
+We normally reserve for it
+NEVER run this on live, it's for simulating highpop only
+Uncomment this to force all verbs to run into overtime all of the time
+Essentially negating the reserve 2%
+<del>Requires VERB_STRESS_TEST to be defined</del>
+Uncomment this to enable a set of debugging verbs for client macros
+This ability is given to all clients, and I'm not going to bother vetting how safe this is.
+This will generate a compile warning.
+Uncomment this to wire the ruin budgets to zero. This prevents them spawning.
+Useful for measuring performance of specific systems with more reliability.
+Uncomment this to assert INSTANCES_OF() is running on valid lists.
+Uncomment this to enable debugging tools for map making.
+Set this value to FALSE to test job requirements working.</p><h3 id="define/MAX_ATOM_OVERLAYS"><aside class="declaration">#define </aside>MAX_ATOM_OVERLAYS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_compile_options.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_compile_options.dm 175"/></a>
+    </h3>
+    <p>//////////////////// MISC PERFORMANCE
+A reasonable number of maximum overlays an object needs
+If you think you need more, rethink it</p><h3 id="define/MULTIZAS"><aside class="declaration">#define </aside>MULTIZAS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_compile_options.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_compile_options.dm 158"/></a>
+    </h3>
+    <p>Force codex SQLite generation and loading despite being a debug server. Also forces the codex to always regenerate on world start.
+Enable DEBUG_AI_LOG
+//////////////////// REFERENCE TRACKING
+Used to find the sources of harddels, quite laggy, don't be surpised if it freezes your client for a good while
+Used for doing dry runs of the reference finder, to test for feature completeness
+Slightly slower, higher in memory. Just not optimal
+<del>Requires REFERENCE_TRACKING to be defined</del>
+Run a lookup on things hard deleting by default.
+If this is uncommented, we set up the ref tracker to be used in a live environment
+And to log events to [log_dir]/harddels.log
+//////////////////// UNIT TESTING
+//////////////////// AUTO WIKI
+If this is uncommented, Autowiki will generate edits and shut down the server.
+Prefer the autowiki build target instead.
+//////////////////// ZONE ATMOSPHERIC SYSTEM
+Enables verbose debugging and the debug overlay. NOTE: Debug Overlay does not report MultiZAS information at this time.
+Enables multi-Z air movement. Zones do not merge across Z levels.</p><h3 id="define/PRELOAD_RSC"><aside class="declaration">#define </aside>PRELOAD_RSC
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_compile_options.dm#L181">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_compile_options.dm 181"/></a>
+    </h3>
+    <p>0 to allow using external resources or on-demand behaviour;
+1 to use the default behaviour;
+2 for preloading absolutely everything;</p><h3 id="define/ZMIMIC_MULTIZ_SPEECH"><aside class="declaration">#define </aside>ZMIMIC_MULTIZ_SPEECH
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_compile_options.dm#L163">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_compile_options.dm 163"/></a>
+    </h3>
+    <p>//////////////////// ZMIMIC
+Enables multi-z speech</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

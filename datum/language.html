@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;language - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/language.html#proc">Proc Details</a></header>
+<main>
+<h1>language <aside>/<a href="datum.html">datum</a>/<a href="datum/language.html">language</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/language/language.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;language&#x2F;language.dm 7"/></a></h1>
+
+<p>Install the shared set, so that we force capture all macro keys</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/language.html#proc/can_receive_language">can_receive_language</a></th><td>Returns TRUE if the movable can even &quot;see&quot; or &quot;hear&quot; the language. This does not check it knows the language.</td></tr>
+            <tr><th><a href="datum/language.html#proc/can_speak_language">can_speak_language</a></th><td>Returns TRUE if the movable can speak the language. This does not check it knows the language.</td></tr>
+            <tr><th><a href="datum/language.html#proc/get_say_mod">get_say_mod</a></th><td>Called by /atom/proc/say_mod if LANGUAGE_OVERRIDE_SAY_MOD is present.</td></tr>
+            <tr><th><a href="datum/language.html#proc/hear_speech">hear_speech</a></th><td>Called by Hear() to process a language and display it to the hearer. Returns NULL if cannot hear, otherwise returns the translated raw_message.</td></tr>
+            <tr><th><a href="datum/language.html#proc/speech_not_understood">speech_not_understood</a></th><td>Called by process_received_message() when the hearer does not understand the language.</td></tr>
+            <tr><th><a href="datum/language.html#proc/speech_understood">speech_understood</a></th><td>Called by process_received_message() when the hearer does understand the language.</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/can_receive_language"><aside class="declaration">proc </aside>can_receive_language<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/hearer, ignore_stat) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/language/language.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;language&#x2F;language.dm 155"/></a></aside>
+        </h3>
+        <p>Returns TRUE if the movable can even &quot;see&quot; or &quot;hear&quot; the language. This does not check it knows the language.</p><h3 id="proc/can_speak_language"><aside class="declaration">proc </aside>can_speak_language<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/speaker, silent) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/language/language.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;language&#x2F;language.dm 125"/></a></aside>
+        </h3>
+        <p>Returns TRUE if the movable can speak the language. This does not check it knows the language.</p><h3 id="proc/get_say_mod"><aside class="declaration">proc </aside>get_say_mod<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/speaker) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/language/language.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;language&#x2F;language.dm 37"/></a></aside>
+        </h3>
+        <p>Called by /atom/proc/say_mod if LANGUAGE_OVERRIDE_SAY_MOD is present.</p><h3 id="proc/hear_speech"><aside class="declaration">proc </aside>hear_speech<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/hearer, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/speaker, raw_message, radio_freq, /list/spans, /list/message_mods, /<a href="atom.html">atom</a>/sound_loc, message_range) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/language/language.dm#L162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;language&#x2F;language.dm 162"/></a></aside>
+        </h3>
+        <p>Called by Hear() to process a language and display it to the hearer. Returns NULL if cannot hear, otherwise returns the translated raw_message.</p><h3 id="proc/speech_not_understood"><aside class="declaration">proc </aside>speech_not_understood<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, raw_message, spans, /list/message_mods, quote) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/language/language.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;language&#x2F;language.dm 76"/></a></aside>
+        </h3>
+        <p>Called by process_received_message() when the hearer does not understand the language.</p><h3 id="proc/speech_understood"><aside class="declaration">proc </aside>speech_understood<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, raw_message, spans, /list/message_mods, quote) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/language/language.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;language&#x2F;language.dm 81"/></a></aside>
+        </h3>
+        <p>Called by process_received_message() when the hearer does understand the language.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

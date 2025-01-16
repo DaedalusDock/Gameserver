@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;gun_bolt - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/gun_bolt.html#proc">Proc Details</a></header>
+<main>
+<h1>gun_bolt <aside>/<a href="datum.html">datum</a>/<a href="datum/gun_bolt.html">gun_bolt</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/guns/bolt_types/_gun_bolt.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;bolt_types&#x2F;_gun_bolt.dm 3"/></a></h1>
+
+<p>Gun has a bolt, it stays closed while not cycling. The gun must be racked to have a bullet chambered when a mag is inserted.
+Example: c20, shotguns, m90</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/gun_bolt.html#proc/after_chambering">after_chambering</a></th><td>Called at the foot of after_chambering()</td></tr>
+            <tr><th><a href="datum/gun_bolt.html#proc/attack_self">attack_self</a></th><td>Called during attack_self(). Return TRUE to cancel the rest of the proc.</td></tr>
+            <tr><th><a href="datum/gun_bolt.html#proc/before_firing">before_firing</a></th><td>Called during before_firing()</td></tr>
+            <tr><th><a href="datum/gun_bolt.html#proc/get_overlays">get_overlays</a></th><td>Returns overlays for a gun's update_overlays()</td></tr>
+            <tr><th><a href="datum/gun_bolt.html#proc/loaded_ammo">loaded_ammo</a></th><td>Called when ammo was successfully loaded into the weapon.</td></tr>
+            <tr><th><a href="datum/gun_bolt.html#proc/magazine_ejected">magazine_ejected</a></th><td>Called when a magazine is about to be ejected.</td></tr>
+            <tr><th><a href="datum/gun_bolt.html#proc/magazine_inserted">magazine_inserted</a></th><td>Called after a magazine is successfully inserted into the firearm.</td></tr>
+            <tr><th><a href="datum/gun_bolt.html#proc/post_rack">post_rack</a></th><td>Called after rack(), before update_appearance()</td></tr>
+            <tr><th><a href="datum/gun_bolt.html#proc/pre_rack">pre_rack</a></th><td>Called at the start of rack(), return TRUE to cancel the rest of the proc.</td></tr>
+            <tr><th><a href="datum/gun_bolt.html#proc/unload">unload</a></th><td>Called at the start of unload(), return TRUE to cancel the rest of the proc.</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/after_chambering"><aside class="declaration">proc </aside>after_chambering<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/guns/bolt_types/_gun_bolt.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;bolt_types&#x2F;_gun_bolt.dm 51"/></a></aside>
+        </h3>
+        <p>Called at the foot of after_chambering()</p><h3 id="proc/attack_self"><aside class="declaration">proc </aside>attack_self<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/guns/bolt_types/_gun_bolt.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;bolt_types&#x2F;_gun_bolt.dm 19"/></a></aside>
+        </h3>
+        <p>Called during attack_self(). Return TRUE to cancel the rest of the proc.</p><h3 id="proc/before_firing"><aside class="declaration">proc </aside>before_firing<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/guns/bolt_types/_gun_bolt.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;bolt_types&#x2F;_gun_bolt.dm 47"/></a></aside>
+        </h3>
+        <p>Called during before_firing()</p><h3 id="proc/get_overlays"><aside class="declaration">proc </aside>get_overlays<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/guns/bolt_types/_gun_bolt.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;bolt_types&#x2F;_gun_bolt.dm 15"/></a></aside>
+        </h3>
+        <p>Returns overlays for a gun's update_overlays()</p><h3 id="proc/loaded_ammo"><aside class="declaration">proc </aside>loaded_ammo<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/guns/bolt_types/_gun_bolt.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;bolt_types&#x2F;_gun_bolt.dm 31"/></a></aside>
+        </h3>
+        <p>Called when ammo was successfully loaded into the weapon.</p><h3 id="proc/magazine_ejected"><aside class="declaration">proc </aside>magazine_ejected<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/guns/bolt_types/_gun_bolt.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;bolt_types&#x2F;_gun_bolt.dm 39"/></a></aside>
+        </h3>
+        <p>Called when a magazine is about to be ejected.</p><h3 id="proc/magazine_inserted"><aside class="declaration">proc </aside>magazine_inserted<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/guns/bolt_types/_gun_bolt.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;bolt_types&#x2F;_gun_bolt.dm 35"/></a></aside>
+        </h3>
+        <p>Called after a magazine is successfully inserted into the firearm.</p><h3 id="proc/post_rack"><aside class="declaration">proc </aside>post_rack<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/guns/bolt_types/_gun_bolt.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;bolt_types&#x2F;_gun_bolt.dm 27"/></a></aside>
+        </h3>
+        <p>Called after rack(), before update_appearance()</p><h3 id="proc/pre_rack"><aside class="declaration">proc </aside>pre_rack<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/guns/bolt_types/_gun_bolt.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;bolt_types&#x2F;_gun_bolt.dm 23"/></a></aside>
+        </h3>
+        <p>Called at the start of rack(), return TRUE to cancel the rest of the proc.</p><h3 id="proc/unload"><aside class="declaration">proc </aside>unload<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/guns/bolt_types/_gun_bolt.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;bolt_types&#x2F;_gun_bolt.dm 43"/></a></aside>
+        </h3>
+        <p>Called at the start of unload(), return TRUE to cancel the rest of the proc.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

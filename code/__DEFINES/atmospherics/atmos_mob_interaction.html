@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/atmospherics/atmos_mob_interaction.dm 
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BREATH_VOLUME">BREATH_VOLUME</a></th><td></td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BREATH_PERCENTAGE">BREATH_PERCENTAGE</a></th><td>Amount of air to take a from a tile</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/HAZARD_HIGH_PRESSURE">HAZARD_HIGH_PRESSURE</a></th><td>This determins at what pressure the ultra-high pressure red icon is displayed. (This one is set as a constant)</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/WARNING_HIGH_PRESSURE">WARNING_HIGH_PRESSURE</a></th><td>This determins when the orange pressure icon is displayed (it is 0.7 * HAZARD_HIGH_PRESSURE)</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/WARNING_LOW_PRESSURE">WARNING_LOW_PRESSURE</a></th><td>This is when the gray low pressure icon is displayed. (it is 2.5 * HAZARD_LOW_PRESSURE)</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/HAZARD_LOW_PRESSURE">HAZARD_LOW_PRESSURE</a></th><td>This is when the black ultra-low pressure icon is displayed. (This one is set as a constant)</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/TEMPERATURE_DAMAGE_COEFFICIENT">TEMPERATURE_DAMAGE_COEFFICIENT</a></th><td>This is used in handle_temperature_damage() for humans, and in reagents that affect body temperature. Temperature damage is multiplied by this amount.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BODYTEMP_NORMAL">BODYTEMP_NORMAL</a></th><td>The natural temperature for a body</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BODYTEMP_AUTORECOVERY_DIVISOR">BODYTEMP_AUTORECOVERY_DIVISOR</a></th><td>This is the divisor which handles how much of the temperature difference between the current body temperature and 310.15K (optimal temperature) humans auto-regenerate each tick. The higher the number, the slower the recovery. This is applied each tick, so long as the mob is alive.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BODYTEMP_AUTORECOVERY_MINIMUM">BODYTEMP_AUTORECOVERY_MINIMUM</a></th><td>Minimum amount of kelvin moved toward 310K per tick. So long as abs(310.15 - bodytemp) is more than 50.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BODYTEMP_COLD_DIVISOR">BODYTEMP_COLD_DIVISOR</a></th><td>Similar to the BODYTEMP_AUTORECOVERY_DIVISOR, but this is the divisor which is applied at the stage that follows autorecovery. This is the divisor which comes into play when the human's loc temperature is lower than their body temperature. Make it lower to lose bodytemp faster.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BODYTEMP_HEAT_DIVISOR">BODYTEMP_HEAT_DIVISOR</a></th><td>Similar to the BODYTEMP_AUTORECOVERY_DIVISOR, but this is the divisor which is applied at the stage that follows autorecovery. This is the divisor which comes into play when the human's loc temperature is higher than their body temperature. Make it lower to gain bodytemp faster.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BODYTEMP_COOLING_MAX">BODYTEMP_COOLING_MAX</a></th><td>The maximum number of degrees that your body can cool in 1 tick, due to the environment, when in a cold area.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BODYTEMP_HEATING_MAX">BODYTEMP_HEATING_MAX</a></th><td>The maximum number of degrees that your body can heat up in 1 tick, due to the environment, when in a hot area.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/HULK_COLD_DAMAGE_MOD">HULK_COLD_DAMAGE_MOD</a></th><td>The modifier on cold damage hulks get.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BODYTEMP_HEAT_WARNING_3">BODYTEMP_HEAT_WARNING_3</a></th><td>The temperature the red icon is displayed.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BODYTEMP_HEAT_WARNING_2">BODYTEMP_HEAT_WARNING_2</a></th><td>The temperature the orange icon is displayed.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BODYTEMP_HEAT_WARNING_1">BODYTEMP_HEAT_WARNING_1</a></th><td>The temperature the yellow icon is displayed.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BODYTEMP_COLD_WARNING_1">BODYTEMP_COLD_WARNING_1</a></th><td>The temperature the light green icon is displayed.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BODYTEMP_COLD_WARNING_2">BODYTEMP_COLD_WARNING_2</a></th><td>The temperature the cyan icon is displayed.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/BODYTEMP_COLD_WARNING_3">BODYTEMP_COLD_WARNING_3</a></th><td>The temperature the blue icon is displayed.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/COLD_SLOWDOWN_FACTOR">COLD_SLOWDOWN_FACTOR</a></th><td>Humans are slowed by the difference between bodytemp and BODYTEMP_COLD_DAMAGE_LIMIT divided by this</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/SPACE_HELM_MIN_TEMP_PROTECT">SPACE_HELM_MIN_TEMP_PROTECT</a></th><td>what min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/SPACE_HELM_MAX_TEMP_PROTECT">SPACE_HELM_MAX_TEMP_PROTECT</a></th><td>Thermal insulation works both ways /Malkevin</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/SPACE_SUIT_MIN_TEMP_PROTECT">SPACE_SUIT_MIN_TEMP_PROTECT</a></th><td>what min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/SPACE_SUIT_MIN_TEMP_PROTECT_OFF">SPACE_SUIT_MIN_TEMP_PROTECT_OFF</a></th><td>The min cold protection of a space suit without the heater active</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/FIRE_SUIT_MIN_TEMP_PROTECT">FIRE_SUIT_MIN_TEMP_PROTECT</a></th><td>Cold protection for firesuits</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/FIRE_SUIT_MAX_TEMP_PROTECT">FIRE_SUIT_MAX_TEMP_PROTECT</a></th><td>what max_heat_protection_temperature is set to for firesuit quality suits. MUST NOT BE 0.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/FIRE_HELM_MIN_TEMP_PROTECT">FIRE_HELM_MIN_TEMP_PROTECT</a></th><td>Cold protection for fire helmets</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/FIRE_HELM_MAX_TEMP_PROTECT">FIRE_HELM_MAX_TEMP_PROTECT</a></th><td>for fire helmet quality items (red and white hardhats)</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/FIRE_IMMUNITY_MAX_TEMP_PROTECT">FIRE_IMMUNITY_MAX_TEMP_PROTECT</a></th><td>what max_heat_protection_temperature is set to for firesuit quality suits and helmets. MUST NOT BE 0.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/HELMET_MIN_TEMP_PROTECT">HELMET_MIN_TEMP_PROTECT</a></th><td>For normal helmets</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/HELMET_MAX_TEMP_PROTECT">HELMET_MAX_TEMP_PROTECT</a></th><td>For normal helmets</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/ARMOR_MIN_TEMP_PROTECT">ARMOR_MIN_TEMP_PROTECT</a></th><td>For armor</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/ARMOR_MAX_TEMP_PROTECT">ARMOR_MAX_TEMP_PROTECT</a></th><td>For armor</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/GLOVES_MIN_TEMP_PROTECT">GLOVES_MIN_TEMP_PROTECT</a></th><td>For some gloves (black and)</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/GLOVES_MAX_TEMP_PROTECT">GLOVES_MAX_TEMP_PROTECT</a></th><td>For some gloves</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/SHOES_MIN_TEMP_PROTECT">SHOES_MIN_TEMP_PROTECT</a></th><td>For gloves</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos_mob_interaction.html#define/SHOES_MAX_TEMP_PROTECT">SHOES_MAX_TEMP_PROTECT</a></th><td>For gloves</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ARMOR_MAX_TEMP_PROTECT"><aside class="declaration">#define </aside>ARMOR_MAX_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 108"/></a>
+    </h3>
+    <p>For armor</p><h3 id="define/ARMOR_MIN_TEMP_PROTECT"><aside class="declaration">#define </aside>ARMOR_MIN_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 106"/></a>
+    </h3>
+    <p>For armor</p><h3 id="define/BODYTEMP_AUTORECOVERY_DIVISOR"><aside class="declaration">#define </aside>BODYTEMP_AUTORECOVERY_DIVISOR
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 41"/></a>
+    </h3>
+    <p>This is the divisor which handles how much of the temperature difference between the current body temperature and 310.15K (optimal temperature) humans auto-regenerate each tick. The higher the number, the slower the recovery. This is applied each tick, so long as the mob is alive.</p><h3 id="define/BODYTEMP_AUTORECOVERY_MINIMUM"><aside class="declaration">#define </aside>BODYTEMP_AUTORECOVERY_MINIMUM
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 43"/></a>
+    </h3>
+    <p>Minimum amount of kelvin moved toward 310K per tick. So long as abs(310.15 - bodytemp) is more than 50.</p><h3 id="define/BODYTEMP_COLD_DIVISOR"><aside class="declaration">#define </aside>BODYTEMP_COLD_DIVISOR
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 45"/></a>
+    </h3>
+    <p>Similar to the BODYTEMP_AUTORECOVERY_DIVISOR, but this is the divisor which is applied at the stage that follows autorecovery. This is the divisor which comes into play when the human's loc temperature is lower than their body temperature. Make it lower to lose bodytemp faster.</p><h3 id="define/BODYTEMP_COLD_WARNING_1"><aside class="declaration">#define </aside>BODYTEMP_COLD_WARNING_1
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 67"/></a>
+    </h3>
+    <p>The temperature the light green icon is displayed.</p><h3 id="define/BODYTEMP_COLD_WARNING_2"><aside class="declaration">#define </aside>BODYTEMP_COLD_WARNING_2
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 69"/></a>
+    </h3>
+    <p>The temperature the cyan icon is displayed.</p><h3 id="define/BODYTEMP_COLD_WARNING_3"><aside class="declaration">#define </aside>BODYTEMP_COLD_WARNING_3
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 71"/></a>
+    </h3>
+    <p>The temperature the blue icon is displayed.</p><h3 id="define/BODYTEMP_COOLING_MAX"><aside class="declaration">#define </aside>BODYTEMP_COOLING_MAX
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 49"/></a>
+    </h3>
+    <p>The maximum number of degrees that your body can cool in 1 tick, due to the environment, when in a cold area.</p><h3 id="define/BODYTEMP_HEATING_MAX"><aside class="declaration">#define </aside>BODYTEMP_HEATING_MAX
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 51"/></a>
+    </h3>
+    <p>The maximum number of degrees that your body can heat up in 1 tick, due to the environment, when in a hot area.</p><h3 id="define/BODYTEMP_HEAT_DIVISOR"><aside class="declaration">#define </aside>BODYTEMP_HEAT_DIVISOR
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 47"/></a>
+    </h3>
+    <p>Similar to the BODYTEMP_AUTORECOVERY_DIVISOR, but this is the divisor which is applied at the stage that follows autorecovery. This is the divisor which comes into play when the human's loc temperature is higher than their body temperature. Make it lower to gain bodytemp faster.</p><h3 id="define/BODYTEMP_HEAT_WARNING_1"><aside class="declaration">#define </aside>BODYTEMP_HEAT_WARNING_1
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 65"/></a>
+    </h3>
+    <p>The temperature the yellow icon is displayed.</p><h3 id="define/BODYTEMP_HEAT_WARNING_2"><aside class="declaration">#define </aside>BODYTEMP_HEAT_WARNING_2
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 63"/></a>
+    </h3>
+    <p>The temperature the orange icon is displayed.</p><h3 id="define/BODYTEMP_HEAT_WARNING_3"><aside class="declaration">#define </aside>BODYTEMP_HEAT_WARNING_3
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 61"/></a>
+    </h3>
+    <p>The temperature the red icon is displayed.</p><h3 id="define/BODYTEMP_NORMAL"><aside class="declaration">#define </aside>BODYTEMP_NORMAL
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 39"/></a>
+    </h3>
+    <p>The natural temperature for a body</p><h3 id="define/BREATH_PERCENTAGE"><aside class="declaration">#define </aside>BREATH_PERCENTAGE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 12"/></a>
+    </h3>
+    <p>Amount of air to take a from a tile</p><h3 id="define/BREATH_VOLUME"><aside class="declaration">#define </aside>BREATH_VOLUME
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 10"/></a>
+    </h3>
+    <ul>
+<li>liters in a normal breath. note that breaths are taken once every 4 life ticks, which is 8 seconds</li>
+<li>Addendum for people tweaking this value in the future.</li>
+<li>Because o2 tank release values/human o2 requirements are very strictly set to the same pressure, small errors can cause breakage</li>
+<li>This comes from QUANTIZE being used in /datum/gas_mixture.remove(), forming a slight sawtooth pattern of the added/removed gas, centered on the actual pressure</li>
+<li>Changing BREATH_VOLUME can set us on the lower half of this sawtooth, making humans unable to breath at standard pressure.</li>
+<li>There's no good way I can come up with to hardcode a fix for this. So if you're going to change this variable</li>
+<li>graph the functions that describe how it is used/how it interacts with breath code, and pick something on the upper half of the sawtooth</li>
+</ul><h3 id="define/COLD_SLOWDOWN_FACTOR"><aside class="declaration">#define </aside>COLD_SLOWDOWN_FACTOR
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 74"/></a>
+    </h3>
+    <p>Humans are slowed by the difference between bodytemp and BODYTEMP_COLD_DAMAGE_LIMIT divided by this</p><h3 id="define/FIRE_HELM_MAX_TEMP_PROTECT"><aside class="declaration">#define </aside>FIRE_HELM_MAX_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 96"/></a>
+    </h3>
+    <p>for fire helmet quality items (red and white hardhats)</p><h3 id="define/FIRE_HELM_MIN_TEMP_PROTECT"><aside class="declaration">#define </aside>FIRE_HELM_MIN_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 94"/></a>
+    </h3>
+    <p>Cold protection for fire helmets</p><h3 id="define/FIRE_IMMUNITY_MAX_TEMP_PROTECT"><aside class="declaration">#define </aside>FIRE_IMMUNITY_MAX_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 99"/></a>
+    </h3>
+    <p>what max_heat_protection_temperature is set to for firesuit quality suits and helmets. MUST NOT BE 0.</p><h3 id="define/FIRE_SUIT_MAX_TEMP_PROTECT"><aside class="declaration">#define </aside>FIRE_SUIT_MAX_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 92"/></a>
+    </h3>
+    <p>what max_heat_protection_temperature is set to for firesuit quality suits. MUST NOT BE 0.</p><h3 id="define/FIRE_SUIT_MIN_TEMP_PROTECT"><aside class="declaration">#define </aside>FIRE_SUIT_MIN_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 90"/></a>
+    </h3>
+    <p>Cold protection for firesuits</p><h3 id="define/GLOVES_MAX_TEMP_PROTECT"><aside class="declaration">#define </aside>GLOVES_MAX_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 113"/></a>
+    </h3>
+    <p>For some gloves</p><h3 id="define/GLOVES_MIN_TEMP_PROTECT"><aside class="declaration">#define </aside>GLOVES_MIN_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 111"/></a>
+    </h3>
+    <p>For some gloves (black and)</p><h3 id="define/HAZARD_HIGH_PRESSURE"><aside class="declaration">#define </aside>HAZARD_HIGH_PRESSURE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 27"/></a>
+    </h3>
+    <p>This determins at what pressure the ultra-high pressure red icon is displayed. (This one is set as a constant)</p><h3 id="define/HAZARD_LOW_PRESSURE"><aside class="declaration">#define </aside>HAZARD_LOW_PRESSURE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 33"/></a>
+    </h3>
+    <p>This is when the black ultra-low pressure icon is displayed. (This one is set as a constant)</p><h3 id="define/HELMET_MAX_TEMP_PROTECT"><aside class="declaration">#define </aside>HELMET_MAX_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 104"/></a>
+    </h3>
+    <p>For normal helmets</p><h3 id="define/HELMET_MIN_TEMP_PROTECT"><aside class="declaration">#define </aside>HELMET_MIN_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 102"/></a>
+    </h3>
+    <p>For normal helmets</p><h3 id="define/HULK_COLD_DAMAGE_MOD"><aside class="declaration">#define </aside>HULK_COLD_DAMAGE_MOD
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 57"/></a>
+    </h3>
+    <p>The modifier on cold damage hulks get.</p><h3 id="define/SHOES_MAX_TEMP_PROTECT"><aside class="declaration">#define </aside>SHOES_MAX_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 117"/></a>
+    </h3>
+    <p>For gloves</p><h3 id="define/SHOES_MIN_TEMP_PROTECT"><aside class="declaration">#define </aside>SHOES_MIN_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 115"/></a>
+    </h3>
+    <p>For gloves</p><h3 id="define/SPACE_HELM_MAX_TEMP_PROTECT"><aside class="declaration">#define </aside>SPACE_HELM_MAX_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 82"/></a>
+    </h3>
+    <p>Thermal insulation works both ways /Malkevin</p><h3 id="define/SPACE_HELM_MIN_TEMP_PROTECT"><aside class="declaration">#define </aside>SPACE_HELM_MIN_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 80"/></a>
+    </h3>
+    <p>what min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.</p><h3 id="define/SPACE_SUIT_MIN_TEMP_PROTECT"><aside class="declaration">#define </aside>SPACE_SUIT_MIN_TEMP_PROTECT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 84"/></a>
+    </h3>
+    <p>what min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.</p><h3 id="define/SPACE_SUIT_MIN_TEMP_PROTECT_OFF"><aside class="declaration">#define </aside>SPACE_SUIT_MIN_TEMP_PROTECT_OFF
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 86"/></a>
+    </h3>
+    <p>The min cold protection of a space suit without the heater active</p><h3 id="define/TEMPERATURE_DAMAGE_COEFFICIENT"><aside class="declaration">#define </aside>TEMPERATURE_DAMAGE_COEFFICIENT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 36"/></a>
+    </h3>
+    <p>This is used in handle_temperature_damage() for humans, and in reagents that affect body temperature. Temperature damage is multiplied by this amount.</p><h3 id="define/WARNING_HIGH_PRESSURE"><aside class="declaration">#define </aside>WARNING_HIGH_PRESSURE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 29"/></a>
+    </h3>
+    <p>This determins when the orange pressure icon is displayed (it is 0.7 * HAZARD_HIGH_PRESSURE)</p><h3 id="define/WARNING_LOW_PRESSURE"><aside class="declaration">#define </aside>WARNING_LOW_PRESSURE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/atmos_mob_interaction.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos_mob_interaction.dm 31"/></a>
+    </h3>
+    <p>This is when the gray low pressure icon is displayed. (it is 2.5 * HAZARD_LOW_PRESSURE)</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

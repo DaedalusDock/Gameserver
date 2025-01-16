@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;circuit_component&#x2F;printer - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/circuit_component/printer.html#var">Var Details</a> - <a href="obj/item/circuit_component/printer.html#proc">Proc Details</a></header>
+<main>
+<h1>Printer Component <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/circuit_component.html">circuit_component</a>/<a href="obj/item/circuit_component/printer.html">printer</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/wiremod/components/action/printer.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;wiremod&#x2F;components&#x2F;action&#x2F;printer.dm 6"/></a></h1>
+
+<p>Allows for text strings to be printed on a paper. Requires a shell.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/circuit_component/printer.html#var/eject">eject</a></th><td>Used to eject the leftmost paper on the loaded_papers list.</td></tr>
+            <tr><th><a href="obj/item/circuit_component/printer.html#var/loaded_papers">loaded_papers</a></th><td>The list of papers currently loaded on the component</td></tr>
+            <tr><th><a href="obj/item/circuit_component/printer.html#var/max_paper_capacity">max_paper_capacity</a></th><td>The maximum paper capacity of the component</td></tr>
+            <tr><th><a href="obj/item/circuit_component/printer.html#var/print">print</a></th><td>Prints stuff on the leftmost paper in the loaded_papers list.</td></tr>
+            <tr><th><a href="obj/item/circuit_component/printer.html#var/signature">signature</a></th><td>The signature that'll replace any %s and %sign used when printing text on paper.</td></tr>
+            <tr><th><a href="obj/item/circuit_component/printer.html#var/text_color_red">text_color_red</a></th><td>The RGB values of the color used when printing text on paper</td></tr>
+            <tr><th><a href="obj/item/circuit_component/printer.html#var/typeface">typeface</a></th><td>The selected font-family used when printing text on paper</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/circuit_component/printer.html#proc/handle_secondary_attackby">handle_secondary_attackby</a></th><td>Allows for paper to be loaded while inside the shell.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/eject"><aside class="declaration">var </aside>eject
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/port.html">port</a>/<a href="datum/port/input.html">input</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/wiremod/components/action/printer.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;wiremod&#x2F;components&#x2F;action&#x2F;printer.dm 22"/></a></h3>
+        <p>Used to eject the leftmost paper on the loaded_papers list.</p><h3 id="var/loaded_papers"><aside class="declaration">var </aside>loaded_papers
+            <aside>&ndash; /list/obj/item/paper</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/wiremod/components/action/printer.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;wiremod&#x2F;components&#x2F;action&#x2F;printer.dm 27"/></a></h3>
+        <p>The list of papers currently loaded on the component</p><h3 id="var/max_paper_capacity"><aside class="declaration">var </aside>max_paper_capacity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/wiremod/components/action/printer.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;wiremod&#x2F;components&#x2F;action&#x2F;printer.dm 29"/></a></h3>
+        <p>The maximum paper capacity of the component</p><h3 id="var/print"><aside class="declaration">var </aside>print
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/port.html">port</a>/<a href="datum/port/input.html">input</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/wiremod/components/action/printer.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;wiremod&#x2F;components&#x2F;action&#x2F;printer.dm 14"/></a></h3>
+        <p>Prints stuff on the leftmost paper in the loaded_papers list.</p><h3 id="var/signature"><aside class="declaration">var </aside>signature
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/port.html">port</a>/<a href="datum/port/input.html">input</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/wiremod/components/action/printer.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;wiremod&#x2F;components&#x2F;action&#x2F;printer.dm 24"/></a></h3>
+        <p>The signature that'll replace any %s and %sign used when printing text on paper.</p><h3 id="var/text_color_red"><aside class="declaration">var </aside>text_color_red
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/port.html">port</a>/<a href="datum/port/input.html">input</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/wiremod/components/action/printer.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;wiremod&#x2F;components&#x2F;action&#x2F;printer.dm 18"/></a></h3>
+        <p>The RGB values of the color used when printing text on paper</p><h3 id="var/typeface"><aside class="declaration">var </aside>typeface
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/port.html">port</a>/<a href="datum/port/input.html">input</a>/option</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/wiremod/components/action/printer.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;wiremod&#x2F;components&#x2F;action&#x2F;printer.dm 16"/></a></h3>
+        <p>The selected font-family used when printing text on paper</p><h2 id="proc">Proc Details</h2><h3 id="proc/handle_secondary_attackby"><aside class="declaration">proc </aside>handle_secondary_attackby<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/shell, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/attacker) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/wiremod/components/action/printer.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;wiremod&#x2F;components&#x2F;action&#x2F;printer.dm 76"/></a></aside>
+        </h3>
+        <p>Allows for paper to be loaded while inside the shell.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

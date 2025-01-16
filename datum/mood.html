@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;mood - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/mood.html#var">Var Details</a> - <a href="datum/mood.html#proc">Proc Details</a></header>
+<main>
+<h1>mood <aside>/<a href="datum.html">datum</a>/<a href="datum/mood.html">mood</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 10"/></a></h1>
+
+<p>Mood datum</p>
+<p>Contains the logic for controlling a living mob's mood/</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/mood.html#var/last_stat">last_stat</a></th><td>Tracks the last mob stat, updates on change
+Used to stop processing SSmood</td></tr>
+            <tr><th><a href="datum/mood.html#var/mob_parent">mob_parent</a></th><td>The parent (living) mob</td></tr>
+            <tr><th><a href="datum/mood.html#var/mood">mood</a></th><td>The total combined value of all moodlets for the mob</td></tr>
+            <tr><th><a href="datum/mood.html#var/mood_events">mood_events</a></th><td>List of mood events currently active on this datum</td></tr>
+            <tr><th><a href="datum/mood.html#var/mood_level">mood_level</a></th><td>Used to track what stage of moodies they're on (-20 to 20)</td></tr>
+            <tr><th><a href="datum/mood.html#var/mood_modifier">mood_modifier</a></th><td>Moodlet value modifier</td></tr>
+            <tr><th><a href="datum/mood.html#var/mood_screen_object">mood_screen_object</a></th><td>The screen object for the current mood level</td></tr>
+            <tr><th><a href="datum/mood.html#var/shown_mood">shown_mood</a></th><td>the total combined value of all visible moodlets for the mob</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/mood.html#proc/add_mood_event">add_mood_event</a></th><td>Adds a mood event to the mob</td></tr>
+            <tr><th><a href="datum/mood.html#proc/clear_mood_event">clear_mood_event</a></th><td>Removes a mood event from the mob</td></tr>
+            <tr><th><a href="datum/mood.html#proc/has_mood_of_category">has_mood_of_category</a></th><td>Returns true if you already have a mood from a provided category.
+You may think to yourself, why am I trying to get a boolean from a component? Well, this system probably should not be a component.</td></tr>
+            <tr><th><a href="datum/mood.html#proc/hud_click">hud_click</a></th><td>Handles clicking on the mood HUD object</td></tr>
+            <tr><th><a href="datum/mood.html#proc/modify_hud">modify_hud</a></th><td>Sets up the mood HUD object</td></tr>
+            <tr><th><a href="datum/mood.html#proc/on_revive">on_revive</a></th><td>Called when parent is ahealed.</td></tr>
+            <tr><th><a href="datum/mood.html#proc/print_mood">print_mood</a></th><td>Prints the users mood, sanity, and moodies to chat</td></tr>
+            <tr><th><a href="datum/mood.html#proc/remove_temp_moods">remove_temp_moods</a></th><td>Removes all temporary moods</td></tr>
+            <tr><th><a href="datum/mood.html#proc/unmodify_hud">unmodify_hud</a></th><td>Removes the mood HUD object</td></tr>
+            <tr><th><a href="datum/mood.html#proc/update_mood">update_mood</a></th><td>Updates the mobs mood.
+Called after mood events have been added/removed.</td></tr>
+            <tr><th><a href="datum/mood.html#proc/update_mood_icon">update_mood_icon</a></th><td>Updates the mob's mood icon</td></tr>
+            <tr><th><a href="datum/mood.html#proc/update_nutrition_moodlets">update_nutrition_moodlets</a></th><td>Handles mood given by nutrition</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/last_stat"><aside class="declaration">var </aside>last_stat
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 30"/></a></h3>
+        <p>Tracks the last mob stat, updates on change
+Used to stop processing SSmood</p><h3 id="var/mob_parent"><aside class="declaration">var </aside>mob_parent
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 12"/></a></h3>
+        <p>The parent (living) mob</p><h3 id="var/mood"><aside class="declaration">var </aside>mood
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 15"/></a></h3>
+        <p>The total combined value of all moodlets for the mob</p><h3 id="var/mood_events"><aside class="declaration">var </aside>mood_events
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 26"/></a></h3>
+        <p>List of mood events currently active on this datum</p><h3 id="var/mood_level"><aside class="declaration">var </aside>mood_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 21"/></a></h3>
+        <p>Used to track what stage of moodies they're on (-20 to 20)</p><h3 id="var/mood_modifier"><aside class="declaration">var </aside>mood_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 19"/></a></h3>
+        <p>Moodlet value modifier</p><h3 id="var/mood_screen_object"><aside class="declaration">var </aside>mood_screen_object
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/mood</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 23"/></a></h3>
+        <p>The screen object for the current mood level</p><h3 id="var/shown_mood"><aside class="declaration">var </aside>shown_mood
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 17"/></a></h3>
+        <p>the total combined value of all visible moodlets for the mob</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_mood_event"><aside class="declaration">proc </aside>add_mood_event<aside>(category, type, ...) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 103"/></a></aside>
+        </h3>
+        <p>Adds a mood event to the mob</p>
+<p>Arguments:</p>
+<ul>
+<li>category - (text) category of the mood event - see /datum/mood_event for category explanation</li>
+<li>type - (path) any /datum/mood_event</li>
+</ul><h3 id="proc/clear_mood_event"><aside class="declaration">proc </aside>clear_mood_event<aside>(category) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 152"/></a></aside>
+        </h3>
+        <p>Removes a mood event from the mob</p>
+<p>Arguments:</p>
+<ul>
+<li>category - (Text) Removes the mood event with the given category</li>
+</ul><h3 id="proc/has_mood_of_category"><aside class="declaration">proc </aside>has_mood_of_category<aside>(category) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L365">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 365"/></a></aside>
+        </h3>
+        <p>Returns true if you already have a mood from a provided category.
+You may think to yourself, why am I trying to get a boolean from a component? Well, this system probably should not be a component.</p>
+<p>Arguments</p>
+<ul>
+<li>category - Mood category to validate against.</li>
+</ul><h3 id="proc/hud_click"><aside class="declaration">proc </aside>hud_click<aside>(/<a href="datum.html">datum</a>/source, location, control, params, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L294">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 294"/></a></aside>
+        </h3>
+        <p>Handles clicking on the mood HUD object</p><h3 id="proc/modify_hud"><aside class="declaration">proc </aside>modify_hud<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L273">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 273"/></a></aside>
+        </h3>
+        <p>Sets up the mood HUD object</p><h3 id="proc/on_revive"><aside class="declaration">proc </aside>on_revive<aside>(/<a href="datum.html">datum</a>/source, full_heal) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L340">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 340"/></a></aside>
+        </h3>
+        <p>Called when parent is ahealed.</p><h3 id="proc/print_mood"><aside class="declaration">proc </aside>print_mood<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L302">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 302"/></a></aside>
+        </h3>
+        <p>Prints the users mood, sanity, and moodies to chat</p><h3 id="proc/remove_temp_moods"><aside class="declaration">proc </aside>remove_temp_moods<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L349">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 349"/></a></aside>
+        </h3>
+        <p>Removes all temporary moods</p><h3 id="proc/unmodify_hud"><aside class="declaration">proc </aside>unmodify_hud<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L283">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 283"/></a></aside>
+        </h3>
+        <p>Removes the mood HUD object</p><h3 id="proc/update_mood"><aside class="declaration">proc </aside>update_mood<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 166"/></a></aside>
+        </h3>
+        <p>Updates the mobs mood.
+Called after mood events have been added/removed.</p><h3 id="proc/update_mood_icon"><aside class="declaration">proc </aside>update_mood_icon<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L224">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 224"/></a></aside>
+        </h3>
+        <p>Updates the mob's mood icon</p><h3 id="proc/update_nutrition_moodlets"><aside class="declaration">proc </aside>update_nutrition_moodlets<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mood/mood.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mood&#x2F;mood.dm 71"/></a></aside>
+        </h3>
+        <p>Handles mood given by nutrition</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

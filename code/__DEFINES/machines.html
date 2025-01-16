@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;machines.dm - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/machines.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/machines.dm 
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/machines.html#define/AREA_USAGE_DYNAMIC_START">AREA_USAGE_DYNAMIC_START</a></th><td>Index of the first dynamic usage channel</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/AREA_USAGE_DYNAMIC_END">AREA_USAGE_DYNAMIC_END</a></th><td>Index of the last dynamic usage channel</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/AREA_USAGE_STATIC_START">AREA_USAGE_STATIC_START</a></th><td>Index of the first static usage channel</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/AREA_USAGE_STATIC_END">AREA_USAGE_STATIC_END</a></th><td>Index of the last static usage channel</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/START_PROCESSING_ON_INIT">START_PROCESSING_ON_INIT</a></th><td>Bitflags for a machine's preferences on when it should start processing. For use with machinery's <code>processing_flags</code> var.
+Indicates the machine will automatically start processing right after it's <code>Initialize()</code> is ran.</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/START_PROCESSING_MANUALLY">START_PROCESSING_MANUALLY</a></th><td>Machines with this flag will not start processing when it's spawned. Use this if you want to manually control when a machine starts processing.</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/AWAY_IMPRINTER">AWAY_IMPRINTER</a></th><td>Imprinters for offstation roles. More limited tech tree.</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/COMPONENT_PRINTER">COMPONENT_PRINTER</a></th><td>For wiremod/integrated circuits. Uses various minerals.</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/MC_AUTORUN_FILE">MC_AUTORUN_FILE</a></th><td>Modular Computer Autorun file</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/AIRALARM_BUILD_NO_CIRCUIT">AIRALARM_BUILD_NO_CIRCUIT</a></th><td>Air alarm missing circuit</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/AIRALARM_BUILD_NO_WIRES">AIRALARM_BUILD_NO_WIRES</a></th><td>Air alarm has circuit but is missing wires</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/AIRALARM_BUILD_COMPLETE">AIRALARM_BUILD_COMPLETE</a></th><td>Air alarm has all components but isn't completed</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/TLV_DONT_CHECK">TLV_DONT_CHECK</a></th><td>TLV datums wont check limits set to this</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/TLV_NO_DANGER">TLV_NO_DANGER</a></th><td>the gas mixture is within the bounds of both warning and hazard limits</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/TLV_OUTSIDE_WARNING_LIMIT">TLV_OUTSIDE_WARNING_LIMIT</a></th><td>the gas value is outside the warning limit but within the hazard limit, the air alarm will go into warning mode</td></tr>
+        <tr><th><a href="code/__DEFINES/machines.html#define/TLV_OUTSIDE_HAZARD_LIMIT">TLV_OUTSIDE_HAZARD_LIMIT</a></th><td>the gas is outside the hazard limit, the air alarm will go into hazard mode</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/AIRALARM_BUILD_COMPLETE"><aside class="declaration">#define </aside>AIRALARM_BUILD_COMPLETE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L193">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 193"/></a>
+    </h3>
+    <p>Air alarm has all components but isn't completed</p><h3 id="define/AIRALARM_BUILD_NO_CIRCUIT"><aside class="declaration">#define </aside>AIRALARM_BUILD_NO_CIRCUIT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 189"/></a>
+    </h3>
+    <p>Air alarm missing circuit</p><h3 id="define/AIRALARM_BUILD_NO_WIRES"><aside class="declaration">#define </aside>AIRALARM_BUILD_NO_WIRES
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L191">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 191"/></a>
+    </h3>
+    <p>Air alarm has circuit but is missing wires</p><h3 id="define/AREA_USAGE_DYNAMIC_END"><aside class="declaration">#define </aside>AREA_USAGE_DYNAMIC_END
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 14"/></a>
+    </h3>
+    <p>Index of the last dynamic usage channel</p><h3 id="define/AREA_USAGE_DYNAMIC_START"><aside class="declaration">#define </aside>AREA_USAGE_DYNAMIC_START
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 12"/></a>
+    </h3>
+    <p>Index of the first dynamic usage channel</p><h3 id="define/AREA_USAGE_STATIC_END"><aside class="declaration">#define </aside>AREA_USAGE_STATIC_END
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 19"/></a>
+    </h3>
+    <p>Index of the last static usage channel</p><h3 id="define/AREA_USAGE_STATIC_START"><aside class="declaration">#define </aside>AREA_USAGE_STATIC_START
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 17"/></a>
+    </h3>
+    <p>Index of the first static usage channel</p><h3 id="define/AWAY_IMPRINTER"><aside class="declaration">#define </aside>AWAY_IMPRINTER
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 52"/></a>
+    </h3>
+    <p>Imprinters for offstation roles. More limited tech tree.</p><h3 id="define/COMPONENT_PRINTER"><aside class="declaration">#define </aside>COMPONENT_PRINTER
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 54"/></a>
+    </h3>
+    <p>For wiremod/integrated circuits. Uses various minerals.</p><h3 id="define/MC_AUTORUN_FILE"><aside class="declaration">#define </aside>MC_AUTORUN_FILE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 73"/></a>
+    </h3>
+    <p>Modular Computer Autorun file</p><h3 id="define/START_PROCESSING_MANUALLY"><aside class="declaration">#define </aside>START_PROCESSING_MANUALLY
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 35"/></a>
+    </h3>
+    <p>Machines with this flag will not start processing when it's spawned. Use this if you want to manually control when a machine starts processing.</p><h3 id="define/START_PROCESSING_ON_INIT"><aside class="declaration">#define </aside>START_PROCESSING_ON_INIT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 34"/></a>
+    </h3>
+    <p>Bitflags for a machine's preferences on when it should start processing. For use with machinery's <code>processing_flags</code> var.
+Indicates the machine will automatically start processing right after it's <code>Initialize()</code> is ran.</p><h3 id="define/TLV_DONT_CHECK"><aside class="declaration">#define </aside>TLV_DONT_CHECK
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L196">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 196"/></a>
+    </h3>
+    <p>TLV datums wont check limits set to this</p><h3 id="define/TLV_NO_DANGER"><aside class="declaration">#define </aside>TLV_NO_DANGER
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L198">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 198"/></a>
+    </h3>
+    <p>the gas mixture is within the bounds of both warning and hazard limits</p><h3 id="define/TLV_OUTSIDE_HAZARD_LIMIT"><aside class="declaration">#define </aside>TLV_OUTSIDE_HAZARD_LIMIT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 202"/></a>
+    </h3>
+    <p>the gas is outside the hazard limit, the air alarm will go into hazard mode</p><h3 id="define/TLV_OUTSIDE_WARNING_LIMIT"><aside class="declaration">#define </aside>TLV_OUTSIDE_WARNING_LIMIT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/machines.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machines.dm 200"/></a>
+    </h3>
+    <p>the gas value is outside the warning limit but within the hazard limit, the air alarm will go into warning mode</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

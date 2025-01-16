@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;preference - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/preference.html#var">Var Details</a> - <a href="datum/preference.html#proc">Proc Details</a></header>
+<main>
+<h1>preference <aside>/<a href="datum.html">datum</a>/<a href="datum/preference.html">preference</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 90"/></a></h1>
+
+<p>Represents an individual preference.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/preference.html#var/can_randomize">can_randomize</a></th><td>If set, will be available to randomize, but only if the preference
+is for PREFERENCE_CHARACTER.</td></tr>
+            <tr><th><a href="datum/preference.html#var/category">category</a></th><td>The category of preference, for use by the PreferencesMenu.
+This isn't used for anything other than as a key for UI data.
+It is up to the PreferencesMenu UI itself to interpret it.</td></tr>
+            <tr><th><a href="datum/preference.html#var/exclude_species_traits">exclude_species_traits</a></th><td>Any species that has any of the listed species traits will not have the option to pick this pref</td></tr>
+            <tr><th><a href="datum/preference.html#var/explanation">explanation</a></th><td>The display default name when inserted into the chargen</td></tr>
+            <tr><th><a href="datum/preference.html#var/is_sub_preference">is_sub_preference</a></th><td>Is this type a sub preference?</td></tr>
+            <tr><th><a href="datum/preference.html#var/priority">priority</a></th><td>The priority of when to apply this preference.
+Used for when you need to rely on another preference.</td></tr>
+            <tr><th><a href="datum/preference.html#var/relevant_external_organ">relevant_external_organ</a></th><td>If the selected species has this in its /datum/species/var/cosmetic_organs,
+will show the feature as selectable.</td></tr>
+            <tr><th><a href="datum/preference.html#var/relevant_mutant_bodypart">relevant_mutant_bodypart</a></th><td>If the selected species has this in its /datum/species/mutant_bodyparts,
+will show the feature as selectable.</td></tr>
+            <tr><th><a href="datum/preference.html#var/relevant_species_trait">relevant_species_trait</a></th><td>If the selected species has this in its /datum/species/species_traits,
+will show the feature as selectable.</td></tr>
+            <tr><th><a href="datum/preference.html#var/requires_accessible">requires_accessible</a></th><td>If this preference is not accessible, do not attempt to apply it to mobs.</td></tr>
+            <tr><th><a href="datum/preference.html#var/savefile_identifier">savefile_identifier</a></th><td>What savefile should this preference be read from?
+Valid values are PREFERENCE_CHARACTER and PREFERENCE_PLAYER.
+See the documentation in <a href="code/__DEFINES/preferences.html" title="code/__DEFINES/preferences.dm">code/__DEFINES/preferences.dm</a>.</td></tr>
+            <tr><th><a href="datum/preference.html#var/savefile_key">savefile_key</a></th><td>The key inside the savefile to use.
+This is also sent to the UI.
+Once you pick this, don't change it.</td></tr>
+            <tr><th><a href="datum/preference.html#var/sub_preference">sub_preference</a></th><td>A typepath for a sub preference. Ex: Hair Style's sub_preference is /datum/preference/color/hair_color</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/preference.html#proc/apply_to_client">apply_to_client</a></th><td>Apply this preference onto the given client.
+Called when the savefile_identifier == PREFERENCE_PLAYER.</td></tr>
+            <tr><th><a href="datum/preference.html#proc/apply_to_client_updated">apply_to_client_updated</a></th><td>Fired when the preference is updated.
+Calls apply_to_client by default, but can be overridden.</td></tr>
+            <tr><th><a href="datum/preference.html#proc/apply_to_human">apply_to_human</a></th><td>Apply this preference onto the given human.
+Must be overriden by subtypes.
+Called when the savefile_identifier == PREFERENCE_CHARACTER.</td></tr>
+            <tr><th><a href="datum/preference.html#proc/compile_constant_data">compile_constant_data</a></th><td>Returns data compiled into the preferences JSON asset</td></tr>
+            <tr><th><a href="datum/preference.html#proc/compile_ui_data">compile_ui_data</a></th><td>Returns data to be sent to users in the menu</td></tr>
+            <tr><th><a href="datum/preference.html#proc/create_default_value">create_default_value</a></th><td>Produce a default, potentially random value for when no value for this
+preference is found in the savefile.
+Either this or create_informed_default_value must be overriden by subtypes.</td></tr>
+            <tr><th><a href="datum/preference.html#proc/create_informed_default_value">create_informed_default_value</a></th><td>Produce a default, potentially random value for when no value for this
+preference is found in the savefile.
+Unlike create_default_value(), will provide the preferences object if you
+need to use it.
+If not overriden, will call create_default_value() instead.</td></tr>
+            <tr><th><a href="datum/preference.html#proc/create_random_value">create_random_value</a></th><td>Produce a random value for the purposes of character randomization.
+Will just create a default value by default.</td></tr>
+            <tr><th><a href="datum/preference.html#proc/deserialize">deserialize</a></th><td>Called on the saved input when retrieving.
+Also called by the value sent from the user through UI. Do not trust it.
+Input is the value inside the savefile, output is to tell other code
+what the value is.
+This is useful either for more optimal data saving or for migrating
+older data.
+Must be overridden by subtypes.
+Can return null if no value was found.</td></tr>
+            <tr><th><a href="datum/preference.html#proc/get_spritesheet_key">get_spritesheet_key</a></th><td>Returns the key that will be used in the spritesheet for a given value.</td></tr>
+            <tr><th><a href="datum/preference.html#proc/is_accessible">is_accessible</a></th><td>Returns whether or not this preference is accessible.
+If FALSE, will not show in the UI and will not be editable (by update_preference).</td></tr>
+            <tr><th><a href="datum/preference.html#proc/is_randomizable">is_randomizable</a></th><td>Returns whether or not a preference can be randomized.</td></tr>
+            <tr><th><a href="datum/preference.html#proc/is_valid">is_valid</a></th><td>Checks that a given value is valid.
+Must be overriden by subtypes.
+Any type can be passed through.</td></tr>
+            <tr><th><a href="datum/preference.html#proc/read">read</a></th><td>Given a savefile, return either the saved data or an acceptable default.
+This will write to the savefile if a value was not found with the new value.</td></tr>
+            <tr><th><a href="datum/preference.html#proc/serialize">serialize</a></th><td>Called on the input while saving.
+Input is the current value, output is what to save in the savefile.</td></tr>
+            <tr><th><a href="datum/preference.html#proc/value_changed">value_changed</a></th><td>Called when a user updates the value of this preference.</td></tr>
+            <tr><th><a href="datum/preference.html#proc/write">write</a></th><td>Given a savefile, writes the inputted value.
+Returns TRUE for a successful application.
+Return FALSE if it is invalid.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/can_randomize"><aside class="declaration">var </aside>can_randomize
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 116"/></a></h3>
+        <p>If set, will be available to randomize, but only if the preference
+is for PREFERENCE_CHARACTER.</p><h3 id="var/category"><aside class="declaration">var </aside>category
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 103"/></a></h3>
+        <p>The category of preference, for use by the PreferencesMenu.
+This isn't used for anything other than as a key for UI data.
+It is up to the PreferencesMenu UI itself to interpret it.</p><h3 id="var/exclude_species_traits"><aside class="declaration">var </aside>exclude_species_traits
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 131"/></a></h3>
+        <p>Any species that has any of the listed species traits will not have the option to pick this pref</p><h3 id="var/explanation"><aside class="declaration">var </aside>explanation
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 93"/></a></h3>
+        <p>The display default name when inserted into the chargen</p><h3 id="var/is_sub_preference"><aside class="declaration">var </aside>is_sub_preference
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 140"/></a></h3>
+        <p>Is this type a sub preference?</p><h3 id="var/priority"><aside class="declaration">var </aside>priority
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 112"/></a></h3>
+        <p>The priority of when to apply this preference.
+Used for when you need to rely on another preference.</p><h3 id="var/relevant_external_organ"><aside class="declaration">var </aside>relevant_external_organ
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 128"/></a></h3>
+        <p>If the selected species has this in its /datum/species/var/cosmetic_organs,
+will show the feature as selectable.</p><h3 id="var/relevant_mutant_bodypart"><aside class="declaration">var </aside>relevant_mutant_bodypart
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 120"/></a></h3>
+        <p>If the selected species has this in its /datum/species/mutant_bodyparts,
+will show the feature as selectable.</p><h3 id="var/relevant_species_trait"><aside class="declaration">var </aside>relevant_species_trait
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 124"/></a></h3>
+        <p>If the selected species has this in its /datum/species/species_traits,
+will show the feature as selectable.</p><h3 id="var/requires_accessible"><aside class="declaration">var </aside>requires_accessible
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 134"/></a></h3>
+        <p>If this preference is not accessible, do not attempt to apply it to mobs.</p><h3 id="var/savefile_identifier"><aside class="declaration">var </aside>savefile_identifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 108"/></a></h3>
+        <p>What savefile should this preference be read from?
+Valid values are PREFERENCE_CHARACTER and PREFERENCE_PLAYER.
+See the documentation in <a href="code/__DEFINES/preferences.html" title="code/__DEFINES/preferences.dm">code/__DEFINES/preferences.dm</a>.</p><h3 id="var/savefile_key"><aside class="declaration">var </aside>savefile_key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 98"/></a></h3>
+        <p>The key inside the savefile to use.
+This is also sent to the UI.
+Once you pick this, don't change it.</p><h3 id="var/sub_preference"><aside class="declaration">var </aside>sub_preference
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 137"/></a></h3>
+        <p>A typepath for a sub preference. Ex: Hair Style's sub_preference is /datum/preference/color/hair_color</p><h2 id="proc">Proc Details</h2><h3 id="proc/apply_to_client"><aside class="declaration">proc </aside>apply_to_client<aside>(/<a href="client.html">client</a>/client, value) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L218">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 218"/></a></aside>
+        </h3>
+        <p>Apply this preference onto the given client.
+Called when the savefile_identifier == PREFERENCE_PLAYER.</p><h3 id="proc/apply_to_client_updated"><aside class="declaration">proc </aside>apply_to_client_updated<aside>(/<a href="client.html">client</a>/client, value) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L225">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 225"/></a></aside>
+        </h3>
+        <p>Fired when the preference is updated.
+Calls apply_to_client by default, but can be overridden.</p><h3 id="proc/apply_to_human"><aside class="declaration">proc </aside>apply_to_human<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/target, value) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L232">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 232"/></a></aside>
+        </h3>
+        <p>Apply this preference onto the given human.
+Must be overriden by subtypes.
+Called when the savefile_identifier == PREFERENCE_CHARACTER.</p><h3 id="proc/compile_constant_data"><aside class="declaration">proc </aside>compile_constant_data<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L361">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 361"/></a></aside>
+        </h3>
+        <p>Returns data compiled into the preferences JSON asset</p><h3 id="proc/compile_ui_data"><aside class="declaration">proc </aside>compile_ui_data<aside>(/<a href="mob.html">mob</a>/user, value) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L355">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 355"/></a></aside>
+        </h3>
+        <p>Returns data to be sent to users in the menu</p><h3 id="proc/create_default_value"><aside class="declaration">proc </aside>create_default_value<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L164">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 164"/></a></aside>
+        </h3>
+        <p>Produce a default, potentially random value for when no value for this
+preference is found in the savefile.
+Either this or create_informed_default_value must be overriden by subtypes.</p><h3 id="proc/create_informed_default_value"><aside class="declaration">proc </aside>create_informed_default_value<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/preferences) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 174"/></a></aside>
+        </h3>
+        <p>Produce a default, potentially random value for when no value for this
+preference is found in the savefile.
+Unlike create_default_value(), will provide the preferences object if you
+need to use it.
+If not overriden, will call create_default_value() instead.</p><h3 id="proc/create_random_value"><aside class="declaration">proc </aside>create_random_value<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/preferences) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 179"/></a></aside>
+        </h3>
+        <p>Produce a random value for the purposes of character randomization.
+Will just create a default value by default.</p><h3 id="proc/deserialize"><aside class="declaration">proc </aside>deserialize<aside>(input, /<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/preferences) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 150"/></a></aside>
+        </h3>
+        <p>Called on the saved input when retrieving.
+Also called by the value sent from the user through UI. Do not trust it.
+Input is the value inside the savefile, output is to tell other code
+what the value is.
+This is useful either for more optimal data saving or for migrating
+older data.
+Must be overridden by subtypes.
+Can return null if no value was found.</p><h3 id="proc/get_spritesheet_key"><aside class="declaration">proc </aside>get_spritesheet_key<aside>(value) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/assets.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;assets.dm 41"/></a></aside>
+        </h3>
+        <p>Returns the key that will be used in the spritesheet for a given value.</p><h3 id="proc/is_accessible"><aside class="declaration">proc </aside>is_accessible<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/preferences) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L368">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 368"/></a></aside>
+        </h3>
+        <p>Returns whether or not this preference is accessible.
+If FALSE, will not show in the UI and will not be editable (by update_preference).</p><h3 id="proc/is_randomizable"><aside class="declaration">proc </aside>is_randomizable<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 183"/></a></aside>
+        </h3>
+        <p>Returns whether or not a preference can be randomized.</p><h3 id="proc/is_valid"><aside class="declaration">proc </aside>is_valid<aside>(value) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L349">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 349"/></a></aside>
+        </h3>
+        <p>Checks that a given value is valid.
+Must be overriden by subtypes.
+Any type can be passed through.</p><h3 id="proc/read"><aside class="declaration">proc </aside>read<aside>(/savefile/savefile, /<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/preferences) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 189"/></a></aside>
+        </h3>
+        <p>Given a savefile, return either the saved data or an acceptable default.
+This will write to the savefile if a value was not found with the new value.</p><h3 id="proc/serialize"><aside class="declaration">proc </aside>serialize<aside>(input) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 157"/></a></aside>
+        </h3>
+        <p>Called on the input while saving.
+Input is the current value, output is what to save in the savefile.</p><h3 id="proc/value_changed"><aside class="declaration">proc </aside>value_changed<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs, new_value, old_value) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L343">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 343"/></a></aside>
+        </h3>
+        <p>Called when a user updates the value of this preference.</p><h3 id="proc/write"><aside class="declaration">proc </aside>write<aside>(/savefile/savefile, value) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L205">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 205"/></a></aside>
+        </h3>
+        <p>Given a savefile, writes the inputted value.
+Returns TRUE for a successful application.
+Return FALSE if it is invalid.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

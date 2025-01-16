@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob/living/silicon/pai.html#var">Var Details</a> - <a href="mob/living/silicon/pai.html#proc">Proc Details</a></header>
+<main>
+<h1>pai <aside>/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/silicon.html">silicon</a>/<a href="mob/living/silicon/pai.html">pai</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/atmos_analyzer">atmos_analyzer</a></th><td>Atmospheric analyzer</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/brightness_power">brightness_power</a></th><td>The strength of the internal flashlight</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/can_receive">can_receive</a></th><td>Whether this pAI can recieve radio messages</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/can_transmit">can_transmit</a></th><td>Whether this pAI can transmit radio messages</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/canholo">canholo</a></th><td>Whether the pAI can enter holoform or not</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/card">card</a></th><td>The card we inhabit</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/chassis">chassis</a></th><td>The current chasis that will appear when in holoform</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/emagged">emagged</a></th><td>Changes the display to syndi if true</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/encryptmod">encryptmod</a></th><td>Toggles whether the pAI can hold encryption keys or not</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/hacking_cable">hacking_cable</a></th><td>The cable we produce when hacking a door</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/holoform">holoform</a></th><td>Whether we are currently holoformed</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/hostscan">hostscan</a></th><td>pAI healthanalyzer</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/internal_gps">internal_gps</a></th><td>Internal pAI GPS, enabled if pAI downloads GPS software, and then uses it.</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/internal_instrument">internal_instrument</a></th><td>pAI Synthesizer</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/languages_granted">languages_granted</a></th><td>Toggles whether universal translator has been activated. Cannot be reversed</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/master">master</a></th><td>Name of the one who commands us</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/master_dna">master_dna</a></th><td>DNA string for owner verification</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/medHUD">medHUD</a></th><td>Toggles whether the Medical  HUD is active or not</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/medical_records">medical_records</a></th><td>Cached list for medical records to send as static data</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/newscaster">newscaster</a></th><td>pAI Newscaster</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/possible_chassis">possible_chassis</a></th><td>List of all possible chasises. TRUE means the pAI can be picked up in this chasis.</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/ram">ram</a></th><td>Used as currency to purchase different abilities</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/refresh_spam">refresh_spam</a></th><td>Bool that determines if the pAI can refresh medical/security records.</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/secHUD">secHUD</a></th><td>Toggles whether the Security HUD is active or not</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/security_records">security_records</a></th><td>Cached list for security records to send as static data</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/signaler">signaler</a></th><td>AI's signaler</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#var/software">software</a></th><td>Installed software on the pAI</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#proc/CheckDNA">CheckDNA</a></th><td>Cost of the software to purchase
+Supporting proc for the pAI to prick it's master's hand
+or... whatever. It must be held in order to work
+Gives the owner a popup if they want to get the jab.</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#proc/check_menu">check_menu</a></th><td>Checks if we are allowed to interact with a radial menu</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#proc/choose_chassis">choose_chassis</a></th><td>Sets a new holochassis skin based on a pAI's choice</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#proc/extendcable">extendcable</a></th><td>Extend cable supporting proc</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#proc/hack_door">hack_door</a></th><td>Door jacking supporting proc</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#proc/hostscan">hostscan</a></th><td>Host scan supporting proc</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#proc/refresh_again">refresh_again</a></th><td>Proc that switches whether a pAI can refresh
+the records window again.</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#proc/set_holochassis">set_holochassis</a></th><td>Sets the holochassis skin and updates the icons</td></tr>
+            <tr><th><a href="mob/living/silicon/pai.html#proc/wabbajack">wabbajack</a></th><td>Polymorphs the pai into a random holoform</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/atmos_analyzer"><aside class="declaration">var </aside>atmos_analyzer
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/analyzer.html">analyzer</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 62"/></a></h3>
+        <p>Atmospheric analyzer</p><h3 id="var/brightness_power"><aside class="declaration">var </aside>brightness_power
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 33"/></a></h3>
+        <p>The strength of the internal flashlight</p><h3 id="var/can_receive"><aside class="declaration">var </aside>can_receive
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 48"/></a></h3>
+        <p>Whether this pAI can recieve radio messages</p><h3 id="var/can_transmit"><aside class="declaration">var </aside>can_transmit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 46"/></a></h3>
+        <p>Whether this pAI can transmit radio messages</p><h3 id="var/canholo"><aside class="declaration">var </aside>canholo
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 44"/></a></h3>
+        <p>Whether the pAI can enter holoform or not</p><h3 id="var/card"><aside class="declaration">var </aside>card
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/paicard.html">paicard</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 26"/></a></h3>
+        <p>The card we inhabit</p><h3 id="var/chassis"><aside class="declaration">var </aside>chassis
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 77"/></a></h3>
+        <p>The current chasis that will appear when in holoform</p><h3 id="var/emagged"><aside class="declaration">var </aside>emagged
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 35"/></a></h3>
+        <p>Changes the display to syndi if true</p><h3 id="var/encryptmod"><aside class="declaration">var </aside>encryptmod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 58"/></a></h3>
+        <p>Toggles whether the pAI can hold encryption keys or not</p><h3 id="var/hacking_cable"><aside class="declaration">var </aside>hacking_cable
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/pai_cable</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 74"/></a></h3>
+        <p>The cable we produce when hacking a door</p><h3 id="var/holoform"><aside class="declaration">var </aside>holoform
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 42"/></a></h3>
+        <p>Whether we are currently holoformed</p><h3 id="var/hostscan"><aside class="declaration">var </aside>hostscan
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/healthanalyzer</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 70"/></a></h3>
+        <p>pAI healthanalyzer</p><h3 id="var/internal_gps"><aside class="declaration">var </aside>internal_gps
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/gps.html">gps</a>/pai</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 72"/></a></h3>
+        <p>Internal pAI GPS, enabled if pAI downloads GPS software, and then uses it.</p><h3 id="var/internal_instrument"><aside class="declaration">var </aside>internal_instrument
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/instrument.html">instrument</a>/piano_synth</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 66"/></a></h3>
+        <p>pAI Synthesizer</p><h3 id="var/languages_granted"><aside class="declaration">var </aside>languages_granted
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 60"/></a></h3>
+        <p>Toggles whether universal translator has been activated. Cannot be reversed</p><h3 id="var/master"><aside class="declaration">var </aside>master
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 38"/></a></h3>
+        <p>Name of the one who commands us</p><h3 id="var/master_dna"><aside class="declaration">var </aside>master_dna
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 40"/></a></h3>
+        <p>DNA string for owner verification</p><h3 id="var/medHUD"><aside class="declaration">var </aside>medHUD
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 56"/></a></h3>
+        <p>Toggles whether the Medical  HUD is active or not</p><h3 id="var/medical_records"><aside class="declaration">var </aside>medical_records
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 104"/></a></h3>
+        <p>Cached list for medical records to send as static data</p><h3 id="var/newscaster"><aside class="declaration">var </aside>newscaster
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 68"/></a></h3>
+        <p>pAI Newscaster</p><h3 id="var/possible_chassis"><aside class="declaration">var </aside>possible_chassis
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 79"/></a></h3>
+        <p>List of all possible chasises. TRUE means the pAI can be picked up in this chasis.</p><h3 id="var/ram"><aside class="declaration">var </aside>ram
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 29"/></a></h3>
+        <p>Used as currency to purchase different abilities</p><h3 id="var/refresh_spam"><aside class="declaration">var </aside>refresh_spam
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 102"/></a></h3>
+        <p>Bool that determines if the pAI can refresh medical/security records.</p><h3 id="var/secHUD"><aside class="declaration">var </aside>secHUD
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 54"/></a></h3>
+        <p>Toggles whether the Security HUD is active or not</p><h3 id="var/security_records"><aside class="declaration">var </aside>security_records
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 106"/></a></h3>
+        <p>Cached list for security records to send as static data</p><h3 id="var/signaler"><aside class="declaration">var </aside>signaler
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/assembly.html">assembly</a>/<a href="obj/item/assembly/signaler.html">signaler</a>/internal</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 64"/></a></h3>
+        <p>AI's signaler</p><h3 id="var/software"><aside class="declaration">var </aside>software
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai.dm 31"/></a></h3>
+        <p>Installed software on the pAI</p><h2 id="proc">Proc Details</h2><h3 id="proc/CheckDNA"><aside class="declaration">proc </aside>CheckDNA<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/master, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/silicon.html">silicon</a>/<a href="mob/living/silicon/pai.html">pai</a>/pai) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/software.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;software.dm 165"/></a></aside>
+        </h3>
+        <p>Cost of the software to purchase
+Supporting proc for the pAI to prick it's master's hand
+or... whatever. It must be held in order to work
+Gives the owner a popup if they want to get the jab.</p><h3 id="proc/check_menu"><aside class="declaration">proc </aside>check_menu<aside>(/<a href="atom.html">atom</a>/anchor) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai_shell.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai_shell.dm 123"/></a></aside>
+        </h3>
+        <p>Checks if we are allowed to interact with a radial menu</p>
+<ul>
+<li>Arguments:</li>
+<li>anchor The atom that is anchoring the menu</li>
+</ul><h3 id="proc/choose_chassis"><aside class="declaration">proc </aside>choose_chassis<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai_shell.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai_shell.dm 80"/></a></aside>
+        </h3>
+        <p>Sets a new holochassis skin based on a pAI's choice</p><h3 id="proc/extendcable"><aside class="declaration">proc </aside>extendcable<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/software.dm#L207">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;software.dm 207"/></a></aside>
+        </h3>
+        <p>Extend cable supporting proc</p>
+<p>When doorjack is installed, allows the pAI to drop
+a cable which is placed either on the floor or in
+someone's hands based (on distance).</p><h3 id="proc/hack_door"><aside class="declaration">proc </aside>hack_door<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/software.dm#L226">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;software.dm 226"/></a></aside>
+        </h3>
+        <p>Door jacking supporting proc</p>
+<p>This will, after alerting any AIs on station, begin to hack open a door.
+After a 10 second timer, the door will crack open, provided they don't move out of the way.</p><h3 id="proc/hostscan"><aside class="declaration">proc </aside>hostscan<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/software.dm#L191">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;software.dm 191"/></a></aside>
+        </h3>
+        <p>Host scan supporting proc</p>
+<p>Allows the pAI to scan its host's health vitals
+An integrated health analyzer.</p><h3 id="proc/refresh_again"><aside class="declaration">proc </aside>refresh_again<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/software.dm#L255">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;software.dm 255"/></a></aside>
+        </h3>
+        <p>Proc that switches whether a pAI can refresh
+the records window again.</p><h3 id="proc/set_holochassis"><aside class="declaration">proc </aside>set_holochassis<aside>(choice) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai_shell.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai_shell.dm 100"/></a></aside>
+        </h3>
+        <p>Sets the holochassis skin and updates the icons</p>
+<ul>
+<li>Arguments:</li>
+<li>choice The animal skin that will be used for the pAI holoform</li>
+</ul><h3 id="proc/wabbajack">wabbajack<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/silicon/pai/pai_shell.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;pai&#x2F;pai_shell.dm 110"/></a></aside>
+        </h3>
+        <p>Polymorphs the pai into a random holoform</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

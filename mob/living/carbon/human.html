@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob/living/carbon/human.html#var">Var Details</a> - <a href="mob/living/carbon/human.html#proc">Proc Details</a></header>
+<main>
+<h1>human <aside>/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defines.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 2"/></a></h1>
+
+<p>Any humanoid (non-Xeno) mob, such as humans, plasmamen, lizards.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/afk_thefts">afk_thefts</a></th><td>When an braindead player has their equipment fiddled with, we log that info here for when they come back so they know who took their ID while they were DC'd for 30 seconds</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/appearance_mods">appearance_mods</a></th><td>A lazylist of preference-applied appearance mods present on this human. Type:Instance</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/blood_in_hands">blood_in_hands</a></th><td>How many &quot;units of blood&quot; we have on our hands</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/can_ride_typecache">can_ride_typecache</a></th><td>What types of mobs are allowed to ride/buckle to this mob</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/coretemperature">coretemperature</a></th><td>The core temperature of the human compaired to the skin temp of the body</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/eye_color_heterochromatic">eye_color_heterochromatic</a></th><td>Var used to keep track of a human mob having a heterochromatic right eye. To ensure prefs don't overwrite shit</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/grad_color">grad_color</a></th><td>Colours used for hair and facial hair gradients.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/grad_style">grad_style</a></th><td>Styles used for hair and facial hair gradients.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/hal_screwydoll">hal_screwydoll</a></th><td>human specific screwyhuds from hallucinations (define key (bodypart) to int value (severity)) - see /datum/hallucination/fake_health_doll</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/physique">physique</a></th><td>Which body type to use</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/add_blood_DNA_to_items">add_blood_DNA_to_items</a></th><td>Adds blood DNA to certain slots the mob is wearing</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/add_fingerprint_on_clothing_or_self">add_fingerprint_on_clothing_or_self</a></th><td>Takes a user and body_zone, if the body_zone is covered by clothing, add a fingerprint to it. Otherwise, add one to us.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/add_trace_DNA_on_clothing_or_self">add_trace_DNA_on_clothing_or_self</a></th><td>Takes a user and body_zone, if the body_zone is covered by clothing, add trace dna to it. Otherwise, add one to us.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/adjust_coretemperature">adjust_coretemperature</a></th><td>Adjust the core temperature of a mob</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/breathe">breathe</a></th><td>If we're in a space with 0.5 content pressure protection, it averages the values, for example.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/burn_clothing">burn_clothing</a></th><td>Used by fire code to damage worn items.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/check_reflect">check_reflect</a></th><td>Reflection checks for anything in your l_hand, r_hand, or wear_suit based on the reflection chance of the object</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/clean_face">clean_face</a></th><td>Called on the COMSIG_COMPONENT_CLEAN_FACE_ACT signal</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/clean_lips">clean_lips</a></th><td>A wrapper for <a href="mob/living/carbon/human.html#proc/update_lips" title="/mob/living/carbon/human">mob/living/carbon/human/proc/update_lips</a> that tells us if there were lip styles to change</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/clothingonpart">clothingonpart</a></th><td>Get all the clothing on a specific body part</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/copy_clothing_prefs">copy_clothing_prefs</a></th><td>copies over clothing preferences like underwear to another human</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/do_cpr">do_cpr</a></th><td>Performs CPR on the target after a delay.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/electrocute_act">electrocute_act</a></th><td>Calculates the siemens coeff based on clothing and species, can also restart hearts.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/expose_plasma">expose_plasma</a></th><td>Handles all the bad things phoron can do.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/forensic_analysis_roll">forensic_analysis_roll</a></th><td>On examine, players have a chance to find forensic evidence. This can only happen once per object.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/get_all_worn_items">get_all_worn_items</a></th><td>Returns a list of every item slot contents on the user.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/get_body_temp_normal">get_body_temp_normal</a></th><td>get_body_temperature Returns the body temperature with any modifications applied</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/get_equipped_items">get_equipped_items</a></th><td>Used to return a list of equipped items on a human mob; does not include held items (use get_all_gear)</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/handle_environment">handle_environment</a></th><td>Environment handlers for species</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/has_hair">has_hair</a></th><td>Does this mob have hair? Pass bald_is_false = TRUE to have &quot;Bald&quot; count as FALSE</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/is_wearing_item_of_type">is_wearing_item_of_type</a></th><td>Bruteforce check for any type or subtype of an item.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/needs_organ">needs_organ</a></th><td>Accepts an organ slot, returns whether or not the mob needs one to survive (or just should have one for non-vital organs).</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/on_entered">on_entered</a></th><td>HUDs</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/randomize_human_appearance">randomize_human_appearance</a></th><td>Fully randomizes everything according to the given flags.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/return_cuff_slots">return_cuff_slots</a></th><td>Returns the cuff slot contents as a list</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/return_extra_wearables">return_extra_wearables</a></th><td>Returns a list of items in slots like the ID slot, belt, backpack</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/return_pocket_slots">return_pocket_slots</a></th><td>Returns a list of items in the &quot;*_store&quot; slots</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/return_worn_clothing">return_worn_clothing</a></th><td>Returns a list of worn &quot;clothing&quot; items.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/sec_hud_set_ID">sec_hud_set_ID</a></th><td>Security HUDs! Basic mode shows only the job.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/set_haircolor">set_haircolor</a></th><td>Set the haircolor of a human. Override instead sets the override value, it will not be changed away from the override value until override is set to null.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/share_blood_on_touch">share_blood_on_touch</a></th><td>Place blood onto us if the toucher has blood on their hands or clothing. messy_slots deteremines what slots to bloody.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/singularity_act">singularity_act</a></th><td>Overrides the point value that the mob is worth</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/smart_equip_targeted">smart_equip_targeted</a></th><td>take the most recent item out of a slot or place held item in a slot</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/something_horrible">something_horrible</a></th><td>DNA HELPER-PROCS</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/toggle_externals">toggle_externals</a></th><td>Returns TRUE if the tank successfully toggles open/closed. Opens the tank only if a breathing apparatus is found.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/update_lips">update_lips</a></th><td>Used to update the makeup on a human and apply/remove lipstick traits, then store/unstore them on the head object in case it gets severed</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/wash">wash</a></th><td>Called when this human should be washed</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/wash_hands">wash_hands</a></th><td>Wash the hands, cleaning either the gloves if equipped and not obscured, otherwise the hands themselves if they're not obscured.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/afk_thefts"><aside class="declaration">var </aside>afk_thefts
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defines.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 100"/></a></h3>
+        <p>When an braindead player has their equipment fiddled with, we log that info here for when they come back so they know who took their ID while they were DC'd for 30 seconds</p><h3 id="var/appearance_mods"><aside class="declaration">var </aside>appearance_mods
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defines.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 103"/></a></h3>
+        <p>A lazylist of preference-applied appearance mods present on this human. Type:Instance</p><h3 id="var/blood_in_hands"><aside class="declaration">var </aside>blood_in_hands
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defines.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 92"/></a></h3>
+        <p>How many &quot;units of blood&quot; we have on our hands</p><h3 id="var/can_ride_typecache"><aside class="declaration">var </aside>can_ride_typecache
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defines.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 83"/></a></h3>
+        <p>What types of mobs are allowed to ride/buckle to this mob</p><h3 id="var/coretemperature"><aside class="declaration">var </aside>coretemperature
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defines.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 95"/></a></h3>
+        <p>The core temperature of the human compaired to the skin temp of the body</p><h3 id="var/eye_color_heterochromatic"><aside class="declaration">var </aside>eye_color_heterochromatic
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defines.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 47"/></a></h3>
+        <p>Var used to keep track of a human mob having a heterochromatic right eye. To ensure prefs don't overwrite shit</p><h3 id="var/grad_color"><aside class="declaration">var </aside>grad_color
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defines.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 35"/></a></h3>
+        <p>Colours used for hair and facial hair gradients.</p><h3 id="var/grad_style"><aside class="declaration">var </aside>grad_style
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defines.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 37"/></a></h3>
+        <p>Styles used for hair and facial hair gradients.</p><h3 id="var/hal_screwydoll"><aside class="declaration">var </aside>hal_screwydoll
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defines.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 98"/></a></h3>
+        <p>human specific screwyhuds from hallucinations (define key (bodypart) to int value (severity)) - see /datum/hallucination/fake_health_doll</p><h3 id="var/physique"><aside class="declaration">var </aside>physique
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defines.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 89"/></a></h3>
+        <p>Which body type to use</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_blood_DNA_to_items"><aside class="declaration">proc </aside>add_blood_DNA_to_items<aside>(/list/blood_DNA_to_add, target_flags) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/detectivework/detective_work.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;detectivework&#x2F;detective_work.dm 126"/></a></aside>
+        </h3>
+        <p>Adds blood DNA to certain slots the mob is wearing</p><h3 id="proc/add_fingerprint_on_clothing_or_self"><aside class="declaration">proc </aside>add_fingerprint_on_clothing_or_self<aside>(/<a href="mob.html">mob</a>/user, body_zone) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human.dm#L1262">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 1262"/></a></aside>
+        </h3>
+        <p>Takes a user and body_zone, if the body_zone is covered by clothing, add a fingerprint to it. Otherwise, add one to us.</p><h3 id="proc/add_trace_DNA_on_clothing_or_self"><aside class="declaration">proc </aside>add_trace_DNA_on_clothing_or_self<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/user, body_zone) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human.dm#L1271">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 1271"/></a></aside>
+        </h3>
+        <p>Takes a user and body_zone, if the body_zone is covered by clothing, add trace dna to it. Otherwise, add one to us.</p><h3 id="proc/adjust_coretemperature"><aside class="declaration">proc </aside>adjust_coretemperature<aside>(amount, min_temp, max_temp) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/life.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 127"/></a></aside>
+        </h3>
+        <p>Adjust the core temperature of a mob</p>
+<p>vars:</p>
+<ul>
+<li>amount The amount of degrees to change body temperature by</li>
+<li>min_temp (optional) The minimum body temperature after adjustment</li>
+<li>max_temp (optional) The maximum body temperature after adjustment</li>
+</ul><h3 id="proc/breathe">breathe<aside>(forced) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/life.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 69"/></a></aside>
+        </h3>
+        <p>If we're in a space with 0.5 content pressure protection, it averages the values, for example.</p><h3 id="proc/burn_clothing"><aside class="declaration">proc </aside>burn_clothing<aside>(delta_time, times_fired, stacks) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defense.dm#L698">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defense.dm 698"/></a></aside>
+        </h3>
+        <p>Used by fire code to damage worn items.</p>
+<p>Arguments:</p>
+<ul>
+<li>delta_time</li>
+<li>times_fired</li>
+<li>stacks: Current amount of firestacks</li>
+</ul><h3 id="proc/check_reflect"><aside class="declaration">proc </aside>check_reflect<aside>(def_zone) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defense.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defense.dm 106"/></a></aside>
+        </h3>
+        <p>Reflection checks for anything in your l_hand, r_hand, or wear_suit based on the reflection chance of the object</p><h3 id="proc/clean_face"><aside class="declaration">proc </aside>clean_face<aside>(/<a href="datum.html">datum</a>/source, clean_types) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human.dm#L633">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 633"/></a></aside>
+        </h3>
+        <p>Called on the COMSIG_COMPONENT_CLEAN_FACE_ACT signal</p><h3 id="proc/clean_lips"><aside class="declaration">proc </aside>clean_lips<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human.dm#L624">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 624"/></a></aside>
+        </h3>
+        <p>A wrapper for <a href="mob/living/carbon/human.html#proc/update_lips" title="/mob/living/carbon/human">mob/living/carbon/human/proc/update_lips</a> that tells us if there were lip styles to change</p><h3 id="proc/clothingonpart"><aside class="declaration">proc </aside>clothingonpart<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/bodypart.html">bodypart</a>/def_zone) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defense.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defense.dm 36"/></a></aside>
+        </h3>
+        <p>Get all the clothing on a specific body part</p><h3 id="proc/copy_clothing_prefs"><aside class="declaration">proc </aside>copy_clothing_prefs<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/destination) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_helpers.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 117"/></a></aside>
+        </h3>
+        <p>copies over clothing preferences like underwear to another human</p><h3 id="proc/do_cpr"><aside class="declaration">proc </aside>do_cpr<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/target) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human.dm#L507">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 507"/></a></aside>
+        </h3>
+        <p>Performs CPR on the target after a delay.</p><h3 id="proc/electrocute_act"><aside class="parent"><a title="/mob/living/carbon" href="mob/living/carbon.html#proc/electrocute_act">&uarr;</a></aside>electrocute_act<aside>(shock_damage, siemens_coeff, flags, stun_multiplier) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defense.dm#L415">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defense.dm 415"/></a></aside>
+        </h3>
+        <p>Calculates the siemens coeff based on clothing and species, can also restart hearts.</p><h3 id="proc/expose_plasma">expose_plasma<aside>(exposed_amount) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Plasma.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Plasma.dm 29"/></a></aside>
+        </h3>
+        <p>Handles all the bad things phoron can do.</p><h3 id="proc/forensic_analysis_roll"><aside class="declaration">proc </aside>forensic_analysis_roll<aside>(/<a href="atom.html">atom</a>/examined) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/detectivework/detective_work.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;detectivework&#x2F;detective_work.dm 200"/></a></aside>
+        </h3>
+        <p>On examine, players have a chance to find forensic evidence. This can only happen once per object.</p><h3 id="proc/get_all_worn_items">get_all_worn_items<aside>(include_pockets) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/inventory.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;inventory.dm 74"/></a></aside>
+        </h3>
+        <p>Returns a list of every item slot contents on the user.</p><h3 id="proc/get_body_temp_normal"><aside class="parent"><a title="/mob/living" href="mob/living.html#proc/get_body_temp_normal">&uarr;</a></aside>get_body_temp_normal<aside>(apply_change) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/life.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 143"/></a></aside>
+        </h3>
+        <p>get_body_temperature Returns the body temperature with any modifications applied</p>
+<p>This applies the result from proc/get_body_temp_normal_change() against the bodytemp_normal
+for the species and returns the result</p>
+<p>arguments:</p>
+<ul>
+<li>apply_change (optional) Default True This applies the changes to body temperature normal</li>
+</ul><h3 id="proc/get_equipped_items"><aside class="parent"><a title="/mob" href="mob.html#proc/get_equipped_items">&uarr;</a></aside>get_equipped_items<aside>(include_pockets) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/inventory.dm#L495">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 495"/></a></aside>
+        </h3>
+        <p>Used to return a list of equipped items on a human mob; does not include held items (use get_all_gear)</p>
+<p>Argument(s):</p>
+<ul>
+<li>Optional - include_pockets (TRUE/FALSE), whether or not to include the pockets and suit storage in the returned list</li>
+</ul><h3 id="proc/handle_environment"><aside class="parent"><a title="/mob/living/carbon" href="mob/living/carbon.html#proc/handle_environment">&uarr;</a></aside>handle_environment<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/environment, delta_time, times_fired) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/life.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 116"/></a></aside>
+        </h3>
+        <p>Environment handlers for species</p><h3 id="proc/has_hair">has_hair<aside>(bald_is_false) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/dna.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;dna.dm 24"/></a></aside>
+        </h3>
+        <p>Does this mob have hair? Pass bald_is_false = TRUE to have &quot;Bald&quot; count as FALSE</p><h3 id="proc/is_wearing_item_of_type"><aside class="declaration">proc </aside>is_wearing_item_of_type<aside>(type2check) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/inventory.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;inventory.dm 80"/></a></aside>
+        </h3>
+        <p>Bruteforce check for any type or subtype of an item.</p><h3 id="proc/needs_organ">needs_organ<aside>(slot) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human.dm#L1143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 1143"/></a></aside>
+        </h3>
+        <p>Accepts an organ slot, returns whether or not the mob needs one to survive (or just should have one for non-vital organs).</p><h3 id="proc/on_entered"><aside class="declaration">proc </aside>on_entered<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/AM) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human.dm#L381">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 381"/></a></aside>
+        </h3>
+        <p>HUDs</p><h3 id="proc/randomize_human_appearance"><aside class="declaration">proc </aside>randomize_human_appearance<aside>(flags) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_helpers.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 126"/></a></aside>
+        </h3>
+        <p>Fully randomizes everything according to the given flags.</p><h3 id="proc/return_cuff_slots"><aside class="declaration">proc </aside>return_cuff_slots<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/inventory.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;inventory.dm 124"/></a></aside>
+        </h3>
+        <p>Returns the cuff slot contents as a list</p><h3 id="proc/return_extra_wearables"><aside class="declaration">proc </aside>return_extra_wearables<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/inventory.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;inventory.dm 108"/></a></aside>
+        </h3>
+        <p>Returns a list of items in slots like the ID slot, belt, backpack</p><h3 id="proc/return_pocket_slots"><aside class="declaration">proc </aside>return_pocket_slots<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/inventory.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;inventory.dm 116"/></a></aside>
+        </h3>
+        <p>Returns a list of items in the &quot;*_store&quot; slots</p><h3 id="proc/return_worn_clothing"><aside class="declaration">proc </aside>return_worn_clothing<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/inventory.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;inventory.dm 93"/></a></aside>
+        </h3>
+        <p>Returns a list of worn &quot;clothing&quot; items.</p><h3 id="proc/sec_hud_set_ID"><aside class="declaration">proc </aside>sec_hud_set_ID<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/data_huds.dm#L231">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;data_huds.dm 231"/></a></aside>
+        </h3>
+        <p>Security HUDs! Basic mode shows only the job.</p><h3 id="proc/set_haircolor">set_haircolor<aside>(hex_string, override) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/head.dm#L287">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;head.dm 287"/></a></aside>
+        </h3>
+        <p>Set the haircolor of a human. Override instead sets the override value, it will not be changed away from the override value until override is set to null.</p><h3 id="proc/share_blood_on_touch">share_blood_on_touch<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/who_touched_us, messy_slots) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/carbon_defense.dm#L388">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defense.dm 388"/></a></aside>
+        </h3>
+        <p>Place blood onto us if the toucher has blood on their hands or clothing. messy_slots deteremines what slots to bloody.</p><h3 id="proc/singularity_act"><aside class="parent"><a title="/mob/living" href="mob/living.html#proc/singularity_act">&uarr;</a></aside>singularity_act<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human_defense.dm#L608">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defense.dm 608"/></a></aside>
+        </h3>
+        <p>Overrides the point value that the mob is worth</p><h3 id="proc/smart_equip_targeted"><aside class="declaration">proc </aside>smart_equip_targeted<aside>(slot_type, slot_item_name) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/inventory.dm#L379">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;inventory.dm 379"/></a></aside>
+        </h3>
+        <p>take the most recent item out of a slot or place held item in a slot</p><h3 id="proc/something_horrible"><aside class="declaration">proc </aside>something_horrible<aside>(ignore_stability) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/dna.dm#L904">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;dna.dm 904"/></a></aside>
+        </h3>
+        <p>DNA HELPER-PROCS</p><h3 id="proc/toggle_externals"><aside class="parent"><a title="/mob/living/carbon" href="mob/living/carbon.html#proc/toggle_externals">&uarr;</a></aside>toggle_externals<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/tank) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/inventory.dm#L343">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;inventory.dm 343"/></a></aside>
+        </h3>
+        <p>Returns TRUE if the tank successfully toggles open/closed. Opens the tank only if a breathing apparatus is found.</p><h3 id="proc/update_lips"><aside class="declaration">proc </aside>update_lips<aside>(new_style, new_colour, apply_trait) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human.dm#L608">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 608"/></a></aside>
+        </h3>
+        <p>Used to update the makeup on a human and apply/remove lipstick traits, then store/unstore them on the head object in case it gets severed</p><h3 id="proc/wash"><aside class="parent"><a title="/atom" href="atom.html#proc/wash">&uarr;</a></aside>wash<aside>(clean_types) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human.dm#L650">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 650"/></a></aside>
+        </h3>
+        <p>Called when this human should be washed</p><h3 id="proc/wash_hands"><aside class="declaration">proc </aside>wash_hands<aside>(clean_types) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/human.dm#L589">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 589"/></a></aside>
+        </h3>
+        <p>Wash the hands, cleaning either the gloves if equipped and not obscured, otherwise the hands themselves if they're not obscured.</p>
+<p>Returns false if we couldn't wash our hands due to them being obscured, otherwise true</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;maps.dm - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/maps.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/maps.dm 
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/maps.html#define/TRANSITIONEDGE">TRANSITIONEDGE</a></th><td>Distance from edge to move to another z-level</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/MAP_MINX">MAP_MINX</a></th><td>The maploader index for the maps minimum x</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/MAP_MINY">MAP_MINY</a></th><td>The maploader index for the maps minimum y</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/MAP_MINZ">MAP_MINZ</a></th><td>The maploader index for the maps minimum z</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/MAP_MAXX">MAP_MAXX</a></th><td>The maploader index for the maps maximum x</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/MAP_MAXY">MAP_MAXY</a></th><td>The maploader index for the maps maximum y</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/MAP_MAXZ">MAP_MAXZ</a></th><td>The maploader index for the maps maximum z</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/PATH_TO_NEXT_MAP_JSON">PATH_TO_NEXT_MAP_JSON</a></th><td>Path for the next_map.json file, if someone, for some messed up reason, wants to change it.</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/MAP_DIRECTORY_MAPS">MAP_DIRECTORY_MAPS</a></th><td>List of directories we can load map .json files from</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/CUSTOM_MAP_PATH">CUSTOM_MAP_PATH</a></th><td>Special map path value for custom adminloaded stations.</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/ZTRAIT_SECRET">ZTRAIT_SECRET</a></th><td>boolean - does this z prevent ghosts from observing it</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/ZTRAIT_NOPHASE">ZTRAIT_NOPHASE</a></th><td>boolean - does this z prevent phasing</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/ZTRAIT_NOXRAY">ZTRAIT_NOXRAY</a></th><td>boolean - does this z prevent xray/meson/thermal vision</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/ZTRAITS_CENTCOM">ZTRAITS_CENTCOM</a></th><td>Z level traits for CentCom</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/ZTRAITS_STATION">ZTRAITS_STATION</a></th><td>Z level traits for Space Station 13</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/ZTRAITS_SPACE">ZTRAITS_SPACE</a></th><td>Z level traits for Deep Space</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/ZTRAITS_AWAY">ZTRAITS_AWAY</a></th><td>Z level traits for Away Missions</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/ZTRAITS_AWAY_SECRET">ZTRAITS_AWAY_SECRET</a></th><td>Z level traits for Secret Away Missions</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/ZTRAITS_TRANSIT">ZTRAITS_TRANSIT</a></th><td>Z level traits for the transit z level</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/PERLIN_LAYER_HEIGHT">PERLIN_LAYER_HEIGHT</a></th><td>Map generation defines</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/SHELTER_DEPLOY_ALLOWED">SHELTER_DEPLOY_ALLOWED</a></th><td>Shelter spot is allowed</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/SHELTER_DEPLOY_BAD_TURFS">SHELTER_DEPLOY_BAD_TURFS</a></th><td>Shelter spot has turfs that restrict deployment</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/SHELTER_DEPLOY_BAD_AREA">SHELTER_DEPLOY_BAD_AREA</a></th><td>Shelter spot has areas that restrict deployment</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/SHELTER_DEPLOY_ANCHORED_OBJECTS">SHELTER_DEPLOY_ANCHORED_OBJECTS</a></th><td>Shelter spot has anchored objects that restrict deployment</td></tr>
+        <tr><th><a href="code/__DEFINES/maps.html#define/SHELTER_DEPLOY_OUTSIDE_MAP">SHELTER_DEPLOY_OUTSIDE_MAP</a></th><td>Shelter spot is out of bounds from the maps x/y coordinates</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/CUSTOM_MAP_PATH"><aside class="declaration">#define </aside>CUSTOM_MAP_PATH
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 55"/></a>
+    </h3>
+    <p>Special map path value for custom adminloaded stations.</p><h3 id="define/MAP_DIRECTORY_MAPS"><aside class="declaration">#define </aside>MAP_DIRECTORY_MAPS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 50"/></a>
+    </h3>
+    <p>List of directories we can load map .json files from</p><h3 id="define/MAP_MAXX"><aside class="declaration">#define </aside>MAP_MAXX
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 40"/></a>
+    </h3>
+    <p>The maploader index for the maps maximum x</p><h3 id="define/MAP_MAXY"><aside class="declaration">#define </aside>MAP_MAXY
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 42"/></a>
+    </h3>
+    <p>The maploader index for the maps maximum y</p><h3 id="define/MAP_MAXZ"><aside class="declaration">#define </aside>MAP_MAXZ
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 44"/></a>
+    </h3>
+    <p>The maploader index for the maps maximum z</p><h3 id="define/MAP_MINX"><aside class="declaration">#define </aside>MAP_MINX
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 34"/></a>
+    </h3>
+    <p>The maploader index for the maps minimum x</p><h3 id="define/MAP_MINY"><aside class="declaration">#define </aside>MAP_MINY
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 36"/></a>
+    </h3>
+    <p>The maploader index for the maps minimum y</p><h3 id="define/MAP_MINZ"><aside class="declaration">#define </aside>MAP_MINZ
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 38"/></a>
+    </h3>
+    <p>The maploader index for the maps minimum z</p><h3 id="define/PATH_TO_NEXT_MAP_JSON"><aside class="declaration">#define </aside>PATH_TO_NEXT_MAP_JSON
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 47"/></a>
+    </h3>
+    <p>Path for the next_map.json file, if someone, for some messed up reason, wants to change it.</p><h3 id="define/PERLIN_LAYER_HEIGHT"><aside class="declaration">#define </aside>PERLIN_LAYER_HEIGHT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 151"/></a>
+    </h3>
+    <p>Map generation defines</p><h3 id="define/SHELTER_DEPLOY_ALLOWED"><aside class="declaration">#define </aside>SHELTER_DEPLOY_ALLOWED
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L167">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 167"/></a>
+    </h3>
+    <p>Shelter spot is allowed</p><h3 id="define/SHELTER_DEPLOY_ANCHORED_OBJECTS"><aside class="declaration">#define </aside>SHELTER_DEPLOY_ANCHORED_OBJECTS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 173"/></a>
+    </h3>
+    <p>Shelter spot has anchored objects that restrict deployment</p><h3 id="define/SHELTER_DEPLOY_BAD_AREA"><aside class="declaration">#define </aside>SHELTER_DEPLOY_BAD_AREA
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 171"/></a>
+    </h3>
+    <p>Shelter spot has areas that restrict deployment</p><h3 id="define/SHELTER_DEPLOY_BAD_TURFS"><aside class="declaration">#define </aside>SHELTER_DEPLOY_BAD_TURFS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L169">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 169"/></a>
+    </h3>
+    <p>Shelter spot has turfs that restrict deployment</p><h3 id="define/SHELTER_DEPLOY_OUTSIDE_MAP"><aside class="declaration">#define </aside>SHELTER_DEPLOY_OUTSIDE_MAP
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 175"/></a>
+    </h3>
+    <p>Shelter spot is out of bounds from the maps x/y coordinates</p><h3 id="define/TRANSITIONEDGE"><aside class="declaration">#define </aside>TRANSITIONEDGE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 30"/></a>
+    </h3>
+    <p>Distance from edge to move to another z-level</p><h3 id="define/ZTRAITS_AWAY"><aside class="declaration">#define </aside>ZTRAITS_AWAY
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 116"/></a>
+    </h3>
+    <p>Z level traits for Away Missions</p><h3 id="define/ZTRAITS_AWAY_SECRET"><aside class="declaration">#define </aside>ZTRAITS_AWAY_SECRET
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 118"/></a>
+    </h3>
+    <p>Z level traits for Secret Away Missions</p><h3 id="define/ZTRAITS_CENTCOM"><aside class="declaration">#define </aside>ZTRAITS_CENTCOM
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 110"/></a>
+    </h3>
+    <p>Z level traits for CentCom</p><h3 id="define/ZTRAITS_SPACE"><aside class="declaration">#define </aside>ZTRAITS_SPACE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 114"/></a>
+    </h3>
+    <p>Z level traits for Deep Space</p><h3 id="define/ZTRAITS_STATION"><aside class="declaration">#define </aside>ZTRAITS_STATION
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 112"/></a>
+    </h3>
+    <p>Z level traits for Space Station 13</p><h3 id="define/ZTRAITS_TRANSIT"><aside class="declaration">#define </aside>ZTRAITS_TRANSIT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 121"/></a>
+    </h3>
+    <p>Z level traits for the transit z level</p><h3 id="define/ZTRAIT_NOPHASE"><aside class="declaration">#define </aside>ZTRAIT_NOPHASE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 81"/></a>
+    </h3>
+    <p>boolean - does this z prevent phasing</p><h3 id="define/ZTRAIT_NOXRAY"><aside class="declaration">#define </aside>ZTRAIT_NOXRAY
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 84"/></a>
+    </h3>
+    <p>boolean - does this z prevent xray/meson/thermal vision</p><h3 id="define/ZTRAIT_SECRET"><aside class="declaration">#define </aside>ZTRAIT_SECRET
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/maps.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;maps.dm 78"/></a>
+    </h3>
+    <p>boolean - does this z prevent ghosts from observing it</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

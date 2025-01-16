@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;mining_template - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/mining_template.html#var">Var Details</a> - <a href="datum/mining_template.html#proc">Proc Details</a></header>
+<main>
+<h1>mining_template <aside>/<a href="datum.html">datum</a>/<a href="datum/mining_template.html">mining_template</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mining/asteroid/asteroid_templates.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mining&#x2F;asteroid&#x2F;asteroid_templates.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/mining_template.html#var/center">center</a></th><td>The center turf.</td></tr>
+            <tr><th><a href="datum/mining_template.html#var/found">found</a></th><td>Has this template been located by players?</td></tr>
+            <tr><th><a href="datum/mining_template.html#var/size">size</a></th><td>The size (radius, chebyshev distance). Will be clamped to the size of the asteroid magnet in New().</td></tr>
+            <tr><th><a href="datum/mining_template.html#var/summoned">summoned</a></th><td>Has this template been summoned?</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/mining_template.html#proc/AfterInitialize">AfterInitialize</a></th><td>Called during SSmapping.generate_asteroid() after all atoms have been initialized.</td></tr>
+            <tr><th><a href="datum/mining_template.html#proc/Generate">Generate</a></th><td>The proc to call to completely generate an asteroid</td></tr>
+            <tr><th><a href="datum/mining_template.html#proc/Populate">Populate</a></th><td>Called during SSmapping.generate_asteroid(). Here is where you mangle the geometry provided by the asteroid generator function.
+Atoms at this stage are NOT initialized</td></tr>
+            <tr><th><a href="datum/mining_template.html#proc/get_description">get_description</a></th><td>Called by an asteroid magnet to return a description as a list of bullets</td></tr>
+            <tr><th><a href="datum/mining_template.html#proc/randomize">randomize</a></th><td>Randomize the data of this template. Does not change size, center, or location.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/center"><aside class="declaration">var </aside>center
+            <aside>&ndash; /<a href="turf.html">turf</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mining/asteroid/asteroid_templates.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mining&#x2F;asteroid&#x2F;asteroid_templates.dm 9"/></a></h3>
+        <p>The center turf.</p><h3 id="var/found"><aside class="declaration">var </aside>found
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mining/asteroid/asteroid_templates.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mining&#x2F;asteroid&#x2F;asteroid_templates.dm 16"/></a></h3>
+        <p>Has this template been located by players?</p><h3 id="var/size"><aside class="declaration">var </aside>size
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mining/asteroid/asteroid_templates.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mining&#x2F;asteroid&#x2F;asteroid_templates.dm 7"/></a></h3>
+        <p>The size (radius, chebyshev distance). Will be clamped to the size of the asteroid magnet in New().</p><h3 id="var/summoned"><aside class="declaration">var </aside>summoned
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mining/asteroid/asteroid_templates.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mining&#x2F;asteroid&#x2F;asteroid_templates.dm 18"/></a></h3>
+        <p>Has this template been summoned?</p><h2 id="proc">Proc Details</h2><h3 id="proc/AfterInitialize"><aside class="declaration">proc </aside>AfterInitialize<aside>(/list/atoms) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mining/asteroid/asteroid_templates.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mining&#x2F;asteroid&#x2F;asteroid_templates.dm 40"/></a></aside>
+        </h3>
+        <p>Called during SSmapping.generate_asteroid() after all atoms have been initialized.</p><h3 id="proc/Generate"><aside class="declaration">proc </aside>Generate<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mining/asteroid/asteroid_templates.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mining&#x2F;asteroid&#x2F;asteroid_templates.dm 31"/></a></aside>
+        </h3>
+        <p>The proc to call to completely generate an asteroid</p><h3 id="proc/Populate"><aside class="declaration">proc </aside>Populate<aside>(/list/turfs) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mining/asteroid/asteroid_templates.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mining&#x2F;asteroid&#x2F;asteroid_templates.dm 36"/></a></aside>
+        </h3>
+        <p>Called during SSmapping.generate_asteroid(). Here is where you mangle the geometry provided by the asteroid generator function.
+Atoms at this stage are NOT initialized</p><h3 id="proc/get_description"><aside class="declaration">proc </aside>get_description<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mining/asteroid/asteroid_templates.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mining&#x2F;asteroid&#x2F;asteroid_templates.dm 44"/></a></aside>
+        </h3>
+        <p>Called by an asteroid magnet to return a description as a list of bullets</p><h3 id="proc/randomize"><aside class="declaration">proc </aside>randomize<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mining/asteroid/asteroid_templates.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mining&#x2F;asteroid&#x2F;asteroid_templates.dm 27"/></a></aside>
+        </h3>
+        <p>Randomize the data of this template. Does not change size, center, or location.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

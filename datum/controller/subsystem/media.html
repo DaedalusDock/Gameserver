@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;media - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/media.html#var">Var Details</a> - <a href="datum/controller/subsystem/media.html#proc">Proc Details</a></header>
+<main>
+<h1>media <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/media.html">media</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/media.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;media.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/media.html#var/byond_sound_formats">byond_sound_formats</a></th><td>Stores all sound formats byond understands.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/media.html#var/errored_files">errored_files</a></th><td>It's more consistently functional to just store these in a list and tell admins to go digging than log it.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/media.html#var/invalid_jsons_exist">invalid_jsons_exist</a></th><td>Only notify admins once per init about invalid jsons</td></tr>
+            <tr><th><a href="datum/controller/subsystem/media.html#var/tracks_by_tag">tracks_by_tag</a></th><td>Media definitions grouped by their <code>media_tags</code>, All tracks share the implicit tag <code>all</code></td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/media.html#proc/decode_or_null">decode_or_null</a></th><td>A two-entry list containing the erroring tag, and a reason for the error.
+Quarantine proc for json decoding, Has handling code for most reasonable issues with file structure, and can safely die.
+Returns -1/MEDIA_LOAD_FAILED on error, a list on success, and null on suicide.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/media.html#proc/log_load_fail">log_load_fail</a></th><td>Log a failure to load a specific media track, and notify admins.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/media.html#proc/validate_media">validate_media</a></th><td>Run media validation checks. Returns null on success, or a log_load_failure compatible tuple-list on failure.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/byond_sound_formats"><aside class="declaration">var </aside>byond_sound_formats
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/media.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;media.dm 16"/></a></h3>
+        <p>Stores all sound formats byond understands.</p><h3 id="var/errored_files"><aside class="declaration">var </aside>errored_files
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/media.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;media.dm 13"/></a></h3>
+        <p>It's more consistently functional to just store these in a list and tell admins to go digging than log it.</p><h3 id="var/invalid_jsons_exist"><aside class="declaration">var </aside>invalid_jsons_exist
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/media.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;media.dm 11"/></a></h3>
+        <p>Only notify admins once per init about invalid jsons</p><h3 id="var/tracks_by_tag"><aside class="declaration">var </aside>tracks_by_tag
+            <aside>&ndash; /list/datum/media</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/media.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;media.dm 8"/></a></h3>
+        <p>Media definitions grouped by their <code>media_tags</code>, All tracks share the implicit tag <code>all</code></p><h2 id="proc">Proc Details</h2><h3 id="proc/decode_or_null"><aside class="declaration">proc </aside>decode_or_null<aside>(basedir, json_record) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/media.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;media.dm 91"/></a></aside>
+        </h3>
+        <p>A two-entry list containing the erroring tag, and a reason for the error.
+Quarantine proc for json decoding, Has handling code for most reasonable issues with file structure, and can safely die.
+Returns -1/MEDIA_LOAD_FAILED on error, a list on success, and null on suicide.</p><h3 id="proc/log_load_fail"><aside class="declaration">proc </aside>log_load_fail<aside>(entry, /list/error_tuple) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/media.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;media.dm 103"/></a></aside>
+        </h3>
+        <p>Log a failure to load a specific media track, and notify admins.</p><h3 id="proc/validate_media"><aside class="declaration">proc </aside>validate_media<aside>(json_data, jd_full_filepath, jd_tag_cache) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/media.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;media.dm 117"/></a></aside>
+        </h3>
+        <p>Run media validation checks. Returns null on success, or a log_load_failure compatible tuple-list on failure.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

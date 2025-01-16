@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;stack - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/stack.html#var">Var Details</a> - <a href="obj/item/stack.html#proc">Proc Details</a></header>
+<main>
+<h1>stack <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 18"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/stack.html#var/absorption_capacity">absorption_capacity</a></th><td>How much blood this stack can absorb until the owner starts loosing blood again.</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/absorption_rate_modifier">absorption_rate_modifier</a></th><td>How much this stack reduces blood flow, multiplier</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/amount">amount</a></th><td>The amount of STUFF currently in the stack.</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/burn_cleanliness_bonus">burn_cleanliness_bonus</a></th><td>Like splint_factor but for burns instead of bone wounds. This is a multiplier used to speed up burn recoveries</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/dynamically_set_name">dynamically_set_name</a></th><td>If TRUE, dynamically adjust the name of the item based on singular/plural quantities.</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/full_w_class">full_w_class</a></th><td>The weight class the stack should have at amount &gt; 2/3rds max_amount</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/has_unique_girder">has_unique_girder</a></th><td>Does this stack require a unique girder in order to make a wall?</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/is_cyborg">is_cyborg</a></th><td>It's TRUE if module is used by a cyborg, and uses its storage</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/material_type">material_type</a></th><td>Datum material type that this stack is made of</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/mats_per_unit">mats_per_unit</a></th><td>list that tells you how much is in a single unit.</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/matter_amount">matter_amount</a></th><td>Amount of matter for RCD</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/max_amount">max_amount</a></th><td>The maximum amount of STUFF this stack can hold. also see stack recipes initialisation, param &quot;max_res_amount&quot; must be equal to this max_amount</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/merge_type">merge_type</a></th><td>This path and its children should merge with this stack, defaults to src.type</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/multiple_gender">multiple_gender</a></th><td>The gender of the stack.</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/novariants">novariants</a></th><td>If FALSE, the stack changes icon state based on the ratio of amount to max amount.</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/singular_gender">singular_gender</a></th><td>The gender of a single instance of the stack.</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/singular_name">singular_name</a></th><td>The name of one piece of the stack.</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/splint_slowdown">splint_slowdown</a></th><td>If set and this used as a splint for a broken bone wound, this is used as a multiplier for applicable slowdowns (lower = better) (also for speeding up burn recoveries)</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/stack_name">stack_name</a></th><td>The name used to describe the group of objects.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/absorb_blood">absorb_blood</a></th><td>Absorb an incoming bleed amount, return the amount we failed to absorb.</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/add">add</a></th><td></td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/build_recipe">build_recipe</a></th><td>Returns a list of properties of a given recipe</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/can_merge">can_merge</a></th><td></td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/is_valid_recipe">is_valid_recipe</a></th><td>Checks if the recipe is valid to be used</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/is_zero_amount">is_zero_amount</a></th><td>Returns TRUE if the item stack is the equivalent of a 0 amount item.</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/merge">merge</a></th><td>Merges as much of src into target_stack as possible. If present, the limit arg overrides target_stack.max_amount for transfer.</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/merge_without_del">merge_without_del</a></th><td>Merges as much of src into target_stack as possible. If present, the limit arg overrides target_stack.max_amount for transfer.</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/on_movable_entered_occupied_turf">on_movable_entered_occupied_turf</a></th><td>Signal handler for connect_loc element. Called when a movable enters the turf we're currently occupying. Merges if possible.</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/recursively_build_recipes">recursively_build_recipes</a></th><td>Builds all recipes in a given recipe list and returns an association list containing them</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/set_custom_materials">set_custom_materials</a></th><td>Override to make things like metalgen accurately set custom materials</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/set_mats_per_unit">set_mats_per_unit</a></th><td></td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/split_stack">split_stack</a></th><td></td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/update_custom_materials">update_custom_materials</a></th><td>Updates the custom materials list of this stack.</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/update_gender">update_gender</a></th><td>Update the gender var based on if the stack contains 1 or more items.</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/update_maptext">update_maptext</a></th><td>Set the maptext for the item that shows how much junk is inside the trunk.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/absorption_capacity"><aside class="declaration">var </aside>absorption_capacity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 70"/></a></h3>
+        <p>How much blood this stack can absorb until the owner starts loosing blood again.</p><h3 id="var/absorption_rate_modifier"><aside class="declaration">var </aside>absorption_rate_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 72"/></a></h3>
+        <p>How much this stack reduces blood flow, multiplier</p><h3 id="var/amount"><aside class="declaration">var </aside>amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 38"/></a></h3>
+        <p>The amount of STUFF currently in the stack.</p><h3 id="var/burn_cleanliness_bonus"><aside class="declaration">var </aside>burn_cleanliness_bonus
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 67"/></a></h3>
+        <p>Like splint_factor but for burns instead of bone wounds. This is a multiplier used to speed up burn recoveries</p><h3 id="var/dynamically_set_name"><aside class="declaration">var </aside>dynamically_set_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 49"/></a></h3>
+        <p>If TRUE, dynamically adjust the name of the item based on singular/plural quantities.</p><h3 id="var/full_w_class"><aside class="declaration">var </aside>full_w_class
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 45"/></a></h3>
+        <p>The weight class the stack should have at amount &gt; 2/3rds max_amount</p><h3 id="var/has_unique_girder"><aside class="declaration">var </aside>has_unique_girder
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 77"/></a></h3>
+        <p>Does this stack require a unique girder in order to make a wall?</p><h3 id="var/is_cyborg"><aside class="declaration">var </aside>is_cyborg
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 58"/></a></h3>
+        <p>It's TRUE if module is used by a cyborg, and uses its storage</p><h3 id="var/material_type"><aside class="declaration">var </aside>material_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 53"/></a></h3>
+        <p>Datum material type that this stack is made of</p><h3 id="var/mats_per_unit"><aside class="declaration">var </aside>mats_per_unit
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 51"/></a></h3>
+        <p>list that tells you how much is in a single unit.</p><h3 id="var/matter_amount"><aside class="declaration">var </aside>matter_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 75"/></a></h3>
+        <p>Amount of matter for RCD</p><h3 id="var/max_amount"><aside class="declaration">var </aside>max_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 40"/></a></h3>
+        <p>The maximum amount of STUFF this stack can hold. also see stack recipes initialisation, param &quot;max_res_amount&quot; must be equal to this max_amount</p><h3 id="var/merge_type"><aside class="declaration">var </aside>merge_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 43"/></a></h3>
+        <p>This path and its children should merge with this stack, defaults to src.type</p><h3 id="var/multiple_gender"><aside class="declaration">var </aside>multiple_gender
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 35"/></a></h3>
+        <p>The gender of the stack.</p><h3 id="var/novariants"><aside class="declaration">var </aside>novariants
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 47"/></a></h3>
+        <p>If FALSE, the stack changes icon state based on the ratio of amount to max amount.</p><h3 id="var/singular_gender"><aside class="declaration">var </aside>singular_gender
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 30"/></a></h3>
+        <p>The gender of a single instance of the stack.</p><h3 id="var/singular_name"><aside class="declaration">var </aside>singular_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 28"/></a></h3>
+        <p>The name of one piece of the stack.</p><h3 id="var/splint_slowdown"><aside class="declaration">var </aside>splint_slowdown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 65"/></a></h3>
+        <p>If set and this used as a splint for a broken bone wound, this is used as a multiplier for applicable slowdowns (lower = better) (also for speeding up burn recoveries)</p><h3 id="var/stack_name"><aside class="declaration">var </aside>stack_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 33"/></a></h3>
+        <p>The name used to describe the group of objects.</p><h2 id="proc">Proc Details</h2><h3 id="proc/absorb_blood"><aside class="declaration">proc </aside>absorb_blood<aside>(bleed_amt, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/owner) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/medical.dm#L187">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;medical.dm 187"/></a></aside>
+        </h3>
+        <p>Absorb an incoming bleed amount, return the amount we failed to absorb.</p><h3 id="proc/add"><aside class="declaration">proc </aside>add<aside>(_amount) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L510">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 510"/></a></aside>
+        </h3>
+        <ul>
+<li>
+<p>Adds some number of units to this stack.</p>
+</li>
+<li>
+<p>Arguments:</p>
+</li>
+<li>
+<ul>
+<li>_amount: The number of units to add to this stack.</li>
+</ul>
+</li>
+</ul><h3 id="proc/build_recipe"><aside class="declaration">proc </aside>build_recipe<aside>(/<a href="datum.html">datum</a>/stack_recipe/R) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L283">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 283"/></a></aside>
+        </h3>
+        <p>Returns a list of properties of a given recipe</p>
+<p>Arguments:</p>
+<ul>
+<li>R - The stack recipe we are using to get a list of properties</li>
+</ul><h3 id="proc/can_merge"><aside class="declaration">proc </aside>can_merge<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/check, inhand) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L526">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 526"/></a></aside>
+        </h3>
+        <ul>
+<li>
+<p>Checks whether this stack can merge itself into another stack.</p>
+</li>
+<li>
+<p>Arguments:</p>
+</li>
+<li>
+<ul>
+<li><a href="obj/item/stack.html" title="/obj/item/stack">check</a>: The stack to check for mergeability.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>[inhand][boolean]: Whether or not the stack to check should act like it's in a mob's hand.</li>
+</ul>
+</li>
+</ul><h3 id="proc/is_valid_recipe"><aside class="declaration">proc </aside>is_valid_recipe<aside>(/<a href="datum.html">datum</a>/stack_recipe/R, /list/recipe_list) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L298">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 298"/></a></aside>
+        </h3>
+        <p>Checks if the recipe is valid to be used</p>
+<p>Arguments:</p>
+<ul>
+<li>R - The stack recipe we are checking if it is valid</li>
+<li>recipe_list - The list of recipes we are using to check the given recipe</li>
+</ul><h3 id="proc/is_zero_amount"><aside class="declaration">proc </aside>is_zero_amount<aside>(delete_if_zero) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L496">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 496"/></a></aside>
+        </h3>
+        <p>Returns TRUE if the item stack is the equivalent of a 0 amount item.</p>
+<p>Also deletes the item if delete_if_zero is TRUE and the stack does not have
+is_cyborg set to true.</p><h3 id="proc/merge"><aside class="declaration">proc </aside>merge<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/target_stack, limit) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L582">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 582"/></a></aside>
+        </h3>
+        <p>Merges as much of src into target_stack as possible. If present, the limit arg overrides target_stack.max_amount for transfer.</p>
+<p>This proc deletes src if the remaining amount after the transfer is 0.</p><h3 id="proc/merge_without_del"><aside class="declaration">proc </aside>merge_without_del<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/target_stack, limit) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L546">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 546"/></a></aside>
+        </h3>
+        <p>Merges as much of src into target_stack as possible. If present, the limit arg overrides target_stack.max_amount for transfer.</p>
+<p>This calls use() without check = FALSE, preventing the item from qdeling itself if it reaches 0 stack size.</p>
+<p>As a result, this proc can leave behind a 0 amount stack.</p><h3 id="proc/on_movable_entered_occupied_turf"><aside class="declaration">proc </aside>on_movable_entered_occupied_turf<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/arrived) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L587">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 587"/></a></aside>
+        </h3>
+        <p>Signal handler for connect_loc element. Called when a movable enters the turf we're currently occupying. Merges if possible.</p><h3 id="proc/recursively_build_recipes"><aside class="declaration">proc </aside>recursively_build_recipes<aside>(/list/recipe_to_iterate) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L266">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 266"/></a></aside>
+        </h3>
+        <p>Builds all recipes in a given recipe list and returns an association list containing them</p>
+<p>Arguments:</p>
+<ul>
+<li>recipe_to_iterate - The list of recipes we are using to build recipes</li>
+</ul><h3 id="proc/set_custom_materials"><aside class="parent"><a title="/atom" href="atom.html#proc/set_custom_materials">&uarr;</a></aside>set_custom_materials<aside>(/list/materials, multiplier, is_update) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 192"/></a></aside>
+        </h3>
+        <p>Override to make things like metalgen accurately set custom materials</p><h3 id="proc/set_mats_per_unit"><aside class="declaration">proc </aside>set_mats_per_unit<aside>(/list/mats, multiplier) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L180">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 180"/></a></aside>
+        </h3>
+        <ul>
+<li>
+<p>Sets the amount of materials per unit for this stack.</p>
+</li>
+<li>
+<p>Arguments:</p>
+</li>
+<li>
+<ul>
+<li><a href="https://www.byond.com/docs/ref/#/list" title="/list">mats</a>: The value to set the mats per unit to.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>multiplier: The amount to multiply the mats per unit by. Defaults to 1.</li>
+</ul>
+</li>
+</ul><h3 id="proc/split_stack"><aside class="declaration">proc </aside>split_stack<aside>(/<a href="mob.html">mob</a>/user, amount, spawn_loc) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L659">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 659"/></a></aside>
+        </h3>
+        <ul>
+<li>
+<p>Splits the stack into two stacks.</p>
+</li>
+<li>
+<p>Arguments:</p>
+</li>
+<li>
+<ul>
+<li><a href="mob.html" title="/mob">user</a>: The mob splitting the stack.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>amount: The number of units to split from this stack.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>spawn_loc: The place to spawn the new stack, accepts null.</li>
+</ul>
+</li>
+</ul><h3 id="proc/update_custom_materials"><aside class="declaration">proc </aside>update_custom_materials<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L186">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 186"/></a></aside>
+        </h3>
+        <p>Updates the custom materials list of this stack.</p><h3 id="proc/update_gender"><aside class="declaration">proc </aside>update_gender<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 141"/></a></aside>
+        </h3>
+        <p>Update the gender var based on if the stack contains 1 or more items.</p><h3 id="proc/update_maptext"><aside class="declaration">proc </aside>update_maptext<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/stack.dm#L164">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 164"/></a></aside>
+        </h3>
+        <p>Set the maptext for the item that shows how much junk is inside the trunk.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

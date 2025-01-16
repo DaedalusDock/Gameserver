@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;door&#x2F;firedoor - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/door/firedoor.html#var">Var Details</a> - <a href="obj/machinery/door/firedoor.html#proc">Proc Details</a></header>
+<main>
+<h1>firedoor <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/door.html">door</a>/<a href="obj/machinery/door/firedoor.html">firedoor</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/machinery/doors/firedoor.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;doors&#x2F;firedoor.dm 6"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/door/firedoor.html#var/alert_type">alert_type</a></th><td>Type of alarm when active. See code/defines/firealarm.dm for the list. This var being null means there is no alarm.</td></tr>
+            <tr><th><a href="obj/machinery/door/firedoor.html#var/joined_areas">joined_areas</a></th><td>Every area a firedoor is listening to.</td></tr>
+            <tr><th><a href="obj/machinery/door/firedoor.html#var/light_xoffset">light_xoffset</a></th><td>X offset for the overlay lights, so that they line up with the thin border firelocks</td></tr>
+            <tr><th><a href="obj/machinery/door/firedoor.html#var/light_yoffset">light_yoffset</a></th><td>Y offset for the overlay lights, so that they line up with the thin border firelocks</td></tr>
+            <tr><th><a href="obj/machinery/door/firedoor.html#var/luminosity">luminosity</a></th><td>Trick to get the glowing overlay visible from a distance</td></tr>
+            <tr><th><a href="obj/machinery/door/firedoor.html#var/my_area">my_area</a></th><td>The firedoor's area loc</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/door/firedoor.html#proc/adjust_lights_starting_offset">adjust_lights_starting_offset</a></th><td>Sets the offset for the warning lights.</td></tr>
+            <tr><th><a href="obj/machinery/door/firedoor.html#proc/try_to_crowbar">try_to_crowbar</a></th><td>We check for adjacency when using the primary attack.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/alert_type"><aside class="declaration">var </aside>alert_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/machinery/doors/firedoor.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;doors&#x2F;firedoor.dm 41"/></a></h3>
+        <p>Type of alarm when active. See code/defines/firealarm.dm for the list. This var being null means there is no alarm.</p><h3 id="var/joined_areas"><aside class="declaration">var </aside>joined_areas
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/machinery/doors/firedoor.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;doors&#x2F;firedoor.dm 39"/></a></h3>
+        <p>Every area a firedoor is listening to.</p><h3 id="var/light_xoffset"><aside class="declaration">var </aside>light_xoffset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/machinery/doors/firedoor.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;doors&#x2F;firedoor.dm 31"/></a></h3>
+        <p>X offset for the overlay lights, so that they line up with the thin border firelocks</p><h3 id="var/light_yoffset"><aside class="declaration">var </aside>light_yoffset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/machinery/doors/firedoor.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;doors&#x2F;firedoor.dm 33"/></a></h3>
+        <p>Y offset for the overlay lights, so that they line up with the thin border firelocks</p><h3 id="var/luminosity">luminosity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/machinery/doors/firedoor.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;doors&#x2F;firedoor.dm 29"/></a></h3>
+        <p>Trick to get the glowing overlay visible from a distance</p><h3 id="var/my_area"><aside class="declaration">var </aside>my_area
+            <aside>&ndash; /<a href="area.html">area</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/machinery/doors/firedoor.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;doors&#x2F;firedoor.dm 37"/></a></h3>
+        <p>The firedoor's area loc</p><h2 id="proc">Proc Details</h2><h3 id="proc/adjust_lights_starting_offset"><aside class="declaration">proc </aside>adjust_lights_starting_offset<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/machinery/doors/firedoor.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;doors&#x2F;firedoor.dm 65"/></a></aside>
+        </h3>
+        <p>Sets the offset for the warning lights.</p>
+<p>Used for special firelocks with light overlays that don't line up to their sprite.</p><h3 id="proc/try_to_crowbar">try_to_crowbar<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/acting_object, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/machinery/doors/firedoor.dm#L258">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;doors&#x2F;firedoor.dm 258"/></a></aside>
+        </h3>
+        <p>We check for adjacency when using the primary attack.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

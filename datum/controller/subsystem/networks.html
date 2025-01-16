@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;networks - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/networks.html#var">Var Details</a> - <a href="datum/controller/subsystem/networks.html#proc">Proc Details</a></header>
+<main>
+<h1>networks <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/networks.html">networks</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/networks.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;networks.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/networks.html#var/station_network">station_network</a></th><td>Legacy ntnet lookup for software.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/networks.html#var/used_names">used_names</a></th><td>Random name search for
+DO NOT REMOVE NAMES HERE UNLESS YOU KNOW WHAT YOUR DOING</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/networks.html#proc/add_log">add_log</a></th><td>Records a message into the station logging system for the network</td></tr>
+            <tr><th><a href="datum/controller/subsystem/networks.html#proc/purge_logs">purge_logs</a></th><td>Removes all station logs for the current game</td></tr>
+            <tr><th><a href="datum/controller/subsystem/networks.html#proc/update_max_log_count">update_max_log_count</a></th><td>Updates the maximum amount of logs and purges those that go beyond that number</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/station_network"><aside class="declaration">var </aside>station_network
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/ntnet.html">ntnet</a>/station_root</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/networks.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;networks.dm 9"/></a></h3>
+        <p>Legacy ntnet lookup for software.</p><h3 id="var/used_names"><aside class="declaration">var </aside>used_names
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/networks.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;networks.dm 19"/></a></h3>
+        <p>Random name search for
+DO NOT REMOVE NAMES HERE UNLESS YOU KNOW WHAT YOUR DOING</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_log"><aside class="declaration">proc </aside>add_log<aside>(log_string, hardware_id) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/networks.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;networks.dm 49"/></a></aside>
+        </h3>
+        <p>Records a message into the station logging system for the network</p>
+<p>This CAN be read in station by personal so do not use it for game debugging
+during fire.  At this point data.receiver_id has already been converted if it was a broadcast but
+is undefined in this function.  It is also dumped to normal logs but remember players can read/intercept
+these messages
+Arguments:</p>
+<ul>
+<li>log_string - message to log</li>
+<li>hardware_id = optional, text, Blindly stapled to the end.</li>
+</ul><h3 id="proc/purge_logs"><aside class="declaration">proc </aside>purge_logs<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/networks.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;networks.dm 73"/></a></aside>
+        </h3>
+        <p>Removes all station logs for the current game</p><h3 id="proc/update_max_log_count"><aside class="declaration">proc </aside>update_max_log_count<aside>(lognumber) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/networks.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;networks.dm 84"/></a></aside>
+        </h3>
+        <p>Updates the maximum amount of logs and purges those that go beyond that number</p>
+<p>Shouldn't been needed to be run by players but maybe admins need it?
+Arguments:</p>
+<ul>
+<li>lognumber - new setting_maxlogcount count</li>
+</ul></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

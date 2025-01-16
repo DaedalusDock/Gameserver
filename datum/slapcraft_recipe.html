@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;slapcraft_recipe - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/slapcraft_recipe.html#var">Var Details</a> - <a href="datum/slapcraft_recipe.html#proc">Proc Details</a></header>
+<main>
+<h1>slapcraft_recipe <aside>/<a href="datum.html">datum</a>/<a href="datum/slapcraft_recipe.html">slapcraft_recipe</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#var/assembly_name_suffix">assembly_name_suffix</a></th><td>Suffix for the assembly name.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#var/assembly_weight_class">assembly_weight_class</a></th><td>Weight class of the assemblies for this recipe.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#var/category">category</a></th><td>Category this recipe is in the handbook.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#var/desc">desc</a></th><td>Description of the recipe. May be displayed as additional info in the handbook.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#var/examine_hint">examine_hint</a></th><td>Hint displayed to the user which examines the item required for the first step.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#var/name">name</a></th><td>Name of the recipe. Will use the resulting atom's name if not specified</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#var/radial_appearance">radial_appearance</a></th><td>Appearance in the radial menu for the user to choose from if there are recipe collisions.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#var/result_amount">result_amount</a></th><td>Amount of how many resulting types will be crafted.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#var/result_list">result_list</a></th><td>Instead of result type you can use this as associative list of types to amounts for a more varied output</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#var/result_type">result_type</a></th><td>Type of the item that will be yielded as the result.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#var/show_finish_text">show_finish_text</a></th><td>Should we print text when we finish? Mostly used to de-bloat chat.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#var/step_order">step_order</a></th><td>Order in which the steps should be performed.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#var/steps">steps</a></th><td>List of all steps to finish this recipe</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#var/subcategory">subcategory</a></th><td>Subcategory this recipe is in the handbook.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#proc/after_create_items">after_create_items</a></th><td>Behaviour after the item is created, and before the slapcrafting assembly is disposed.
+Here you can move the components into the item if you wish, or do other stuff with them.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#proc/can_finish">can_finish</a></th><td>Runs when the last step tries to be performed and cancels the step if it returns FALSE. Could be used to validate location in structure construction via slap crafting.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#proc/check_correct_step">check_correct_step</a></th><td>Checks if a step of type <code>step_type</code> can be performed with the given <code>step_states</code> state.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#proc/create_item">create_item</a></th><td>Check if we want to craft multiple items, if yes then populate the list passed by the argument with them.
+Creates and returns a new item. This gets called for every item that is supposed to be created in the recipe.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#proc/create_items">create_items</a></th><td>The proc that creates the resulted item(s). Make sure to add them to the passed <code>results</code> list.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#proc/dispose_assembly">dispose_assembly</a></th><td>Here is the proc to get rid of the assembly, should one want to override it to handle that differently.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#proc/finish_recipe">finish_recipe</a></th><td>User has finished the recipe in an assembly.</td></tr>
+            <tr><th><a href="datum/slapcraft_recipe.html#proc/next_suitable_step">next_suitable_step</a></th><td>Returns the next suitable step to be performed with the item by the user with such step_states</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/assembly_name_suffix"><aside class="declaration">var </aside>assembly_name_suffix
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 23"/></a></h3>
+        <p>Suffix for the assembly name.</p><h3 id="var/assembly_weight_class"><aside class="declaration">var </aside>assembly_weight_class
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 21"/></a></h3>
+        <p>Weight class of the assemblies for this recipe.</p><h3 id="var/category"><aside class="declaration">var </aside>category
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 26"/></a></h3>
+        <p>Category this recipe is in the handbook.</p><h3 id="var/desc"><aside class="declaration">var </aside>desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 6"/></a></h3>
+        <p>Description of the recipe. May be displayed as additional info in the handbook.</p><h3 id="var/examine_hint"><aside class="declaration">var </aside>examine_hint
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 8"/></a></h3>
+        <p>Hint displayed to the user which examines the item required for the first step.</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 4"/></a></h3>
+        <p>Name of the recipe. Will use the resulting atom's name if not specified</p><h3 id="var/radial_appearance"><aside class="declaration">var </aside>radial_appearance
+            <aside>&ndash; /image</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 31"/></a></h3>
+        <p>Appearance in the radial menu for the user to choose from if there are recipe collisions.</p><h3 id="var/result_amount"><aside class="declaration">var </aside>result_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 16"/></a></h3>
+        <p>Amount of how many resulting types will be crafted.</p><h3 id="var/result_list"><aside class="declaration">var </aside>result_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 18"/></a></h3>
+        <p>Instead of result type you can use this as associative list of types to amounts for a more varied output</p><h3 id="var/result_type"><aside class="declaration">var </aside>result_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 14"/></a></h3>
+        <p>Type of the item that will be yielded as the result.</p><h3 id="var/show_finish_text"><aside class="declaration">var </aside>show_finish_text
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 38"/></a></h3>
+        <p>Should we print text when we finish? Mostly used to de-bloat chat.</p><h3 id="var/step_order"><aside class="declaration">var </aside>step_order
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 33"/></a></h3>
+        <p>Order in which the steps should be performed.</p><h3 id="var/steps"><aside class="declaration">var </aside>steps
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 11"/></a></h3>
+        <p>List of all steps to finish this recipe</p><h3 id="var/subcategory"><aside class="declaration">var </aside>subcategory
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 28"/></a></h3>
+        <p>Subcategory this recipe is in the handbook.</p><h2 id="proc">Proc Details</h2><h3 id="proc/after_create_items"><aside class="declaration">proc </aside>after_create_items<aside>(/list/items_list, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L241">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 241"/></a></aside>
+        </h3>
+        <p>Behaviour after the item is created, and before the slapcrafting assembly is disposed.
+Here you can move the components into the item if you wish, or do other stuff with them.</p><h3 id="proc/can_finish"><aside class="declaration">proc </aside>can_finish<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L209">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 209"/></a></aside>
+        </h3>
+        <p>Runs when the last step tries to be performed and cancels the step if it returns FALSE. Could be used to validate location in structure construction via slap crafting.</p><h3 id="proc/check_correct_step"><aside class="declaration">proc </aside>check_correct_step<aside>(step_type, /list/step_states) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 104"/></a></aside>
+        </h3>
+        <p>Checks if a step of type <code>step_type</code> can be performed with the given <code>step_states</code> state.</p><h3 id="proc/create_item"><aside class="declaration">proc </aside>create_item<aside>(item_path, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L236">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 236"/></a></aside>
+        </h3>
+        <p>Check if we want to craft multiple items, if yes then populate the list passed by the argument with them.
+Creates and returns a new item. This gets called for every item that is supposed to be created in the recipe.</p><h3 id="proc/create_items"><aside class="declaration">proc </aside>create_items<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly, /list/results) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L213">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 213"/></a></aside>
+        </h3>
+        <p>The proc that creates the resulted item(s). Make sure to add them to the passed <code>results</code> list.</p><h3 id="proc/dispose_assembly"><aside class="declaration">proc </aside>dispose_assembly<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L245">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 245"/></a></aside>
+        </h3>
+        <p>Here is the proc to get rid of the assembly, should one want to override it to handle that differently.</p><h3 id="proc/finish_recipe"><aside class="declaration">proc </aside>finish_recipe<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a>/assembly) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 184"/></a></aside>
+        </h3>
+        <p>User has finished the recipe in an assembly.</p><h3 id="proc/next_suitable_step"><aside class="declaration">proc </aside>next_suitable_step<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /list/step_states, check_type_only) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_recipe.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_recipe.dm 62"/></a></aside>
+        </h3>
+        <p>Returns the next suitable step to be performed with the item by the user with such step_states</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

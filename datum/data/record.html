@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;data&#x2F;record - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/data/record.html#var">Var Details</a> - <a href="datum/data/record.html#proc">Proc Details</a></header>
+<main>
+<h1>record <aside>/<a href="datum.html">datum</a>/<a href="datum/data/record.html">data/record</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/datacore/records.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;datacore&#x2F;records.dm 4"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/data/record.html#var/fields">fields</a></th><td>The data</td></tr>
+            <tr><th><a href="datum/data/record.html#var/library">library</a></th><td>A ref to the library we're contained in.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/data/record.html#proc/Copy">Copy</a></th><td>Creates a copy of the record, without it's library.</td></tr>
+            <tr><th><a href="datum/data/record.html#proc/get_front_photo">get_front_photo</a></th><td>A helper proc to get the front photo of a character from the record.
+Handles calling <code>get_photo()</code>, read its documentation for more information.</td></tr>
+            <tr><th><a href="datum/data/record.html#proc/get_photo">get_photo</a></th><td>You shouldn't be calling this directly, use <code>get_front_photo()</code> or <code>get_side_photo()</code>
+instead.</td></tr>
+            <tr><th><a href="datum/data/record.html#proc/get_side_photo">get_side_photo</a></th><td>A helper proc to get the side photo of a character from the record.
+Handles calling <code>get_photo()</code>, read its documentation for more information.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/fields"><aside class="declaration">var </aside>fields
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/datacore/records.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;datacore&#x2F;records.dm 9"/></a></h3>
+        <p>The data</p><h3 id="var/library"><aside class="declaration">var </aside>library
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/data_library.html">data_library</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/datacore/records.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;datacore&#x2F;records.dm 7"/></a></h3>
+        <p>A ref to the library we're contained in.</p><h2 id="proc">Proc Details</h2><h3 id="proc/Copy"><aside class="declaration">proc </aside>Copy<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/datacore/records.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;datacore&#x2F;records.dm 18"/></a></aside>
+        </h3>
+        <p>Creates a copy of the record, without it's library.</p><h3 id="proc/get_front_photo"><aside class="declaration">proc </aside>get_front_photo<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/datacore/records.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;datacore&#x2F;records.dm 25"/></a></aside>
+        </h3>
+        <p>A helper proc to get the front photo of a character from the record.
+Handles calling <code>get_photo()</code>, read its documentation for more information.</p><h3 id="proc/get_photo"><aside class="declaration">proc </aside>get_photo<aside>(field_name, orientation) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/datacore/records.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;datacore&#x2F;records.dm 51"/></a></aside>
+        </h3>
+        <p>You shouldn't be calling this directly, use <code>get_front_photo()</code> or <code>get_side_photo()</code>
+instead.</p>
+<p>This is the proc that handles either fetching (if it was already generated before) or
+generating (if it wasn't) the specified photo from the specified record. This is only
+intended to be used by records that used to try to access <code>fields[&quot;photo_front&quot;]</code> or
+<code>fields[&quot;photo_side&quot;]</code>, and will return an empty icon if there isn't any of the necessary
+fields.</p>
+<p>Arguments:</p>
+<ul>
+<li>field_name - The name of the key in the <code>fields</code> list, of the record itself.</li>
+<li>orientation - The direction in which you want the character appearance to be rotated
+in the outputed photo.</li>
+</ul>
+<p>Returns an empty <code>/icon</code> if there was no <code>character_appearance</code> entry in the <code>fields</code> list,
+returns the generated/cached photo otherwise.</p><h3 id="proc/get_side_photo"><aside class="declaration">proc </aside>get_side_photo<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/datacore/records.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;datacore&#x2F;records.dm 30"/></a></aside>
+        </h3>
+        <p>A helper proc to get the side photo of a character from the record.
+Handles calling <code>get_photo()</code>, read its documentation for more information.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

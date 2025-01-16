@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;slapcraft_assembly - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/slapcraft_assembly.html#var">Var Details</a> - <a href="obj/item/slapcraft_assembly.html#proc">Proc Details</a></header>
+<main>
+<h1>slapcraft_assembly <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/slapcraft_assembly.html">slapcraft_assembly</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_assembly.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_assembly.dm 1"/></a></h1>
+
+<p>The location to place the assembly or items if the user cannot hold them</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/slapcraft_assembly.html#var/being_finished">being_finished</a></th><td>Whether it's in the process of being finished.</td></tr>
+            <tr><th><a href="obj/item/slapcraft_assembly.html#var/disassembling">disassembling</a></th><td>Whether it's in the process of being disassembled.</td></tr>
+            <tr><th><a href="obj/item/slapcraft_assembly.html#var/finished_items">finished_items</a></th><td>A list of weakrefs to finished items (not including items-in-items), used to move items around after they're complete and this object is qdeling.</td></tr>
+            <tr><th><a href="obj/item/slapcraft_assembly.html#var/items_to_place_in_result">items_to_place_in_result</a></th><td>All items that want to place itself in the resulting item after the recipe is finished.</td></tr>
+            <tr><th><a href="obj/item/slapcraft_assembly.html#var/recipe">recipe</a></th><td>Recipe this assembly is trying to make</td></tr>
+            <tr><th><a href="obj/item/slapcraft_assembly.html#var/step_states">step_states</a></th><td>Associative list of whether the steps are finished or not</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/slapcraft_assembly.html#proc/attack_self">attack_self</a></th><td>Add the appearance of all the components that the assembly is being made with.</td></tr>
+            <tr><th><a href="obj/item/slapcraft_assembly.html#proc/disassemble">disassemble</a></th><td>Disassembles the assembly, either qdeling it if its in nullspace, or dumping all of its components on the ground and then qdeling it.</td></tr>
+            <tr><th><a href="obj/item/slapcraft_assembly.html#proc/finished_step">finished_step</a></th><td>Progresses the assembly to the next step and finishes it if made it through the last step.</td></tr>
+            <tr><th><a href="obj/item/slapcraft_assembly.html#proc/set_recipe">set_recipe</a></th><td>Sets the recipe of this assembly aswell making the name and description matching.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/being_finished"><aside class="declaration">var </aside>being_finished
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_assembly.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_assembly.dm 11"/></a></h3>
+        <p>Whether it's in the process of being finished.</p><h3 id="var/disassembling"><aside class="declaration">var </aside>disassembling
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_assembly.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_assembly.dm 9"/></a></h3>
+        <p>Whether it's in the process of being disassembled.</p><h3 id="var/finished_items"><aside class="declaration">var </aside>finished_items
+            <aside>&ndash; /list/datum/weakref</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_assembly.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_assembly.dm 16"/></a></h3>
+        <p>A list of weakrefs to finished items (not including items-in-items), used to move items around after they're complete and this object is qdeling.</p><h3 id="var/items_to_place_in_result"><aside class="declaration">var </aside>items_to_place_in_result
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_assembly.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_assembly.dm 13"/></a></h3>
+        <p>All items that want to place itself in the resulting item after the recipe is finished.</p><h3 id="var/recipe"><aside class="declaration">var </aside>recipe
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/slapcraft_recipe.html">slapcraft_recipe</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_assembly.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_assembly.dm 5"/></a></h3>
+        <p>Recipe this assembly is trying to make</p><h3 id="var/step_states"><aside class="declaration">var </aside>step_states
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_assembly.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_assembly.dm 7"/></a></h3>
+        <p>Associative list of whether the steps are finished or not</p><h2 id="proc">Proc Details</h2><h3 id="proc/attack_self"><aside class="parent"><a title="/obj/item" href="obj/item.html#proc/attack_self">&uarr;</a></aside>attack_self<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_assembly.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_assembly.dm 53"/></a></aside>
+        </h3>
+        <p>Add the appearance of all the components that the assembly is being made with.</p><h3 id="proc/disassemble"><aside class="declaration">proc </aside>disassemble<aside>(force) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_assembly.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_assembly.dm 83"/></a></aside>
+        </h3>
+        <p>Disassembles the assembly, either qdeling it if its in nullspace, or dumping all of its components on the ground and then qdeling it.</p><h3 id="proc/finished_step"><aside class="declaration">proc </aside>finished_step<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="datum.html">datum</a>/<a href="datum/slapcraft_step.html">slapcraft_step</a>/step_datum) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_assembly.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_assembly.dm 121"/></a></aside>
+        </h3>
+        <p>Progresses the assembly to the next step and finishes it if made it through the last step.</p><h3 id="proc/set_recipe"><aside class="declaration">proc </aside>set_recipe<aside>(/<a href="datum.html">datum</a>/<a href="datum/slapcraft_recipe.html">slapcraft_recipe</a>/set_recipe) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/slapcrafting/slapcraft_assembly.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;slapcrafting&#x2F;slapcraft_assembly.dm 129"/></a></aside>
+        </h3>
+        <p>Sets the recipe of this assembly aswell making the name and description matching.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;packetnet.dm - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/packetnet.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/packetnet.dm 
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/NETWORK_FLAG_GEN_ID">NETWORK_FLAG_GEN_ID</a></th><td>Automatically generate a <a href="obj/machinery.html#var/net_id" title="/obj/machinery">/obj/machinery/var/net_id</a> on initialize.</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/NETWORK_FLAG_USE_DATATERMINAL">NETWORK_FLAG_USE_DATATERMINAL</a></th><td>Automatically connect to a data terminal at lateinit.
+Not having this flag and attempting to interact with
+data_terminals via [/obj/machinery/proc/link_to_jack()] is illegal and will explicitly crash.</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/NETWORK_FLAG_POWERNET_DATANODE">NETWORK_FLAG_POWERNET_DATANODE</a></th><td>Add the machine to [/datum/powernet/var/list/data_nodes]
+You should have a VERY good reason for this to be set on anything not of type <a href="obj/machinery.html" title="/obj/machinery">/obj/machinery/power</a></td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/NETWORK_FLAGS_STANDARD_CONNECTION">NETWORK_FLAGS_STANDARD_CONNECTION</a></th><td>Standard set of network flags, for use by most network-connected equipment.</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/PACKET_SOURCE_ADDRESS">PACKET_SOURCE_ADDRESS</a></th><td>Source (sender) address of a packet</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/PACKET_DESTINATION_ADDRESS">PACKET_DESTINATION_ADDRESS</a></th><td>Destination (receiver) address of a packet</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/PACKET_CMD">PACKET_CMD</a></th><td>Command (type) of a packet</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/PACKET_NETCLASS">PACKET_NETCLASS</a></th><td>Network Class of a device, used as part of ping replies.</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/NETJACK_CONNECT_SUCCESS">NETJACK_CONNECT_SUCCESS</a></th><td>Successfully connected.</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/NETJACK_CONNECT_CONFLICT">NETJACK_CONNECT_CONFLICT</a></th><td>Connection rejected, Already connected to a machine</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/NETJACK_CONNECT_NOTSAMETURF">NETJACK_CONNECT_NOTSAMETURF</a></th><td>Connection rejected, Not sharing a turf (???)</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/NETJACK_CONNECT_NOT_FOUND">NETJACK_CONNECT_NOT_FOUND</a></th><td>Data Terminal not found.</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/RECEIVE_SIGNAL_FINISHED">RECEIVE_SIGNAL_FINISHED</a></th><td>Packet fully handled by parent</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/RECEIVE_SIGNAL_CONTINUE">RECEIVE_SIGNAL_CONTINUE</a></th><td>Packet needs additional handling</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/MAGIC_DATA_MUST_DISCARD">MAGIC_DATA_MUST_DISCARD</a></th><td>Packet contains volatile data where storing it may cause GC issues.
+This means references to atoms, non-trivial datums like virtualspeakers, etc.</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/MAGIC_DATA_MUST_OBFUSCATE">MAGIC_DATA_MUST_OBFUSCATE</a></th><td>Packet contains data that players should never be able to see <em>DIRECTLY</em>.
+Re-Interpretation is allowed, This is specifically for arbitrary packet capture applications where raw fields are accessible.
+For example, voice signal packets, or stuff that wouldn't make sense to be parsable as raw text.</td></tr>
+        <tr><th><a href="code/__DEFINES/packetnet.html#define/MAGIC_DATA_INVIOLABLE">MAGIC_DATA_INVIOLABLE</a></th><td>All protection flags at once.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/MAGIC_DATA_INVIOLABLE"><aside class="declaration">#define </aside>MAGIC_DATA_INVIOLABLE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 84"/></a>
+    </h3>
+    <p>All protection flags at once.</p><h3 id="define/MAGIC_DATA_MUST_DISCARD"><aside class="declaration">#define </aside>MAGIC_DATA_MUST_DISCARD
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 76"/></a>
+    </h3>
+    <p>Packet contains volatile data where storing it may cause GC issues.
+This means references to atoms, non-trivial datums like virtualspeakers, etc.</p><h3 id="define/MAGIC_DATA_MUST_OBFUSCATE"><aside class="declaration">#define </aside>MAGIC_DATA_MUST_OBFUSCATE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 81"/></a>
+    </h3>
+    <p>Packet contains data that players should never be able to see <em>DIRECTLY</em>.
+Re-Interpretation is allowed, This is specifically for arbitrary packet capture applications where raw fields are accessible.
+For example, voice signal packets, or stuff that wouldn't make sense to be parsable as raw text.</p><h3 id="define/NETJACK_CONNECT_CONFLICT"><aside class="declaration">#define </aside>NETJACK_CONNECT_CONFLICT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 56"/></a>
+    </h3>
+    <p>Connection rejected, Already connected to a machine</p><h3 id="define/NETJACK_CONNECT_NOTSAMETURF"><aside class="declaration">#define </aside>NETJACK_CONNECT_NOTSAMETURF
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 59"/></a>
+    </h3>
+    <p>Connection rejected, Not sharing a turf (???)</p><h3 id="define/NETJACK_CONNECT_NOT_FOUND"><aside class="declaration">#define </aside>NETJACK_CONNECT_NOT_FOUND
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 62"/></a>
+    </h3>
+    <p>Data Terminal not found.</p><h3 id="define/NETJACK_CONNECT_SUCCESS"><aside class="declaration">#define </aside>NETJACK_CONNECT_SUCCESS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 53"/></a>
+    </h3>
+    <p>Successfully connected.</p><h3 id="define/NETWORK_FLAGS_STANDARD_CONNECTION"><aside class="declaration">#define </aside>NETWORK_FLAGS_STANDARD_CONNECTION
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 19"/></a>
+    </h3>
+    <p>Standard set of network flags, for use by most network-connected equipment.</p><h3 id="define/NETWORK_FLAG_GEN_ID"><aside class="declaration">#define </aside>NETWORK_FLAG_GEN_ID
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 7"/></a>
+    </h3>
+    <p>Automatically generate a <a href="obj/machinery.html#var/net_id" title="/obj/machinery">/obj/machinery/var/net_id</a> on initialize.</p><h3 id="define/NETWORK_FLAG_POWERNET_DATANODE"><aside class="declaration">#define </aside>NETWORK_FLAG_POWERNET_DATANODE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 16"/></a>
+    </h3>
+    <p>Add the machine to [/datum/powernet/var/list/data_nodes]
+You should have a VERY good reason for this to be set on anything not of type <a href="obj/machinery.html" title="/obj/machinery">/obj/machinery/power</a></p><h3 id="define/NETWORK_FLAG_USE_DATATERMINAL"><aside class="declaration">#define </aside>NETWORK_FLAG_USE_DATATERMINAL
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 12"/></a>
+    </h3>
+    <p>Automatically connect to a data terminal at lateinit.
+Not having this flag and attempting to interact with
+data_terminals via [/obj/machinery/proc/link_to_jack()] is illegal and will explicitly crash.</p><h3 id="define/PACKET_CMD"><aside class="declaration">#define </aside>PACKET_CMD
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 37"/></a>
+    </h3>
+    <p>Command (type) of a packet</p><h3 id="define/PACKET_DESTINATION_ADDRESS"><aside class="declaration">#define </aside>PACKET_DESTINATION_ADDRESS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 35"/></a>
+    </h3>
+    <p>Destination (receiver) address of a packet</p><h3 id="define/PACKET_NETCLASS"><aside class="declaration">#define </aside>PACKET_NETCLASS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 39"/></a>
+    </h3>
+    <p>Network Class of a device, used as part of ping replies.</p><h3 id="define/PACKET_SOURCE_ADDRESS"><aside class="declaration">#define </aside>PACKET_SOURCE_ADDRESS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 33"/></a>
+    </h3>
+    <p>Source (sender) address of a packet</p><h3 id="define/RECEIVE_SIGNAL_CONTINUE"><aside class="declaration">#define </aside>RECEIVE_SIGNAL_CONTINUE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 69"/></a>
+    </h3>
+    <p>Packet needs additional handling</p><h3 id="define/RECEIVE_SIGNAL_FINISHED"><aside class="declaration">#define </aside>RECEIVE_SIGNAL_FINISHED
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/packetnet.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;packetnet.dm 67"/></a>
+    </h3>
+    <p>Packet fully handled by parent</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

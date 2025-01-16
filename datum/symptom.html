@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;symptom - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/symptom.html#var">Var Details</a> - <a href="datum/symptom.html#proc">Proc Details</a></header>
+<main>
+<h1>symptom <aside>/<a href="datum.html">datum</a>/<a href="datum/symptom.html">symptom</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/symptom.html#var/base_message_chance">base_message_chance</a></th><td>Base chance of sending warning messages, so it can be modified</td></tr>
+            <tr><th><a href="datum/symptom.html#var/id">id</a></th><td>A stringified version of the type.</td></tr>
+            <tr><th><a href="datum/symptom.html#var/level">level</a></th><td>The type level of the symptom. Higher is harder to generate.</td></tr>
+            <tr><th><a href="datum/symptom.html#var/naturally_occuring">naturally_occuring</a></th><td>If this symptom can appear from /datum/pathogen/advance/GenerateSymptoms()</td></tr>
+            <tr><th><a href="datum/symptom.html#var/neutered">neutered</a></th><td>A neutered symptom has no effect, and only affects statistics.</td></tr>
+            <tr><th><a href="datum/symptom.html#var/next_activation">next_activation</a></th><td>Ticks between each activation</td></tr>
+            <tr><th><a href="datum/symptom.html#var/power">power</a></th><td>Can be used to multiply virus effects</td></tr>
+            <tr><th><a href="datum/symptom.html#var/resistance">resistance</a></th><td>How the symptom affects the pathogen's resistance stat, positive values make it harder to cure</td></tr>
+            <tr><th><a href="datum/symptom.html#var/severity">severity</a></th><td>The severity level of the symptom. Higher is more dangerous.</td></tr>
+            <tr><th><a href="datum/symptom.html#var/stage_speed">stage_speed</a></th><td>How the symptom affects the pathogen's stage speed stat, positive values cause faster stage progression</td></tr>
+            <tr><th><a href="datum/symptom.html#var/stealth">stealth</a></th><td>How the symptom affects the pathogen's stealth stat, positive values make it less noticeable</td></tr>
+            <tr><th><a href="datum/symptom.html#var/suppress_warning">suppress_warning</a></th><td>If the early warnings are suppressed or not</td></tr>
+            <tr><th><a href="datum/symptom.html#var/threshold_descs">threshold_descs</a></th><td>Descriptions of threshold effects</td></tr>
+            <tr><th><a href="datum/symptom.html#var/transmittable">transmittable</a></th><td>How the symptom affects the pathogen's transmissibility</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/symptom.html#proc/Copy">Copy</a></th><td>Returns a new instance of the symptom.</td></tr>
+            <tr><th><a href="datum/symptom.html#proc/on_add_to_pathogen">on_add_to_pathogen</a></th><td>Called when the symptom is added to a pathogen.</td></tr>
+            <tr><th><a href="datum/symptom.html#proc/on_process">on_process</a></th><td>The process handler. Returns TRUE if the pathogen could process this tick. Reschedules the next activation on success.</td></tr>
+            <tr><th><a href="datum/symptom.html#proc/on_remove_from_pathogen">on_remove_from_pathogen</a></th><td>Called when the symptom is removed from a pathogen or neutered.</td></tr>
+            <tr><th><a href="datum/symptom.html#proc/on_stage_change">on_stage_change</a></th><td>Hook for handling stage changes.</td></tr>
+            <tr><th><a href="datum/symptom.html#proc/on_start_processing">on_start_processing</a></th><td>Called when processing of the advance pathogen that holds this symptom infects a host and upon each Refresh() of that advance pathogen.</td></tr>
+            <tr><th><a href="datum/symptom.html#proc/on_stop_processing">on_stop_processing</a></th><td>Called when the pathogen has stopped processing, including due to deletion.</td></tr>
+            <tr><th><a href="datum/symptom.html#proc/sync_properties">sync_properties</a></th><td>Update vars based on the pathogen properties.</td></tr>
+            <tr><th><a href="datum/symptom.html#proc/update_next_activation">update_next_activation</a></th><td>Set the next activation time.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/base_message_chance"><aside class="declaration">var </aside>base_message_chance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 23"/></a></h3>
+        <p>Base chance of sending warning messages, so it can be modified</p><h3 id="var/id"><aside class="declaration">var </aside>id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 21"/></a></h3>
+        <p>A stringified version of the type.</p><h3 id="var/level"><aside class="declaration">var </aside>level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 17"/></a></h3>
+        <p>The type level of the symptom. Higher is harder to generate.</p><h3 id="var/naturally_occuring"><aside class="declaration">var </aside>naturally_occuring
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 36"/></a></h3>
+        <p>If this symptom can appear from /datum/pathogen/advance/GenerateSymptoms()</p><h3 id="var/neutered"><aside class="declaration">var </aside>neutered
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 33"/></a></h3>
+        <p>A neutered symptom has no effect, and only affects statistics.</p><h3 id="var/next_activation"><aside class="declaration">var </aside>next_activation
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 27"/></a></h3>
+        <p>Ticks between each activation</p><h3 id="var/power"><aside class="declaration">var </aside>power
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 31"/></a></h3>
+        <p>Can be used to multiply virus effects</p><h3 id="var/resistance"><aside class="declaration">var </aside>resistance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 11"/></a></h3>
+        <p>How the symptom affects the pathogen's resistance stat, positive values make it harder to cure</p><h3 id="var/severity"><aside class="declaration">var </aside>severity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 19"/></a></h3>
+        <p>The severity level of the symptom. Higher is more dangerous.</p><h3 id="var/stage_speed"><aside class="declaration">var </aside>stage_speed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 13"/></a></h3>
+        <p>How the symptom affects the pathogen's stage speed stat, positive values cause faster stage progression</p><h3 id="var/stealth"><aside class="declaration">var </aside>stealth
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 9"/></a></h3>
+        <p>How the symptom affects the pathogen's stealth stat, positive values make it less noticeable</p><h3 id="var/suppress_warning"><aside class="declaration">var </aside>suppress_warning
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 25"/></a></h3>
+        <p>If the early warnings are suppressed or not</p><h3 id="var/threshold_descs"><aside class="declaration">var </aside>threshold_descs
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 7"/></a></h3>
+        <p>Descriptions of threshold effects</p><h3 id="var/transmittable"><aside class="declaration">var </aside>transmittable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 15"/></a></h3>
+        <p>How the symptom affects the pathogen's transmissibility</p><h2 id="proc">Proc Details</h2><h3 id="proc/Copy"><aside class="declaration">proc </aside>Copy<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 91"/></a></aside>
+        </h3>
+        <p>Returns a new instance of the symptom.</p><h3 id="proc/on_add_to_pathogen"><aside class="declaration">proc </aside>on_add_to_pathogen<aside>(/<a href="datum.html">datum</a>/<a href="datum/pathogen.html">pathogen</a>/<a href="datum/pathogen/advance.html">advance</a>/A) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 60"/></a></aside>
+        </h3>
+        <p>Called when the symptom is added to a pathogen.</p><h3 id="proc/on_process"><aside class="declaration">proc </aside>on_process<aside>(/<a href="datum.html">datum</a>/<a href="datum/pathogen.html">pathogen</a>/<a href="datum/pathogen/advance.html">advance</a>/A) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 70"/></a></aside>
+        </h3>
+        <p>The process handler. Returns TRUE if the pathogen could process this tick. Reschedules the next activation on success.</p><h3 id="proc/on_remove_from_pathogen"><aside class="declaration">proc </aside>on_remove_from_pathogen<aside>(/<a href="datum.html">datum</a>/<a href="datum/pathogen.html">pathogen</a>/<a href="datum/pathogen/advance.html">advance</a>/A) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 64"/></a></aside>
+        </h3>
+        <p>Called when the symptom is removed from a pathogen or neutered.</p><h3 id="proc/on_stage_change"><aside class="declaration">proc </aside>on_stage_change<aside>(/<a href="datum.html">datum</a>/<a href="datum/pathogen.html">pathogen</a>/<a href="datum/pathogen/advance.html">advance</a>/A) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 81"/></a></aside>
+        </h3>
+        <p>Hook for handling stage changes.</p><h3 id="proc/on_start_processing"><aside class="declaration">proc </aside>on_start_processing<aside>(/<a href="datum.html">datum</a>/<a href="datum/pathogen.html">pathogen</a>/<a href="datum/pathogen/advance.html">advance</a>/A) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 46"/></a></aside>
+        </h3>
+        <p>Called when processing of the advance pathogen that holds this symptom infects a host and upon each Refresh() of that advance pathogen.</p><h3 id="proc/on_stop_processing"><aside class="declaration">proc </aside>on_stop_processing<aside>(/<a href="datum.html">datum</a>/<a href="datum/pathogen.html">pathogen</a>/<a href="datum/pathogen/advance.html">advance</a>/A) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 53"/></a></aside>
+        </h3>
+        <p>Called when the pathogen has stopped processing, including due to deletion.</p><h3 id="proc/sync_properties"><aside class="declaration">proc </aside>sync_properties<aside>(/list/properties) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 42"/></a></aside>
+        </h3>
+        <p>Update vars based on the pathogen properties.</p><h3 id="proc/update_next_activation"><aside class="declaration">proc </aside>update_next_activation<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/pathogens/advance/symptoms/_symptoms.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;pathogens&#x2F;advance&#x2F;symptoms&#x2F;_symptoms.dm 87"/></a></aside>
+        </h3>
+        <p>Set the next activation time.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

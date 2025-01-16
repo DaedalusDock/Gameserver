@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;codex - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/codex.html#var">Var Details</a> - <a href="datum/controller/subsystem/codex.html#proc">Proc Details</a></header>
+<main>
+<h1>codex <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/codex.html">codex</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#var/all_entries">all_entries</a></th><td>All entries. Unkeyed.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#var/codex_categories">codex_categories</a></th><td>All categories.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#var/codex_index">codex_index</a></th><td>Codex Database Connection</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#var/dynamic_entries">dynamic_entries</a></th><td>All dynamic codex entries, Unkeyed.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#var/entries_by_path">entries_by_path</a></th><td>All STATIC entries, By path. Does not include dynamic entries.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#var/entries_by_string">entries_by_string</a></th><td>All entries, by name.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#var/index_disabled">index_disabled</a></th><td>Search Index breaker var, Automatically set if the DB index ever throws an error.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#var/index_file">index_file</a></th><td>The same as above, but sorted (?)</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#var/index_generating">index_generating</a></th><td>If the index is being built and a dynamic entry tries to register, queue it.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#var/search_cache">search_cache</a></th><td>Search result cache, so we don't need to hit the DB every time.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#var/unregistered_dynamic_entries">unregistered_dynamic_entries</a></th><td>Queued dynamic codex entries, Unkeyed.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#proc/build_db_index">build_db_index</a></th><td>Holds the revision the index was compiled for. If it's different then live, we need to regenerate the index.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#proc/cache_dynamic_record">cache_dynamic_record</a></th><td>Queue a new dynamic record for insertion to the dynamic search index.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#proc/get_codex_entry">get_codex_entry</a></th><td>Returns a codex entry for the given query. May return a list if multiple are found, or null if none.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#proc/prepare_search_database">prepare_search_database</a></th><td>Prepare the search database.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#proc/present_codex_entry">present_codex_entry</a></th><td>Presents a codex entry to a mob. If it receives a list of entries, it will prompt them to choose one.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#proc/present_codex_search">present_codex_search</a></th><td>Presents a list of codex entries to a mob.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#proc/retrieve_entries_for_string">retrieve_entries_for_string</a></th><td>Perform a full-text search through all codex entries. Entries matching the query by name will be shown first.
+Results are cached. Relies on the index database.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/codex.html#proc/text_search_no_db">text_search_no_db</a></th><td>Straight-DM implimentation of full text search. Objectively garbage.
+Does not use the DB. Used when database loading is skipped.
+Argument has already been sanitized.
+Safety checks have already been done. Cache has already been checked.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/all_entries"><aside class="declaration">var </aside>all_entries
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 13"/></a></h3>
+        <p>All entries. Unkeyed.</p><h3 id="var/codex_categories"><aside class="declaration">var </aside>codex_categories
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 23"/></a></h3>
+        <p>All categories.</p><h3 id="var/codex_index"><aside class="declaration">var </aside>codex_index
+            <aside>&ndash; /database</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 30"/></a></h3>
+        <p>Codex Database Connection</p><h3 id="var/dynamic_entries"><aside class="declaration">var </aside>dynamic_entries
+            <aside>&ndash; /list/datum/codex_entry</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 25"/></a></h3>
+        <p>All dynamic codex entries, Unkeyed.</p><h3 id="var/entries_by_path"><aside class="declaration">var </aside>entries_by_path
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 15"/></a></h3>
+        <p>All STATIC entries, By path. Does not include dynamic entries.</p><h3 id="var/entries_by_string"><aside class="declaration">var </aside>entries_by_string
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 17"/></a></h3>
+        <p>All entries, by name.</p><h3 id="var/index_disabled"><aside class="declaration">var </aside>index_disabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 32"/></a></h3>
+        <p>Search Index breaker var, Automatically set if the DB index ever throws an error.</p><h3 id="var/index_file"><aside class="declaration">var </aside>index_file
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 19"/></a></h3>
+        <p>The same as above, but sorted (?)</p><h3 id="var/index_generating"><aside class="declaration">var </aside>index_generating
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 34"/></a></h3>
+        <p>If the index is being built and a dynamic entry tries to register, queue it.</p><h3 id="var/search_cache"><aside class="declaration">var </aside>search_cache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 21"/></a></h3>
+        <p>Search result cache, so we don't need to hit the DB every time.</p><h3 id="var/unregistered_dynamic_entries"><aside class="declaration">var </aside>unregistered_dynamic_entries
+            <aside>&ndash; /list/datum/codex_entry</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 27"/></a></h3>
+        <p>Queued dynamic codex entries, Unkeyed.</p><h2 id="proc">Proc Details</h2><h3 id="proc/build_db_index"><aside class="declaration">proc </aside>build_db_index<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L495">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 495"/></a></aside>
+        </h3>
+        <p>Holds the revision the index was compiled for. If it's different then live, we need to regenerate the index.</p><h3 id="proc/cache_dynamic_record"><aside class="declaration">proc </aside>cache_dynamic_record<aside>(/<a href="datum.html">datum</a>/<a href="datum/codex_entry.html">codex_entry</a>/dyn_record) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L522">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 522"/></a></aside>
+        </h3>
+        <p>Queue a new dynamic record for insertion to the dynamic search index.</p><h3 id="proc/get_codex_entry"><aside class="declaration">proc </aside>get_codex_entry<aside>(entry) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 152"/></a></aside>
+        </h3>
+        <p>Returns a codex entry for the given query. May return a list if multiple are found, or null if none.</p><h3 id="proc/prepare_search_database"><aside class="declaration">proc </aside>prepare_search_database<aside>(drop_existing) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L355">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 355"/></a></aside>
+        </h3>
+        <p>Prepare the search database.</p><h3 id="proc/present_codex_entry"><aside class="declaration">proc </aside>present_codex_entry<aside>(/<a href="mob.html">mob</a>/presenting_to, /<a href="datum.html">datum</a>/<a href="datum/codex_entry.html">codex_entry</a>/entry) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 171"/></a></aside>
+        </h3>
+        <p>Presents a codex entry to a mob. If it receives a list of entries, it will prompt them to choose one.</p><h3 id="proc/present_codex_search"><aside class="declaration">proc </aside>present_codex_search<aside>(/<a href="mob.html">mob</a>/presenting_to, /list/entries, search_query) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L186">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 186"/></a></aside>
+        </h3>
+        <p>Presents a list of codex entries to a mob.</p><h3 id="proc/retrieve_entries_for_string"><aside class="declaration">proc </aside>retrieve_entries_for_string<aside>(searching) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L210">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 210"/></a></aside>
+        </h3>
+        <p>Perform a full-text search through all codex entries. Entries matching the query by name will be shown first.
+Results are cached. Relies on the index database.</p><h3 id="proc/text_search_no_db"><aside class="declaration">proc </aside>text_search_no_db<aside>(searching) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/codex.dm#L310">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;codex.dm 310"/></a></aside>
+        </h3>
+        <p>Straight-DM implimentation of full text search. Objectively garbage.
+Does not use the DB. Used when database loading is skipped.
+Argument has already been sanitized.
+Safety checks have already been done. Cache has already been checked.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;stack&#x2F;sheet - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/stack/sheet.html#var">Var Details</a> - <a href="obj/item/stack/sheet.html#proc">Proc Details</a></header>
+<main>
+<h1>sheet <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/<a href="obj/item/stack/sheet.html">sheet</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/sheets/sheets.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;sheets&#x2F;sheets.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/stack/sheet.html#var/walltype">walltype</a></th><td>What type of wall does this sheet spawn</td></tr>
+            <tr><th><a href="obj/item/stack/sheet.html#var/window_type">window_type</a></th><td>What type of fulltile window this sheet can construct.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/stack/sheet.html#proc/on_attack_floor">on_attack_floor</a></th><td>Facilitates sheets being smacked on the floor</td></tr>
+            <tr><th><a href="obj/item/stack/sheet.html#proc/try_install_window">try_install_window</a></th><td>Mob action to try and install a window if the sheet can do that</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/walltype"><aside class="declaration">var </aside>walltype
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/sheets/sheets.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;sheets&#x2F;sheets.dm 28"/></a></h3>
+        <p>What type of wall does this sheet spawn</p><h3 id="var/window_type"><aside class="declaration">var </aside>window_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/sheets/sheets.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;sheets&#x2F;sheets.dm 33"/></a></h3>
+        <p>What type of fulltile window this sheet can construct.</p><h2 id="proc">Proc Details</h2><h3 id="proc/on_attack_floor"><aside class="declaration">proc </aside>on_attack_floor<aside>(/<a href="mob.html">mob</a>/user, params) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/sheets/sheets.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;sheets&#x2F;sheets.dm 47"/></a></aside>
+        </h3>
+        <p>Facilitates sheets being smacked on the floor</p>
+<p>This is used for crafting by hitting the floor with items.
+The inital use case is glass sheets breaking in to shards when the floor is hit.
+Args:</p>
+<ul>
+<li>user: The user that did the action</li>
+<li>params: paramas passed in from attackby</li>
+</ul><h3 id="proc/try_install_window"><aside class="declaration">proc </aside>try_install_window<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="turf.html">turf</a>/location, /<a href="obj.html">obj</a>/mounted_on) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/stacks/sheets/sheets.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;sheets&#x2F;sheets.dm 64"/></a></aside>
+        </h3>
+        <p>Mob action to try and install a window if the sheet can do that</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

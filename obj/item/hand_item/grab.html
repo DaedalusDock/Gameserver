@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;hand_item&#x2F;grab - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/hand_item/grab.html#var">Var Details</a> - <a href="obj/item/hand_item/grab.html#proc">Proc Details</a></header>
+<main>
+<h1>grab <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/hand_item/grab.html">hand_item/grab</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#var/action_cd">action_cd</a></th><td>Cooldown for actions</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#var/affecting">affecting</a></th><td>The thing being grabbed</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#var/assailant">assailant</a></th><td>The initiator of the grab</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#var/current_grab">current_grab</a></th><td>The grab datum currently being used</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#var/done_struggle">done_struggle</a></th><td>Used by struggle grab datum to keep track of state.</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#var/is_currently_resolving_hit">is_currently_resolving_hit</a></th><td>Used to avoid stacking interactions that sleep during /decl/grab/proc/on_hit_foo() (ie. do_after() is used)</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#var/is_valid">is_valid</a></th><td>Set true after grab setup. Used for debugging.</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#var/special_target_functional">special_target_functional</a></th><td>Indicates if the current grab has special interactions applied to the target organ (eyes and mouth at time of writing)</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#var/target_zone">target_zone</a></th><td>Records a specific bodypart that was targetted by this grab.</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#var/upgrade_cd">upgrade_cd</a></th><td>Cooldown for upgrade times</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#proc/Destroy">Destroy</a></th><td>Apply any needed updates to the assailant
+Do flavor things like pixel offsets, animation, sound
+Spread diseases
+Setup the effects applied by grab
+Update appearance
+Setup signals</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#proc/intercept_attack_hand">intercept_attack_hand</a></th><td>Intercepts attack_hand() calls on our target.</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#proc/is_grab_unique">is_grab_unique</a></th><td>Used to prevent repeated effect application or early effect removal</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#proc/is_grabbing">is_grabbing</a></th><td>Primarily used for do_after() callbacks, checks if the grab item is still holding onto something</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#proc/leave_forensic_traces">leave_forensic_traces</a></th><td>Leave forensic traces on both the assailant and victim. You really don't want to read this proc and it's type fuckery.</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#proc/remove_competing_grabs">remove_competing_grabs</a></th><td>Removes any grabs applied to the affected movable that aren't src</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#proc/target_or_owner_del">target_or_owner_del</a></th><td>Target deleted, ABORT</td></tr>
+            <tr><th><a href="obj/item/hand_item/grab.html#proc/target_thrown">target_thrown</a></th><td>If something tries to throw the target.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/action_cd"><aside class="declaration">var </aside>action_cd
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 17"/></a></h3>
+        <p>Cooldown for actions</p><h3 id="var/affecting"><aside class="declaration">var </aside>affecting
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 8"/></a></h3>
+        <p>The thing being grabbed</p><h3 id="var/assailant"><aside class="declaration">var </aside>assailant
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 6"/></a></h3>
+        <p>The initiator of the grab</p><h3 id="var/current_grab"><aside class="declaration">var </aside>current_grab
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/grab.html">grab</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 11"/></a></h3>
+        <p>The grab datum currently being used</p><h3 id="var/done_struggle"><aside class="declaration">var </aside>done_struggle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 27"/></a></h3>
+        <p>Used by struggle grab datum to keep track of state.</p><h3 id="var/is_currently_resolving_hit"><aside class="declaration">var </aside>is_currently_resolving_hit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 23"/></a></h3>
+        <p>Used to avoid stacking interactions that sleep during /decl/grab/proc/on_hit_foo() (ie. do_after() is used)</p><h3 id="var/is_valid"><aside class="declaration">var </aside>is_valid
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 14"/></a></h3>
+        <p>Set true after grab setup. Used for debugging.</p><h3 id="var/special_target_functional"><aside class="declaration">var </aside>special_target_functional
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 21"/></a></h3>
+        <p>Indicates if the current grab has special interactions applied to the target organ (eyes and mouth at time of writing)</p><h3 id="var/target_zone"><aside class="declaration">var </aside>target_zone
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 25"/></a></h3>
+        <p>Records a specific bodypart that was targetted by this grab.</p><h3 id="var/upgrade_cd"><aside class="declaration">var </aside>upgrade_cd
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 19"/></a></h3>
+        <p>Cooldown for upgrade times</p><h2 id="proc">Proc Details</h2><h3 id="proc/Destroy"><aside class="parent"><a title="/atom" href="atom.html#proc/Destroy">&uarr;</a></aside>Destroy<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 110"/></a></aside>
+        </h3>
+        <p>Apply any needed updates to the assailant
+Do flavor things like pixel offsets, animation, sound
+Spread diseases
+Setup the effects applied by grab
+Update appearance
+Setup signals</p><h3 id="proc/intercept_attack_hand"><aside class="declaration">proc </aside>intercept_attack_hand<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, user, /list/modifiers) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L233">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 233"/></a></aside>
+        </h3>
+        <p>Intercepts attack_hand() calls on our target.</p><h3 id="proc/is_grab_unique"><aside class="declaration">proc </aside>is_grab_unique<aside>(/<a href="datum.html">datum</a>/<a href="datum/grab.html">grab</a>/grab_datum) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L350">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 350"/></a></aside>
+        </h3>
+        <p>Used to prevent repeated effect application or early effect removal</p><h3 id="proc/is_grabbing"><aside class="declaration">proc </aside>is_grabbing<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/AM) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L391">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 391"/></a></aside>
+        </h3>
+        <p>Primarily used for do_after() callbacks, checks if the grab item is still holding onto something</p><h3 id="proc/leave_forensic_traces"><aside class="declaration">proc </aside>leave_forensic_traces<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L258">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 258"/></a></aside>
+        </h3>
+        <p>Leave forensic traces on both the assailant and victim. You really don't want to read this proc and it's type fuckery.</p><h3 id="proc/remove_competing_grabs"><aside class="declaration">proc </aside>remove_competing_grabs<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L461">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 461"/></a></aside>
+        </h3>
+        <p>Removes any grabs applied to the affected movable that aren't src</p><h3 id="proc/target_or_owner_del"><aside class="declaration">proc </aside>target_or_owner_del<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L398">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 398"/></a></aside>
+        </h3>
+        <p>Target deleted, ABORT</p><h3 id="proc/target_thrown"><aside class="declaration">proc </aside>target_thrown<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, /list/arguments) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_object.dm#L403">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_object.dm 403"/></a></aside>
+        </h3>
+        <p>If something tries to throw the target.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

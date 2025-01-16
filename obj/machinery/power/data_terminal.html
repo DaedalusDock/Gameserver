@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;power&#x2F;data_terminal - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/power/data_terminal.html#proc">Proc Details</a></header>
+<main>
+<h1>data_terminal <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/power/data_terminal.html">power/data_terminal</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/data_terminal.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;data_terminal.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/power/data_terminal.html#proc/connect_machine">connect_machine</a></th><td>Request to connect this data terminal to a machine
+see <code>_DEFINES/packetnet.dm</code> for return values
+Machines connected to terminals should never move.</td></tr>
+            <tr><th><a href="obj/machinery/power/data_terminal.html#proc/disconnect_machine">disconnect_machine</a></th><td>Attempt to disconnect from a data terminal.</td></tr>
+            <tr><th><a href="obj/machinery/power/data_terminal.html#proc/receive_signal">receive_signal</a></th><td>Oop, we have a connected machine, make sure they're sure.</td></tr>
+            <tr><th><a href="obj/machinery/power/data_terminal.html#proc/tear_out">tear_out</a></th><td>Our connected machine moved. Disconnect and complain at them!</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/connect_machine"><aside class="declaration">proc </aside>connect_machine<aside>(/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/new_machine) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/data_terminal.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;data_terminal.dm 69"/></a></aside>
+        </h3>
+        <p>Request to connect this data terminal to a machine
+see <code>_DEFINES/packetnet.dm</code> for return values
+Machines connected to terminals should never move.</p><h3 id="proc/disconnect_machine"><aside class="declaration">proc </aside>disconnect_machine<aside>(/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/leaving_machine) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/data_terminal.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;data_terminal.dm 82"/></a></aside>
+        </h3>
+        <p>Attempt to disconnect from a data terminal.</p><h3 id="proc/receive_signal">receive_signal<aside>(/<a href="datum.html">datum</a>/<a href="datum/signal.html">signal</a>/signal) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/data_terminal.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;data_terminal.dm 46"/></a></aside>
+        </h3>
+        <p>Oop, we have a connected machine, make sure they're sure.</p><h3 id="proc/tear_out"><aside class="declaration">proc </aside>tear_out<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/data_terminal.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;data_terminal.dm 92"/></a></aside>
+        </h3>
+        <p>Our connected machine moved. Disconnect and complain at them!</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

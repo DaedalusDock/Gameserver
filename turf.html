@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;turf - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="turf.html#var">Var Details</a> - <a href="turf.html#proc">Proc Details</a></header>
+<main>
+<h1>turf <aside>/<a href="turf.html">turf</a></aside><aside> inherits /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/spatial_info.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;spatial_info.dm 1"/></a></h1>
+
+<p>Any floor or wall. What makes up the station and the rest of the map.
+If present, a turf above that is copying this turf. Implies a Z-connection and that the turf above is a z-mimic enabled turf.
+If present, the turf below that we are copying. Implies a Z-connection and that this is a z-mimic enabled turf.
+If we're a non-overwrite z-turf, this holds the appearance of the bottom-most Z-turf in the z-stack.
+Object used to multiply color of all OO overlays at once.
+If this is a delegate (non-overwrite) Z-turf with a z-turf above, this is the delegate copy that's copying us.
+If we're at the bottom of the stack, a proxy used to fake a below space turf.
+Cached computed depth, used in analyzer.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="turf.html#var/air">air</a></th><td>The local gas mixture of this turf. Use return_air(). This will always exist even if not in use, because GCing air contents would be too expensive.</td></tr>
+            <tr><th><a href="turf.html#var/always_lit">always_lit</a></th><td>Bool, whether this turf will always be illuminated no matter what area it is in</td></tr>
+            <tr><th><a href="turf.html#var/ao_junction">ao_junction</a></th><td>What directions this is currently smoothing with.
+This starts as null for us to know when it's first set, but after that it will hold a 8-bit mask ranging from 0 to 255.</td></tr>
+            <tr><th><a href="turf.html#var/ao_junction_mimic">ao_junction_mimic</a></th><td>The same as ao_junction, but for the mimic turf.</td></tr>
+            <tr><th><a href="turf.html#var/ao_overlay">ao_overlay</a></th><td>Current ambient occlusion overlays.
+Tracked here so that they can be reapplied during update_overlays()</td></tr>
+            <tr><th><a href="turf.html#var/ao_overlay_mimic">ao_overlay_mimic</a></th><td>The same as ao_overlay, but for the mimic turf.</td></tr>
+            <tr><th><a href="turf.html#var/ao_queued">ao_queued</a></th><td>Whether this turf is currently queued for ambient occlusion.</td></tr>
+            <tr><th><a href="turf.html#var/assigned_oranges_ear">assigned_oranges_ear</a></th><td>what /mob/oranges_ear instance is already assigned to us as there should only ever be one.
+used for guaranteeing there is only one oranges_ear per turf when assigned, speeds up view() iteration</td></tr>
+            <tr><th><a href="turf.html#var/atmos_sensitive_contents">atmos_sensitive_contents</a></th><td>Atmos sensitive atoms in our contents. lazylist.</td></tr>
+            <tr><th><a href="turf.html#var/blocks_air">blocks_air</a></th><td>Determines how air interacts with this turf.</td></tr>
+            <tr><th><a href="turf.html#var/blueprint_data">blueprint_data</a></th><td>For the station blueprints, images of objects eg: pipes</td></tr>
+            <tr><th><a href="turf.html#var/changing_turf">changing_turf</a></th><td>Is this turf in the process of running ChangeTurf()?</td></tr>
+            <tr><th><a href="turf.html#var/directional_opacity">directional_opacity</a></th><td>Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.</td></tr>
+            <tr><th><a href="turf.html#var/dynamic_lumcount">dynamic_lumcount</a></th><td>Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.</td></tr>
+            <tr><th><a href="turf.html#var/explosion_throw_details">explosion_throw_details</a></th><td>Contains the throw range for explosions. You won't need this, stop looking at it.</td></tr>
+            <tr><th><a href="turf.html#var/force_no_gravity">force_no_gravity</a></th><td>whether or not this turf forces movables on it to have no gravity (unless they themselves have forced gravity)</td></tr>
+            <tr><th><a href="turf.html#var/holodeck_compatible">holodeck_compatible</a></th><td>the holodeck can load onto this turf if TRUE</td></tr>
+            <tr><th><a href="turf.html#var/in_contents_of">in_contents_of</a></th><td>For the area_contents list unit test
+Allows us to know our area without needing to preassign it
+Sorry for the mess</td></tr>
+            <tr><th><a href="turf.html#var/initial_gas">initial_gas</a></th><td>A gas_mixture gas list to be used as the initial value. Ex: list(GAS_OXYGEN = 50)</td></tr>
+            <tr><th><a href="turf.html#var/lighting_corner_NE">lighting_corner_NE</a></th><td>Lighting Corner datums.</td></tr>
+            <tr><th><a href="turf.html#var/lighting_object">lighting_object</a></th><td>Our lighting object.</td></tr>
+            <tr><th><a href="turf.html#var/lighting_uses_jen">lighting_uses_jen</a></th><td>Set to TRUE for pseudo 3/4ths walls, otherwise, leave alone.</td></tr>
+            <tr><th><a href="turf.html#var/max_fire_temperature_sustained">max_fire_temperature_sustained</a></th><td>The max temperature of the fire which it was subjected to</td></tr>
+            <tr><th><a href="turf.html#var/needs_air_update">needs_air_update</a></th><td>Does this turf need to be ran through SSzas? (SSzas.mark_for_update(turf) OR turf.zas_update_loc())</td></tr>
+            <tr><th><a href="turf.html#var/opacity_sources">opacity_sources</a></th><td>Lazylist of movable atoms providing opacity sources.</td></tr>
+            <tr><th><a href="turf.html#var/open_directions">open_directions</a></th><td>All directions in which a turf that can contain air is present.</td></tr>
+            <tr><th><a href="turf.html#var/overfloor_placed">overfloor_placed</a></th><td>If there's a tile over a basic floor that can be ripped out</td></tr>
+            <tr><th><a href="turf.html#var/pathing_pass_method">pathing_pass_method</a></th><td>How pathing algorithm will check if this turf is passable by itself (not including content checks). By default it's just density check.
+WARNING: Currently to use a density shortcircuiting this does not support dense turfs with special allow through function</td></tr>
+            <tr><th><a href="turf.html#var/permit_ao">permit_ao</a></th><td>Whether this turf is allowed to have ambient occlusion.
+If FALSE, this turf will not be considered for ambient occlusion.</td></tr>
+            <tr><th><a href="turf.html#var/rcd_memory">rcd_memory</a></th><td>If this turf contained an RCD'able object (or IS one, for walls)
+but is now destroyed, this will preserve the value.
+See _<em>DEFINES/construction.dm for RCD_MEMORY</em>*.</td></tr>
+            <tr><th><a href="turf.html#var/to_be_destroyed">to_be_destroyed</a></th><td>Used for fire, if a melting temperature was reached, it will be destroyed</td></tr>
+            <tr><th><a href="turf.html#var/turf_flags">turf_flags</a></th><td>Turf bitflags, see code/__DEFINES/flags.dm</td></tr>
+            <tr><th><a href="turf.html#var/underfloor_accessibility">underfloor_accessibility</a></th><td>How accessible underfloor pieces such as wires, pipes, etc are on this turf. Can be HIDDEN, VISIBLE, or INTERACTABLE.</td></tr>
+            <tr><th><a href="turf.html#var/z_eventually_space">z_eventually_space</a></th><td>If this Z-turf leads to space, uninterrupted.</td></tr>
+            <tr><th><a href="turf.html#var/z_flags">z_flags</a></th><td>Can atmos pass down through this turf?</td></tr>
+            <tr><th><a href="turf.html#var/z_queued">z_queued</a></th><td>How many times this turf is currently queued - multiple queue occurrences are allowed to ensure update consistency.</td></tr>
+            <tr><th><a href="turf.html#var/zone">zone</a></th><td>The turf's current zone parent.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="turf.html#proc/AdjacentQuick">AdjacentQuick</a></th><td>Quick adjacency (to turf):
+If you are in the same turf, always true
+If you are not adjacent, then false</td></tr>
+            <tr><th><a href="turf.html#proc/Enter">Enter</a></th><td>Test if a movable can enter this turf. Send no_side_effects = TRUE to prevent bumping.</td></tr>
+            <tr><th><a href="turf.html#proc/Initialize">Initialize</a></th><td>Turf Initialize</td></tr>
+            <tr><th><a href="turf.html#proc/LinkBlockedWithAccess">LinkBlockedWithAccess</a></th><td>For seeing if we can actually move between 2 given turfs while accounting for our access and the invoker's pass_flags</td></tr>
+            <tr><th><a href="turf.html#proc/PlaceOnBottom">PlaceOnBottom</a></th><td>Places the given turf on the bottom of the turf stack.</td></tr>
+            <tr><th><a href="turf.html#proc/ScrapeAway">ScrapeAway</a></th><td>Take off the top layer turf and replace it with the next baseturf down</td></tr>
+            <tr><th><a href="turf.html#proc/TryGetNonDenseNeighbour">TryGetNonDenseNeighbour</a></th><td>I literally don't know where this proc came from.</td></tr>
+            <tr><th><a href="turf.html#proc/TryScrapeToLattice">TryScrapeToLattice</a></th><td>Run ScrapeAway(amount), then attempt to place lattice.</td></tr>
+            <tr><th><a href="turf.html#proc/add_opacity_source">add_opacity_source</a></th><td>Proc to add movable sources of opacity on the turf and let it handle lighting code.</td></tr>
+            <tr><th><a href="turf.html#proc/assume_air">assume_air</a></th><td>Merges a given gas mixture with the turf's current air source.</td></tr>
+            <tr><th><a href="turf.html#proc/assume_gas">assume_gas</a></th><td>Basically adjustGasWithTemp() but a turf proc.</td></tr>
+            <tr><th><a href="turf.html#proc/atmos_spawn_air">atmos_spawn_air</a></th><td>Creates a gas_mixture datum with the given parameters and merges it into the turf's air source.</td></tr>
+            <tr><th><a href="turf.html#proc/can_flock_occupy">can_flock_occupy</a></th><td>A copy of is_blocked_turf(), ignoring flock mobs</td></tr>
+            <tr><th><a href="turf.html#proc/can_safely_remove_from_zone">can_safely_remove_from_zone</a></th><td>EXPERIMENTAL
+Simple heuristic for determining if removing the turf from it's zone will not partition the zone (A very bad thing).</td></tr>
+            <tr><th><a href="turf.html#proc/change_area">change_area</a></th><td>Call to move a turf from its current area to a new one</td></tr>
+            <tr><th><a href="turf.html#proc/cleanup_zmimic">cleanup_zmimic</a></th><td>Cleans up Z-mimic objects for this turf. You shouldn't call this directly 99% of the time.</td></tr>
+            <tr><th><a href="turf.html#proc/clear_signal_refs">clear_signal_refs</a></th><td>ZAS THINGS
+NO MORE ZAS THINGS
+WARNING WARNING
+Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
+We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code</td></tr>
+            <tr><th><a href="turf.html#proc/contains_dense_objects">contains_dense_objects</a></th><td>Checks a turf to see if any of it's contents are dense. Is NOT recursive. See also is_blocked_turf()</td></tr>
+            <tr><th><a href="turf.html#proc/create_fire">create_fire</a></th><td>Creates a fire with firelevel (fl). If create_own_fuel is given, it will create that many units of welding fuel on the turf.</td></tr>
+            <tr><th><a href="turf.html#proc/disable_zmimic">disable_zmimic</a></th><td>Disables Z-mimic for a turf.</td></tr>
+            <tr><th><a href="turf.html#proc/enable_zmimic">enable_zmimic</a></th><td>Enables Z-mimic for a turf that didn't already have it enabled.</td></tr>
+            <tr><th><a href="turf.html#proc/expose_reagents">expose_reagents</a></th><td>Handles exposing a turf to reagents.</td></tr>
+            <tr><th><a href="turf.html#proc/fromShuttleMove">fromShuttleMove</a></th><td>Base procs</td></tr>
+            <tr><th><a href="turf.html#proc/get_atmos_adjacent_turfs">get_atmos_adjacent_turfs</a></th><td>Returns a list of adjacent turfs that can contain air. Returns null if none.</td></tr>
+            <tr><th><a href="turf.html#proc/is_blocked_turf">is_blocked_turf</a></th><td>Check whether the specified turf is blocked by something dense inside it with respect to a specific atom.</td></tr>
+            <tr><th><a href="turf.html#proc/is_blocked_turf_ignore_climbable">is_blocked_turf_ignore_climbable</a></th><td>Checks whether the specified turf is blocked by something dense inside it, but ignores anything with the climbable trait</td></tr>
+            <tr><th><a href="turf.html#proc/make_air">make_air</a></th><td>Initializes the turf's &quot;air&quot; datum to it's initial values.</td></tr>
+            <tr><th><a href="turf.html#proc/on_change_area">on_change_area</a></th><td>Allows for reactions to an area change without inherently requiring change_area() be called (I hate maploading)</td></tr>
+            <tr><th><a href="turf.html#proc/post_update_air_properties">post_update_air_properties</a></th><td>The air mobility of src &gt;&gt; target
+The air mobility of target &gt;&gt; src</td></tr>
+            <tr><th><a href="turf.html#proc/reachableAdjacentTurfs">reachableAdjacentTurfs</a></th><td>Returns adjacent turfs to this turf that are reachable, in all cardinal directions</td></tr>
+            <tr><th><a href="turf.html#proc/recalculate_directional_opacity">recalculate_directional_opacity</a></th><td>Calculate on which directions this turfs block view.</td></tr>
+            <tr><th><a href="turf.html#proc/remove_air">remove_air</a></th><td>Wrapper for [/datum/gas_mixture/proc/remove()]</td></tr>
+            <tr><th><a href="turf.html#proc/remove_opacity_source">remove_opacity_source</a></th><td>Proc to remove movable sources of opacity on the turf and let it handle lighting code.</td></tr>
+            <tr><th><a href="turf.html#proc/return_air">return_air</a></th><td>Return the currently used gas_mixture datum.</td></tr>
+            <tr><th><a href="turf.html#proc/setup_zmimic">setup_zmimic</a></th><td>Sets up Z-mimic for this turf. You shouldn't call this directly 99% of the time.</td></tr>
+            <tr><th><a href="turf.html#proc/take_zone_air_share">take_zone_air_share</a></th><td>Copies this turf's group share from the zone. Usually used before removing it from the zone.</td></tr>
+            <tr><th><a href="turf.html#proc/transfer_area_lighting">transfer_area_lighting</a></th><td>Transfer the lighting of one area to another</td></tr>
+            <tr><th><a href="turf.html#proc/unsafe_return_air">unsafe_return_air</a></th><td>Return the currently used gas_mixture datum. DOES NOT MARK ZONE FOR UPDATE.</td></tr>
+            <tr><th><a href="turf.html#proc/update_air_properties">update_air_properties</a></th><td>Updates the turf's air source properties, breaking or creating zone connections as necessary.</td></tr>
+            <tr><th><a href="turf.html#proc/update_underfloor_accessibility">update_underfloor_accessibility</a></th><td>Sets underfloor accessibility</td></tr>
+            <tr><th><a href="turf.html#proc/wash">wash</a></th><td>Called when this turf is being washed. Washing a turf will also wash any mopable floor decals</td></tr>
+            <tr><th><a href="turf.html#proc/zImpact">zImpact</a></th><td>Called each time the target falls down a z level possibly making their trajectory come to a halt. see __DEFINES/movement.dm.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/air"><aside class="declaration">var </aside>air
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 11"/></a></h3>
+        <p>The local gas mixture of this turf. Use return_air(). This will always exist even if not in use, because GCing air contents would be too expensive.</p><h3 id="var/always_lit"><aside class="declaration">var </aside>always_lit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 65"/></a></h3>
+        <p>Bool, whether this turf will always be illuminated no matter what area it is in</p><h3 id="var/ao_junction"><aside class="declaration">var </aside>ao_junction
+            <aside>&ndash; /tmp</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/ambient_occlusion/turf_ao.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ambient_occlusion&#x2F;turf_ao.dm 115"/></a></h3>
+        <p>What directions this is currently smoothing with.
+This starts as null for us to know when it's first set, but after that it will hold a 8-bit mask ranging from 0 to 255.</p>
+<p>IMPORTANT: This uses the smoothing direction flags as defined in icon_smoothing.dm, instead of the BYOND flags.</p><h3 id="var/ao_junction_mimic"><aside class="declaration">var </aside>ao_junction_mimic
+            <aside>&ndash; /tmp</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/ambient_occlusion/turf_ao.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ambient_occlusion&#x2F;turf_ao.dm 121"/></a></h3>
+        <p>The same as ao_junction, but for the mimic turf.</p><h3 id="var/ao_overlay"><aside class="declaration">var </aside>ao_overlay
+            <aside>&ndash; /tmp/image</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/ambient_occlusion/turf_ao.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ambient_occlusion&#x2F;turf_ao.dm 107"/></a></h3>
+        <p>Current ambient occlusion overlays.
+Tracked here so that they can be reapplied during update_overlays()</p><h3 id="var/ao_overlay_mimic"><aside class="declaration">var </aside>ao_overlay_mimic
+            <aside>&ndash; /tmp/image</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/ambient_occlusion/turf_ao.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ambient_occlusion&#x2F;turf_ao.dm 118"/></a></h3>
+        <p>The same as ao_overlay, but for the mimic turf.</p><h3 id="var/ao_queued"><aside class="declaration">var </aside>ao_queued
+            <aside>&ndash; /tmp</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/ambient_occlusion/turf_ao.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ambient_occlusion&#x2F;turf_ao.dm 124"/></a></h3>
+        <p>Whether this turf is currently queued for ambient occlusion.</p><h3 id="var/assigned_oranges_ear"><aside class="declaration">var </aside>assigned_oranges_ear
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/oranges_ear.html">oranges_ear</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/spatial_info.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;spatial_info.dm 6"/></a></h3>
+        <p>what /mob/oranges_ear instance is already assigned to us as there should only ever be one.
+used for guaranteeing there is only one oranges_ear per turf when assigned, speeds up view() iteration</p><h3 id="var/atmos_sensitive_contents"><aside class="declaration">var </aside>atmos_sensitive_contents
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Expose.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Expose.dm 5"/></a></h3>
+        <p>Atmos sensitive atoms in our contents. lazylist.</p><h3 id="var/blocks_air"><aside class="declaration">var </aside>blocks_air
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 56"/></a></h3>
+        <p>Determines how air interacts with this turf.</p><h3 id="var/blueprint_data"><aside class="declaration">var </aside>blueprint_data
+            <aside>&ndash; /tmp/list/image</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 36"/></a></h3>
+        <p>For the station blueprints, images of objects eg: pipes</p><h3 id="var/changing_turf"><aside class="declaration">var </aside>changing_turf
+            <aside>&ndash; /tmp</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 16"/></a></h3>
+        <p>Is this turf in the process of running ChangeTurf()?</p><h3 id="var/directional_opacity"><aside class="declaration">var </aside>directional_opacity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 71"/></a></h3>
+        <p>Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.</p><h3 id="var/dynamic_lumcount"><aside class="declaration">var </aside>dynamic_lumcount
+            <aside>&ndash; /tmp</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 19"/></a></h3>
+        <p>Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.</p><h3 id="var/explosion_throw_details"><aside class="declaration">var </aside>explosion_throw_details
+            <aside>&ndash; /tmp</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 38"/></a></h3>
+        <p>Contains the throw range for explosions. You won't need this, stop looking at it.</p><h3 id="var/force_no_gravity"><aside class="declaration">var </aside>force_no_gravity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 81"/></a></h3>
+        <p>whether or not this turf forces movables on it to have no gravity (unless they themselves have forced gravity)</p><h3 id="var/holodeck_compatible"><aside class="declaration">var </aside>holodeck_compatible
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 74"/></a></h3>
+        <p>the holodeck can load onto this turf if TRUE</p><h3 id="var/in_contents_of"><aside class="declaration">var </aside>in_contents_of
+            <aside>&ndash; /<a href="area.html">area</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/unit_tests/area_contents.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;unit_tests&#x2F;area_contents.dm 36"/></a></h3>
+        <p>For the area_contents list unit test
+Allows us to know our area without needing to preassign it
+Sorry for the mess</p><h3 id="var/initial_gas"><aside class="declaration">var </aside>initial_gas
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 13"/></a></h3>
+        <p>A gas_mixture gas list to be used as the initial value. Ex: list(GAS_OXYGEN = 50)</p><h3 id="var/lighting_corner_NE"><aside class="declaration">var </aside>lighting_corner_NE
+            <aside>&ndash; /tmp/<a href="datum.html">datum</a>/<a href="datum/lighting_corner.html">lighting_corner</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 24"/></a></h3>
+        <p>Lighting Corner datums.</p><h3 id="var/lighting_object"><aside class="declaration">var </aside>lighting_object
+            <aside>&ndash; /tmp/<a href="datum.html">datum</a>/<a href="datum/lighting_object.html">lighting_object</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 22"/></a></h3>
+        <p>Our lighting object.</p><h3 id="var/lighting_uses_jen"><aside class="declaration">var </aside>lighting_uses_jen
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 68"/></a></h3>
+        <p>Set to TRUE for pseudo 3/4ths walls, otherwise, leave alone.</p><h3 id="var/max_fire_temperature_sustained"><aside class="declaration">var </aside>max_fire_temperature_sustained
+            <aside>&ndash; /tmp</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 33"/></a></h3>
+        <p>The max temperature of the fire which it was subjected to</p><h3 id="var/needs_air_update"><aside class="declaration">var </aside>needs_air_update
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 9"/></a></h3>
+        <p>Does this turf need to be ran through SSzas? (SSzas.mark_for_update(turf) OR turf.zas_update_loc())</p><h3 id="var/opacity_sources"><aside class="declaration">var </aside>opacity_sources
+            <aside>&ndash; /tmp/list/atom/movable</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 41"/></a></h3>
+        <p>Lazylist of movable atoms providing opacity sources.</p><h3 id="var/open_directions"><aside class="declaration">var </aside>open_directions
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 5"/></a></h3>
+        <p>All directions in which a turf that can contain air is present.</p><h3 id="var/overfloor_placed"><aside class="declaration">var </aside>overfloor_placed
+            <aside>&ndash; /tmp</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 30"/></a></h3>
+        <p>If there's a tile over a basic floor that can be ripped out</p><h3 id="var/pathing_pass_method"><aside class="declaration">var </aside>pathing_pass_method
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 85"/></a></h3>
+        <p>How pathing algorithm will check if this turf is passable by itself (not including content checks). By default it's just density check.
+WARNING: Currently to use a density shortcircuiting this does not support dense turfs with special allow through function</p><h3 id="var/permit_ao"><aside class="declaration">var </aside>permit_ao
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/ambient_occlusion/turf_ao.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ambient_occlusion&#x2F;turf_ao.dm 101"/></a></h3>
+        <p>Whether this turf is allowed to have ambient occlusion.
+If FALSE, this turf will not be considered for ambient occlusion.</p><h3 id="var/rcd_memory"><aside class="declaration">var </aside>rcd_memory
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 79"/></a></h3>
+        <p>If this turf contained an RCD'able object (or IS one, for walls)
+but is now destroyed, this will preserve the value.
+See _<em>DEFINES/construction.dm for RCD_MEMORY</em>*.</p><h3 id="var/to_be_destroyed"><aside class="declaration">var </aside>to_be_destroyed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 53"/></a></h3>
+        <p>Used for fire, if a melting temperature was reached, it will be destroyed</p><h3 id="var/turf_flags"><aside class="declaration">var </aside>turf_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 47"/></a></h3>
+        <p>Turf bitflags, see code/__DEFINES/flags.dm</p><h3 id="var/underfloor_accessibility"><aside class="declaration">var </aside>underfloor_accessibility
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 50"/></a></h3>
+        <p>How accessible underfloor pieces such as wires, pipes, etc are on this turf. Can be HIDDEN, VISIBLE, or INTERACTABLE.</p><h3 id="var/z_eventually_space"><aside class="declaration">var </aside>z_eventually_space
+            <aside>&ndash; /tmp</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/zmimic/mimic_turf.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;zmimic&#x2F;mimic_turf.dm 14"/></a></h3>
+        <p>If this Z-turf leads to space, uninterrupted.</p><h3 id="var/z_flags"><aside class="declaration">var </aside>z_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 7"/></a></h3>
+        <p>Can atmos pass down through this turf?</p><h3 id="var/z_queued"><aside class="declaration">var </aside>z_queued
+            <aside>&ndash; /tmp</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/zmimic/mimic_turf.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;zmimic&#x2F;mimic_turf.dm 12"/></a></h3>
+        <p>How many times this turf is currently queued - multiple queue occurrences are allowed to ensure update consistency.</p><h3 id="var/zone"><aside class="declaration">var </aside>zone
+            <aside>&ndash; /<a href="zone.html">zone</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 3"/></a></h3>
+        <p>The turf's current zone parent.</p><h2 id="proc">Proc Details</h2><h3 id="proc/AdjacentQuick"><aside class="declaration">proc </aside>AdjacentQuick<aside>(/<a href="atom.html">atom</a>/neighbor, /<a href="atom.html">atom</a>/target) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_onclick/adjacent.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;adjacent.dm 107"/></a></aside>
+        </h3>
+        <p>Quick adjacency (to turf):
+If you are in the same turf, always true
+If you are not adjacent, then false</p><h3 id="proc/Enter">Enter<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/mover, no_side_effects) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L369">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 369"/></a></aside>
+        </h3>
+        <p>Test if a movable can enter this turf. Send no_side_effects = TRUE to prevent bumping.</p><h3 id="proc/Initialize"><aside class="parent"><a title="/atom" href="atom.html#proc/Initialize">&uarr;</a></aside>Initialize<aside>(mapload) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 107"/></a></aside>
+        </h3>
+        <p>Turf Initialize</p>
+<p>Doesn't call parent, see <a href="atom.html#proc/Initialize" title="/atom">/atom/proc/Initialize</a>
+Please note, space tiles do not run this code.
+This is done because it's called so often that any extra code just slows things down too much
+If you add something relevant here add it there too
+<a href="turf/open/space.html#proc/Initialize" title="/turf/open/space">/turf/open/space/Initialize</a>
+<a href="turf.html#proc/Initialize" title="/turf">/turf/closed/mineral/Initialize</a></p><h3 id="proc/LinkBlockedWithAccess"><aside class="declaration">proc </aside>LinkBlockedWithAccess<aside>(/<a href="turf.html">turf</a>/destination_turf, /<a href="datum.html">datum</a>/<a href="datum/can_pass_info.html">can_pass_info</a>/pass_info) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/paths/jps_path.dm#L388">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;paths&#x2F;jps_path.dm 388"/></a></aside>
+        </h3>
+        <p>For seeing if we can actually move between 2 given turfs while accounting for our access and the invoker's pass_flags</p>
+<p>Assumes destinantion turf is non-dense - check and shortcircuit in code invoking this proc to avoid overhead.
+Makes some other assumptions, such as assuming that unless declared, non dense objects will not block movement.
+It's fragile, but this is VERY much the most expensive part of JPS, so it'd better be fast</p>
+<p>Arguments:</p>
+<ul>
+<li>invoker: The movable, if one exists, being used for mobility checks to see what tiles it can reach</li>
+<li>access: A list that decides if we can gain access to doors that would otherwise block a turf</li>
+<li>simulated_only: Do we only worry about turfs with simulated atmos, most notably things that aren't space?</li>
+<li>no_id: When true, doors with public access will count as impassible</li>
+</ul><h3 id="proc/PlaceOnBottom"><aside class="declaration">proc </aside>PlaceOnBottom<aside>(/<a href="turf.html">turf</a>/bottom_turf) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/change_turf.dm#L201">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;change_turf.dm 201"/></a></aside>
+        </h3>
+        <p>Places the given turf on the bottom of the turf stack.</p><h3 id="proc/ScrapeAway"><aside class="declaration">proc </aside>ScrapeAway<aside>(amount, flags) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/change_turf.dm#L179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;change_turf.dm 179"/></a></aside>
+        </h3>
+        <p>Take off the top layer turf and replace it with the next baseturf down</p><h3 id="proc/TryGetNonDenseNeighbour"><aside class="declaration">proc </aside>TryGetNonDenseNeighbour<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L405">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 405"/></a></aside>
+        </h3>
+        <p>I literally don't know where this proc came from.</p><h3 id="proc/TryScrapeToLattice"><aside class="declaration">proc </aside>TryScrapeToLattice<aside>(amount) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/change_turf.dm#L292">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;change_turf.dm 292"/></a></aside>
+        </h3>
+        <p>Run ScrapeAway(amount), then attempt to place lattice.</p><h3 id="proc/add_opacity_source"><aside class="declaration">proc </aside>add_opacity_source<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/new_source) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/lighting/lighting_turf.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 59"/></a></aside>
+        </h3>
+        <p>Proc to add movable sources of opacity on the turf and let it handle lighting code.</p><h3 id="proc/assume_air"><aside class="parent"><a title="/atom" href="atom.html#proc/assume_air">&uarr;</a></aside>assume_air<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/giver) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L264">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 264"/></a></aside>
+        </h3>
+        <p>Merges a given gas mixture with the turf's current air source.</p><h3 id="proc/assume_gas"><aside class="declaration">proc </aside>assume_gas<aside>(gasid, moles, temp) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L273">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 273"/></a></aside>
+        </h3>
+        <p>Basically adjustGasWithTemp() but a turf proc.</p><h3 id="proc/atmos_spawn_air"><aside class="declaration">proc </aside>atmos_spawn_air<aside>(gas_id, amount, initial_temperature) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L381">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 381"/></a></aside>
+        </h3>
+        <p>Creates a gas_mixture datum with the given parameters and merges it into the turf's air source.</p><h3 id="proc/can_flock_occupy"><aside class="declaration">proc </aside>can_flock_occupy<aside>(/<a href="atom.html">atom</a>/source_atom) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/flock_helpers.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;flock_helpers.dm 2"/></a></aside>
+        </h3>
+        <p>A copy of is_blocked_turf(), ignoring flock mobs</p><h3 id="proc/can_safely_remove_from_zone"><aside class="declaration">proc </aside>can_safely_remove_from_zone<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 86"/></a></aside>
+        </h3>
+        <p>EXPERIMENTAL
+Simple heuristic for determining if removing the turf from it's zone will not partition the zone (A very bad thing).</p><h3 id="proc/change_area"><aside class="declaration">proc </aside>change_area<aside>(/<a href="area.html">area</a>/old_area, /<a href="area.html">area</a>/new_area) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L730">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 730"/></a></aside>
+        </h3>
+        <p>Call to move a turf from its current area to a new one</p><h3 id="proc/cleanup_zmimic"><aside class="declaration">proc </aside>cleanup_zmimic<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/zmimic/mimic_turf.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;zmimic&#x2F;mimic_turf.dm 65"/></a></aside>
+        </h3>
+        <p>Cleans up Z-mimic objects for this turf. You shouldn't call this directly 99% of the time.</p><h3 id="proc/clear_signal_refs"><aside class="parent"><a title="/datum" href="datum.html#proc/clear_signal_refs">&uarr;</a></aside>clear_signal_refs<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 204"/></a></aside>
+        </h3>
+        <p>ZAS THINGS
+NO MORE ZAS THINGS
+WARNING WARNING
+Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
+We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code</p><h3 id="proc/contains_dense_objects"><aside class="declaration">proc </aside>contains_dense_objects<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L396">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 396"/></a></aside>
+        </h3>
+        <p>Checks a turf to see if any of it's contents are dense. Is NOT recursive. See also is_blocked_turf()</p><h3 id="proc/create_fire"><aside class="declaration">proc </aside>create_fire<aside>(fl, create_own_fuel) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Fire.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Fire.dm 38"/></a></aside>
+        </h3>
+        <p>Creates a fire with firelevel (fl). If create_own_fuel is given, it will create that many units of welding fuel on the turf.</p><h3 id="proc/disable_zmimic"><aside class="declaration">proc </aside>disable_zmimic<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/zmimic/mimic_turf.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;zmimic&#x2F;mimic_turf.dm 40"/></a></aside>
+        </h3>
+        <p>Disables Z-mimic for a turf.</p><h3 id="proc/enable_zmimic"><aside class="declaration">proc </aside>enable_zmimic<aside>(additional_flags) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/zmimic/mimic_turf.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;zmimic&#x2F;mimic_turf.dm 31"/></a></aside>
+        </h3>
+        <p>Enables Z-mimic for a turf that didn't already have it enabled.</p><h3 id="proc/expose_reagents"><aside class="parent"><a title="/atom" href="atom.html#proc/expose_reagents">&uarr;</a></aside>expose_reagents<aside>(/list/reagents, /<a href="datum.html">datum</a>/<a href="datum/reagents.html">reagents</a>/source, methods, volume_modifier, show_message, exposed_temperature) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L661">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 661"/></a></aside>
+        </h3>
+        <p>Handles exposing a turf to reagents.</p><h3 id="proc/fromShuttleMove"><aside class="declaration">proc </aside>fromShuttleMove<aside>(/<a href="turf.html">turf</a>/newT, move_mode) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/shuttle/on_move.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;on_move.dm 9"/></a></aside>
+        </h3>
+        <p>Base procs</p><h3 id="proc/get_atmos_adjacent_turfs"><aside class="declaration">proc </aside>get_atmos_adjacent_turfs<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L412">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 412"/></a></aside>
+        </h3>
+        <p>Returns a list of adjacent turfs that can contain air. Returns null if none.</p><h3 id="proc/is_blocked_turf"><aside class="declaration">proc </aside>is_blocked_turf<aside>(exclude_mobs, source_atom, /list/ignore_atoms) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L242">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 242"/></a></aside>
+        </h3>
+        <p>Check whether the specified turf is blocked by something dense inside it with respect to a specific atom.</p>
+<p>Returns truthy value TURF_BLOCKED_TURF_DENSE if the turf is blocked because the turf itself is dense.
+Returns truthy value TURF_BLOCKED_CONTENT_DENSE if one of the turf's contents is dense and would block
+a source atom's movement.
+Returns falsey value TURF_NOT_BLOCKED if the turf is not blocked.</p>
+<p>Arguments:</p>
+<ul>
+<li>exclude_mobs - If TRUE, ignores dense mobs on the turf.</li>
+<li>source_atom - If this is not null, will check whether any contents on the turf can block this atom specifically. Also ignores itself on the turf.</li>
+<li>ignore_atoms - Check will ignore any atoms in this list. Useful to prevent an atom from blocking itself on the turf.</li>
+</ul><h3 id="proc/is_blocked_turf_ignore_climbable"><aside class="declaration">proc </aside>is_blocked_turf_ignore_climbable<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L263">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 263"/></a></aside>
+        </h3>
+        <p>Checks whether the specified turf is blocked by something dense inside it, but ignores anything with the climbable trait</p>
+<p>Works similar to is_blocked_turf(), but ignores climbables and has less options. Primarily added for jaunting checks</p><h3 id="proc/make_air"><aside class="declaration">proc </aside>make_air<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L335">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 335"/></a></aside>
+        </h3>
+        <p>Initializes the turf's &quot;air&quot; datum to it's initial values.</p><h3 id="proc/on_change_area"><aside class="declaration">proc </aside>on_change_area<aside>(/<a href="area.html">area</a>/old_area, /<a href="area.html">area</a>/new_area) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L744">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 744"/></a></aside>
+        </h3>
+        <p>Allows for reactions to an area change without inherently requiring change_area() be called (I hate maploading)</p><h3 id="proc/post_update_air_properties"><aside class="declaration">proc </aside>post_update_air_properties<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L250">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 250"/></a></aside>
+        </h3>
+        <p>The air mobility of src &gt;&gt; target
+The air mobility of target &gt;&gt; src</p><h3 id="proc/reachableAdjacentTurfs"><aside class="declaration">proc </aside>reachableAdjacentTurfs<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/invoker, /list/access, simulated_only, no_id) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L694">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 694"/></a></aside>
+        </h3>
+        <p>Returns adjacent turfs to this turf that are reachable, in all cardinal directions</p>
+<p>Arguments:</p>
+<ul>
+<li>invoker: The movable, if one exists, being used for mobility checks to see what tiles it can reach</li>
+<li>ID: An ID card that decides if we can gain access to doors that would otherwise block a turf</li>
+<li>simulated_only: Do we only worry about turfs with simulated atmos, most notably things that aren't space?</li>
+<li>no_id: When true, doors with public access will count as impassible</li>
+</ul><h3 id="proc/recalculate_directional_opacity"><aside class="declaration">proc </aside>recalculate_directional_opacity<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/lighting/lighting_turf.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 75"/></a></aside>
+        </h3>
+        <p>Calculate on which directions this turfs block view.</p><h3 id="proc/remove_air"><aside class="parent"><a title="/atom" href="atom.html#proc/remove_air">&uarr;</a></aside>remove_air<aside>(amount) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L259">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 259"/></a></aside>
+        </h3>
+        <p>Wrapper for [/datum/gas_mixture/proc/remove()]</p><h3 id="proc/remove_opacity_source"><aside class="declaration">proc </aside>remove_opacity_source<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/old_source) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/lighting/lighting_turf.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 67"/></a></aside>
+        </h3>
+        <p>Proc to remove movable sources of opacity on the turf and let it handle lighting code.</p><h3 id="proc/return_air"><aside class="parent"><a title="/atom" href="atom.html#proc/return_air">&uarr;</a></aside>return_air<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L290">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 290"/></a></aside>
+        </h3>
+        <p>Return the currently used gas_mixture datum.</p><h3 id="proc/setup_zmimic"><aside class="declaration">proc </aside>setup_zmimic<aside>(mapload) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/zmimic/mimic_turf.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;zmimic&#x2F;mimic_turf.dm 49"/></a></aside>
+        </h3>
+        <p>Sets up Z-mimic for this turf. You shouldn't call this directly 99% of the time.</p><h3 id="proc/take_zone_air_share"><aside class="declaration">proc </aside>take_zone_air_share<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L374">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 374"/></a></aside>
+        </h3>
+        <p>Copies this turf's group share from the zone. Usually used before removing it from the zone.</p><h3 id="proc/transfer_area_lighting"><aside class="declaration">proc </aside>transfer_area_lighting<aside>(/<a href="area.html">area</a>/old_area, /<a href="area.html">area</a>/new_area) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/lighting/lighting_turf.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 98"/></a></aside>
+        </h3>
+        <p>Transfer the lighting of one area to another</p><h3 id="proc/unsafe_return_air"><aside class="parent"><a title="/atom" href="atom.html#proc/unsafe_return_air">&uarr;</a></aside>unsafe_return_air<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L313">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 313"/></a></aside>
+        </h3>
+        <p>Return the currently used gas_mixture datum. DOES NOT MARK ZONE FOR UPDATE.</p><h3 id="proc/update_air_properties"><aside class="declaration">proc </aside>update_air_properties<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Turf.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Turf.dm 23"/></a></aside>
+        </h3>
+        <p>Updates the turf's air source properties, breaking or creating zone connections as necessary.</p><h3 id="proc/update_underfloor_accessibility"><aside class="declaration">proc </aside>update_underfloor_accessibility<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L716">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 716"/></a></aside>
+        </h3>
+        <p>Sets underfloor accessibility</p><h3 id="proc/wash"><aside class="parent"><a title="/atom" href="atom.html#proc/wash">&uarr;</a></aside>wash<aside>(clean_types) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L674">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 674"/></a></aside>
+        </h3>
+        <p>Called when this turf is being washed. Washing a turf will also wash any mopable floor decals</p><h3 id="proc/zImpact"><aside class="declaration">proc </aside>zImpact<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/falling, levels, /<a href="turf.html">turf</a>/prev_turf) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/turf.dm#L297">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 297"/></a></aside>
+        </h3>
+        <p>Called each time the target falls down a z level possibly making their trajectory come to a halt. see __DEFINES/movement.dm.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;global_vars - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/global_vars.html#var">Var Details</a></header>
+<main>
+<h1>global_vars <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/global_vars.html">controller/global_vars</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/globals.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;globals.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/GPS_list">GPS_list</a></th><td>Global GPS_list. All  GPS components get saved in here for easy reference.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/WALLITEMS_INTERIOR">WALLITEMS_INTERIOR</a></th><td>Checks if that loc and dir has an item on the wall</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/acid_overlay">acid_overlay</a></th><td>ACID</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/active_lifts_by_type">active_lifts_by_type</a></th><td>associative list of the form: list(lift_id = list(all lift_master datums attached to lifts of that type))</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/admin_fax_destinations">admin_fax_destinations</a></th><td>Global list of all admin fax machine destinations</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/admin_state">admin_state</a></th><td>tgui state: admin_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/ai_employers">ai_employers</a></th><td>employers for malfunctioning ais. they do not have sides, unlike traitors.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/airflow_step_blacklist">airflow_step_blacklist</a></th><td>The typecache of objects airflow can't push objects into the same tile of</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/alive_player_list">alive_player_list</a></th><td>All alive mobs with clients.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/all_grabstates">all_grabstates</a></th><td>An associative list of type:instance for grab datums</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/all_mutant_colors_keys">all_mutant_colors_keys</a></th><td>ADD NEW ONES TO THIS OR SHIT DOESNT WORK</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/all_pref_groups">all_pref_groups</a></th><td>A list of preference modules.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/all_voice_of_god_triggers">all_voice_of_god_triggers</a></th><td>Used to stop listeners with silly or clown-esque (first) names such as &quot;Honk&quot; or &quot;Flip&quot; from screwing up certain commands.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/always_state">always_state</a></th><td>tgui state: always_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/announcer_keys">announcer_keys</a></th><td>Global list of all of our announcer keys.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/areas">areas</a></th><td>Note, areas can have duplicate types</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/areas_by_type">areas_by_type</a></th><td>An association from typepath to area instance. Only includes areas with <code>unique</code> set.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/blood_datums">blood_datums</a></th><td>Contains the singletons of blood datums</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/bsa_unlock">bsa_unlock</a></th><td>BSA unlocked by head ID swipes</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/cached_storage_typecaches">cached_storage_typecaches</a></th><td>Almost 100% of the time the lists passed into set_holdable are reused for each instance
+Just fucking cache it 4head
+Yes I could generalize this, but I don't want anyone else using it. in fact, DO NOT COPY THIS
+If you find yourself needing this pattern, you're likely better off using static typecaches
+I'm not because I do not trust implementers of the storage component to use them, BUT
+IF I FIND YOU USING THIS PATTERN IN YOUR CODE I WILL BREAK YOU ACROSS MY KNEES
+~Lemon</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/can_pass_info_vars">can_pass_info_vars</a></th><td>List of vars on /datum/can_pass_info to use when checking two instances for equality</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/conscious_state">conscious_state</a></th><td>tgui state: conscious_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/contained_state">contained_state</a></th><td>tgui state: contained_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/current_anonymous_theme">current_anonymous_theme</a></th><td>global reference to the current theme, if there is one.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/current_living_antags">current_living_antags</a></th><td>All alive antags with clients.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/current_observers_list">current_observers_list</a></th><td>All observers with clients that joined as observers.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/dead_player_list">dead_player_list</a></th><td>All dead mobs with clients. Does not include observers.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/deep_inventory_state">deep_inventory_state</a></th><td>tgui state: deep_inventory_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/default_state">default_state</a></th><td>tgui state: default_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/deliverybeacons">deliverybeacons</a></th><td>List of beacons set to delivery mode</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/deliverybeacontags">deliverybeacontags</a></th><td>List of tags belonging to beacons set to delivery mode</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/department_order_cooldowns">department_order_cooldowns</a></th><td>cooldown for each department, assoc type 2 cooldown. global, so rebuilding the console doesn't refresh the cd</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/drone_machine_blacklist_enabled">drone_machine_blacklist_enabled</a></th><td>If drones are blacklisted from certain sensitive machines</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/dug_up_basalt">dug_up_basalt</a></th><td>Used by ashstorms to replenish basalt tiles that have been dug up without going through all of them.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/editable_sign_types">editable_sign_types</a></th><td>This is a global list of all signs you can change an existing sign or new sign backing to, when using a pen on them.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/em_block_color">em_block_color</a></th><td>A globaly cached version of <a href="code/__DEFINES/lighting.html#define/EM_BLOCK_COLOR" title="EM_BLOCK_COLOR">EM_BLOCK_COLOR</a> for quick access.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/em_mask_matrix">em_mask_matrix</a></th><td>A globaly cached version of <a href="code/__DEFINES/lighting.html#define/EM_MASK_MATRIX" title="EM_MASK_MATRIX">EM_MASK_MATRIX</a> for quick access.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/emissive_color">emissive_color</a></th><td>A globaly cached version of <a href="code/__DEFINES/lighting.html#define/EMISSIVE_COLOR" title="EMISSIVE_COLOR">EMISSIVE_COLOR</a> for quick access.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/exodrone_launchers">exodrone_launchers</a></th><td>All exodrone launchers.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/exodrones">exodrones</a></th><td>All exodrones.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/exoscanner_bands">exoscanner_bands</a></th><td>List of scanned distances</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/exploration_sites">exploration_sites</a></th><td>All exploration site instances</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/explorer_drone_adventure_db_entries">explorer_drone_adventure_db_entries</a></th><td>All possible adventures in raw form</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/families_override_theme">families_override_theme</a></th><td>Forces the Families theme to be the one in this variable via variable editing. Used for debugging.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/fax_machines">fax_machines</a></th><td>--- Fax Machines. ---
+GLOB list of all fax machines.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/features_block_lengths">features_block_lengths</a></th><td>The same rules of the above also apply here, with the exception that this is for the unique_features string variable
+(commonly abbreviated with uf) and its blocks. Both ui and uf have a standard block length of 3 ASCII characters.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/features_by_species">features_by_species</a></th><td>An assoc list of species types to their features (from get_features())</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/fileaccess_timer">fileaccess_timer</a></th><td>For FTP requests. (i.e. downloading runtime logs.)</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/fire_appearances">fire_appearances</a></th><td>Global list that containes cached fire overlays for mobs</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/flock_state">flock_state</a></th><td>tgui state: flock_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/freq2icon">freq2icon</a></th><td>Frequency to file name. See chat_icons.dm</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/gas_id_to_canister">gas_id_to_canister</a></th><td>List of all the gases, used in labelling the canisters</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/gateway_destinations">gateway_destinations</a></th><td>List of possible gateway destinations.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/glide_size_multiplier">glide_size_multiplier</a></th><td>Compensating for time dialation</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/global_funny_embedding">global_funny_embedding</a></th><td>set this to a new instance of a SUBTYPE of global_funny_embedding. The main type is a prototype and will runtime really hard</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/gravity_generators">gravity_generators</a></th><td>We will keep track of this by adding new gravity generators to the list, and keying it with the z level.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/hands_state">hands_state</a></th><td>tgui state: hands_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/has_antagonist_huds">has_antagonist_huds</a></th><td>All active /datum/atom_hud/alternate_appearance/basic/has_antagonist instances</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/heretic_sacrifice_landmarks">heretic_sacrifice_landmarks</a></th><td>A global assoc list of all landmarks that denote a heretic sacrifice location. [string heretic path] = [landmark].</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/heretic_start_knowledge">heretic_start_knowledge</a></th><td>Global list of all heretic knowledge that have route = PATH_START. List of PATHS.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/hijack_employers">hijack_employers</a></th><td>employers who hire agents to do the hijack</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/huds_by_category">huds_by_category</a></th><td>gets filled by each /datum/atom_hud/New().
+associative list of the form: list(hud category = list(all global atom huds that use that category))</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/human_adjacent_state">human_adjacent_state</a></th><td>tgui state: human_adjacent_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/ice_cream_flavours">ice_cream_flavours</a></th><td>ICE CREAM FLAVOUR DATUM STUFF</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/identity_block_lengths">identity_block_lengths</a></th><td>Some identity blocks (basically pieces of the unique_identity string variable of the dna datum, commonly abbreviated with ui)
+may have a length that differ from standard length of 3 ASCII characters. This list is necessary
+for these non-standard blocks to work, as well as the entire unique identity string.
+Should you add a new ui block which size differ from the standard (again, 3 ASCII characters), like for example, a color,
+please do not forget to also include it in this list in the following format:
+&quot;[dna block number]&quot; = dna block size,
+Failure to do that may result in bugs. Thanks.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/integrated_circuits">integrated_circuits</a></th><td>A list of all integrated circuits</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/intento_players">intento_players</a></th><td>All people who have used an Intento this round along with their high scores.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/inventory_state">inventory_state</a></th><td>tgui state: inventory_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/language_menu_state">language_menu_state</a></th><td>tgui state: language_menu_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/mafia_bad_signup">mafia_bad_signup</a></th><td>list of ghosts who want to play mafia that have since disconnected. They are kept in the lobby, but not counted for starting a game.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/mafia_game">mafia_game</a></th><td>the current global mafia game running.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/mafia_signup">mafia_signup</a></th><td>list of ghosts who want to play mafia, every time someone enters the list it checks to see if enough are in</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/map_reports">map_reports</a></th><td>Global list of map report datums</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/marker_beacon_colors">marker_beacon_colors</a></th><td>Marker Beacons</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/message_modes_stat_limits">message_modes_stat_limits</a></th><td>Whitelist of saymodes or radio extensions that can be spoken through even if not fully conscious.
+Associated values are their maximum allowed mob stats.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/mimic_blacklist">mimic_blacklist</a></th><td>Mimics can't be made out of these objects</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/mod_link_ids">mod_link_ids</a></th><td>Global list of all ids associated to a /datum/mod_link instance</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/mod_themes">mod_themes</a></th><td>Global list of all /datum/mod_theme</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/narcd_underages">narcd_underages</a></th><td>underages who have been reported to security for trying to buy things they shouldn't, so they can't spam</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/navbeacons">navbeacons</a></th><td>List of all navbeacons by Z level</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/nearsighted_glasses">nearsighted_glasses</a></th><td>Lists related to quirk selection
+Types of glasses that can be selected at character selection with the Nearsighted quirk</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/never_state">never_state</a></th><td>tgui state: never_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/new_player_state">new_player_state</a></th><td>tgui state: new_player_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/normal_employers">normal_employers</a></th><td>employers who hire agents to do a task and escape...</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/not_incapacitated_state">not_incapacitated_state</a></th><td>tgui state: not_incapacitated_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/not_incapacitated_turf_state">not_incapacitated_turf_state</a></th><td>tgui state: not_incapacitated_turf_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/notcontained_state">notcontained_state</a></th><td>tgui state: notcontained_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/notes_state">notes_state</a></th><td>tgui state: notes_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/observer_state">observer_state</a></th><td>tgui state: observer_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/organ_process_order">organ_process_order</a></th><td>Defines how a mob's processing_organs is ordered
+Exists so Life()'s organ process order is consistent</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/orion_events">orion_events</a></th><td>assoc list, [datum singleton] = weight</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/paicard_state">paicard_state</a></th><td>tgui state: paicard_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/phobia_types">phobia_types</a></th><td>Phobia types that can be pulled randomly for brain traumas.
+Also determines what phobias you can choose as your preference with the quirk.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/physical_obscured_state">physical_obscured_state</a></th><td>tgui state: physical_obscured_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/physical_state">physical_state</a></th><td>paicard is in the user's closest inventory
+paicard is in a pda slot which is in the user's closest inventory
+tgui state: physical_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/picture_log_directory">picture_log_directory</a></th><td>Picture logging</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/pipe_color_name">pipe_color_name</a></th><td>Names shown in the examine for every colored atmos component</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/pipe_colors_ordered">pipe_colors_ordered</a></th><td>List that sorts the colors and is used for setting up the pipes layer so that they overlap correctly</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/pipe_paint_colors">pipe_paint_colors</a></th><td>All colors available to pipes and atmos components</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/player_details">player_details</a></th><td>assoc list of ckey -&gt; /datum/player_details</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/poll_options">poll_options</a></th><td>All poll option datums of running polls</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/polls">polls</a></th><td>All currently running polls held as datums</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/preference_entries">preference_entries</a></th><td>An assoc list list of types to instantiated <code>/datum/preference</code> instances</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/preference_entries_by_key">preference_entries_by_key</a></th><td>An assoc list of preference entries by their <code>savefile_key</code></td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/reality_smash_track">reality_smash_track</a></th><td>We want reality_smash_tracker to exist only once and be accessible from anywhere.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/req_console_assistance">req_console_assistance</a></th><td>Requests Console</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/reverse_contained_state">reverse_contained_state</a></th><td>tgui state: reverse_contained_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/rpgloot_controller">rpgloot_controller</a></th><td>Holds the global datum for rpgloot, so anywhere may check for its existence (it signals into whatever it needs to modify, so it shouldn't require fetching)</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/rpgtitle_controller">rpgtitle_controller</a></th><td>Holds the global datum for rpgtitle, so anywhere may check for its existence (it signals into whatever it needs to modify, so it shouldn't require fetching)</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/rune_types">rune_types</a></th><td>Assoc list of every rune that can be drawn by ritual daggers. [rune_name] = [typepath]</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/sacrificed">sacrificed</a></th><td>list of weakrefs to mobs OR minds that have been sacrificed</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/scan_conditions">scan_conditions</a></th><td>Scan condition instances</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/see_through_maps">see_through_maps</a></th><td>global statics for the see_through_component coordinate maps
+For ease of use, include a comment in the shape of the coordinate map, where O is nothing, X is a hidden tile and A is the object
+List-coordinate layout is list(relative_x, relative_y, relative_z)
+Turf finding algorithm needs the z and you can totally use it, but I can't think of any reason to ever do it
+Also it'd be really cool if you could keep the list-coordinates in here represent their actual relative coords, dont use tabs though since their spacing can differ</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/self_state">self_state</a></th><td>tgui state: self_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/sortInstance">sortInstance</a></th><td>This is a global instance to allow much of this code to be reused. The interfaces are kept separately</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/sortedAreas">sortedAreas</a></th><td>Used by jump-to-area etc. Updated by area/updateName()
+If this is null, it needs to be recalculated. Use get_sorted_areas() as a getter please</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/special_roles">special_roles</a></th><td>This defines the antagonists you can operate with in the settings.
+Keys are the antagonist, values are the number of days since the player's
+first connection in order to play.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/species_augment_tree">species_augment_tree</a></th><td>Map of species &gt; category &gt; slot &gt; item</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/species_list">species_list</a></th><td>An assoc list of species IDs to type paths</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/station_goals">station_goals</a></th><td>List of available station goals for the crew to be working on</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/station_was_nuked">station_was_nuked</a></th><td>TRUE only if the station was actually hit by the nuke, otherwise FALSE</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/supplypod_loading_bays">supplypod_loading_bays</a></th><td>Enables profiling ATMOS_CANPASS_TURF. Profile data is stored in SSzas.
+///////////////////////////PROFILING//////////////////////////////</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/teleport_runes">teleport_runes</a></th><td>List of all teleport runes</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/teleportlocs">teleportlocs</a></th><td>A list of teleport locations</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/the_gateway">the_gateway</a></th><td>Station home gateway</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/time_last_changed_position">time_last_changed_position</a></th><td>The time since the last job opening was created</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/timezoneOffset">timezoneOffset</a></th><td>The difference betwen midnight (of the host computer) and 0 world.ticks.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/total_uf_len_by_block">total_uf_len_by_block</a></th><td>Ditto but for unique features. Used by the datum/dna/set_uni_feature_block and datum/dna/get_uni_feature_block procs.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/total_ui_len_by_block">total_ui_len_by_block</a></th><td>A list of numbers that keeps track of where ui blocks start in the unique_identity string variable of the dna datum.
+Commonly used by the datum/dna/set_uni_identity_block and datum/dna/get_uni_identity_block procs.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/trait_name_map">trait_name_map</a></th><td>value -&gt; trait name, generated on use from trait_by_type global</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/triple_ai_controller">triple_ai_controller</a></th><td>global reference to the current theme, if there is one.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/typecache_elevated_structures">typecache_elevated_structures</a></th><td>A typecache listing structures that are considered to have surfaces that you can place items on that are higher than the floor. This, of course, should be restricted to /atom/movables. This is primarily used for food decomposition code.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/typecache_general_bad_hostile_attack_targets">typecache_general_bad_hostile_attack_targets</a></th><td>A typecache of objects that player controlled, easily accessible, hostile mobs should not be able to attack</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/typecache_general_bad_things_to_easily_move">typecache_general_bad_things_to_easily_move</a></th><td>A typecache of objects that player controlled, easily accessible, hostile mobs should not be able to move around easily</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/typecache_holodeck_linked_floorcheck_ok">typecache_holodeck_linked_floorcheck_ok</a></th><td>typecache for turfs that should be considered ok during floorchecks.
+A linked turf being anything not in this typecache will cause the holodeck to perform an emergency shutdown.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/unit_test_mapping_logs">unit_test_mapping_logs</a></th><td>When unit testing, all logs sent to log_mapping are stored here and retrieved in log_mapping unit test.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/vampire_houses">vampire_houses</a></th><td>list that stores a vampire house name for each department</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/voice_of_god_commands">voice_of_god_commands</a></th><td>List of all voice of god commands</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/voice_type2sound_ref">voice_type2sound_ref</a></th><td>Managed global that is a reference to the real global</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/wiremod_basic_types">wiremod_basic_types</a></th><td>The basic player-facing types that don't have any super special behaviour.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/wiremod_fundamental_types">wiremod_fundamental_types</a></th><td>The fundamental datatypes of the byond game engine.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/wizard_spellbook_purchases_by_key">wizard_spellbook_purchases_by_key</a></th><td>Global assoc list. [ckey] = [spellbook entry type]</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/world_suspicious_login_log">world_suspicious_login_log</a></th><td>Log associated with [/proc/log_suspicious_login()] - Intended to hold all logins that failed due to suspicious circumstances such as ban detection, CID randomisation etc.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/z_state">z_state</a></th><td>tgui state: z_state</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/GPS_list"><aside class="declaration">var </aside>GPS_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/components/gps.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;gps.dm 2"/></a></h3>
+        <p>Global GPS_list. All  GPS components get saved in here for easy reference.</p><h3 id="var/WALLITEMS_INTERIOR"><aside class="declaration">var </aside>WALLITEMS_INTERIOR
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/global_lists.dm#L154">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;global_lists.dm 154"/></a></h3>
+        <p>Checks if that loc and dir has an item on the wall</p><h3 id="var/acid_overlay"><aside class="declaration">var </aside>acid_overlay
+            <aside>&ndash; /static/mutable_appearance</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/obj_defense.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;obj_defense.dm 111"/></a></h3>
+        <p>ACID</p><h3 id="var/active_lifts_by_type"><aside class="declaration">var </aside>active_lifts_by_type
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/industrial_lift/lift_master.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;industrial_lift&#x2F;lift_master.dm 2"/></a></h3>
+        <p>associative list of the form: list(lift_id = list(all lift_master datums attached to lifts of that type))</p><h3 id="var/admin_fax_destinations"><aside class="declaration">var </aside>admin_fax_destinations
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/paperwork_defines.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;paperwork_defines.dm 10"/></a></h3>
+        <p>Global list of all admin fax machine destinations</p><h3 id="var/admin_state"><aside class="declaration">var </aside>admin_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/admin_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/admin.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;admin.dm 12"/></a></h3>
+        <p>tgui state: admin_state</p>
+<p>Checks that the user is an admin, end-of-story.</p><h3 id="var/ai_employers"><aside class="declaration">var </aside>ai_employers
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/antagonists.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;antagonists.dm 141"/></a></h3>
+        <p>employers for malfunctioning ais. they do not have sides, unlike traitors.</p><h3 id="var/airflow_step_blacklist"><aside class="declaration">var </aside>airflow_step_blacklist
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Airflow.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Airflow.dm 104"/></a></h3>
+        <p>The typecache of objects airflow can't push objects into the same tile of</p><h3 id="var/alive_player_list"><aside class="declaration">var </aside>alive_player_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/mobs.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mobs.dm 44"/></a></h3>
+        <p>All alive mobs with clients.</p><h3 id="var/all_grabstates"><aside class="declaration">var </aside>all_grabstates
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/grab/grab_datum.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;grab&#x2F;grab_datum.dm 2"/></a></h3>
+        <p>An associative list of type:instance for grab datums</p><h3 id="var/all_mutant_colors_keys"><aside class="declaration">var </aside>all_mutant_colors_keys
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/mutant_colors.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mutant_colors.dm 35"/></a></h3>
+        <p>ADD NEW ONES TO THIS OR SHIT DOESNT WORK</p><h3 id="var/all_pref_groups"><aside class="declaration">var </aside>all_pref_groups
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 40"/></a></h3>
+        <p>A list of preference modules.</p><h3 id="var/all_voice_of_god_triggers"><aside class="declaration">var </aside>all_voice_of_god_triggers
+            <aside>&ndash; /static/regex</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/voice_of_god_command.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;voice_of_god_command.dm 7"/></a></h3>
+        <p>Used to stop listeners with silly or clown-esque (first) names such as &quot;Honk&quot; or &quot;Flip&quot; from screwing up certain commands.</p><h3 id="var/always_state"><aside class="declaration">var </aside>always_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/always_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/always.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;always.dm 12"/></a></h3>
+        <p>tgui state: always_state</p>
+<p>Always grants the user UI_INTERACTIVE. Period.</p><h3 id="var/announcer_keys"><aside class="declaration">var </aside>announcer_keys
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/sound.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;sound.dm 123"/></a></h3>
+        <p>Global list of all of our announcer keys.</p><h3 id="var/areas"><aside class="declaration">var </aside>areas
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/mapping.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mapping.dm 128"/></a></h3>
+        <p>Note, areas can have duplicate types</p><h3 id="var/areas_by_type"><aside class="declaration">var </aside>areas_by_type
+            <aside>&ndash; /static/list/area</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/mapping.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mapping.dm 133"/></a></h3>
+        <p>An association from typepath to area instance. Only includes areas with <code>unique</code> set.</p><h3 id="var/blood_datums"><aside class="declaration">var </aside>blood_datums
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/blood_types.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;blood_types.dm 2"/></a></h3>
+        <p>Contains the singletons of blood datums</p><h3 id="var/bsa_unlock"><aside class="declaration">var </aside>bsa_unlock
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/station_goals/bsa.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;station_goals&#x2F;bsa.dm 3"/></a></h3>
+        <p>BSA unlocked by head ID swipes</p><h3 id="var/cached_storage_typecaches"><aside class="declaration">var </aside>cached_storage_typecaches
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/storage/storage.dm#L243">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 243"/></a></h3>
+        <p>Almost 100% of the time the lists passed into set_holdable are reused for each instance
+Just fucking cache it 4head
+Yes I could generalize this, but I don't want anyone else using it. in fact, DO NOT COPY THIS
+If you find yourself needing this pattern, you're likely better off using static typecaches
+I'm not because I do not trust implementers of the storage component to use them, BUT
+IF I FIND YOU USING THIS PATTERN IN YOUR CODE I WILL BREAK YOU ACROSS MY KNEES
+~Lemon</p><h3 id="var/can_pass_info_vars"><aside class="declaration">var </aside>can_pass_info_vars
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/paths/path.dm#L214">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;paths&#x2F;path.dm 214"/></a></h3>
+        <p>List of vars on /datum/can_pass_info to use when checking two instances for equality</p><h3 id="var/conscious_state"><aside class="declaration">var </aside>conscious_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/conscious_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/conscious.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;conscious.dm 12"/></a></h3>
+        <p>tgui state: conscious_state</p>
+<p>Only checks if the user is conscious.</p><h3 id="var/contained_state"><aside class="declaration">var </aside>contained_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/contained_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/contained.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;contained.dm 12"/></a></h3>
+        <p>tgui state: contained_state</p>
+<p>Checks that the user is inside the src_object.</p><h3 id="var/current_anonymous_theme"><aside class="declaration">var </aside>current_anonymous_theme
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/anonymous_theme.html">anonymous_theme</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/admin/verbs/anonymousnames.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;verbs&#x2F;anonymousnames.dm 3"/></a></h3>
+        <p>global reference to the current theme, if there is one.</p><h3 id="var/current_living_antags"><aside class="declaration">var </aside>current_living_antags
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/mobs.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mobs.dm 50"/></a></h3>
+        <p>All alive antags with clients.</p><h3 id="var/current_observers_list"><aside class="declaration">var </aside>current_observers_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/mobs.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mobs.dm 53"/></a></h3>
+        <p>All observers with clients that joined as observers.</p><h3 id="var/dead_player_list"><aside class="declaration">var </aside>dead_player_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/mobs.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mobs.dm 47"/></a></h3>
+        <p>All dead mobs with clients. Does not include observers.</p><h3 id="var/deep_inventory_state"><aside class="declaration">var </aside>deep_inventory_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/deep_inventory_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/deep_inventory.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;deep_inventory.dm 13"/></a></h3>
+        <p>tgui state: deep_inventory_state</p>
+<p>Checks that the src_object is in the user's deep
+(backpack, box, toolbox, etc) inventory.</p><h3 id="var/default_state"><aside class="declaration">var </aside>default_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/default</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/default.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;default.dm 13"/></a></h3>
+        <p>tgui state: default_state</p>
+<p>Checks a number of things -- mostly physical distance for humans
+and view for robots.</p><h3 id="var/deliverybeacons"><aside class="declaration">var </aside>deliverybeacons
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/objects.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 4"/></a></h3>
+        <p>List of beacons set to delivery mode</p><h3 id="var/deliverybeacontags"><aside class="declaration">var </aside>deliverybeacontags
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/objects.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 6"/></a></h3>
+        <p>List of tags belonging to beacons set to delivery mode</p><h3 id="var/department_order_cooldowns"><aside class="declaration">var </aside>department_order_cooldowns
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/cargo/department_order.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;cargo&#x2F;department_order.dm 3"/></a></h3>
+        <p>cooldown for each department, assoc type 2 cooldown. global, so rebuilding the console doesn't refresh the cd</p><h3 id="var/drone_machine_blacklist_enabled"><aside class="declaration">var </aside>drone_machine_blacklist_enabled
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/drone.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;drone.dm 3"/></a></h3>
+        <p>If drones are blacklisted from certain sensitive machines</p><h3 id="var/dug_up_basalt"><aside class="declaration">var </aside>dug_up_basalt
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/turfs/open/asteroid.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;open&#x2F;asteroid.dm 100"/></a></h3>
+        <p>Used by ashstorms to replenish basalt tiles that have been dug up without going through all of them.</p><h3 id="var/editable_sign_types"><aside class="declaration">var </aside>editable_sign_types
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/objects.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 23"/></a></h3>
+        <p>This is a global list of all signs you can change an existing sign or new sign backing to, when using a pen on them.</p><h3 id="var/em_block_color"><aside class="declaration">var </aside>em_block_color
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/lighting.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 80"/></a></h3>
+        <p>A globaly cached version of <a href="code/__DEFINES/lighting.html#define/EM_BLOCK_COLOR" title="EM_BLOCK_COLOR">EM_BLOCK_COLOR</a> for quick access.</p><h3 id="var/em_mask_matrix"><aside class="declaration">var </aside>em_mask_matrix
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/lighting.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 86"/></a></h3>
+        <p>A globaly cached version of <a href="code/__DEFINES/lighting.html#define/EM_MASK_MATRIX" title="EM_MASK_MATRIX">EM_MASK_MATRIX</a> for quick access.</p><h3 id="var/emissive_color"><aside class="declaration">var </aside>emissive_color
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/lighting.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 73"/></a></h3>
+        <p>A globaly cached version of <a href="code/__DEFINES/lighting.html#define/EMISSIVE_COLOR" title="EMISSIVE_COLOR">EMISSIVE_COLOR</a> for quick access.</p><h3 id="var/exodrone_launchers"><aside class="declaration">var </aside>exodrone_launchers
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/explorer_drone/exodrone.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;explorer_drone&#x2F;exodrone.dm 19"/></a></h3>
+        <p>All exodrone launchers.</p><h3 id="var/exodrones"><aside class="declaration">var </aside>exodrones
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/explorer_drone/exodrone.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;explorer_drone&#x2F;exodrone.dm 17"/></a></h3>
+        <p>All exodrones.</p><h3 id="var/exoscanner_bands"><aside class="declaration">var </aside>exoscanner_bands
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/explorer_drone/scanner_array.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;explorer_drone&#x2F;scanner_array.dm 5"/></a></h3>
+        <p>List of scanned distances</p><h3 id="var/exploration_sites"><aside class="declaration">var </aside>exploration_sites
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/explorer_drone/exploration_site.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;explorer_drone&#x2F;exploration_site.dm 2"/></a></h3>
+        <p>All exploration site instances</p><h3 id="var/explorer_drone_adventure_db_entries"><aside class="declaration">var </aside>explorer_drone_adventure_db_entries
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/explorer_drone/adventure.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;explorer_drone&#x2F;adventure.dm 48"/></a></h3>
+        <p>All possible adventures in raw form</p><h3 id="var/families_override_theme"><aside class="declaration">var </aside>families_override_theme
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/gang/handler.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;gang&#x2F;handler.dm 19"/></a></h3>
+        <p>Forces the Families theme to be the one in this variable via variable editing. Used for debugging.</p><h3 id="var/fax_machines"><aside class="declaration">var </aside>fax_machines
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/machinery/fax_machine.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;fax_machine.dm 5"/></a></h3>
+        <p>--- Fax Machines. ---
+GLOB list of all fax machines.</p><h3 id="var/features_block_lengths"><aside class="declaration">var </aside>features_block_lengths
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/dna.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;dna.dm 22"/></a></h3>
+        <p>The same rules of the above also apply here, with the exception that this is for the unique_features string variable
+(commonly abbreviated with uf) and its blocks. Both ui and uf have a standard block length of 3 ASCII characters.</p><h3 id="var/features_by_species"><aside class="declaration">var </aside>features_by_species
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/carbon/human/species.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species.dm 5"/></a></h3>
+        <p>An assoc list of species types to their features (from get_features())</p><h3 id="var/fileaccess_timer"><aside class="declaration">var </aside>fileaccess_timer
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/files.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;files.dm 6"/></a></h3>
+        <p>For FTP requests. (i.e. downloading runtime logs.)</p>
+<p>However it'd be ok to use for accessing attack logs and such too, which are even laggier.</p><h3 id="var/fire_appearances"><aside class="declaration">var </aside>fire_appearances
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/living.dm#L1315">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;living.dm 1315"/></a></h3>
+        <p>Global list that containes cached fire overlays for mobs</p><h3 id="var/flock_state"><aside class="declaration">var </aside>flock_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/flockmind</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/flockmind.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;flockmind.dm 7"/></a></h3>
+        <p>tgui state: flock_state</p>
+<p>Checks that the user is a flock overmind, or an admin.</p><h3 id="var/freq2icon"><aside class="declaration">var </aside>freq2icon
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/communications.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;communications.dm 128"/></a></h3>
+        <p>Frequency to file name. See chat_icons.dm</p><h3 id="var/gas_id_to_canister"><aside class="declaration">var </aside>gas_id_to_canister
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/machinery/portable/canister.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;portable&#x2F;canister.dm 4"/></a></h3>
+        <p>List of all the gases, used in labelling the canisters</p><h3 id="var/gateway_destinations"><aside class="declaration">var </aside>gateway_destinations
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/awaymissions/gateway.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;awaymissions&#x2F;gateway.dm 4"/></a></h3>
+        <p>List of possible gateway destinations.</p><h3 id="var/glide_size_multiplier"><aside class="declaration">var </aside>glide_size_multiplier
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/movement.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 8"/></a></h3>
+        <p>Compensating for time dialation</p><h3 id="var/global_funny_embedding"><aside class="declaration">var </aside>global_funny_embedding
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/global_funny_embedding.html">global_funny_embedding</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/events/wizard/embeddies.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;events&#x2F;wizard&#x2F;embeddies.dm 27"/></a></h3>
+        <p>set this to a new instance of a SUBTYPE of global_funny_embedding. The main type is a prototype and will runtime really hard</p><h3 id="var/gravity_generators"><aside class="declaration">var </aside>gravity_generators
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/power/gravitygenerator.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;gravitygenerator.dm 7"/></a></h3>
+        <p>We will keep track of this by adding new gravity generators to the list, and keying it with the z level.</p><h3 id="var/hands_state"><aside class="declaration">var </aside>hands_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/hands_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/hands.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;hands.dm 12"/></a></h3>
+        <p>tgui state: hands_state</p>
+<p>Checks that the src_object is in the user's hands.</p><h3 id="var/has_antagonist_huds"><aside class="declaration">var </aside>has_antagonist_huds
+            <aside>&ndash; /static/list/datum/atom_hud/alternate_appearance/basic/has_antagonist</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/_common/antag_hud.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;_common&#x2F;antag_hud.dm 2"/></a></h3>
+        <p>All active /datum/atom_hud/alternate_appearance/basic/has_antagonist instances</p><h3 id="var/heretic_sacrifice_landmarks"><aside class="declaration">var </aside>heretic_sacrifice_landmarks
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/heretic/knowledge/sacrifice_knowledge/sacrifice_map.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;heretic&#x2F;knowledge&#x2F;sacrifice_knowledge&#x2F;sacrifice_map.dm 4"/></a></h3>
+        <p>A global assoc list of all landmarks that denote a heretic sacrifice location. [string heretic path] = [landmark].</p><h3 id="var/heretic_start_knowledge"><aside class="declaration">var </aside>heretic_start_knowledge
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/heretic/knowledge/starting_lore.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;heretic&#x2F;knowledge&#x2F;starting_lore.dm 4"/></a></h3>
+        <p>Global list of all heretic knowledge that have route = PATH_START. List of PATHS.</p><h3 id="var/hijack_employers"><aside class="declaration">var </aside>hijack_employers
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/antagonists.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;antagonists.dm 129"/></a></h3>
+        <p>employers who hire agents to do the hijack</p><h3 id="var/huds_by_category"><aside class="declaration">var </aside>huds_by_category
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/hud.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;hud.dm 7"/></a></h3>
+        <p>gets filled by each /datum/atom_hud/New().
+associative list of the form: list(hud category = list(all global atom huds that use that category))</p><h3 id="var/human_adjacent_state"><aside class="declaration">var </aside>human_adjacent_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/human_adjacent_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/human_adjacent.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;human_adjacent.dm 13"/></a></h3>
+        <p>tgui state: human_adjacent_state</p>
+<p>In addition to default checks, only allows interaction for a
+human adjacent user.</p><h3 id="var/ice_cream_flavours"><aside class="declaration">var </aside>ice_cream_flavours
+            <aside>&ndash; /static/list/datum/ice_cream_flavour</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/components/food/ice_cream_holder.dm#L187">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;food&#x2F;ice_cream_holder.dm 187"/></a></h3>
+        <p>ICE CREAM FLAVOUR DATUM STUFF</p><h3 id="var/identity_block_lengths"><aside class="declaration">var </aside>identity_block_lengths
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/dna.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;dna.dm 11"/></a></h3>
+        <p>Some identity blocks (basically pieces of the unique_identity string variable of the dna datum, commonly abbreviated with ui)
+may have a length that differ from standard length of 3 ASCII characters. This list is necessary
+for these non-standard blocks to work, as well as the entire unique identity string.
+Should you add a new ui block which size differ from the standard (again, 3 ASCII characters), like for example, a color,
+please do not forget to also include it in this list in the following format:
+&quot;[dna block number]&quot; = dna block size,
+Failure to do that may result in bugs. Thanks.</p><h3 id="var/integrated_circuits"><aside class="declaration">var </aside>integrated_circuits
+            <aside>&ndash; /static/list/obj/item/integrated_circuit</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/wiremod/core/integrated_circuit.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;wiremod&#x2F;core&#x2F;integrated_circuit.dm 2"/></a></h3>
+        <p>A list of all integrated circuits</p><h3 id="var/intento_players"><aside class="declaration">var </aside>intento_players
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/items/toys.dm#L1289">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys.dm 1289"/></a></h3>
+        <p>All people who have used an Intento this round along with their high scores.</p><h3 id="var/inventory_state"><aside class="declaration">var </aside>inventory_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/inventory_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/inventory.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;inventory.dm 13"/></a></h3>
+        <p>tgui state: inventory_state</p>
+<p>Checks that the src_object is in the user's top-level
+(hand, ear, pocket, belt, etc) inventory.</p><h3 id="var/language_menu_state"><aside class="declaration">var </aside>language_menu_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/language_menu</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/language_menu.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;language_menu.dm 10"/></a></h3>
+        <p>tgui state: language_menu_state</p><h3 id="var/mafia_bad_signup"><aside class="declaration">var </aside>mafia_bad_signup
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mafia/_defines.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mafia&#x2F;_defines.dm 79"/></a></h3>
+        <p>list of ghosts who want to play mafia that have since disconnected. They are kept in the lobby, but not counted for starting a game.</p><h3 id="var/mafia_game"><aside class="declaration">var </aside>mafia_game
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mafia/_defines.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mafia&#x2F;_defines.dm 81"/></a></h3>
+        <p>the current global mafia game running.</p><h3 id="var/mafia_signup"><aside class="declaration">var </aside>mafia_signup
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mafia/_defines.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mafia&#x2F;_defines.dm 77"/></a></h3>
+        <p>list of ghosts who want to play mafia, every time someone enters the list it checks to see if enough are in</p><h3 id="var/map_reports"><aside class="declaration">var </aside>map_reports
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mapping/verify.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mapping&#x2F;verify.dm 2"/></a></h3>
+        <p>Global list of map report datums</p><h3 id="var/marker_beacon_colors"><aside class="declaration">var </aside>marker_beacon_colors
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mining/equipment/marker_beacons.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mining&#x2F;equipment&#x2F;marker_beacons.dm 2"/></a></h3>
+        <p>Marker Beacons</p><h3 id="var/message_modes_stat_limits"><aside class="declaration">var </aside>message_modes_stat_limits
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/living_say.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;living_say.dm 65"/></a></h3>
+        <p>Whitelist of saymodes or radio extensions that can be spoken through even if not fully conscious.
+Associated values are their maximum allowed mob stats.</p><h3 id="var/mimic_blacklist"><aside class="declaration">var </aside>mimic_blacklist
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/living/simple_animal/hostile/mimic.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;mimic.dm 102"/></a></h3>
+        <p>Mimics can't be made out of these objects</p><h3 id="var/mod_link_ids"><aside class="declaration">var </aside>mod_link_ids
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/mod.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mod.dm 55"/></a></h3>
+        <p>Global list of all ids associated to a /datum/mod_link instance</p><h3 id="var/mod_themes"><aside class="declaration">var </aside>mod_themes
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/mod.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mod.dm 53"/></a></h3>
+        <p>Global list of all /datum/mod_theme</p><h3 id="var/narcd_underages"><aside class="declaration">var </aside>narcd_underages
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/mobs.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mobs.dm 56"/></a></h3>
+        <p>underages who have been reported to security for trying to buy things they shouldn't, so they can't spam</p><h3 id="var/navbeacons"><aside class="declaration">var </aside>navbeacons
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/objects.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 2"/></a></h3>
+        <p>List of all navbeacons by Z level</p><h3 id="var/nearsighted_glasses"><aside class="declaration">var </aside>nearsighted_glasses
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/quirks.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;quirks.dm 4"/></a></h3>
+        <p>Lists related to quirk selection
+Types of glasses that can be selected at character selection with the Nearsighted quirk</p><h3 id="var/never_state"><aside class="declaration">var </aside>never_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/never_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/never.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;never.dm 12"/></a></h3>
+        <p>tgui state: never_state</p>
+<p>Always closes the UI, no matter what. See the ui_state in religious_tool.dm to see an example</p><h3 id="var/new_player_state"><aside class="declaration">var </aside>new_player_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/new_player_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/new_player.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;new_player.dm 7"/></a></h3>
+        <p>tgui state: new_player_state</p>
+<p>Checks that the user is a new_player, or if user is an admin</p><h3 id="var/normal_employers"><aside class="declaration">var </aside>normal_employers
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/antagonists.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;antagonists.dm 135"/></a></h3>
+        <p>employers who hire agents to do a task and escape...</p><h3 id="var/not_incapacitated_state"><aside class="declaration">var </aside>not_incapacitated_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/not_incapacitated_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/not_incapacitated.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;not_incapacitated.dm 12"/></a></h3>
+        <p>tgui state: not_incapacitated_state</p>
+<p>Checks that the user isn't incapacitated</p><h3 id="var/not_incapacitated_turf_state"><aside class="declaration">var </aside>not_incapacitated_turf_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/not_incapacitated_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/not_incapacitated.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;not_incapacitated.dm 20"/></a></h3>
+        <p>tgui state: not_incapacitated_turf_state</p>
+<p>Checks that the user isn't incapacitated and that their loc is a turf</p><h3 id="var/notcontained_state"><aside class="declaration">var </aside>notcontained_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/notcontained_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/notcontained.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;notcontained.dm 13"/></a></h3>
+        <p>tgui state: notcontained_state</p>
+<p>Checks that the user is not inside src_object, and then makes the
+default checks.</p><h3 id="var/notes_state"><aside class="declaration">var </aside>notes_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/notes</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/notes.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;notes.dm 7"/></a></h3>
+        <p>tgui state: notes_state</p>
+<p>Checks that the user is the owner of the note panel datum.</p><h3 id="var/observer_state"><aside class="declaration">var </aside>observer_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/observer_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/observer.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;observer.dm 12"/></a></h3>
+        <p>tgui state: observer_state</p>
+<p>Checks that the user is an observer/ghost.</p><h3 id="var/organ_process_order"><aside class="declaration">var </aside>organ_process_order
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/DNA.dm#L190">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;DNA.dm 190"/></a></h3>
+        <p>Defines how a mob's processing_organs is ordered
+Exists so Life()'s organ process order is consistent</p><h3 id="var/orion_events"><aside class="declaration">var </aside>orion_events
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/machinery/computer/arcade/orion.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;arcade&#x2F;orion.dm 8"/></a></h3>
+        <p>assoc list, [datum singleton] = weight</p><h3 id="var/paicard_state"><aside class="declaration">var </aside>paicard_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/paicard_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/paicard.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;paicard.dm 11"/></a></h3>
+        <p>tgui state: paicard_state</p>
+<p>Checks that the paicard is in the user's top-level
+(hand, ear, pocket, belt, etc) inventory OR
+if the paicard has been slotted into a PDA which
+is also on the user's person.</p><h3 id="var/phobia_types"><aside class="declaration">var </aside>phobia_types
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/phobias.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;phobias.dm 5"/></a></h3>
+        <p>Phobia types that can be pulled randomly for brain traumas.
+Also determines what phobias you can choose as your preference with the quirk.</p><h3 id="var/physical_obscured_state"><aside class="declaration">var </aside>physical_obscured_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/physical_obscured_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/physical.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;physical.dm 38"/></a></h3>
+        <p>tgui state: physical_obscured_state</p>
+<p>Short-circuits the default state to only check physical distance, being in view doesn't matter</p><h3 id="var/physical_state"><aside class="declaration">var </aside>physical_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/physical</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/physical.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;physical.dm 12"/></a></h3>
+        <p>paicard is in the user's closest inventory
+paicard is in a pda slot which is in the user's closest inventory
+tgui state: physical_state</p>
+<p>Short-circuits the default state to only check physical distance.</p><h3 id="var/picture_log_directory"><aside class="declaration">var </aside>picture_log_directory
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/logging.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 94"/></a></h3>
+        <p>Picture logging</p><h3 id="var/pipe_color_name"><aside class="declaration">var </aside>pipe_color_name
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/piping_colors_lists.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;piping_colors_lists.dm 34"/></a></h3>
+        <p>Names shown in the examine for every colored atmos component</p><h3 id="var/pipe_colors_ordered"><aside class="declaration">var </aside>pipe_colors_ordered
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/piping_colors_lists.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;piping_colors_lists.dm 18"/></a></h3>
+        <p>List that sorts the colors and is used for setting up the pipes layer so that they overlap correctly</p><h3 id="var/pipe_paint_colors"><aside class="declaration">var </aside>pipe_paint_colors
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/piping_colors_lists.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;piping_colors_lists.dm 2"/></a></h3>
+        <p>All colors available to pipes and atmos components</p><h3 id="var/player_details"><aside class="declaration">var </aside>player_details
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/player_details.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;player_details.dm 3"/></a></h3>
+        <p>assoc list of ckey -&gt; /datum/player_details</p><h3 id="var/poll_options"><aside class="declaration">var </aside>poll_options
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/dead/new_player/poll.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;new_player&#x2F;poll.dm 7"/></a></h3>
+        <p>All poll option datums of running polls</p><h3 id="var/polls"><aside class="declaration">var </aside>polls
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/dead/new_player/poll.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;new_player&#x2F;poll.dm 3"/></a></h3>
+        <p>All currently running polls held as datums</p><h3 id="var/preference_entries"><aside class="declaration">var </aside>preference_entries
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 34"/></a></h3>
+        <p>An assoc list list of types to instantiated <code>/datum/preference</code> instances</p><h3 id="var/preference_entries_by_key"><aside class="declaration">var </aside>preference_entries_by_key
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 37"/></a></h3>
+        <p>An assoc list of preference entries by their <code>savefile_key</code></p><h3 id="var/reality_smash_track"><aside class="declaration">var </aside>reality_smash_track
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/reality_smash_tracker.html">reality_smash_tracker</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/game_modes.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;game_modes.dm 13"/></a></h3>
+        <p>We want reality_smash_tracker to exist only once and be accessible from anywhere.</p><h3 id="var/req_console_assistance"><aside class="declaration">var </aside>req_console_assistance
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/machinery/requests_console.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;requests_console.dm 4"/></a></h3>
+        <p>Requests Console</p>
+<p>Originally written by errorage, updated by: Carn, needs more work though. I just added some security fixes</p><h3 id="var/reverse_contained_state"><aside class="declaration">var </aside>reverse_contained_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/reverse_contained_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/reverse_contained.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;reverse_contained.dm 13"/></a></h3>
+        <p>tgui state: reverse_contained_state</p>
+<p>Checks if src_object is inside of user.</p><h3 id="var/rpgloot_controller"><aside class="declaration">var </aside>rpgloot_controller
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/rpgloot_controller.html">rpgloot_controller</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/events/wizard/rpgloot.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;events&#x2F;wizard&#x2F;rpgloot.dm 42"/></a></h3>
+        <p>Holds the global datum for rpgloot, so anywhere may check for its existence (it signals into whatever it needs to modify, so it shouldn't require fetching)</p><h3 id="var/rpgtitle_controller"><aside class="declaration">var </aside>rpgtitle_controller
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/rpgtitle_controller.html">rpgtitle_controller</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/events/rpgtitles.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;events&#x2F;rpgtitles.dm 12"/></a></h3>
+        <p>Holds the global datum for rpgtitle, so anywhere may check for its existence (it signals into whatever it needs to modify, so it shouldn't require fetching)</p><h3 id="var/rune_types"><aside class="declaration">var </aside>rune_types
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/cult/runes.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;cult&#x2F;runes.dm 7"/></a></h3>
+        <p>Assoc list of every rune that can be drawn by ritual daggers. [rune_name] = [typepath]</p><h3 id="var/sacrificed"><aside class="declaration">var </aside>sacrificed
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/cult/runes.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;cult&#x2F;runes.dm 3"/></a></h3>
+        <p>list of weakrefs to mobs OR minds that have been sacrificed</p><h3 id="var/scan_conditions"><aside class="declaration">var </aside>scan_conditions
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/explorer_drone/scanner_array.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;explorer_drone&#x2F;scanner_array.dm 7"/></a></h3>
+        <p>Scan condition instances</p><h3 id="var/see_through_maps"><aside class="declaration">var </aside>see_through_maps
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/see_through_maps.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;see_through_maps.dm 23"/></a></h3>
+        <p>global statics for the see_through_component coordinate maps
+For ease of use, include a comment in the shape of the coordinate map, where O is nothing, X is a hidden tile and A is the object
+List-coordinate layout is list(relative_x, relative_y, relative_z)
+Turf finding algorithm needs the z and you can totally use it, but I can't think of any reason to ever do it
+Also it'd be really cool if you could keep the list-coordinates in here represent their actual relative coords, dont use tabs though since their spacing can differ</p><h3 id="var/self_state"><aside class="declaration">var </aside>self_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/self_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/self.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;self.dm 12"/></a></h3>
+        <p>tgui state: self_state</p>
+<p>Only checks that the user and src_object are the same.</p><h3 id="var/sortInstance"><aside class="declaration">var </aside>sortInstance
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/sort_instance.html">sort_instance</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/sorts/__main.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 12"/></a></h3>
+        <p>This is a global instance to allow much of this code to be reused. The interfaces are kept separately</p><h3 id="var/sortedAreas"><aside class="declaration">var </aside>sortedAreas
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/mapping.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mapping.dm 131"/></a></h3>
+        <p>Used by jump-to-area etc. Updated by area/updateName()
+If this is null, it needs to be recalculated. Use get_sorted_areas() as a getter please</p><h3 id="var/special_roles"><aside class="declaration">var </aside>special_roles
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/role_preferences.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;role_preferences.dm 105"/></a></h3>
+        <p>This defines the antagonists you can operate with in the settings.
+Keys are the antagonist, values are the number of days since the player's
+first connection in order to play.</p><h3 id="var/species_augment_tree"><aside class="declaration">var </aside>species_augment_tree
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/augments/_augment.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;augments&#x2F;_augment.dm 5"/></a></h3>
+        <p>Map of species &gt; category &gt; slot &gt; item</p><h3 id="var/species_list"><aside class="declaration">var </aside>species_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__HELPERS/mobs.dm#L216">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;mobs.dm 216"/></a></h3>
+        <p>An assoc list of species IDs to type paths</p><h3 id="var/station_goals"><aside class="declaration">var </aside>station_goals
+            <aside>&ndash; /static/list/datum/station_goal</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/station_goals/station_goal.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;station_goals&#x2F;station_goal.dm 2"/></a></h3>
+        <p>List of available station goals for the crew to be working on</p><h3 id="var/station_was_nuked"><aside class="declaration">var </aside>station_was_nuked
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/nukeop/equipment/nuclearbomb.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;nukeop&#x2F;equipment&#x2F;nuclearbomb.dm 2"/></a></h3>
+        <p>TRUE only if the station was actually hit by the nuke, otherwise FALSE</p><h3 id="var/supplypod_loading_bays"><aside class="declaration">var </aside>supplypod_loading_bays
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/cargo.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;cargo.dm 43"/></a></h3>
+        <p>Enables profiling ATMOS_CANPASS_TURF. Profile data is stored in SSzas.
+///////////////////////////PROFILING//////////////////////////////</p><h3 id="var/teleport_runes"><aside class="declaration">var </aside>teleport_runes
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/cult/runes.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;cult&#x2F;runes.dm 5"/></a></h3>
+        <p>List of all teleport runes</p><h3 id="var/teleportlocs"><aside class="declaration">var </aside>teleportlocs
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/area/areas.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;areas.dm 119"/></a></h3>
+        <p>A list of teleport locations</p>
+<p>Adding a wizard area teleport list because motherfucking lag -- Urist
+I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game</p><h3 id="var/the_gateway"><aside class="declaration">var </aside>the_gateway
+            <aside>&ndash; /static/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/gateway.html">gateway</a>/centerstation</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/awaymissions/gateway.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;awaymissions&#x2F;gateway.dm 2"/></a></h3>
+        <p>Station home gateway</p><h3 id="var/time_last_changed_position"><aside class="declaration">var </aside>time_last_changed_position
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/modular_computers/file_system/programs/jobmanagement.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;jobmanagement.dm 2"/></a></h3>
+        <p>The time since the last job opening was created</p><h3 id="var/timezoneOffset"><aside class="declaration">var </aside>timezoneOffset
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/time_vars.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;time_vars.dm 3"/></a></h3>
+        <p>The difference betwen midnight (of the host computer) and 0 world.ticks.</p><h3 id="var/total_uf_len_by_block"><aside class="declaration">var </aside>total_uf_len_by_block
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/dna.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;dna.dm 41"/></a></h3>
+        <p>Ditto but for unique features. Used by the datum/dna/set_uni_feature_block and datum/dna/get_uni_feature_block procs.</p><h3 id="var/total_ui_len_by_block"><aside class="declaration">var </aside>total_ui_len_by_block
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/dna.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;dna.dm 31"/></a></h3>
+        <p>A list of numbers that keeps track of where ui blocks start in the unique_identity string variable of the dna datum.
+Commonly used by the datum/dna/set_uni_identity_block and datum/dna/get_uni_identity_block procs.</p><h3 id="var/trait_name_map"><aside class="declaration">var </aside>trait_name_map
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/traits.dm#L202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;traits.dm 202"/></a></h3>
+        <p>value -&gt; trait name, generated on use from trait_by_type global</p><h3 id="var/triple_ai_controller"><aside class="declaration">var </aside>triple_ai_controller
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/triple_ai_controller</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/admin/verbs/ai_triumvirate.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;verbs&#x2F;ai_triumvirate.dm 3"/></a></h3>
+        <p>global reference to the current theme, if there is one.</p><h3 id="var/typecache_elevated_structures"><aside class="declaration">var </aside>typecache_elevated_structures
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/typecache.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;typecache.dm 13"/></a></h3>
+        <p>A typecache listing structures that are considered to have surfaces that you can place items on that are higher than the floor. This, of course, should be restricted to /atom/movables. This is primarily used for food decomposition code.</p><h3 id="var/typecache_general_bad_hostile_attack_targets"><aside class="declaration">var </aside>typecache_general_bad_hostile_attack_targets
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/typecache.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;typecache.dm 22"/></a></h3>
+        <p>A typecache of objects that player controlled, easily accessible, hostile mobs should not be able to attack</p><h3 id="var/typecache_general_bad_things_to_easily_move"><aside class="declaration">var </aside>typecache_general_bad_things_to_easily_move
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/typecache.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;typecache.dm 29"/></a></h3>
+        <p>A typecache of objects that player controlled, easily accessible, hostile mobs should not be able to move around easily</p><h3 id="var/typecache_holodeck_linked_floorcheck_ok"><aside class="declaration">var </aside>typecache_holodeck_linked_floorcheck_ok
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/holodeck/computer.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;holodeck&#x2F;computer.dm 30"/></a></h3>
+        <p>typecache for turfs that should be considered ok during floorchecks.
+A linked turf being anything not in this typecache will cause the holodeck to perform an emergency shutdown.</p><h3 id="var/unit_test_mapping_logs"><aside class="declaration">var </aside>unit_test_mapping_logs
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/unit_tests/_unit_test.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;unit_tests&#x2F;_unit_test.dm 18"/></a></h3>
+        <p>When unit testing, all logs sent to log_mapping are stored here and retrieved in log_mapping unit test.</p><h3 id="var/vampire_houses"><aside class="declaration">var </aside>vampire_houses
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/species_features/vampire.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;species_features&#x2F;vampire.dm 19"/></a></h3>
+        <p>list that stores a vampire house name for each department</p><h3 id="var/voice_of_god_commands"><aside class="declaration">var </aside>voice_of_god_commands
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/datums/voice_of_god_command.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;voice_of_god_command.dm 9"/></a></h3>
+        <p>List of all voice of god commands</p><h3 id="var/voice_type2sound_ref"><aside class="declaration">var </aside>voice_type2sound_ref
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/mobs.dm#L812">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 812"/></a></h3>
+        <p>Managed global that is a reference to the real global</p><h3 id="var/wiremod_basic_types"><aside class="declaration">var </aside>wiremod_basic_types
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/wiremod.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;wiremod.dm 2"/></a></h3>
+        <p>The basic player-facing types that don't have any super special behaviour.</p><h3 id="var/wiremod_fundamental_types"><aside class="declaration">var </aside>wiremod_fundamental_types
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/lists/wiremod.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;wiremod.dm 12"/></a></h3>
+        <p>The fundamental datatypes of the byond game engine.</p><h3 id="var/wizard_spellbook_purchases_by_key"><aside class="declaration">var </aside>wizard_spellbook_purchases_by_key
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/wizard/wizard.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;wizard&#x2F;wizard.dm 2"/></a></h3>
+        <p>Global assoc list. [ckey] = [spellbook entry type]</p><h3 id="var/world_suspicious_login_log"><aside class="declaration">var </aside>world_suspicious_login_log
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/_globalvars/logging.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 12"/></a></h3>
+        <p>Log associated with [/proc/log_suspicious_login()] - Intended to hold all logins that failed due to suspicious circumstances such as ban detection, CID randomisation etc.</p><h3 id="var/z_state"><aside class="declaration">var </aside>z_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/z_state</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/tgui/states/zlevel.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;zlevel.dm 12"/></a></h3>
+        <p>tgui state: z_state</p>
+<p>Only checks that the Z-level of the user and src_object are the same.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

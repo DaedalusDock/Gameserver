@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;surgery_step - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/surgery_step.html#var">Var Details</a> - <a href="datum/surgery_step.html#proc">Proc Details</a></header>
+<main>
+<h1>surgery_step <aside>/<a href="datum.html">datum</a>/<a href="datum/surgery_step.html">surgery_step</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 11"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/surgery_step.html#var/allowed_tools">allowed_tools</a></th><td>type path referencing tools that can be used for this step, and how well are they suited for it</td></tr>
+            <tr><th><a href="datum/surgery_step.html#var/can_infect">can_infect</a></th><td>evil infection stuff that will make everyone hate me</td></tr>
+            <tr><th><a href="datum/surgery_step.html#var/delicate">delicate</a></th><td>if this step NEEDS stable optable or can be done on any valid surface with no penalty</td></tr>
+            <tr><th><a href="datum/surgery_step.html#var/failure_sound">failure_sound</a></th><td>Sound to play on failure.</td></tr>
+            <tr><th><a href="datum/surgery_step.html#var/looping">looping</a></th><td>Does this step attempt to repeat itself after every success?</td></tr>
+            <tr><th><a href="datum/surgery_step.html#var/max_duration">max_duration</a></th><td>duration of the step</td></tr>
+            <tr><th><a href="datum/surgery_step.html#var/min_duration">min_duration</a></th><td>duration of the step</td></tr>
+            <tr><th><a href="datum/surgery_step.html#var/pain_given">pain_given</a></th><td>How much pain to deliver to the patient</td></tr>
+            <tr><th><a href="datum/surgery_step.html#var/preop_sound">preop_sound</a></th><td>Sound to play during begin_step(). Can be a sound, and associative list of sound:path, or a flat list of sounds.</td></tr>
+            <tr><th><a href="datum/surgery_step.html#var/strict_access_requirement">strict_access_requirement</a></th><td>Whether or not this surgery will be fuzzy on size requirements.</td></tr>
+            <tr><th><a href="datum/surgery_step.html#var/success_sound">success_sound</a></th><td>Sound to play on success.</td></tr>
+            <tr><th><a href="datum/surgery_step.html#var/surgery_flags">surgery_flags</a></th><td>Various bitflags for requirements of the surgery.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/surgery_step.html#proc/begin_step">begin_step</a></th><td>Does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too</td></tr>
+            <tr><th><a href="datum/surgery_step.html#proc/can_operate">can_operate</a></th><td>Checks if this surgery step can be performed with the given parameters.</td></tr>
+            <tr><th><a href="datum/surgery_step.html#proc/is_valid_target">is_valid_target</a></th><td>Checks if the target is valid.</td></tr>
+            <tr><th><a href="datum/surgery_step.html#proc/success_modifier">success_modifier</a></th><td>The chance for success vs failure</td></tr>
+            <tr><th><a href="datum/surgery_step.html#proc/tool_potency">tool_potency</a></th><td>Returns how well tool is suited for this step</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/allowed_tools"><aside class="declaration">var </aside>allowed_tools
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 16"/></a></h3>
+        <p>type path referencing tools that can be used for this step, and how well are they suited for it</p><h3 id="var/can_infect"><aside class="declaration">var </aside>can_infect
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 24"/></a></h3>
+        <p>evil infection stuff that will make everyone hate me</p><h3 id="var/delicate"><aside class="declaration">var </aside>delicate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 28"/></a></h3>
+        <p>if this step NEEDS stable optable or can be done on any valid surface with no penalty</p><h3 id="var/failure_sound"><aside class="declaration">var </aside>failure_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 44"/></a></h3>
+        <p>Sound to play on failure.</p><h3 id="var/looping"><aside class="declaration">var </aside>looping
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 34"/></a></h3>
+        <p>Does this step attempt to repeat itself after every success?</p><h3 id="var/max_duration"><aside class="declaration">var </aside>max_duration
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 22"/></a></h3>
+        <p>duration of the step</p><h3 id="var/min_duration"><aside class="declaration">var </aside>min_duration
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 20"/></a></h3>
+        <p>duration of the step</p><h3 id="var/pain_given"><aside class="declaration">var </aside>pain_given
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 26"/></a></h3>
+        <p>How much pain to deliver to the patient</p><h3 id="var/preop_sound"><aside class="declaration">var </aside>preop_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 37"/></a></h3>
+        <p>Sound to play during begin_step(). Can be a sound, and associative list of sound:path, or a flat list of sounds.</p><h3 id="var/strict_access_requirement"><aside class="declaration">var </aside>strict_access_requirement
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 32"/></a></h3>
+        <p>Whether or not this surgery will be fuzzy on size requirements.</p><h3 id="var/success_sound"><aside class="declaration">var </aside>success_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 39"/></a></h3>
+        <p>Sound to play on success.</p><h3 id="var/surgery_flags"><aside class="declaration">var </aside>surgery_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 30"/></a></h3>
+        <p>Various bitflags for requirements of the surgery.</p><h2 id="proc">Proc Details</h2><h3 id="proc/begin_step"><aside class="declaration">proc </aside>begin_step<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/target, target_zone, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/tool) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 128"/></a></aside>
+        </h3>
+        <p>Does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too</p><h3 id="proc/can_operate"><aside class="declaration">proc </aside>can_operate<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/target, target_zone, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/tool) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 76"/></a></aside>
+        </h3>
+        <p>Checks if this surgery step can be performed with the given parameters.</p><h3 id="proc/is_valid_target"><aside class="declaration">proc </aside>is_valid_target<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 65"/></a></aside>
+        </h3>
+        <p>Checks if the target is valid.</p><h3 id="proc/success_modifier"><aside class="declaration">proc </aside>success_modifier<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/target, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/tool, target_zone) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 189"/></a></aside>
+        </h3>
+        <p>The chance for success vs failure</p><h3 id="proc/tool_potency"><aside class="declaration">proc </aside>tool_potency<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/tool) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/new_surgery/_surgery_step.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;new_surgery&#x2F;_surgery_step.dm 52"/></a></aside>
+        </h3>
+        <p>Returns how well tool is suited for this step</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

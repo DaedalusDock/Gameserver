@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;preferences - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/preferences.html#var">Var Details</a> - <a href="datum/preferences.html#proc">Proc Details</a></header>
+<main>
+<h1>preferences <aside>/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/preferences.html#var/alt_job_titles">alt_job_titles</a></th><td>Alternative job titles stored in preferences. Assoc list, ie. alt_job_titles[&quot;Scientist&quot;] = &quot;Cytologist&quot;</td></tr>
+            <tr><th><a href="datum/preferences.html#var/character_preview_view">character_preview_view</a></th><td>A preview of the current character</td></tr>
+            <tr><th><a href="datum/preferences.html#var/character_savefile">character_savefile</a></th><td>The savefile relating to character preferences, PREFERENCE_CHARACTER</td></tr>
+            <tr><th><a href="datum/preferences.html#var/current_window">current_window</a></th><td>The current window, PREFERENCE_TAB_* in [<code>code/__DEFINES/preferences.dm</code>]</td></tr>
+            <tr><th><a href="datum/preferences.html#var/favorite_outfits">favorite_outfits</a></th><td>What outfit typepaths we've favorited in the SelectEquipment menu</td></tr>
+            <tr><th><a href="datum/preferences.html#var/game_savefile">game_savefile</a></th><td>The savefile relating to core preferences, PREFERENCE_PLAYER</td></tr>
+            <tr><th><a href="datum/preferences.html#var/hearted">hearted</a></th><td>Someone thought we were nice! We get a little heart in OOC until we join the server past the below time (we can keep it until the end of the round otherwise)</td></tr>
+            <tr><th><a href="datum/preferences.html#var/hearted_until">hearted_until</a></th><td>If we have a hearted commendations, we honor it every time the player loads preferences until this time has been passed</td></tr>
+            <tr><th><a href="datum/preferences.html#var/key_bindings">key_bindings</a></th><td>Custom keybindings. Map of keybind names to keyboard inputs.
+For example, by default would have &quot;swap_hands&quot; -&gt; list(&quot;X&quot;)</td></tr>
+            <tr><th><a href="datum/preferences.html#var/key_bindings_by_key">key_bindings_by_key</a></th><td>Cached list of keybindings, mapping keys to actions.
+For example, by default would have &quot;X&quot; -&gt; list(&quot;swap_hands&quot;)</td></tr>
+            <tr><th><a href="datum/preferences.html#var/loadout_show_equipped">loadout_show_equipped</a></th><td>Used by the loadout UI</td></tr>
+            <tr><th><a href="datum/preferences.html#var/middleware">middleware</a></th><td>A list of instantiated middleware</td></tr>
+            <tr><th><a href="datum/preferences.html#var/preview_pref">preview_pref</a></th><td>Preference of how the preview should show the character.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/recently_updated_keys">recently_updated_keys</a></th><td>A list of keys that have been updated since the last save.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/selected_category">selected_category</a></th><td>Stores the instance of the category we are viewing. (CHARACTER CREATOR)</td></tr>
+            <tr><th><a href="datum/preferences.html#var/tainted_character_profiles">tainted_character_profiles</a></th><td>If set to TRUE, will update character_profiles on the next ui_data tick.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/value_cache">value_cache</a></th><td>A cache of preference entries to values.
+Used to avoid expensive READ_FILE every time a preference is retrieved.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/preferences.html#proc/apply_all_client_preferences">apply_all_client_preferences</a></th><td>Applies all PREFERENCE_PLAYER preferences</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/apply_prefs_to">apply_prefs_to</a></th><td>Applies the given preferences to a human mob.</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/check_keybindings">check_keybindings</a></th><td>checks through keybindings for outdated unbound keys and updates them</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/early_update_character">early_update_character</a></th><td>Called when reading preferences if a savefile update is detected. This proc is for
+overriding preference datum values before they are sanitized by deserialize()</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/get_highest_priority_job">get_highest_priority_job</a></th><td>Returns what job is marked as highest</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/get_key_bindings_by_key">get_key_bindings_by_key</a></th><td>Inverts the key_bindings list such that it can be used for key_bindings_by_key</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/get_savefile_for_savefile_identifier">get_savefile_for_savefile_identifier</a></th><td>Returns which savefile to use for a given savefile identifier</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/randomise_appearance_prefs">randomise_appearance_prefs</a></th><td>Fully randomizes everything in the character.</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/read_preference">read_preference</a></th><td>Read a /datum/preference type and return its value.
+This will write to the savefile if a value was not found with the new value.</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/reset_loadout">reset_loadout</a></th><td>Resets current loadout slot</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/safe_transfer_prefs_to">safe_transfer_prefs_to</a></th><td>Sanitizes the preferences, applies the randomization prefs, and then applies the preference to the human mob.</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/update_preference">update_preference</a></th><td>Will perform an update on the preference, but not write to the savefile.
+This will, for instance, update the character preference view.
+Performs sanity checks.</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/write_preference">write_preference</a></th><td>Set a /datum/preference entry.
+Returns TRUE for a successful preference application.
+Returns FALSE if it is invalid.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/alt_job_titles"><aside class="declaration">var </aside>alt_job_titles
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 75"/></a></h3>
+        <p>Alternative job titles stored in preferences. Assoc list, ie. alt_job_titles[&quot;Scientist&quot;] = &quot;Cytologist&quot;</p><h3 id="var/character_preview_view"><aside class="declaration">var </aside>character_preview_view
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/character_preview_view.html">character_preview_view</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 50"/></a></h3>
+        <p>A preview of the current character</p><h3 id="var/character_savefile"><aside class="declaration">var </aside>character_savefile
+            <aside>&ndash; /savefile</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 59"/></a></h3>
+        <p>The savefile relating to character preferences, PREFERENCE_CHARACTER</p><h3 id="var/current_window"><aside class="declaration">var </aside>current_window
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 32"/></a></h3>
+        <p>The current window, PREFERENCE_TAB_* in [<code>code/__DEFINES/preferences.dm</code>]</p><h3 id="var/favorite_outfits"><aside class="declaration">var </aside>favorite_outfits
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 47"/></a></h3>
+        <p>What outfit typepaths we've favorited in the SelectEquipment menu</p><h3 id="var/game_savefile"><aside class="declaration">var </aside>game_savefile
+            <aside>&ndash; /savefile</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 56"/></a></h3>
+        <p>The savefile relating to core preferences, PREFERENCE_PLAYER</p><h3 id="var/hearted"><aside class="declaration">var </aside>hearted
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 43"/></a></h3>
+        <p>Someone thought we were nice! We get a little heart in OOC until we join the server past the below time (we can keep it until the end of the round otherwise)</p><h3 id="var/hearted_until"><aside class="declaration">var </aside>hearted_until
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 45"/></a></h3>
+        <p>If we have a hearted commendations, we honor it every time the player loads preferences until this time has been passed</p><h3 id="var/key_bindings"><aside class="declaration">var </aside>key_bindings
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 20"/></a></h3>
+        <p>Custom keybindings. Map of keybind names to keyboard inputs.
+For example, by default would have &quot;swap_hands&quot; -&gt; list(&quot;X&quot;)</p><h3 id="var/key_bindings_by_key"><aside class="declaration">var </aside>key_bindings_by_key
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 24"/></a></h3>
+        <p>Cached list of keybindings, mapping keys to actions.
+For example, by default would have &quot;X&quot; -&gt; list(&quot;swap_hands&quot;)</p><h3 id="var/loadout_show_equipped"><aside class="declaration">var </aside>loadout_show_equipped
+            <aside>&ndash; /tmp</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 81"/></a></h3>
+        <p>Used by the loadout UI</p><h3 id="var/middleware"><aside class="declaration">var </aside>middleware
+            <aside>&ndash; /list/datum/preference_middleware</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 53"/></a></h3>
+        <p>A list of instantiated middleware</p><h3 id="var/preview_pref"><aside class="declaration">var </aside>preview_pref
+            <aside>&ndash; /tmp</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 72"/></a></h3>
+        <p>Preference of how the preview should show the character.</p><h3 id="var/recently_updated_keys"><aside class="declaration">var </aside>recently_updated_keys
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 62"/></a></h3>
+        <p>A list of keys that have been updated since the last save.</p><h3 id="var/selected_category"><aside class="declaration">var </aside>selected_category
+            <aside>&ndash; /tmp/<a href="datum.html">datum</a>/<a href="datum/preference_group.html">preference_group</a>/category</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 78"/></a></h3>
+        <p>Stores the instance of the category we are viewing. (CHARACTER CREATOR)</p><h3 id="var/tainted_character_profiles"><aside class="declaration">var </aside>tainted_character_profiles
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 69"/></a></h3>
+        <p>If set to TRUE, will update character_profiles on the next ui_data tick.</p><h3 id="var/value_cache"><aside class="declaration">var </aside>value_cache
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 66"/></a></h3>
+        <p>A cache of preference entries to values.
+Used to avoid expensive READ_FILE every time a preference is retrieved.</p><h2 id="proc">Proc Details</h2><h3 id="proc/apply_all_client_preferences"><aside class="declaration">proc </aside>apply_all_client_preferences<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L372">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 372"/></a></aside>
+        </h3>
+        <p>Applies all PREFERENCE_PLAYER preferences</p><h3 id="proc/apply_prefs_to"><aside class="declaration">proc </aside>apply_prefs_to<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/character, icon_updates) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L514">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 514"/></a></aside>
+        </h3>
+        <p>Applies the given preferences to a human mob.</p><h3 id="proc/check_keybindings"><aside class="declaration">proc </aside>check_keybindings<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences_savefile.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences_savefile.dm 87"/></a></aside>
+        </h3>
+        <p>checks through keybindings for outdated unbound keys and updates them</p><h3 id="proc/early_update_character"><aside class="declaration">proc </aside>early_update_character<aside>(current_version, /savefile/savefile) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences_savefile.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences_savefile.dm 70"/></a></aside>
+        </h3>
+        <p>Called when reading preferences if a savefile update is detected. This proc is for
+overriding preference datum values before they are sanitized by deserialize()</p><h3 id="proc/get_highest_priority_job"><aside class="declaration">proc </aside>get_highest_priority_job<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/dead/new_player/preferences_setup.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;new_player&#x2F;preferences_setup.dm 15"/></a></aside>
+        </h3>
+        <p>Returns what job is marked as highest</p><h3 id="proc/get_key_bindings_by_key"><aside class="declaration">proc </aside>get_key_bindings_by_key<aside>(/list/key_bindings) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L529">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 529"/></a></aside>
+        </h3>
+        <p>Inverts the key_bindings list such that it can be used for key_bindings_by_key</p><h3 id="proc/get_savefile_for_savefile_identifier"><aside class="declaration">proc </aside>get_savefile_for_savefile_identifier<aside>(savefile_identifier) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L238">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 238"/></a></aside>
+        </h3>
+        <p>Returns which savefile to use for a given savefile identifier</p><h3 id="proc/randomise_appearance_prefs"><aside class="declaration">proc </aside>randomise_appearance_prefs<aside>(randomize_flags) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/mob/dead/new_player/preferences_setup.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;new_player&#x2F;preferences_setup.dm 2"/></a></aside>
+        </h3>
+        <p>Fully randomizes everything in the character.</p><h3 id="proc/read_preference"><aside class="declaration">proc </aside>read_preference<aside>(preference_type) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L268">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 268"/></a></aside>
+        </h3>
+        <p>Read a /datum/preference type and return its value.
+This will write to the savefile if a value was not found with the new value.</p><h3 id="proc/reset_loadout"><aside class="declaration">proc </aside>reset_loadout<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/loadout/loadout_procs.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;loadout&#x2F;loadout_procs.dm 2"/></a></aside>
+        </h3>
+        <p>Resets current loadout slot</p><h3 id="proc/safe_transfer_prefs_to"><aside class="declaration">proc </aside>safe_transfer_prefs_to<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/character, icon_updates, is_antag) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences.dm#L510">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 510"/></a></aside>
+        </h3>
+        <p>Sanitizes the preferences, applies the randomization prefs, and then applies the preference to the human mob.</p><h3 id="proc/update_preference"><aside class="declaration">proc </aside>update_preference<aside>(/<a href="datum.html">datum</a>/<a href="datum/preference.html">preference</a>/preference, preference_value) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L317">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 317"/></a></aside>
+        </h3>
+        <p>Will perform an update on the preference, but not write to the savefile.
+This will, for instance, update the character preference view.
+Performs sanity checks.</p><h3 id="proc/write_preference"><aside class="declaration">proc </aside>write_preference<aside>(/<a href="datum.html">datum</a>/<a href="datum/preference.html">preference</a>/preference, preference_value) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/_preference.dm#L304">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;_preference.dm 304"/></a></aside>
+        </h3>
+        <p>Set a /datum/preference entry.
+Returns TRUE for a successful preference application.
+Returns FALSE if it is invalid.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

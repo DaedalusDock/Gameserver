@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;traitor_objective - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/traitor_objective.html#var">Var Details</a> - <a href="datum/traitor_objective.html#proc">Proc Details</a></header>
+<main>
+<h1>traitor_objective <aside>/<a href="datum.html">datum</a>/<a href="datum/traitor_objective.html">traitor_objective</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 4"/></a></h1>
+
+<p>A traitor objective. Traitor objectives should not be deleted after they have been created and established, only failed.
+If a traitor objective needs to be removed from the failed/completed objective list of their handler, then you are doing something wrong
+and you should reconsider. When an objective is failed/completed, that is final and the only way you can change that is by refactoring the code.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/description">description</a></th><td>The description of the traitor objective</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/forced">forced</a></th><td>Whether this objective was forced upon by an admin. Won't get autocleared by the traitor subsystem if progression surpasses an amount</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/global_progression_deviance_required">global_progression_deviance_required</a></th><td>Determines how great the deviance has to be before progression starts to get reduced.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/global_progression_influence_intensity">global_progression_influence_intensity</a></th><td>Determines how influential global progression will affect this objective. Set to 0 to disable.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/global_progression_limit_coeff">global_progression_limit_coeff</a></th><td>Determines the minimum and maximum progression this objective can be worth as a result of being influenced by global progression
+Should only be smaller than or equal to 1</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/handler">handler</a></th><td>The uplink handler holder to give the progression and telecrystals to.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/name">name</a></th><td>The name of the traitor objective</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/objective_state">objective_state</a></th><td>The current state of this objective</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/original_progression">original_progression</a></th><td>The percentage that this objective has been increased or decreased by as a result of progression. Used by the UI</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/progression_cost_coeff">progression_cost_coeff</a></th><td>This gets added onto the coeff when calculating the updated progression cost. Used for variability and a slight bit of randomness</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/progression_cost_coeff_deviance">progression_cost_coeff_deviance</a></th><td>The deviance coefficient used to determine the randomness of the progression rewards.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/progression_maximum">progression_maximum</a></th><td>The maximum progression before this objective cannot appear anymore</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/progression_minimum">progression_minimum</a></th><td>The minimum required progression points for this objective</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/progression_reward">progression_reward</a></th><td>The progression that is rewarded from completing this traitor objective. Can either be a list of list(min, max) or a direct value</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/skipped">skipped</a></th><td>Whether this objective was skipped by going from an inactive state to a failed state.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/telecrystal_penalty">telecrystal_penalty</a></th><td>TC penalty for failing an objective or cancelling it</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/telecrystal_reward">telecrystal_reward</a></th><td>The telecrystals that are rewarded from completing this traitor objective. Can either be a list of list(min,max) or a direct value</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/time_of_completion">time_of_completion</a></th><td>The time at which this objective was completed</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#var/time_of_creation">time_of_creation</a></th><td>The time at which this objective was first created</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/completion_payout">completion_payout</a></th><td>Called when rewards should be given to the user.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/fail_objective">fail_objective</a></th><td>Used to fail objectives. Players can clear completed objectives in the UI</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/finish_objective">finish_objective</a></th><td>Called by player input, do not call directly. Validates whether the objective is finished and pays out the handler if it is.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/generate_objective">generate_objective</a></th><td>Called when the objective should be generated. Should return if the objective has been successfully generated.
+If false is returned, the objective will be removed as a potential objective for the traitor it is being generated for.
+This is only temporary, it will run the proc again when objectives are generated for the traitor again.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/generate_ui_buttons">generate_ui_buttons</a></th><td>Used for generating the UI buttons for the UI. Use ui_perform_action to respond to clicks.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/handle_cleanup">handle_cleanup</a></th><td>Used to handle cleaning up the objective.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/is_duplicate">is_duplicate</a></th><td>Determines whether this objective is a duplicate. objective_to_compare is always of the type it is being called on.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/replace_in_name">replace_in_name</a></th><td>Replaces a word in the name of the proc. Also does it for the description</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/succeed_objective">succeed_objective</a></th><td>Used to succeed objectives. Allows the player to cash it out in the UI.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/supported_configuration_changes">supported_configuration_changes</a></th><td>Returns a list of variables that can be changed by config, allows for balance through configuration.
+It is not recommended to finetweak any values of objectives on your server.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/to_debug_string">to_debug_string</a></th><td>Converts the type into a useful debug string to be used for logging and debug display.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/ui_perform_action">ui_perform_action</a></th><td>Return TRUE to trigger a UI update</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/ungenerate_objective">ungenerate_objective</a></th><td>Used to clean up signals and stop listening to states.</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/update_progression_reward">update_progression_reward</a></th><td>Updates the progression reward, scaling it depending on their current progression compared against the global progression</td></tr>
+            <tr><th><a href="datum/traitor_objective.html#proc/uplink_ui_data">uplink_ui_data</a></th><td>Used for sending data to the uplink UI</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/description"><aside class="declaration">var </aside>description
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 9"/></a></h3>
+        <p>The description of the traitor objective</p><h3 id="var/forced"><aside class="declaration">var </aside>forced
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 29"/></a></h3>
+        <p>Whether this objective was forced upon by an admin. Won't get autocleared by the traitor subsystem if progression surpasses an amount</p><h3 id="var/global_progression_deviance_required"><aside class="declaration">var </aside>global_progression_deviance_required
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 36"/></a></h3>
+        <p>Determines how great the deviance has to be before progression starts to get reduced.</p><h3 id="var/global_progression_influence_intensity"><aside class="declaration">var </aside>global_progression_influence_intensity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 34"/></a></h3>
+        <p>Determines how influential global progression will affect this objective. Set to 0 to disable.</p><h3 id="var/global_progression_limit_coeff"><aside class="declaration">var </aside>global_progression_limit_coeff
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 39"/></a></h3>
+        <p>Determines the minimum and maximum progression this objective can be worth as a result of being influenced by global progression
+Should only be smaller than or equal to 1</p><h3 id="var/handler"><aside class="declaration">var </aside>handler
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/uplink_handler.html">uplink_handler</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 11"/></a></h3>
+        <p>The uplink handler holder to give the progression and telecrystals to.</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 7"/></a></h3>
+        <p>The name of the traitor objective</p><h3 id="var/objective_state"><aside class="declaration">var </aside>objective_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 27"/></a></h3>
+        <p>The current state of this objective</p><h3 id="var/original_progression"><aside class="declaration">var </aside>original_progression
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 45"/></a></h3>
+        <p>The percentage that this objective has been increased or decreased by as a result of progression. Used by the UI</p><h3 id="var/progression_cost_coeff"><aside class="declaration">var </aside>progression_cost_coeff
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 43"/></a></h3>
+        <p>This gets added onto the coeff when calculating the updated progression cost. Used for variability and a slight bit of randomness</p><h3 id="var/progression_cost_coeff_deviance"><aside class="declaration">var </aside>progression_cost_coeff_deviance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 41"/></a></h3>
+        <p>The deviance coefficient used to determine the randomness of the progression rewards.</p><h3 id="var/progression_maximum"><aside class="declaration">var </aside>progression_maximum
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 15"/></a></h3>
+        <p>The maximum progression before this objective cannot appear anymore</p><h3 id="var/progression_minimum"><aside class="declaration">var </aside>progression_minimum
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 13"/></a></h3>
+        <p>The minimum required progression points for this objective</p><h3 id="var/progression_reward"><aside class="declaration">var </aside>progression_reward
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 17"/></a></h3>
+        <p>The progression that is rewarded from completing this traitor objective. Can either be a list of list(min, max) or a direct value</p><h3 id="var/skipped"><aside class="declaration">var </aside>skipped
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 31"/></a></h3>
+        <p>Whether this objective was skipped by going from an inactive state to a failed state.</p><h3 id="var/telecrystal_penalty"><aside class="declaration">var </aside>telecrystal_penalty
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 21"/></a></h3>
+        <p>TC penalty for failing an objective or cancelling it</p><h3 id="var/telecrystal_reward"><aside class="declaration">var </aside>telecrystal_reward
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 19"/></a></h3>
+        <p>The telecrystals that are rewarded from completing this traitor objective. Can either be a list of list(min,max) or a direct value</p><h3 id="var/time_of_completion"><aside class="declaration">var </aside>time_of_completion
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 25"/></a></h3>
+        <p>The time at which this objective was completed</p><h3 id="var/time_of_creation"><aside class="declaration">var </aside>time_of_creation
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 23"/></a></h3>
+        <p>The time at which this objective was first created</p><h2 id="proc">Proc Details</h2><h3 id="proc/completion_payout"><aside class="declaration">proc </aside>completion_payout<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L216">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 216"/></a></aside>
+        </h3>
+        <p>Called when rewards should be given to the user.</p><h3 id="proc/fail_objective"><aside class="declaration">proc </aside>fail_objective<aside>(penalty_cost, trigger_update) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 174"/></a></aside>
+        </h3>
+        <p>Used to fail objectives. Players can clear completed objectives in the UI</p><h3 id="proc/finish_objective"><aside class="declaration">proc </aside>finish_objective<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 204"/></a></aside>
+        </h3>
+        <p>Called by player input, do not call directly. Validates whether the objective is finished and pays out the handler if it is.</p><h3 id="proc/generate_objective"><aside class="declaration">proc </aside>generate_objective<aside>(/<a href="datum.html">datum</a>/<a href="datum/mind.html">mind</a>/generating_for, /list/possible_duplicates) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 137"/></a></aside>
+        </h3>
+        <p>Called when the objective should be generated. Should return if the objective has been successfully generated.
+If false is returned, the objective will be removed as a potential objective for the traitor it is being generated for.
+This is only temporary, it will run the proc again when objectives are generated for the traitor again.</p><h3 id="proc/generate_ui_buttons"><aside class="declaration">proc </aside>generate_ui_buttons<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L243">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 243"/></a></aside>
+        </h3>
+        <p>Used for generating the UI buttons for the UI. Use ui_perform_action to respond to clicks.</p><h3 id="proc/handle_cleanup"><aside class="declaration">proc </aside>handle_cleanup<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 166"/></a></aside>
+        </h3>
+        <p>Used to handle cleaning up the objective.</p><h3 id="proc/is_duplicate"><aside class="declaration">proc </aside>is_duplicate<aside>(/<a href="datum.html">datum</a>/<a href="datum/traitor_objective.html">traitor_objective</a>/objective_to_compare) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L221">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 221"/></a></aside>
+        </h3>
+        <p>Determines whether this objective is a duplicate. objective_to_compare is always of the type it is being called on.</p><h3 id="proc/replace_in_name"><aside class="declaration">proc </aside>replace_in_name<aside>(replace, word) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 57"/></a></aside>
+        </h3>
+        <p>Replaces a word in the name of the proc. Also does it for the description</p><h3 id="proc/succeed_objective"><aside class="declaration">proc </aside>succeed_objective<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L191">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 191"/></a></aside>
+        </h3>
+        <p>Used to succeed objectives. Allows the player to cash it out in the UI.</p><h3 id="proc/supported_configuration_changes"><aside class="declaration">proc </aside>supported_configuration_changes<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 49"/></a></aside>
+        </h3>
+        <p>Returns a list of variables that can be changed by config, allows for balance through configuration.
+It is not recommended to finetweak any values of objectives on your server.</p><h3 id="proc/to_debug_string"><aside class="declaration">proc </aside>to_debug_string<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L159">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 159"/></a></aside>
+        </h3>
+        <p>Converts the type into a useful debug string to be used for logging and debug display.</p><h3 id="proc/ui_perform_action"><aside class="declaration">proc </aside>ui_perform_action<aside>(/<a href="mob.html">mob</a>/user, action) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L255">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 255"/></a></aside>
+        </h3>
+        <p>Return TRUE to trigger a UI update</p><h3 id="proc/ungenerate_objective"><aside class="declaration">proc </aside>ungenerate_objective<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 141"/></a></aside>
+        </h3>
+        <p>Used to clean up signals and stop listening to states.</p><h3 id="proc/update_progression_reward"><aside class="declaration">proc </aside>update_progression_reward<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 101"/></a></aside>
+        </h3>
+        <p>Updates the progression reward, scaling it depending on their current progression compared against the global progression</p><h3 id="proc/uplink_ui_data"><aside class="declaration">proc </aside>uplink_ui_data<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/antagonists/traitor/traitor_objective.dm#L225">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;traitor_objective.dm 225"/></a></aside>
+        </h3>
+        <p>Used for sending data to the uplink UI</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

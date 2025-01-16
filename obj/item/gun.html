@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;gun - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/gun.html#var">Var Details</a> - <a href="obj/item/gun.html#proc">Proc Details</a></header>
+<main>
+<h1>gun <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/gun.html">gun</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 19"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/gun.html#var/accuracy_falloff">accuracy_falloff</a></th><td>For every turf a fired projectile travels, increase the target bodyzone inaccuracy by this much.</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/burst_size">burst_size</a></th><td>How many shots to fire per fire sequence</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/can_bayonet">can_bayonet</a></th><td>if a bayonet can be added, or removed, if it already has one.</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/chambered">chambered</a></th><td>The next round to be fired, if any.</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/clumsy_check">clumsy_check</a></th><td>Can this weapon be misfired?</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/dual_wield_spread">dual_wield_spread</a></th><td>Additional spread when dual wielding</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/fire_delay">fire_delay</a></th><td>The cooldown (DS) before the gun can be fired again after firing</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/fire_lockout">fire_lockout</a></th><td>Boolean var used to control the speed a gun can be fired. See the &quot;fire_delay&quot; var.</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/firing_burst">firing_burst</a></th><td>Boolean var used to prevent the weapon from firing again while already firing</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/pb_knockback">pb_knockback</a></th><td>How many tiles do we knock the poor bastard we just point-blanked back?</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/pin">pin</a></th><td>Required for firing, [/obj/item/firing_pin/proc/pin_auth] is called as part of firing.</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/pinless">pinless</a></th><td>True if a gun dosen't need a pin, mostly used for abstract guns like tentacles and meathooks</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/projectile_damage_multiplier">projectile_damage_multiplier</a></th><td>Just 'slightly' snowflakey way to modify projectile damage for projectiles fired from this gun.</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/randomspread">randomspread</a></th><td>If set to FALSE, uses a &quot;smart spread&quot; that changes the spread based on the amount of shots in a burst.</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/recoil">recoil</a></th><td>Screenshake applied to the firer</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/sawn_off">sawn_off</a></th><td>Is the weapon currently sawn off?</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/smoking_gun">smoking_gun</a></th><td>Should smoke particles be created when fired?</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/spread">spread</a></th><td>Default spread</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/suppressed">suppressed</a></th><td>whether or not a message is displayed when fired</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/unwielded_recoil">unwielded_recoil</a></th><td>How much recoil there is when fired with one hand</td></tr>
+            <tr><th><a href="obj/item/gun.html#var/unwielded_spread_bonus">unwielded_spread_bonus</a></th><td>Additional spread when fired while unwielded</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/add_seclight_point">add_seclight_point</a></th><td>Handles adding <a href="datum/component/seclite_attachable.html" title="/datum/component/seclite_attachable">the seclite mount component</a> to the gun.
+If the gun shouldn't have a seclight mount, override this with a return.
+Or, if a child of a gun with a seclite mount has slightly different behavior or icons, extend this.</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/after_chambering">after_chambering</a></th><td>Called after a successful shot and update_chamber()</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/after_firing">after_firing</a></th><td>Called after the weapon has successfully fired it's chambered round, and before update_chamber()</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/before_firing">before_firing</a></th><td>Called before the weapon is fired, before the projectile is created.</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/can_fire">can_fire</a></th><td>check if there's enough ammo/energy/whatever to shoot one time
+i.e if clicking would make it shoot</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/clear_suppressor">clear_suppressor</a></th><td>Clears var and updates icon. In the case of ballistic weapons, also updates the gun's weight.</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/do_chamber_update">do_chamber_update</a></th><td>Called after the weapon has successfully fired it's chambered round</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/do_fire_gun">do_fire_gun</a></th><td>The proc for firing the gun. This won't perform any non-gun checks. Returns TRUE if a round was fired.</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/do_fire_in_burst">do_fire_in_burst</a></th><td>Called by do_fire_gun if the rounds per burst is greater than 1.</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/dry_fire_feedback">dry_fire_feedback</a></th><td>Called by shoot_with_empty_chamber().</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/play_fire_sound">play_fire_sound</a></th><td>Play the bang bang sound</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/ready_to_fire">ready_to_fire</a></th><td>Called when the gun is ready to fire again</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/shoot_with_empty_chamber">shoot_with_empty_chamber</a></th><td>Apply pointblank knockback to the target
+Called when there was an attempt to fire the gun, but the chamber was empty.</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/tk_firing">tk_firing</a></th><td>Check if the user is firing this gun with telekinesis.</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/try_fire_akimbo">try_fire_akimbo</a></th><td>Called by try_fire_gun() to attempt to fire offhand guns.</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/try_fire_gun">try_fire_gun</a></th><td>The defacto proc for &quot;mob is trying to shoot the gun&quot;. Checks if they are able to, and a few other things.</td></tr>
+            <tr><th><a href="obj/item/gun.html#proc/update_chamber">update_chamber</a></th><td>Called after the weapon has successfully fired it's chambered round.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/accuracy_falloff"><aside class="declaration">var </aside>accuracy_falloff
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 90"/></a></h3>
+        <p>For every turf a fired projectile travels, increase the target bodyzone inaccuracy by this much.</p><h3 id="var/burst_size"><aside class="declaration">var </aside>burst_size
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 80"/></a></h3>
+        <p>How many shots to fire per fire sequence</p><h3 id="var/can_bayonet"><aside class="declaration">var </aside>can_bayonet
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 123"/></a></h3>
+        <p>if a bayonet can be added, or removed, if it already has one.</p><h3 id="var/chambered"><aside class="declaration">var </aside>chambered
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/ammo_casing.html">ammo_casing</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 45"/></a></h3>
+        <p>The next round to be fired, if any.</p><h3 id="var/clumsy_check"><aside class="declaration">var </aside>clumsy_check
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 113"/></a></h3>
+        <p>Can this weapon be misfired?</p><h3 id="var/dual_wield_spread"><aside class="declaration">var </aside>dual_wield_spread
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 104"/></a></h3>
+        <p>Additional spread when dual wielding</p><h3 id="var/fire_delay"><aside class="declaration">var </aside>fire_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 82"/></a></h3>
+        <p>The cooldown (DS) before the gun can be fired again after firing</p><h3 id="var/fire_lockout"><aside class="declaration">var </aside>fire_lockout
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 85"/></a></h3>
+        <p>Boolean var used to control the speed a gun can be fired. See the &quot;fire_delay&quot; var.</p><h3 id="var/firing_burst"><aside class="declaration">var </aside>firing_burst
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 87"/></a></h3>
+        <p>Boolean var used to prevent the weapon from firing again while already firing</p><h3 id="var/pb_knockback"><aside class="declaration">var </aside>pb_knockback
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 110"/></a></h3>
+        <p>How many tiles do we knock the poor bastard we just point-blanked back?</p><h3 id="var/pin"><aside class="declaration">var </aside>pin
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/firing_pin.html">firing_pin</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 48"/></a></h3>
+        <p>Required for firing, [/obj/item/firing_pin/proc/pin_auth] is called as part of firing.</p><h3 id="var/pinless"><aside class="declaration">var </aside>pinless
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 51"/></a></h3>
+        <p>True if a gun dosen't need a pin, mostly used for abstract guns like tentacles and meathooks</p><h3 id="var/projectile_damage_multiplier"><aside class="declaration">var </aside>projectile_damage_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 93"/></a></h3>
+        <p>Just 'slightly' snowflakey way to modify projectile damage for projectiles fired from this gun.</p><h3 id="var/randomspread"><aside class="declaration">var </aside>randomspread
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 107"/></a></h3>
+        <p>If set to FALSE, uses a &quot;smart spread&quot; that changes the spread based on the amount of shots in a burst.</p><h3 id="var/recoil"><aside class="declaration">var </aside>recoil
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 76"/></a></h3>
+        <p>Screenshake applied to the firer</p><h3 id="var/sawn_off"><aside class="declaration">var </aside>sawn_off
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 120"/></a></h3>
+        <p>Is the weapon currently sawn off?</p><h3 id="var/smoking_gun"><aside class="declaration">var </aside>smoking_gun
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 65"/></a></h3>
+        <p>Should smoke particles be created when fired?</p><h3 id="var/spread"><aside class="declaration">var </aside>spread
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 100"/></a></h3>
+        <p>Default spread</p><h3 id="var/suppressed"><aside class="declaration">var </aside>suppressed
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 69"/></a></h3>
+        <p>whether or not a message is displayed when fired</p><h3 id="var/unwielded_recoil"><aside class="declaration">var </aside>unwielded_recoil
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 78"/></a></h3>
+        <p>How much recoil there is when fired with one hand</p><h3 id="var/unwielded_spread_bonus"><aside class="declaration">var </aside>unwielded_spread_bonus
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 102"/></a></h3>
+        <p>Additional spread when fired while unwielded</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_seclight_point"><aside class="declaration">proc </aside>add_seclight_point<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L153">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 153"/></a></aside>
+        </h3>
+        <p>Handles adding <a href="datum/component/seclite_attachable.html" title="/datum/component/seclite_attachable">the seclite mount component</a> to the gun.
+If the gun shouldn't have a seclight mount, override this with a return.
+Or, if a child of a gun with a seclite mount has slightly different behavior or icons, extend this.</p><h3 id="proc/after_chambering"><aside class="declaration">proc </aside>after_chambering<aside>(from_firing) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun_firing_procs.dm#L352">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_firing_procs.dm 352"/></a></aside>
+        </h3>
+        <p>Called after a successful shot and update_chamber()</p><h3 id="proc/after_firing"><aside class="declaration">proc </aside>after_firing<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, pointblank, /<a href="atom.html">atom</a>/pbtarget, message) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun_firing_procs.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_firing_procs.dm 101"/></a></aside>
+        </h3>
+        <p>Called after the weapon has successfully fired it's chambered round, and before update_chamber()</p>
+<p>Arguments:</p>
+<ul>
+<li>user - The mob firing the gun.</li>
+<li>pointblank - Is this a pointblank shot?</li>
+<li>pbtarget - If this is a pointblank shot, what is the target?</li>
+<li>message - If TRUE, will give chat feedback.</li>
+</ul><h3 id="proc/before_firing"><aside class="declaration">proc </aside>before_firing<aside>(/<a href="atom.html">atom</a>/target, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun_firing_procs.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_firing_procs.dm 89"/></a></aside>
+        </h3>
+        <p>Called before the weapon is fired, before the projectile is created.</p>
+<p>Arguments:</p>
+<ul>
+<li>target - The thing being shot at.</li>
+<li>user - The mob firing the gun.</li>
+</ul><h3 id="proc/can_fire"><aside class="declaration">proc </aside>can_fire<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L198">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 198"/></a></aside>
+        </h3>
+        <p>check if there's enough ammo/energy/whatever to shoot one time
+i.e if clicking would make it shoot</p><h3 id="proc/clear_suppressor"><aside class="declaration">proc </aside>clear_suppressor<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 171"/></a></aside>
+        </h3>
+        <p>Clears var and updates icon. In the case of ballistic weapons, also updates the gun's weight.</p><h3 id="proc/do_chamber_update"><aside class="declaration">proc </aside>do_chamber_update<aside>(empty_chamber, from_firing, chamber_next_round) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun_firing_procs.dm#L347">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_firing_procs.dm 347"/></a></aside>
+        </h3>
+        <p>Called after the weapon has successfully fired it's chambered round</p>
+<p>Arguments:</p>
+<ul>
+<li>empty_chamber - Whether or not the chamber is currently empty.</li>
+<li>from_firing - If this was called as apart of the gun firing.</li>
+<li>chamber_next_round - Whether or not the next round should be chambered.</li>
+</ul><h3 id="proc/do_fire_gun"><aside class="declaration">proc </aside>do_fire_gun<aside>(/<a href="atom.html">atom</a>/target, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, message, params, zone_override, bonus_spread) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun_firing_procs.dm#L235">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_firing_procs.dm 235"/></a></aside>
+        </h3>
+        <p>The proc for firing the gun. This won't perform any non-gun checks. Returns TRUE if a round was fired.</p>
+<p>Arguments:</p>
+<ul>
+<li>user - The mob firing the gun.</li>
+<li>pointblank - Is this a pointblank shot?</li>
+<li>pbtarget - If this is a pointblank shot, what is the target?</li>
+<li>message - If TRUE, will give chat feedback.</li>
+</ul><h3 id="proc/do_fire_in_burst"><aside class="declaration">proc </aside>do_fire_in_burst<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="atom.html">atom</a>/target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, iteration) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun_firing_procs.dm#L195">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_firing_procs.dm 195"/></a></aside>
+        </h3>
+        <p>Called by do_fire_gun if the rounds per burst is greater than 1.</p>
+<p>Arguments:</p>
+<ul>
+<li>user - The mob firing the gun.</li>
+<li>target - The thing being shot.</li>
+<li>message - Provide chat feedback</li>
+<li>params - ???</li>
+<li>zone_override - ???</li>
+<li>sprd - Bullet spread. This is immediately overwritten so I don't know why it's here.</li>
+<li>randomized_gun_spread - Calculated by do_fire_gun()</li>
+<li>randomized_bonus_spread - Calculated by do_fire_gun()</li>
+<li>rand_spr - Seriously, what the fuck?</li>
+<li>iteration - What step in the burst we are in.</li>
+</ul><h3 id="proc/dry_fire_feedback"><aside class="declaration">proc </aside>dry_fire_feedback<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun_firing_procs.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_firing_procs.dm 174"/></a></aside>
+        </h3>
+        <p>Called by shoot_with_empty_chamber().</p>
+<p>Arguments:</p>
+<ul>
+<li>user - The mob firing the gun.</li>
+</ul><h3 id="proc/play_fire_sound"><aside class="declaration">proc </aside>play_fire_sound<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L206">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 206"/></a></aside>
+        </h3>
+        <p>Play the bang bang sound</p><h3 id="proc/ready_to_fire"><aside class="declaration">proc </aside>ready_to_fire<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun_firing_procs.dm#L302">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_firing_procs.dm 302"/></a></aside>
+        </h3>
+        <p>Called when the gun is ready to fire again</p><h3 id="proc/shoot_with_empty_chamber"><aside class="declaration">proc </aside>shoot_with_empty_chamber<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun_firing_procs.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_firing_procs.dm 165"/></a></aside>
+        </h3>
+        <p>Apply pointblank knockback to the target
+Called when there was an attempt to fire the gun, but the chamber was empty.</p>
+<p>Arguments:</p>
+<ul>
+<li>user - The mob firing the gun.</li>
+</ul><h3 id="proc/tk_firing"><aside class="declaration">proc </aside>tk_firing<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun.dm#L202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun.dm 202"/></a></aside>
+        </h3>
+        <p>Check if the user is firing this gun with telekinesis.</p><h3 id="proc/try_fire_akimbo"><aside class="declaration">proc </aside>try_fire_akimbo<aside>(/<a href="atom.html">atom</a>/target, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, proximity, params) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun_firing_procs.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_firing_procs.dm 65"/></a></aside>
+        </h3>
+        <p>Called by try_fire_gun() to attempt to fire offhand guns.</p><h3 id="proc/try_fire_gun"><aside class="declaration">proc </aside>try_fire_gun<aside>(/<a href="atom.html">atom</a>/target, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, proximity, params) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun_firing_procs.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_firing_procs.dm 12"/></a></aside>
+        </h3>
+        <p>The defacto proc for &quot;mob is trying to shoot the gun&quot;. Checks if they are able to, and a few other things.</p>
+<p>Arguments:</p>
+<ul>
+<li>target - The thing being shot at.</li>
+<li>user - The mob firing the gun.</li>
+<li>proximity - TRUE if user.Adjacent(target)</li>
+<li>params - Click parameters.</li>
+</ul><h3 id="proc/update_chamber"><aside class="declaration">proc </aside>update_chamber<aside>(empty_chamber, from_firing, chamber_next_round) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/projectiles/gun_firing_procs.dm#L331">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_firing_procs.dm 331"/></a></aside>
+        </h3>
+        <p>Called after the weapon has successfully fired it's chambered round.</p>
+<p>Arguments:</p>
+<ul>
+<li>empty_chamber - Whether or not the chamber is currently empty.</li>
+<li>from_firing - If this was called as apart of the gun firing.</li>
+<li>chamber_next_round - Whether or not the next round should be chambered.</li>
+</ul></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

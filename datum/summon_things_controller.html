@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;summon_things_controller - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/summon_things_controller.html#var">Var Details</a> - <a href="datum/summon_things_controller.html#proc">Proc Details</a></header>
+<main>
+<h1>summon_things_controller <aside>/<a href="datum.html">datum</a>/<a href="datum/summon_things_controller.html">summon_things_controller</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/right_and_wrong.dm#L250">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;right_and_wrong.dm 250"/></a></h1>
+
+<p>The &quot;Give everyone in the crew and also latejoins a buncha stuff&quot; controller.
+Used for summon magic and summon guns.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/summon_things_controller.html#var/give_proc_path">give_proc_path</a></th><td>The proc path we call on someone to equip them with stuff. Cannot function without it.</td></tr>
+            <tr><th><a href="datum/summon_things_controller.html#var/num_to_give_to_latejoiners">num_to_give_to_latejoiners</a></th><td>The number of equipment we give to latejoiners, to make sure they catch up if it was casted multiple times.</td></tr>
+            <tr><th><a href="datum/summon_things_controller.html#var/survivor_probability">survivor_probability</a></th><td>Prob. chance someone who is given things will be made a survivalist antagonist.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/summon_things_controller.html#proc/gear_up_new_crew">gear_up_new_crew</a></th><td>Signal proc from <a href="code/__DEFINES/dcs/signals/signals_global.html#define/COMSIG_GLOB_CREWMEMBER_JOINED" title="COMSIG_GLOB_CREWMEMBER_JOINED">COMSIG_GLOB_CREWMEMBER_JOINED</a>.
+Calls give_proc_path on latejoiners a number of times (based on num_to_give_to_latejoiners)</td></tr>
+            <tr><th><a href="datum/summon_things_controller.html#proc/give_out_gear">give_out_gear</a></th><td>Calls our give_proc_path on all humans in the player list.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/give_proc_path"><aside class="declaration">var </aside>give_proc_path
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/right_and_wrong.dm#L254">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;right_and_wrong.dm 254"/></a></h3>
+        <p>The proc path we call on someone to equip them with stuff. Cannot function without it.</p><h3 id="var/num_to_give_to_latejoiners"><aside class="declaration">var </aside>num_to_give_to_latejoiners
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/right_and_wrong.dm#L256">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;right_and_wrong.dm 256"/></a></h3>
+        <p>The number of equipment we give to latejoiners, to make sure they catch up if it was casted multiple times.</p><h3 id="var/survivor_probability"><aside class="declaration">var </aside>survivor_probability
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/right_and_wrong.dm#L252">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;right_and_wrong.dm 252"/></a></h3>
+        <p>Prob. chance someone who is given things will be made a survivalist antagonist.</p><h2 id="proc">Proc Details</h2><h3 id="proc/gear_up_new_crew"><aside class="declaration">proc </aside>gear_up_new_crew<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/new_crewmember, rank) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/right_and_wrong.dm#L283">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;right_and_wrong.dm 283"/></a></aside>
+        </h3>
+        <p>Signal proc from <a href="code/__DEFINES/dcs/signals/signals_global.html#define/COMSIG_GLOB_CREWMEMBER_JOINED" title="COMSIG_GLOB_CREWMEMBER_JOINED">COMSIG_GLOB_CREWMEMBER_JOINED</a>.
+Calls give_proc_path on latejoiners a number of times (based on num_to_give_to_latejoiners)</p><h3 id="proc/give_out_gear"><aside class="declaration">proc </aside>give_out_gear<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/right_and_wrong.dm#L273">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;right_and_wrong.dm 273"/></a></aside>
+        </h3>
+        <p>Calls our give_proc_path on all humans in the player list.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

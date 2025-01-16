@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;packets - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/packets.html#var">Var Details</a> - <a href="datum/controller/subsystem/packets.html#proc">Proc Details</a></header>
+<main>
+<h1>packets <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/packets.html">packets</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/cached_cost">cached_cost</a></th><td>Tick usage</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/clownvirus_magic_packet">clownvirus_magic_packet</a></th><td>Magic command sent by the Clown Virus to honkify PDAs</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/current_networks">current_networks</a></th><td>The current processing lists</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/detomatix_magic_packet">detomatix_magic_packet</a></th><td>Magic command sent by the Detomatix to cause PDAs to explode</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/framevirus_magic_packet">framevirus_magic_packet</a></th><td>Magic command sent by the FRAME virus to install an uplink.
+Mostly a formality as this packet MUST be obfuscated.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/gprs_broadcast_packet">gprs_broadcast_packet</a></th><td>@everyone broadcast key</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/last_processed_radio_packets">last_processed_radio_packets</a></th><td>Amount of radio packets processed last cycle</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/last_processed_ssv_packets">last_processed_ssv_packets</a></th><td>Amount of subspace vocal packets processed last cycle</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/last_processed_tablet_message_packets">last_processed_tablet_message_packets</a></th><td>Amount of tabletmessage packets processed last cycle</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/mimevirus_magic_packet">mimevirus_magic_packet</a></th><td>Magic command sent by the Mime virus to mute PDAs</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/pda_exploitable_register">pda_exploitable_register</a></th><td>Fancy field name to use for virus packets. Randomly picked for flavor and obscurity.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/queued_networks">queued_networks</a></th><td>All the physical networks to process</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/queued_radio_packets">queued_radio_packets</a></th><td>Radio packets to process</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/queued_subspace_vocals">queued_subspace_vocals</a></th><td>Subspace/vocal packets to process</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#var/stage">stage</a></th><td>What processing stage we're at</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#proc/ImmediatePacketSend">ImmediatePacketSend</a></th><td>Network packets
+Cycle the packet queue
+No packets no problem
+This might need [set waitfor = FALSE] alongside a <a href="code/__DEFINES/_tick.html#define/CHECK_TICK" title="CHECK_TICK">CHECK_TICK</a>
+Remove this signal from the queue and see if we're strangling the server
+Reset to the first stage
+Immediately send a packet to it's target(s). Used for high-importance packets.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#proc/_irps_spatialgrid_atmos">_irps_spatialgrid_atmos</a></th><td>Do Spatial Grid handling for IRPS, Atmos Radio group.
+These are separate to save just that little bit more overhead.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#proc/_irps_spatialgrid_everyone_else">_irps_spatialgrid_everyone_else</a></th><td>Do Spatial Grid handling for IRPS, Non-Atmos Radio group.
+These are separate to save just that little bit more overhead.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#proc/generate_net_id">generate_net_id</a></th><td>Generates a unique (at time of read) ID for an atom, It just plays silly with the ref.
+Pass the target atom in as arg[1]</td></tr>
+            <tr><th><a href="datum/controller/subsystem/packets.html#proc/make_radio_sensitive">make_radio_sensitive</a></th><td>Add the respective sensitivity and gridmap membership to a device.
+This is here instead of /atom/movable because there's no good reason for them to do it themselves
+(and it centralizes all the radio weirdness). Handles the atmos/nonatmos bucket split internally.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/cached_cost"><aside class="declaration">var </aside>cached_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 31"/></a></h3>
+        <p>Tick usage</p><h3 id="var/clownvirus_magic_packet"><aside class="declaration">var </aside>clownvirus_magic_packet
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 48"/></a></h3>
+        <p>Magic command sent by the Clown Virus to honkify PDAs</p><h3 id="var/current_networks"><aside class="declaration">var </aside>current_networks
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 26"/></a></h3>
+        <p>The current processing lists</p><h3 id="var/detomatix_magic_packet"><aside class="declaration">var </aside>detomatix_magic_packet
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 46"/></a></h3>
+        <p>Magic command sent by the Detomatix to cause PDAs to explode</p><h3 id="var/framevirus_magic_packet"><aside class="declaration">var </aside>framevirus_magic_packet
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 53"/></a></h3>
+        <p>Magic command sent by the FRAME virus to install an uplink.
+Mostly a formality as this packet MUST be obfuscated.</p><h3 id="var/gprs_broadcast_packet"><aside class="declaration">var </aside>gprs_broadcast_packet
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 57"/></a></h3>
+        <p>@everyone broadcast key</p><h3 id="var/last_processed_radio_packets"><aside class="declaration">var </aside>last_processed_radio_packets
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 19"/></a></h3>
+        <p>Amount of radio packets processed last cycle</p><h3 id="var/last_processed_ssv_packets"><aside class="declaration">var </aside>last_processed_ssv_packets
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 23"/></a></h3>
+        <p>Amount of subspace vocal packets processed last cycle</p><h3 id="var/last_processed_tablet_message_packets"><aside class="declaration">var </aside>last_processed_tablet_message_packets
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 21"/></a></h3>
+        <p>Amount of tabletmessage packets processed last cycle</p><h3 id="var/mimevirus_magic_packet"><aside class="declaration">var </aside>mimevirus_magic_packet
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 50"/></a></h3>
+        <p>Magic command sent by the Mime virus to mute PDAs</p><h3 id="var/pda_exploitable_register"><aside class="declaration">var </aside>pda_exploitable_register
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 44"/></a></h3>
+        <p>Fancy field name to use for virus packets. Randomly picked for flavor and obscurity.</p><h3 id="var/queued_networks"><aside class="declaration">var </aside>queued_networks
+            <aside>&ndash; /list/datum/powernet</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 12"/></a></h3>
+        <p>All the physical networks to process</p><h3 id="var/queued_radio_packets"><aside class="declaration">var </aside>queued_radio_packets
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 14"/></a></h3>
+        <p>Radio packets to process</p><h3 id="var/queued_subspace_vocals"><aside class="declaration">var </aside>queued_subspace_vocals
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 16"/></a></h3>
+        <p>Subspace/vocal packets to process</p><h3 id="var/stage"><aside class="declaration">var </aside>stage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 38"/></a></h3>
+        <p>What processing stage we're at</p><h2 id="proc">Proc Details</h2><h3 id="proc/ImmediatePacketSend"><aside class="declaration">proc </aside>ImmediatePacketSend<aside>(/<a href="datum.html">datum</a>/<a href="datum/signal.html">signal</a>/packet, /<a href="datum.html">datum</a>/target) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L228">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 228"/></a></aside>
+        </h3>
+        <p>Network packets
+Cycle the packet queue
+No packets no problem
+This might need [set waitfor = FALSE] alongside a <a href="code/__DEFINES/_tick.html#define/CHECK_TICK" title="CHECK_TICK">CHECK_TICK</a>
+Remove this signal from the queue and see if we're strangling the server
+Reset to the first stage
+Immediately send a packet to it's target(s). Used for high-importance packets.</p><h3 id="proc/_irps_spatialgrid_atmos"><aside class="declaration">proc </aside>_irps_spatialgrid_atmos<aside>(/<a href="datum.html">datum</a>/<a href="datum/signal.html">signal</a>/packet, /<a href="datum.html">datum</a>/source, /<a href="turf.html">turf</a>/start_point) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L268">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 268"/></a></aside>
+        </h3>
+        <p>Do Spatial Grid handling for IRPS, Atmos Radio group.
+These are separate to save just that little bit more overhead.</p><h3 id="proc/_irps_spatialgrid_everyone_else"><aside class="declaration">proc </aside>_irps_spatialgrid_everyone_else<aside>(/<a href="datum.html">datum</a>/<a href="datum/signal.html">signal</a>/packet, /<a href="datum.html">datum</a>/source, /<a href="turf.html">turf</a>/start_point) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L291">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 291"/></a></aside>
+        </h3>
+        <p>Do Spatial Grid handling for IRPS, Non-Atmos Radio group.
+These are separate to save just that little bit more overhead.</p><h3 id="proc/generate_net_id"><aside class="declaration">proc </aside>generate_net_id<aside>(invoker) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 59"/></a></aside>
+        </h3>
+        <p>Generates a unique (at time of read) ID for an atom, It just plays silly with the ref.
+Pass the target atom in as arg[1]</p><h3 id="proc/make_radio_sensitive"><aside class="declaration">proc </aside>make_radio_sensitive<aside>(/<a href="obj.html">obj</a>/device, frequency) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/packetnets.dm#L442">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;packetnets.dm 442"/></a></aside>
+        </h3>
+        <p>Add the respective sensitivity and gridmap membership to a device.
+This is here instead of /atom/movable because there's no good reason for them to do it themselves
+(and it centralizes all the radio weirdness). Handles the atmos/nonatmos bucket split internally.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

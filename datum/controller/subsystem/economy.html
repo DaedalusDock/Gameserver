@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;economy - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/economy.html#var">Var Details</a> - <a href="datum/controller/subsystem/economy.html#proc">Proc Details</a></header>
+<main>
+<h1>economy <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/economy.html">economy</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/audit_log">audit_log</a></th><td>A list of strings containing a basic transaction history of purchases on the station.
+Added to any time when player accounts purchase something.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/bank_accounts_by_id">bank_accounts_by_id</a></th><td>List of normal (no department ones) accounts' identifiers with associated datum accounts, for big O performance.
+A list of sole account datums can be obtained with flatten_list(), another variable would be redundant rn.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/bounty_modifier">bounty_modifier</a></th><td>The modifier multiplied to the value of bounties paid out.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/dep_cards">dep_cards</a></th><td>List of the departmental budget cards in existance.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/department_accounts_by_id">department_accounts_by_id</a></th><td>Departmental account datums by ID</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/earning_report">earning_report</a></th><td>Contains the message to send to newscasters about price inflation and earnings, updated on price_update()</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/export_total">export_total</a></th><td>Total value of exported materials.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/full_ancap">full_ancap</a></th><td>Enables extra money charges for things that normally would be free, such as sleepers/cryo/beepsky.
+Take care when enabling, as players will NOT respond well if the economy is set up for low cash flows.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/government_budget">government_budget</a></th><td>Govt Bux, for the government supply console</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/import_total">import_total</a></th><td>Total value of imported goods.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/mail_blocked">mail_blocked</a></th><td>Mail Holiday: AKA does mail arrive today? Always blocked on Sundays.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/mail_waiting">mail_waiting</a></th><td>Number of mail items generated.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/pack_price_modifier">pack_price_modifier</a></th><td>The modifier multiplied to the value of cargo pack prices.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/roundstart_budget_amt">roundstart_budget_amt</a></th><td>How many credits to give to each department at round start.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/roundstart_paychecks">roundstart_paychecks</a></th><td>How many paychecks should players start out the round with?</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/station_master">station_master</a></th><td>The station's master account, used for splitting up funds and pooling money.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/station_total">station_total</a></th><td>A var that collects the total amount of credits owned in player accounts on station, reset and recounted on fire()</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#proc/payday">payday</a></th><td>The first fire at roundstart is discarded.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#proc/price_update">price_update</a></th><td>Updates the prices of all station vendors.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#proc/spawn_cash_for_amount">spawn_cash_for_amount</a></th><td>Spawns a given amount of money in optimal stacks at the given location.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#proc/track_purchase">track_purchase</a></th><td>Proc that adds a set of strings and ints to the audit log, tracked by the economy SS.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#proc/update_mail">update_mail</a></th><td>We don't use transfering, because we already know there's enough money.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/audit_log"><aside class="declaration">var </aside>audit_log
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 61"/></a></h3>
+        <p>A list of strings containing a basic transaction history of purchases on the station.
+Added to any time when player accounts purchase something.</p><h3 id="var/bank_accounts_by_id"><aside class="declaration">var </aside>bank_accounts_by_id
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 43"/></a></h3>
+        <p>List of normal (no department ones) accounts' identifiers with associated datum accounts, for big O performance.
+A list of sole account datums can be obtained with flatten_list(), another variable would be redundant rn.</p><h3 id="var/bounty_modifier"><aside class="declaration">var </aside>bounty_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 53"/></a></h3>
+        <p>The modifier multiplied to the value of bounties paid out.</p><h3 id="var/dep_cards"><aside class="declaration">var </aside>dep_cards
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 45"/></a></h3>
+        <p>List of the departmental budget cards in existance.</p><h3 id="var/department_accounts_by_id"><aside class="declaration">var </aside>department_accounts_by_id
+            <aside>&ndash; /list/datum/bank_account/department</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 30"/></a></h3>
+        <p>Departmental account datums by ID</p><h3 id="var/earning_report"><aside class="declaration">var </aside>earning_report
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 51"/></a></h3>
+        <p>Contains the message to send to newscasters about price inflation and earnings, updated on price_update()</p><h3 id="var/export_total"><aside class="declaration">var </aside>export_total
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 64"/></a></h3>
+        <p>Total value of exported materials.</p><h3 id="var/full_ancap"><aside class="declaration">var </aside>full_ancap
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 37"/></a></h3>
+        <p>Enables extra money charges for things that normally would be free, such as sleepers/cryo/beepsky.
+Take care when enabling, as players will NOT respond well if the economy is set up for low cash flows.</p><h3 id="var/government_budget"><aside class="declaration">var </aside>government_budget
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/bank_account.html">bank_account</a>/department</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 27"/></a></h3>
+        <p>Govt Bux, for the government supply console</p><h3 id="var/import_total"><aside class="declaration">var </aside>import_total
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 66"/></a></h3>
+        <p>Total value of imported goods.</p><h3 id="var/mail_blocked"><aside class="declaration">var </aside>mail_blocked
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 70"/></a></h3>
+        <p>Mail Holiday: AKA does mail arrive today? Always blocked on Sundays.</p><h3 id="var/mail_waiting"><aside class="declaration">var </aside>mail_waiting
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 68"/></a></h3>
+        <p>Number of mail items generated.</p><h3 id="var/pack_price_modifier"><aside class="declaration">var </aside>pack_price_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 55"/></a></h3>
+        <p>The modifier multiplied to the value of cargo pack prices.</p><h3 id="var/roundstart_budget_amt"><aside class="declaration">var </aside>roundstart_budget_amt
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 12"/></a></h3>
+        <p>How many credits to give to each department at round start.</p><h3 id="var/roundstart_paychecks"><aside class="declaration">var </aside>roundstart_paychecks
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 7"/></a></h3>
+        <p>How many paychecks should players start out the round with?</p><h3 id="var/station_master"><aside class="declaration">var </aside>station_master
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/bank_account.html">bank_account</a>/department</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 24"/></a></h3>
+        <p>The station's master account, used for splitting up funds and pooling money.</p><h3 id="var/station_total"><aside class="declaration">var </aside>station_total
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 48"/></a></h3>
+        <p>A var that collects the total amount of credits owned in player accounts on station, reset and recounted on fire()</p><h2 id="proc">Proc Details</h2><h3 id="proc/payday"><aside class="declaration">proc </aside>payday<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 97"/></a></aside>
+        </h3>
+        <p>The first fire at roundstart is discarded.</p><h3 id="proc/price_update"><aside class="declaration">proc </aside>price_update<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 174"/></a></aside>
+        </h3>
+        <p>Updates the prices of all station vendors.</p>
+<p>Iterates over the machines list for vending machines, resets their regular and premium product prices (Not contraband).</p><h3 id="proc/spawn_cash_for_amount"><aside class="declaration">proc </aside>spawn_cash_for_amount<aside>(amt, spawn_loc) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L379">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 379"/></a></aside>
+        </h3>
+        <p>Spawns a given amount of money in optimal stacks at the given location.</p><h3 id="proc/track_purchase"><aside class="declaration">proc </aside>track_purchase<aside>(/<a href="datum.html">datum</a>/<a href="datum/bank_account.html">bank_account</a>/account, price_to_use, vendor) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L194">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 194"/></a></aside>
+        </h3>
+        <p>Proc that adds a set of strings and ints to the audit log, tracked by the economy SS.</p>
+<ul>
+<li>account: The bank account of the person purchasing the item.</li>
+<li>price_to_use: The cost of the purchase made for this transaction.</li>
+<li>vendor: The object or structure medium that is charging the user. For Vending machines that's the machine, for payment component that's the parent, cargo that's the crate, etc.</li>
+</ul><h3 id="proc/update_mail"><aside class="declaration">proc </aside>update_mail<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/controllers/subsystem/economy.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 165"/></a></aside>
+        </h3>
+        <p>We don't use transfering, because we already know there's enough money.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

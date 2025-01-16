@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_storage.dm - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/signals/signals_storage.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/signals/signals_storage.dm 
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/dcs/signals/signals_storage.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_storage.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_storage.html#define/COMSIG_STORAGE_DUMP_CONTENT">COMSIG_STORAGE_DUMP_CONTENT</a></th><td>Sent when /datum/storage/dump_content_at(): (obj/item/storage_source, mob/user)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_storage.html#define/STORAGE_DUMP_HANDLED">STORAGE_DUMP_HANDLED</a></th><td>Return to stop the standard dump behavior.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_storage.html#define/COMSIG_STORAGE_INSERTED_ITEM">COMSIG_STORAGE_INSERTED_ITEM</a></th><td>Sent after /datum/storage/attempt_insert(): (obj/item/inserted, mob/user, override, force)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_storage.html#define/COMSIG_STORAGE_ATTEMPT_OPEN">COMSIG_STORAGE_ATTEMPT_OPEN</a></th><td>Sent when /datum/storage/open_storage(): (mob/to_show, performing_quickdraw)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_storage.html#define/STORAGE_INTERRUPT_OPEN">STORAGE_INTERRUPT_OPEN</a></th><td>Interrupt the opening.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_storage.html#define/COMSIG_STORAGE_CAN_INSERT">COMSIG_STORAGE_CAN_INSERT</a></th><td>Sent when /datum/storage/can_insert(): (obj/item/to_insert, mob/user, messages, force)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_storage.html#define/STORAGE_NO_INSERT">STORAGE_NO_INSERT</a></th><td>Disallow the insertion.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COMSIG_STORAGE_ATTEMPT_OPEN"><aside class="declaration">#define </aside>COMSIG_STORAGE_ATTEMPT_OPEN
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/dcs/signals/signals_storage.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_storage.dm 10"/></a>
+    </h3>
+    <p>Sent when /datum/storage/open_storage(): (mob/to_show, performing_quickdraw)</p><h3 id="define/COMSIG_STORAGE_CAN_INSERT"><aside class="declaration">#define </aside>COMSIG_STORAGE_CAN_INSERT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/dcs/signals/signals_storage.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_storage.dm 15"/></a>
+    </h3>
+    <p>Sent when /datum/storage/can_insert(): (obj/item/to_insert, mob/user, messages, force)</p><h3 id="define/COMSIG_STORAGE_DUMP_CONTENT"><aside class="declaration">#define </aside>COMSIG_STORAGE_DUMP_CONTENT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/dcs/signals/signals_storage.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_storage.dm 2"/></a>
+    </h3>
+    <p>Sent when /datum/storage/dump_content_at(): (obj/item/storage_source, mob/user)</p><h3 id="define/COMSIG_STORAGE_INSERTED_ITEM"><aside class="declaration">#define </aside>COMSIG_STORAGE_INSERTED_ITEM
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/dcs/signals/signals_storage.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_storage.dm 7"/></a>
+    </h3>
+    <p>Sent after /datum/storage/attempt_insert(): (obj/item/inserted, mob/user, override, force)</p><h3 id="define/STORAGE_DUMP_HANDLED"><aside class="declaration">#define </aside>STORAGE_DUMP_HANDLED
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/dcs/signals/signals_storage.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_storage.dm 4"/></a>
+    </h3>
+    <p>Return to stop the standard dump behavior.</p><h3 id="define/STORAGE_INTERRUPT_OPEN"><aside class="declaration">#define </aside>STORAGE_INTERRUPT_OPEN
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/dcs/signals/signals_storage.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_storage.dm 12"/></a>
+    </h3>
+    <p>Interrupt the opening.</p><h3 id="define/STORAGE_NO_INSERT"><aside class="declaration">#define </aside>STORAGE_NO_INSERT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/dcs/signals/signals_storage.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_storage.dm 17"/></a>
+    </h3>
+    <p>Disallow the insertion.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

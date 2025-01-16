@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;zone - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="zone.html#var">Var Details</a> - <a href="zone.html#proc">Proc Details</a></header>
+<main>
+<h1>zone <aside>/<a href="zone.html">zone</a></aside><aside> inherits /<a href="datum.html">datum</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 43"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="zone.html#var/air">air</a></th><td>The zone's gas contents</td></tr>
+            <tr><th><a href="zone.html#var/atmos_sensitive_contents">atmos_sensitive_contents</a></th><td>Lazylist of atmos sensitive contents</td></tr>
+            <tr><th><a href="zone.html#var/edges">edges</a></th><td>An associative list of edge_source = edge. Will contain instantiated turfs and zones.</td></tr>
+            <tr><th><a href="zone.html#var/invalid">invalid</a></th><td>If a zone is &quot;invalid&quot; it will not process</td></tr>
+            <tr><th><a href="zone.html#var/last_air_temperature">last_air_temperature</a></th><td>The air temperature of the last tick()</td></tr>
+            <tr><th><a href="zone.html#var/last_gas_list">last_gas_list</a></th><td>The air list of last tick()</td></tr>
+            <tr><th><a href="zone.html#var/name">name</a></th><td>A simple numerical value</td></tr>
+            <tr><th><a href="zone.html#var/needs_update">needs_update</a></th><td>Does SSzas need to update this zone? (SSzas.mark_zone_update(zone))</td></tr>
+            <tr><th><a href="zone.html#var/processing_graphic_cycle">processing_graphic_cycle</a></th><td>An incrementing counter that keeps track of which air graphic cycle any sleeping procs may be in.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="zone.html#proc/add_tile_air">add_tile_air</a></th><td>Assumes a given gas mixture, dividing it amongst the zone.</td></tr>
+            <tr><th><a href="zone.html#proc/add_turf">add_turf</a></th><td>Adds the given turf to the zone</td></tr>
+            <tr><th><a href="zone.html#proc/dbg_data">dbg_data</a></th><td>Prints debug information to the given mob. Used by the &quot;Zone Info&quot; verb. Does not require ZASDBG compile define.</td></tr>
+            <tr><th><a href="zone.html#proc/invalidate">invalidate</a></th><td>Marks the zone as invalid, removing it from the SSzas zone list.</td></tr>
+            <tr><th><a href="zone.html#proc/merge_into">merge_into</a></th><td>Merges src into the given zone</td></tr>
+            <tr><th><a href="zone.html#proc/rebuild">rebuild</a></th><td>Invalidates the zone and marks all of it's contents for update.</td></tr>
+            <tr><th><a href="zone.html#proc/remove_turf">remove_turf</a></th><td>Removes the given turf from the zone. Will invalidate the zone if it was the last turf.</td></tr>
+            <tr><th><a href="zone.html#proc/tick">tick</a></th><td>Zone's process proc.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/air"><aside class="declaration">var </aside>air
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 56"/></a></h3>
+        <p>The zone's gas contents</p><h3 id="var/atmos_sensitive_contents"><aside class="declaration">var </aside>atmos_sensitive_contents
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 54"/></a></h3>
+        <p>Lazylist of atmos sensitive contents</p><h3 id="var/edges"><aside class="declaration">var </aside>edges
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 52"/></a></h3>
+        <p>An associative list of edge_source = edge. Will contain instantiated turfs and zones.</p><h3 id="var/invalid"><aside class="declaration">var </aside>invalid
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 47"/></a></h3>
+        <p>If a zone is &quot;invalid&quot; it will not process</p><h3 id="var/last_air_temperature"><aside class="declaration">var </aside>last_air_temperature
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 58"/></a></h3>
+        <p>The air temperature of the last tick()</p><h3 id="var/last_gas_list"><aside class="declaration">var </aside>last_gas_list
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 60"/></a></h3>
+        <p>The air list of last tick()</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 45"/></a></h3>
+        <p>A simple numerical value</p><h3 id="var/needs_update"><aside class="declaration">var </aside>needs_update
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 50"/></a></h3>
+        <p>Does SSzas need to update this zone? (SSzas.mark_zone_update(zone))</p><h3 id="var/processing_graphic_cycle"><aside class="declaration">var </aside>processing_graphic_cycle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 62"/></a></h3>
+        <p>An incrementing counter that keeps track of which air graphic cycle any sleeping procs may be in.</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_tile_air"><aside class="declaration">proc </aside>add_tile_air<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/tile_air) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 200"/></a></aside>
+        </h3>
+        <p>Assumes a given gas mixture, dividing it amongst the zone.</p><h3 id="proc/add_turf"><aside class="declaration">proc </aside>add_turf<aside>(/<a href="turf.html">turf</a>/T) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 71"/></a></aside>
+        </h3>
+        <p>Adds the given turf to the zone</p><h3 id="proc/dbg_data"><aside class="declaration">proc </aside>dbg_data<aside>(/<a href="mob.html">mob</a>/M) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L235">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 235"/></a></aside>
+        </h3>
+        <p>Prints debug information to the given mob. Used by the &quot;Zone Info&quot; verb. Does not require ZASDBG compile define.</p><h3 id="proc/invalidate"><aside class="declaration">proc </aside>invalidate<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L163">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 163"/></a></aside>
+        </h3>
+        <p>Marks the zone as invalid, removing it from the SSzas zone list.</p><h3 id="proc/merge_into"><aside class="declaration">proc </aside>merge_into<aside>(/<a href="zone.html">zone</a>/into) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 130"/></a></aside>
+        </h3>
+        <p>Merges src into the given zone</p><h3 id="proc/rebuild"><aside class="declaration">proc </aside>rebuild<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 174"/></a></aside>
+        </h3>
+        <p>Invalidates the zone and marks all of it's contents for update.</p><h3 id="proc/remove_turf"><aside class="declaration">proc </aside>remove_turf<aside>(/<a href="turf.html">turf</a>/T) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 94"/></a></aside>
+        </h3>
+        <p>Removes the given turf from the zone. Will invalidate the zone if it was the last turf.</p><h3 id="proc/tick"><aside class="declaration">proc </aside>tick<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/atmospherics/ZAS/Zone.dm#L208">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;ZAS&#x2F;Zone.dm 208"/></a></aside>
+        </h3>
+        <p>Zone's process proc.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

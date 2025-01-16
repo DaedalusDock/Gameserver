@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;tesla - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/cooldown/spell/tesla.html#var">Var Details</a> - <a href="datum/action/cooldown/spell/tesla.html#proc">Proc Details</a></header>
+<main>
+<h1>tesla <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/cooldown.html">cooldown</a>/<a href="datum/action/cooldown/spell.html">spell</a>/<a href="datum/action/cooldown/spell/tesla.html">tesla</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/self/lightning.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;self&#x2F;lightning.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/cooldown/spell/tesla.html#var/channel_time">channel_time</a></th><td>How long it takes to channel the zap.</td></tr>
+            <tr><th><a href="datum/action/cooldown/spell/tesla.html#var/charge_sound">charge_sound</a></th><td>The sound played while charging the spell
+Quote: &quot;the only way i can think of to stop a sound, thank MSO for the idea.&quot;</td></tr>
+            <tr><th><a href="datum/action/cooldown/spell/tesla.html#var/currently_channeling">currently_channeling</a></th><td>Whether we're currently channelling a tesla blast or not</td></tr>
+            <tr><th><a href="datum/action/cooldown/spell/tesla.html#var/halo">halo</a></th><td>The halo that appears around the caster while charging the spell</td></tr>
+            <tr><th><a href="datum/action/cooldown/spell/tesla.html#var/shock_radius">shock_radius</a></th><td>The radius around (either the caster or people shocked) to which the tesla blast can reach</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/cooldown/spell/tesla.html#proc/get_target">get_target</a></th><td>Get a target in view of us to zap next. Returns a carbon, or null if none were found.</td></tr>
+            <tr><th><a href="datum/action/cooldown/spell/tesla.html#proc/reset_tesla">reset_tesla</a></th><td>Resets the tesla effect.</td></tr>
+            <tr><th><a href="datum/action/cooldown/spell/tesla.html#proc/zap_target">zap_target</a></th><td>Zaps a target, the bolt originating from origin.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/channel_time"><aside class="declaration">var </aside>channel_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/self/lightning.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;self&#x2F;lightning.dm 17"/></a></h3>
+        <p>How long it takes to channel the zap.</p><h3 id="var/charge_sound"><aside class="declaration">var </aside>charge_sound
+            <aside>&ndash; /sound</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/self/lightning.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;self&#x2F;lightning.dm 26"/></a></h3>
+        <p>The sound played while charging the spell
+Quote: &quot;the only way i can think of to stop a sound, thank MSO for the idea.&quot;</p><h3 id="var/currently_channeling"><aside class="declaration">var </aside>currently_channeling
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/self/lightning.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;self&#x2F;lightning.dm 15"/></a></h3>
+        <p>Whether we're currently channelling a tesla blast or not</p><h3 id="var/halo"><aside class="declaration">var </aside>halo
+            <aside>&ndash; /static/mutable_appearance</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/self/lightning.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;self&#x2F;lightning.dm 21"/></a></h3>
+        <p>The halo that appears around the caster while charging the spell</p><h3 id="var/shock_radius"><aside class="declaration">var </aside>shock_radius
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/self/lightning.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;self&#x2F;lightning.dm 19"/></a></h3>
+        <p>The radius around (either the caster or people shocked) to which the tesla blast can reach</p><h2 id="proc">Proc Details</h2><h3 id="proc/get_target"><aside class="declaration">proc </aside>get_target<aside>(/<a href="atom.html">atom</a>/center) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/self/lightning.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;self&#x2F;lightning.dm 113"/></a></aside>
+        </h3>
+        <p>Get a target in view of us to zap next. Returns a carbon, or null if none were found.</p><h3 id="proc/reset_tesla"><aside class="declaration">proc </aside>reset_tesla<aside>(/<a href="atom.html">atom</a>/to_reset) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/self/lightning.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;self&#x2F;lightning.dm 72"/></a></aside>
+        </h3>
+        <p>Resets the tesla effect.</p><h3 id="proc/zap_target"><aside class="declaration">proc </aside>zap_target<aside>(/<a href="atom.html">atom</a>/origin, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/to_zap, bolt_energy, bounces) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/spells/spell_types/self/lightning.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;self&#x2F;lightning.dm 96"/></a></aside>
+        </h3>
+        <p>Zaps a target, the bolt originating from origin.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

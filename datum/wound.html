@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;wound - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/wound.html#var">Var Details</a> - <a href="datum/wound.html#proc">Proc Details</a></header>
+<main>
+<h1>wound <aside>/<a href="datum.html">datum</a>/<a href="datum/wound.html">wound</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 5"/></a></h1>
+
+<p>WOUNDS</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/wound.html#var/amount">amount</a></th><td>Number of wounds of this type</td></tr>
+            <tr><th><a href="datum/wound.html#var/bleed_threshold">bleed_threshold</a></th><td>Above this amount wounds you will need to treat the wound to stop bleeding, regardless of bleed_timer</td></tr>
+            <tr><th><a href="datum/wound.html#var/bleed_timer">bleed_timer</a></th><td>Ticks of bleeding left</td></tr>
+            <tr><th><a href="datum/wound.html#var/clamped">clamped</a></th><td>Is clamped?</td></tr>
+            <tr><th><a href="datum/wound.html#var/current_stage">current_stage</a></th><td>Number representing the current stage</td></tr>
+            <tr><th><a href="datum/wound.html#var/damage">damage</a></th><td>Amount of damage this wound causes</td></tr>
+            <tr><th><a href="datum/wound.html#var/desc">desc</a></th><td>Description of the wound.</td></tr>
+            <tr><th><a href="datum/wound.html#var/disinfected">disinfected</a></th><td>Is disinfected?</td></tr>
+            <tr><th><a href="datum/wound.html#var/germ_level">germ_level</a></th><td>Amount of germs in the wound</td></tr>
+            <tr><th><a href="datum/wound.html#var/max_bleeding_stage">max_bleeding_stage</a></th><td>Maximum stage at which bleeding should still happen. Beyond this stage bleeding is prevented.</td></tr>
+            <tr><th><a href="datum/wound.html#var/min_damage">min_damage</a></th><td>Amount of damage the current wound type requires(less means we need to apply the next healing stage)</td></tr>
+            <tr><th><a href="datum/wound.html#var/parent">parent</a></th><td>The bodypart this wound is on</td></tr>
+            <tr><th><a href="datum/wound.html#var/salved">salved</a></th><td>Is salved?</td></tr>
+            <tr><th><a href="datum/wound.html#var/stages">stages</a></th><td>stages such as &quot;cut&quot;, &quot;deep cut&quot;, etc.</td></tr>
+            <tr><th><a href="datum/wound.html#var/wound_type">wound_type</a></th><td>String (One of <code>wound_type_*</code>). The wound's injury type.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/wound.html#proc/bleeding">bleeding</a></th><td>Returns if the wound is currently bleeding.</td></tr>
+            <tr><th><a href="datum/wound.html#proc/init_stage">init_stage</a></th><td>Returns 1 if there's a next stage, 0 otherwise</td></tr>
+            <tr><th><a href="datum/wound.html#proc/is_treated">is_treated</a></th><td>Checks whether the wound has been appropriately treated</td></tr>
+            <tr><th><a href="datum/wound.html#proc/wound_damage">wound_damage</a></th><td>The amount of damage per wound</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/amount"><aside class="declaration">var </aside>amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 32"/></a></h3>
+        <p>Number of wounds of this type</p><h3 id="var/bleed_threshold"><aside class="declaration">var </aside>bleed_threshold
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 19"/></a></h3>
+        <p>Above this amount wounds you will need to treat the wound to stop bleeding, regardless of bleed_timer</p><h3 id="var/bleed_timer"><aside class="declaration">var </aside>bleed_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 17"/></a></h3>
+        <p>Ticks of bleeding left</p><h3 id="var/clamped"><aside class="declaration">var </aside>clamped
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 24"/></a></h3>
+        <p>Is clamped?</p><h3 id="var/current_stage"><aside class="declaration">var </aside>current_stage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 11"/></a></h3>
+        <p>Number representing the current stage</p><h3 id="var/damage"><aside class="declaration">var </aside>damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 15"/></a></h3>
+        <p>Amount of damage this wound causes</p><h3 id="var/desc"><aside class="declaration">var </aside>desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 13"/></a></h3>
+        <p>Description of the wound.</p><h3 id="var/disinfected"><aside class="declaration">var </aside>disinfected
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 28"/></a></h3>
+        <p>Is disinfected?</p><h3 id="var/germ_level"><aside class="declaration">var </aside>germ_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 34"/></a></h3>
+        <p>Amount of germs in the wound</p><h3 id="var/max_bleeding_stage"><aside class="declaration">var </aside>max_bleeding_stage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 41"/></a></h3>
+        <p>Maximum stage at which bleeding should still happen. Beyond this stage bleeding is prevented.</p><h3 id="var/min_damage"><aside class="declaration">var </aside>min_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 21"/></a></h3>
+        <p>Amount of damage the current wound type requires(less means we need to apply the next healing stage)</p><h3 id="var/parent"><aside class="declaration">var </aside>parent
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/bodypart.html">bodypart</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 7"/></a></h3>
+        <p>The bodypart this wound is on</p><h3 id="var/salved"><aside class="declaration">var </aside>salved
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 26"/></a></h3>
+        <p>Is salved?</p><h3 id="var/stages"><aside class="declaration">var </aside>stages
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 38"/></a></h3>
+        <p>stages such as &quot;cut&quot;, &quot;deep cut&quot;, etc.</p><h3 id="var/wound_type"><aside class="declaration">var </aside>wound_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 44"/></a></h3>
+        <p>String (One of <code>wound_type_*</code>). The wound's injury type.</p><h2 id="proc">Proc Details</h2><h3 id="proc/bleeding"><aside class="declaration">proc </aside>bleeding<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L248">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 248"/></a></aside>
+        </h3>
+        <p>Returns if the wound is currently bleeding.</p><h3 id="proc/init_stage"><aside class="declaration">proc </aside>init_stage<aside>(initial_damage) 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 83"/></a></aside>
+        </h3>
+        <p>Returns 1 if there's a next stage, 0 otherwise</p><h3 id="proc/is_treated"><aside class="declaration">proc </aside>is_treated<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 110"/></a></aside>
+        </h3>
+        <p>Checks whether the wound has been appropriately treated</p><h3 id="proc/wound_damage"><aside class="declaration">proc </aside>wound_damage<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/surgery/bodyparts/wounds/_wounds.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds&#x2F;_wounds.dm 93"/></a></aside>
+        </h3>
+        <p>The amount of damage per wound</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;loadout_item - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/loadout_item.html#var">Var Details</a> - <a href="datum/loadout_item.html#proc">Proc Details</a></header>
+<main>
+<h1>loadout_item <aside>/<a href="datum.html">datum</a>/<a href="datum/loadout_item.html">loadout_item</a></aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/loadout/loadout_item/loadout_item.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;loadout&#x2F;loadout_item&#x2F;loadout_item.dm 5"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/category">category</a></th><td>Category in which the item belongs to LOADOUT_CATEGORY_UNIFORM, LOADOUT_CATEGORY_BACKPACK etc.</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/cost">cost</a></th><td>How much loadout points does it cost?</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/customization_flags">customization_flags</a></th><td>Flags for customizing the item</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/description">description</a></th><td>Description of the loadout item, automatically set by New() if null</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/gags_colors">gags_colors</a></th><td>Amount of gags colors this item expects. If null, it's not a GAGS item</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/gags_colors_string">gags_colors_string</a></th><td>String of the default gags colors. Can be null even if <code>gags_colors</code> is something (for cases where default items randomize for example)</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/name">name</a></th><td>Name of the loadout item, automatically set by New() if null</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/path">path</a></th><td>Typepath to the item being spawned</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/restricted_roles">restricted_roles</a></th><td>A list of job names this item is restricted to.</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/subcategory">subcategory</a></th><td>Subcategory in which the item belongs to</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/loadout_item.html#proc/get_gags_string">get_gags_string</a></th><td>Gets a string for the gags config</td></tr>
+            <tr><th><a href="datum/loadout_item.html#proc/parse_gags">parse_gags</a></th><td>Ran from SSloadouts after SSgreyscale initializes so we can properly read some information</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/category"><aside class="declaration">var </aside>category
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/loadout/loadout_item/loadout_item.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;loadout&#x2F;loadout_item&#x2F;loadout_item.dm 15"/></a></h3>
+        <p>Category in which the item belongs to LOADOUT_CATEGORY_UNIFORM, LOADOUT_CATEGORY_BACKPACK etc.</p><h3 id="var/cost"><aside class="declaration">var </aside>cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/loadout/loadout_item/loadout_item.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;loadout&#x2F;loadout_item&#x2F;loadout_item.dm 13"/></a></h3>
+        <p>How much loadout points does it cost?</p><h3 id="var/customization_flags"><aside class="declaration">var </aside>customization_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/loadout/loadout_item/loadout_item.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;loadout&#x2F;loadout_item&#x2F;loadout_item.dm 19"/></a></h3>
+        <p>Flags for customizing the item</p><h3 id="var/description"><aside class="declaration">var </aside>description
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/loadout/loadout_item/loadout_item.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;loadout&#x2F;loadout_item&#x2F;loadout_item.dm 9"/></a></h3>
+        <p>Description of the loadout item, automatically set by New() if null</p><h3 id="var/gags_colors"><aside class="declaration">var </aside>gags_colors
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/loadout/loadout_item/loadout_item.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;loadout&#x2F;loadout_item&#x2F;loadout_item.dm 23"/></a></h3>
+        <p>Amount of gags colors this item expects. If null, it's not a GAGS item</p><h3 id="var/gags_colors_string"><aside class="declaration">var </aside>gags_colors_string
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/loadout/loadout_item/loadout_item.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;loadout&#x2F;loadout_item&#x2F;loadout_item.dm 21"/></a></h3>
+        <p>String of the default gags colors. Can be null even if <code>gags_colors</code> is something (for cases where default items randomize for example)</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/loadout/loadout_item/loadout_item.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;loadout&#x2F;loadout_item&#x2F;loadout_item.dm 7"/></a></h3>
+        <p>Name of the loadout item, automatically set by New() if null</p><h3 id="var/path"><aside class="declaration">var </aside>path
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/loadout/loadout_item/loadout_item.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;loadout&#x2F;loadout_item&#x2F;loadout_item.dm 11"/></a></h3>
+        <p>Typepath to the item being spawned</p><h3 id="var/restricted_roles"><aside class="declaration">var </aside>restricted_roles
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/loadout/loadout_item/loadout_item.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;loadout&#x2F;loadout_item&#x2F;loadout_item.dm 27"/></a></h3>
+        <p>A list of job names this item is restricted to.</p><h3 id="var/subcategory"><aside class="declaration">var </aside>subcategory
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/loadout/loadout_item/loadout_item.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;loadout&#x2F;loadout_item&#x2F;loadout_item.dm 17"/></a></h3>
+        <p>Subcategory in which the item belongs to</p><h2 id="proc">Proc Details</h2><h3 id="proc/get_gags_string"><aside class="declaration">proc </aside>get_gags_string<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/loadout/loadout_item/loadout_item.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;loadout&#x2F;loadout_item&#x2F;loadout_item.dm 62"/></a></aside>
+        </h3>
+        <p>Gets a string for the gags config</p><h3 id="proc/parse_gags"><aside class="declaration">proc </aside>parse_gags<aside>() 
+        
+    
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/modules/client/preferences/loadout/loadout_item/loadout_item.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;loadout&#x2F;loadout_item&#x2F;loadout_item.dm 51"/></a></aside>
+        </h3>
+        <p>Ran from SSloadouts after SSgreyscale initializes so we can properly read some information</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

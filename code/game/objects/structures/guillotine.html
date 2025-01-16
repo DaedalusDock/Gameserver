@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;guillotine.dm - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/game/objects/structures/guillotine.html#define">Define Details</a></header>
+<main>
+<h1>code/game/objects/structures/guillotine.dm 
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/structures/guillotine.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;guillotine.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/game/objects/structures/guillotine.html#define/GUILLOTINE_BLADE_MAX_SHARP">GUILLOTINE_BLADE_MAX_SHARP</a></th><td>This is maxiumum sharpness and will decapitate without failure</td></tr>
+        <tr><th><a href="code/game/objects/structures/guillotine.html#define/GUILLOTINE_DECAP_MIN_SHARP">GUILLOTINE_DECAP_MIN_SHARP</a></th><td>Minimum amount of sharpness for decapitation. Any less and it will just do severe brute damage</td></tr>
+        <tr><th><a href="code/game/objects/structures/guillotine.html#define/GUILLOTINE_ANIMATION_LENGTH">GUILLOTINE_ANIMATION_LENGTH</a></th><td>How long the guillotine animation lasts</td></tr>
+        <tr><th><a href="code/game/objects/structures/guillotine.html#define/GUILLOTINE_HEAD_OFFSET">GUILLOTINE_HEAD_OFFSET</a></th><td>How much we need to move the player to center their head</td></tr>
+        <tr><th><a href="code/game/objects/structures/guillotine.html#define/GUILLOTINE_LAYER_DIFF">GUILLOTINE_LAYER_DIFF</a></th><td>How much to increase/decrease a head when it's buckled/unbuckled</td></tr>
+        <tr><th><a href="code/game/objects/structures/guillotine.html#define/GUILLOTINE_ACTIVATE_DELAY">GUILLOTINE_ACTIVATE_DELAY</a></th><td>Delay for executing someone</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/GUILLOTINE_ACTIVATE_DELAY"><aside class="declaration">#define </aside>GUILLOTINE_ACTIVATE_DELAY
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/structures/guillotine.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;guillotine.dm 20"/></a>
+    </h3>
+    <p>Delay for executing someone</p><h3 id="define/GUILLOTINE_ANIMATION_LENGTH"><aside class="declaration">#define </aside>GUILLOTINE_ANIMATION_LENGTH
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/structures/guillotine.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;guillotine.dm 14"/></a>
+    </h3>
+    <p>How long the guillotine animation lasts</p><h3 id="define/GUILLOTINE_BLADE_MAX_SHARP"><aside class="declaration">#define </aside>GUILLOTINE_BLADE_MAX_SHARP
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/structures/guillotine.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;guillotine.dm 10"/></a>
+    </h3>
+    <p>This is maxiumum sharpness and will decapitate without failure</p><h3 id="define/GUILLOTINE_DECAP_MIN_SHARP"><aside class="declaration">#define </aside>GUILLOTINE_DECAP_MIN_SHARP
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/structures/guillotine.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;guillotine.dm 12"/></a>
+    </h3>
+    <p>Minimum amount of sharpness for decapitation. Any less and it will just do severe brute damage</p><h3 id="define/GUILLOTINE_HEAD_OFFSET"><aside class="declaration">#define </aside>GUILLOTINE_HEAD_OFFSET
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/structures/guillotine.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;guillotine.dm 16"/></a>
+    </h3>
+    <p>How much we need to move the player to center their head</p><h3 id="define/GUILLOTINE_LAYER_DIFF"><aside class="declaration">#define </aside>GUILLOTINE_LAYER_DIFF
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/game/objects/structures/guillotine.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;guillotine.dm 18"/></a>
+    </h3>
+    <p>How much to increase/decrease a head when it's buckled/unbuckled</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

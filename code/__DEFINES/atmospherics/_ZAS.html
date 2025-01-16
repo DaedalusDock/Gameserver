@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm - Daedalus Dock</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Daedalus Dock</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/atmospherics/_ZAS.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/atmospherics/_ZAS.dm 
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/AIR_ALLOWED">AIR_ALLOWED</a></th><td>Air and zones freely mingle with this turf under the given conditions</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/AIR_BLOCKED">AIR_BLOCKED</a></th><td>Neither air nor zones can interact with this turf under the given conditions</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/ZONE_BLOCKED">ZONE_BLOCKED</a></th><td>Air can pass through or into this turf, but zones may not merge with it. Will not block zone merges</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/ZONE_MIN_SIZE">ZONE_MIN_SIZE</a></th><td>Zones with less than this many turfs will always merge, even if the connection is not direct. This MUST be ATLEAST 2, or doorways will BREAK.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/CANPASS_ALWAYS">CANPASS_ALWAYS</a></th><td>Air can always pass</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/CANPASS_DENSITY">CANPASS_DENSITY</a></th><td>Air can only pass if density is FALSE</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/CANPASS_PROC">CANPASS_PROC</a></th><td>This atom uses /proc/zas_canpass()</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/CANPASS_NEVER">CANPASS_NEVER</a></th><td>Air can never pass</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/TURF_HAS_VALID_ZONE">TURF_HAS_VALID_ZONE</a></th><td>Checks is a turf is simulated and has a valid zone.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/SAFE_ZAS_UPDATE">SAFE_ZAS_UPDATE</a></th><td>Checks if X is a turf, if it is, mark it's zone for update.</td></tr>
+        <tr><th>/var/<a href="global.html#var/csrfz_check">csrfz_check</a></th>
+                <td>&quot;Can safely remove from zone&quot;</td></tr>
+        <tr><th>/var/<a href="global.html#var/gzn_check">gzn_check</a></th>
+                <td>&quot;Get zone neighbors&quot;</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/CELL_VOLUME">CELL_VOLUME</a></th><td>The volume of a standard cell, in liters. 1 turf is 1 cell.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/MOLES_CELLSTANDARD">MOLES_CELLSTANDARD</a></th><td>Moles in a 2.5 m^3 cell at 101.325 kPa and 20 C.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/O2STANDARD">O2STANDARD</a></th><td>The standard O2 percentage for livable atmos.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/N2STANDARD">N2STANDARD</a></th><td>The standard N2 percentage for livable atmos.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/MOLES_PHORON_VISIBLE">MOLES_PHORON_VISIBLE</a></th><td>The amount of moles in a standard cell (1 turf) when Plasma starts being visible.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/MOLES_O2STANDARD">MOLES_O2STANDARD</a></th><td>The standard molar content of Oxygen in a livible cell (turf).</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/MOLES_N2STANDARD">MOLES_N2STANDARD</a></th><td>The standard molar content of Nitrogen in a livible cell (turf).</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/SOUND_MINIMUM_PRESSURE">SOUND_MINIMUM_PRESSURE</a></th><td>The minimum pressure for sound to be audible to a human</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/PRESSURE_DAMAGE_COEFFICIENT">PRESSURE_DAMAGE_COEFFICIENT</a></th><td>The amount of pressure damage someone takes is equal to (pressure / HAZARD_HIGH_PRESSURE)*PRESSURE_DAMAGE_COEFFICIENT, with the maximum of MAX_PRESSURE_DAMAGE</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/MINIMUM_PRESSURE_DIFFERENCE_TO_SUSPEND">MINIMUM_PRESSURE_DIFFERENCE_TO_SUSPEND</a></th><td>/OPTIMIZATIONS/////
+If the pressure delta between two zones is below this value, they will not process.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/MINIMUM_AIR_RATIO_TO_SUSPEND">MINIMUM_AIR_RATIO_TO_SUSPEND</a></th><td>Minimum ratio of air that must move to/from a tile to suspend group processing</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/MINIMUM_AIR_TO_SUSPEND">MINIMUM_AIR_TO_SUSPEND</a></th><td>Minimum amount of air that has to move before a group processing can be suspended</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/OPENTURF_DEFAULT_ATMOS">OPENTURF_DEFAULT_ATMOS</a></th><td>the default air mix that open turfs spawn</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/BURNMIX_ATMOS">BURNMIX_ATMOS</a></th><td>A long and hot fire</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/TCOMMS_ATMOS">TCOMMS_ATMOS</a></th><td>-193,15Â°C telecommunications. also used for xenobiology slime killrooms</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/AIRLESS_ATMOS">AIRLESS_ATMOS</a></th><td>space</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/KITCHEN_COLDROOM_ATMOS">KITCHEN_COLDROOM_ATMOS</a></th><td>-93.15Â°C snow and ice turfs
+-14Â°C kitchen coldroom, just might loss your tail; higher amount of mol to reach about 101.3 kpA</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/BOMBCAP_DVSTN_RADIUS">BOMBCAP_DVSTN_RADIUS</a></th><td>Bomb caps</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/FLOOR_HEAT_TRANSFER_COEFFICIENT">FLOOR_HEAT_TRANSFER_COEFFICIENT</a></th><td>CURRENTLY ONLY AROUND TO APPEASE LINTERS, THERMAL CONDUCTIVITY IS NOT IMPLIMENTED FULLY</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/_ZAS.html#define/AIR_UPDATE_VALUES">AIR_UPDATE_VALUES</a></th><td>A replacement for /datum/gas_mixture/proc/update_values() (515 Compatible)</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/AIRLESS_ATMOS"><aside class="declaration">#define </aside>AIRLESS_ATMOS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 132"/></a>
+    </h3>
+    <p>space</p><h3 id="define/AIR_ALLOWED"><aside class="declaration">#define </aside>AIR_ALLOWED
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 2"/></a>
+    </h3>
+    <p>Air and zones freely mingle with this turf under the given conditions</p><h3 id="define/AIR_BLOCKED"><aside class="declaration">#define </aside>AIR_BLOCKED
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 4"/></a>
+    </h3>
+    <p>Neither air nor zones can interact with this turf under the given conditions</p><h3 id="define/AIR_UPDATE_VALUES"><aside class="declaration">#define </aside>AIR_UPDATE_VALUES
+            <aside>(air)</aside>
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 174"/></a>
+    </h3>
+    <p>A replacement for /datum/gas_mixture/proc/update_values() (515 Compatible)</p><h3 id="define/BOMBCAP_DVSTN_RADIUS"><aside class="declaration">#define </aside>BOMBCAP_DVSTN_RADIUS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L159">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 159"/></a>
+    </h3>
+    <p>Bomb caps</p><h3 id="define/BURNMIX_ATMOS"><aside class="declaration">#define </aside>BURNMIX_ATMOS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 127"/></a>
+    </h3>
+    <p>A long and hot fire</p><h3 id="define/CANPASS_ALWAYS"><aside class="declaration">#define </aside>CANPASS_ALWAYS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 12"/></a>
+    </h3>
+    <p>Air can always pass</p><h3 id="define/CANPASS_DENSITY"><aside class="declaration">#define </aside>CANPASS_DENSITY
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 14"/></a>
+    </h3>
+    <p>Air can only pass if density is FALSE</p><h3 id="define/CANPASS_NEVER"><aside class="declaration">#define </aside>CANPASS_NEVER
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 18"/></a>
+    </h3>
+    <p>Air can never pass</p><h3 id="define/CANPASS_PROC"><aside class="declaration">#define </aside>CANPASS_PROC
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 16"/></a>
+    </h3>
+    <p>This atom uses /proc/zas_canpass()</p><h3 id="define/CELL_VOLUME"><aside class="declaration">#define </aside>CELL_VOLUME
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 52"/></a>
+    </h3>
+    <p>The volume of a standard cell, in liters. 1 turf is 1 cell.</p><h3 id="define/FLOOR_HEAT_TRANSFER_COEFFICIENT"><aside class="declaration">#define </aside>FLOOR_HEAT_TRANSFER_COEFFICIENT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 165"/></a>
+    </h3>
+    <p>CURRENTLY ONLY AROUND TO APPEASE LINTERS, THERMAL CONDUCTIVITY IS NOT IMPLIMENTED FULLY</p><h3 id="define/KITCHEN_COLDROOM_ATMOS"><aside class="declaration">#define </aside>KITCHEN_COLDROOM_ATMOS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 136"/></a>
+    </h3>
+    <p>-93.15Â°C snow and ice turfs
+-14Â°C kitchen coldroom, just might loss your tail; higher amount of mol to reach about 101.3 kpA</p><h3 id="define/MINIMUM_AIR_RATIO_TO_SUSPEND"><aside class="declaration">#define </aside>MINIMUM_AIR_RATIO_TO_SUSPEND
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 82"/></a>
+    </h3>
+    <p>Minimum ratio of air that must move to/from a tile to suspend group processing</p><h3 id="define/MINIMUM_AIR_TO_SUSPEND"><aside class="declaration">#define </aside>MINIMUM_AIR_TO_SUSPEND
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 84"/></a>
+    </h3>
+    <p>Minimum amount of air that has to move before a group processing can be suspended</p><h3 id="define/MINIMUM_PRESSURE_DIFFERENCE_TO_SUSPEND"><aside class="declaration">#define </aside>MINIMUM_PRESSURE_DIFFERENCE_TO_SUSPEND
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 80"/></a>
+    </h3>
+    <p>/OPTIMIZATIONS/////
+If the pressure delta between two zones is below this value, they will not process.</p><h3 id="define/MOLES_CELLSTANDARD"><aside class="declaration">#define </aside>MOLES_CELLSTANDARD
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 54"/></a>
+    </h3>
+    <p>Moles in a 2.5 m^3 cell at 101.325 kPa and 20 C.</p><h3 id="define/MOLES_N2STANDARD"><aside class="declaration">#define </aside>MOLES_N2STANDARD
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 66"/></a>
+    </h3>
+    <p>The standard molar content of Nitrogen in a livible cell (turf).</p><h3 id="define/MOLES_O2STANDARD"><aside class="declaration">#define </aside>MOLES_O2STANDARD
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 64"/></a>
+    </h3>
+    <p>The standard molar content of Oxygen in a livible cell (turf).</p><h3 id="define/MOLES_PHORON_VISIBLE"><aside class="declaration">#define </aside>MOLES_PHORON_VISIBLE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 61"/></a>
+    </h3>
+    <p>The amount of moles in a standard cell (1 turf) when Plasma starts being visible.</p><h3 id="define/N2STANDARD"><aside class="declaration">#define </aside>N2STANDARD
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 59"/></a>
+    </h3>
+    <p>The standard N2 percentage for livable atmos.</p><h3 id="define/O2STANDARD"><aside class="declaration">#define </aside>O2STANDARD
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 57"/></a>
+    </h3>
+    <p>The standard O2 percentage for livable atmos.</p><h3 id="define/OPENTURF_DEFAULT_ATMOS"><aside class="declaration">#define </aside>OPENTURF_DEFAULT_ATMOS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 123"/></a>
+    </h3>
+    <p>the default air mix that open turfs spawn</p><h3 id="define/PRESSURE_DAMAGE_COEFFICIENT"><aside class="declaration">#define </aside>PRESSURE_DAMAGE_COEFFICIENT
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 72"/></a>
+    </h3>
+    <p>The amount of pressure damage someone takes is equal to (pressure / HAZARD_HIGH_PRESSURE)*PRESSURE_DAMAGE_COEFFICIENT, with the maximum of MAX_PRESSURE_DAMAGE</p><h3 id="define/SAFE_ZAS_UPDATE"><aside class="declaration">#define </aside>SAFE_ZAS_UPDATE
+            <aside>(x)</aside>
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 33"/></a>
+    </h3>
+    <p>Checks if X is a turf, if it is, mark it's zone for update.</p><h3 id="define/SOUND_MINIMUM_PRESSURE"><aside class="declaration">#define </aside>SOUND_MINIMUM_PRESSURE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 69"/></a>
+    </h3>
+    <p>The minimum pressure for sound to be audible to a human</p><h3 id="define/TCOMMS_ATMOS"><aside class="declaration">#define </aside>TCOMMS_ATMOS
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 129"/></a>
+    </h3>
+    <p>-193,15Â°C telecommunications. also used for xenobiology slime killrooms</p><h3 id="define/TURF_HAS_VALID_ZONE"><aside class="declaration">#define </aside>TURF_HAS_VALID_ZONE
+            <aside>(T)</aside>
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 30"/></a>
+    </h3>
+    <p>Checks is a turf is simulated and has a valid zone.</p><h3 id="define/ZONE_BLOCKED"><aside class="declaration">#define </aside>ZONE_BLOCKED
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 6"/></a>
+    </h3>
+    <p>Air can pass through or into this turf, but zones may not merge with it. Will not block zone merges</p><h3 id="define/ZONE_MIN_SIZE"><aside class="declaration">#define </aside>ZONE_MIN_SIZE
+            <a href="https://github.com/DaedalusDock/daedalusdock/blob/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a/code/__DEFINES/atmospherics/_ZAS.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;_ZAS.dm 9"/></a>
+    </h3>
+    <p>Zones with less than this many turfs will always merge, even if the connection is not direct. This MUST be ATLEAST 2, or doorways will BREAK.</p></main>
+<footer>
+    daedalus.dme
+    <a href="https://github.com/DaedalusDock/daedalusdock/tree/5ad985a49bff0ca7a4bfe6c3207afcf3986e1c2a">5ad985a</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
