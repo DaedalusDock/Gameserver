@@ -269,7 +269,6 @@
 /mob/dead/new_player/Move()
 	return 0
 
-
 /mob/dead/new_player/proc/close_spawn_windows()
 	src << browse(null, "window=playersetup")
 	src << browse(null, "window=latechoices") //closes late choices window (Hey numbnuts go make this tgui)

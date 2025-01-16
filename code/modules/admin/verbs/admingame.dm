@@ -159,6 +159,9 @@
 
 	if(!ishuman(H))
 		return
+	if(!H.time_of_death_stats)
+		to_chat(usr, span_warning("[H] has not died."))
+		return
 
 	H.show_death_stats(usr)
 

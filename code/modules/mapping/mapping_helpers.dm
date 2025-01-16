@@ -863,11 +863,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/mapping_helpers/lightsout/LateInitialize()
-	var/obj/machinery/power/apc/gaypc = locate() in loc
-	if(!gaypc)
-		CRASH("Lights-Out Helper missing APC at [COORD(src)]")
-	gaypc.lighting = gaypc.setsubsystem(1) //fuck you oldcode
-	gaypc.update()
+	var/area/A = get_area(src)
+	A.lightswitch = FALSE
+	A.power_change()
 	qdel(src)
 
 // -----------

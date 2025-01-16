@@ -478,6 +478,7 @@ SUBSYSTEM_DEF(ticker)
 			living.notransform = TRUE
 			living.client?.init_verbs()
 			livings += living
+
 	if(livings.len)
 		addtimer(CALLBACK(src, PROC_REF(release_characters), livings), 30, TIMER_CLIENT_TIME)
 

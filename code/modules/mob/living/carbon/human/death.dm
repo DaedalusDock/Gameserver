@@ -38,16 +38,32 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 
 	. = ..()
 
-	if(client && !suiciding && !(client in GLOB.dead_players_during_shift))
-		GLOB.dead_players_during_shift += client
-		GLOB.deaths_during_shift++
-
 	if(!QDELETED(dna)) //The gibbed param is bit redundant here since dna won't exist at this point if they got deleted.
 		dna.species.spec_death(gibbed, src)
 
-	if(SSticker.HasRoundStarted())
-		SSblackbox.ReportDeath(src)
-		log_message("has died (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()], CLONE: [src.getCloneLoss()])", LOG_ATTACK)
+	if(!SSticker.HasRoundStarted())
+		return
+
+	//* PAST THIS POINT THE ROUND HAS STARTED *//
+
+	SSblackbox.ReportDeath(src)
+	log_message("has died (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()], CLONE: [src.getCloneLoss()])", LOG_ATTACK)
+
+	if(mind)
+		var/turf/T = get_turf(src)
+		var/obj/machinery/light/nearest_light
+		var/closest = INFINITY
+		for(var/obj/machinery/light/L in range(5, T))
+			var/dist = get_dist(L, T)
+			if(dist > closest || L.constant_flickering || L.status != LIGHT_OK)
+				continue
+
+			if(dist < closest || prob(50))
+				nearest_light = L
+				closest = dist
+
+		if(nearest_light)
+			addtimer(CALLBACK(nearest_light, TYPE_PROC_REF(/obj/machinery/light, start_flickering)), rand(20 SECONDS, 60 SECONDS))
 
 /mob/living/carbon/human/proc/makeSkeleton()
 	ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC)

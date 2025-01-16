@@ -196,21 +196,26 @@ DEFINE_INTERACTABLE(/obj/machinery/light)
 	if(on)
 		if(instant)
 			turn_on(trigger, play_sound)
+
 		else if(maploaded)
 			turn_on(trigger)
 			maploaded = FALSE
+
 		else if(!turning_on)
 			turning_on = TRUE
 			addtimer(CALLBACK(src, PROC_REF(turn_on), trigger, play_sound), rand(LIGHT_ON_DELAY_LOWER, LIGHT_ON_DELAY_UPPER))
+
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
 		if(use_power != NO_POWER_USE)
 			use_power = IDLE_POWER_USE
 		emergency_mode = TRUE
 		START_PROCESSING(SSmachines, src)
+
 	else
 		if(use_power != NO_POWER_USE)
 			use_power = IDLE_POWER_USE
 		set_light(0)
+
 	update_appearance()
 
 	if(on != on_gs)
@@ -485,11 +490,12 @@ DEFINE_INTERACTABLE(/obj/machinery/light)
 			if(status != LIGHT_OK)
 				break
 			on = !on
-			update(FALSE, TRUE) //PARIAH EDIT CHANGE
+			update(FALSE, TRUE)
 			sleep(rand(5, 15))
+
 		on = (status == LIGHT_OK)
-		update(FALSE, TRUE) //PARIAH EDIT CHANGE
-		. = TRUE //did we actually flicker?
+		update(FALSE, TRUE)
+
 	flickering = FALSE
 
 // ai attack - make lights flicker, because why not

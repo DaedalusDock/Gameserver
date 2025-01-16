@@ -505,6 +505,22 @@ SUBSYSTEM_DEF(explosions)
 		far_dist += devastation_range * 20
 		shake_the_room(epicenter, original_max_distance, far_dist, devastation_range, heavy_impact_range)
 
+	// Flicker lights
+	var/effective_range = devastation_range * 5 + heavy_impact_range * 2 + light_impact_range
+	for(var/obj/machinery/light/L as anything in INSTANCES_OF(/obj/machinery/light))
+		if(!isturf(L.loc))
+			continue
+
+		var/dist = get_dist_euclidean(L.loc, epicenter)
+		if(dist > effective_range)
+			continue
+
+		var/delay = clamp(ceil(dist) * (0.1 SECONDS), 0, 5 SECONDS)
+		if(delay)
+			addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, flicker), pick(1, 3)), delay)
+		else
+			L.flicker(pick(1, 3))
+
 /datum/controller/subsystem/explosions/proc/perform_explosion(epicenter, list/act_turfs, heavy_power, dev_power, flame_power, turf_tally_ptr, movable_tally_ptr)
 	var/turf_tally = 0
 	var/movable_tally = 0

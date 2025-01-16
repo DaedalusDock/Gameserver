@@ -112,9 +112,16 @@
 /area/shuttle/arrival
 	name = "Arrival Shuttle"
 	area_flags = UNIQUE_AREA// SSjob refers to this area for latejoiners
-
+	flavor_texts = list(
+		span_statsgood("Bootprints paint the floor with grime. You are home.") = 1,
+		span_statsgood("The quiet metallic creaking of the shuttle comforts you as it pulls into the station.") = 1,
+		span_statsgood("Hundreds, perhaps thousands of footsteps have eaten away at the floors where you stand.") = 1,
+		span_statsgood("The soft droning of the vessel's drive is comforting. You can hear your heart beating in it's cage.") = 1,
+		span_statsgood("Thousands of scratches adorn the view ports from the unspeakable volume of particles brushing against them.") = 1
+	)
 
 /area/shuttle/arrival/on_joining_game(mob/living/boarder)
+	. = ..()
 	boarder.update_parallax_teleport()
 
 /area/shuttle/pod_1

@@ -134,8 +134,8 @@
 		return
 
 	// Non mobs speakers can be small
-	if (!ismob(target))
-		extra_classes |= "small"
+	if (target.chat_class)
+		extra_classes |= target.chat_class
 
 	var/list/prefixes
 

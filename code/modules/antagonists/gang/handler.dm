@@ -14,7 +14,6 @@
 #define CREW_SIZE_MAX 8
 
 
-GLOBAL_VAR_INIT(deaths_during_shift, 0)
 ///Forces the Families theme to be the one in this variable via variable editing. Used for debugging.
 GLOBAL_VAR(families_override_theme)
 
@@ -63,8 +62,6 @@ GLOBAL_VAR(families_override_theme)
 	var/midround_ruleset = FALSE
 	/// Whether we want to use the 30 to 15 minute timer instead of the 60 to 30 minute timer, for Dynamic.
 	var/use_dynamic_timing = FALSE
-	/// Keeps track of the amount of deaths since the calling of pre_setup_analogue() if this is a midround handler. Used to prevent a high wanted level due to a large amount of deaths during the shift prior to the activation of this handler / the midround ruleset.
-	var/deaths_during_shift_at_beginning = 0
 
 	/// List of all eligible starting family members / undercover cops. Set externally (passed by reference) by gamemode / ruleset; used internally. Note that dynamic uses a list of mobs to handle candidates while game_modes use lists of minds! Don't be fooled!
 	var/list/antag_candidates = list()
@@ -102,10 +99,7 @@ GLOBAL_VAR(families_override_theme)
  * and the modification of gangs_to_generate, gang_balance_cap, and midround_ruleset.
  * It is intended to take the place of the code that would normally occupy the pre_setup()
  * or pre_execute() proc, were the code localized to the game_mode or dynamic_ruleset datum respectively
- * as opposed to this handler. As such, it picks players to be chosen for starting familiy members
- * or undercover cops prior to assignment to jobs. Sets start_time, default end_time,
- * and the current value of deaths_during_shift, to ensure the wanted level only cares about
- * the deaths since this proc has been called.
+ * as opposed to this handler. As such, it picks players to be chosen for starting familiy members.
  * Takes no arguments.
  */
 /datum/gang_handler/proc/pre_setup_analogue()
@@ -114,25 +108,29 @@ GLOBAL_VAR(families_override_theme)
 		current_theme = new theme_to_use
 	else
 		current_theme = new GLOB.families_override_theme
+
 	message_admins("Families has chosen the theme: [current_theme.name]")
 	log_game("FAMILIES: The following theme has been chosen: [current_theme.name]")
+
 	var/gangsters_to_make = length(current_theme.involved_gangs) * current_theme.starting_gangsters
 	for(var/i in 1 to gangsters_to_make)
 		if (!antag_candidates.len)
 			break
 		var/taken = pick_n_take(antag_candidates) // original used antag_pick, but that's local to game_mode and rulesets use pick_n_take so this is fine maybe
+
 		var/datum/mind/gangbanger
 		if(istype(taken, /mob))
 			var/mob/T = taken
 			gangbanger = T.mind
 		else
 			gangbanger = taken
+
 		gangbangers += gangbanger
 		gangbanger.restricted_roles = restricted_jobs
 		log_game("[key_name(gangbanger)] has been selected as a starting gangster!")
 		if(!midround_ruleset)
 			GLOB.pre_setup_antags += gangbanger
-	deaths_during_shift_at_beginning = GLOB.deaths_during_shift // don't want to mix up pre-families and post-families deaths
+
 	start_time = world.time
 	end_time = start_time + ((60 MINUTES) / (midround_ruleset ? 2 : 1)) // midround families rounds end quicker
 	return TRUE
@@ -206,202 +204,3 @@ GLOBAL_VAR(families_override_theme)
 /datum/gang_handler/proc/announce_gang_locations()
 	priority_announce(current_theme.description, current_theme.name, sound_type = 'sound/voice/beepsky/radio.ogg')
 	sent_announcement = TRUE
-
-/// Internal. Checks if our wanted level has changed; calls update_wanted_level. Only updates wanted level post the initial announcement and until the cops show up. After that, it's locked.
-/datum/gang_handler/proc/check_wanted_level()
-	if(cops_arrived)
-		update_wanted_level(wanted_level) // at this point, we still want to update people's star huds, even though they're mostly locked, because not everyone is around for the last update before the rest of this proc gets shut off forever, and that's when the wanted bar switches from gold stars to red / blue to signify the arrival of the space cops
-		return
-	if(!sent_announcement)
-		return
-	var/new_wanted_level
-	if(GLOB.joined_player_list.len > LOWPOP_FAMILIES_COUNT)
-		switch(GLOB.deaths_during_shift - deaths_during_shift_at_beginning) // if this is a midround ruleset, we only care about the deaths since the families were activated, not since shiftstart
-			if(0 to TWO_STARS_HIGHPOP-1)
-				new_wanted_level = 1
-			if(TWO_STARS_HIGHPOP to THREE_STARS_HIGHPOP-1)
-				new_wanted_level = 2
-			if(THREE_STARS_HIGHPOP to FOUR_STARS_HIGHPOP-1)
-				new_wanted_level = 3
-			if(FOUR_STARS_HIGHPOP to FIVE_STARS_HIGHPOP-1)
-				new_wanted_level = 4
-			if(FIVE_STARS_HIGHPOP to INFINITY)
-				new_wanted_level = 5
-	else
-		switch(GLOB.deaths_during_shift - deaths_during_shift_at_beginning)
-			if(0 to TWO_STARS_LOW-1)
-				new_wanted_level = 1
-			if(TWO_STARS_LOW to THREE_STARS_LOW-1)
-				new_wanted_level = 2
-			if(THREE_STARS_LOW to FOUR_STARS_LOW-1)
-				new_wanted_level = 3
-			if(FOUR_STARS_LOW to FIVE_STARS_LOW-1)
-				new_wanted_level = 4
-			if(FIVE_STARS_LOW to INFINITY)
-				new_wanted_level = 5
-	update_wanted_level(new_wanted_level)
-
-/// Internal. Updates the icon states for everyone, and calls procs that send out announcements / change the end_time if the wanted level has changed.
-/datum/gang_handler/proc/update_wanted_level(newlevel)
-	if(newlevel > wanted_level)
-		on_gain_wanted_level(newlevel)
-	else if (newlevel < wanted_level)
-		on_lower_wanted_level(newlevel)
-	wanted_level = newlevel
-	for(var/i in GLOB.player_list)
-		var/mob/M = i
-		if(!M.hud_used?.wanted_lvl)
-			continue
-		var/datum/hud/H = M.hud_used
-		H.wanted_lvl.level = newlevel
-		H.wanted_lvl.cops_arrived = cops_arrived
-		H.wanted_lvl.update_appearance()
-
-/// Internal. Updates the end_time and sends out an announcement if the wanted level has increased. Called by update_wanted_level().
-/datum/gang_handler/proc/on_gain_wanted_level(newlevel)
-	var/announcement_message
-	switch(newlevel)
-		if(2)
-			if(!sent_second_announcement) // when you hear that they're "arriving in 5 minutes," that's a goddamn guarantee
-				end_time = start_time + ((50 MINUTES) / (use_dynamic_timing ? 2 : 1))
-			announcement_message = "Small amount of police vehicles have been spotted en route towards [station_name()]."
-		if(3)
-			if(!sent_second_announcement)
-				end_time = start_time + ((40 MINUTES) / (use_dynamic_timing ? 2 : 1))
-			announcement_message = "A large detachment police vehicles have been spotted en route towards [station_name()]."
-		if(4)
-			if(!sent_second_announcement)
-				end_time = start_time + ((35 MINUTES) / (use_dynamic_timing ? 2 : 1))
-			announcement_message = "A detachment of top-trained agents has been spotted on their way to [station_name()]."
-		if(5)
-			if(!sent_second_announcement)
-				end_time = start_time + ((30 MINUTES) / (use_dynamic_timing ? 2 : 1))
-			announcement_message = "The fleet enroute to [station_name()] now consists of national guard personnel."
-	if(!midround_ruleset) // stops midround rulesets from announcing janky ass times
-		announcement_message += "  They will arrive at the [(end_time - start_time) / (1 MINUTES)] minute mark."
-	if(newlevel == 1) // specific exception to stop the announcement from triggering right after the families themselves are announced because aesthetics
-		return
-	priority_announce(announcement_message)
-
-/// Internal. Updates the end_time and sends out an announcement if the wanted level has decreased. Called by update_wanted_level().
-/datum/gang_handler/proc/on_lower_wanted_level(newlevel)
-	var/announcement_message
-	switch(newlevel)
-		if(1)
-			if(!sent_second_announcement)
-				end_time = start_time + ((60 MINUTES) / (use_dynamic_timing ? 2 : 1))
-			announcement_message = "There are now only a few police vehicle headed towards [station_name()]."
-		if(2)
-			if(!sent_second_announcement)
-				end_time = start_time + ((50 MINUTES) / (use_dynamic_timing ? 2 : 1))
-			announcement_message = "There seem to be fewer police vehicles headed towards [station_name()]."
-		if(3)
-			if(!sent_second_announcement)
-				end_time = start_time + ((40 MINUTES) / (use_dynamic_timing ? 2 : 1))
-			announcement_message = "There are no longer top-trained agents in the fleet headed towards [station_name()]."
-		if(4)
-			if(!sent_second_announcement)
-				end_time = start_time + ((35 MINUTES) / (use_dynamic_timing ? 2 : 1))
-			announcement_message = "The convoy enroute to [station_name()] seems to no longer consist of national guard personnel."
-	if(!midround_ruleset)
-		announcement_message += "  They will arrive at the [(end_time - start_time) / (1 MINUTES)] minute mark."
-	priority_announce(announcement_message)
-
-/// Internal. Polls ghosts and sends in a team of space cops according to the wanted level, accompanied by an announcement. Will let the shuttle leave 10 minutes after sending. Freezes the wanted level.
-/datum/gang_handler/proc/send_in_the_fuzz()
-	var/team_size
-	var/cops_to_send
-	var/announcement_message = "PUNK ASS BALLA BITCH"
-	var/announcer = "Spinward Stellar Coalition"
-	if(GLOB.joined_player_list.len > LOWPOP_FAMILIES_COUNT)
-		switch(wanted_level)
-			if(1)
-				team_size = 8
-				cops_to_send = /datum/antagonist/ert/families/beatcop
-				announcement_message = "Hello, crewmembers of [station_name()]! We've received a few calls about some potential violent gang activity on board your station, so we're sending some beat cops to check things out. Nothing extreme, just a courtesy call. However, while they check things out for about 10 minutes, we're going to have to ask that you keep your escape shuttle parked.\n\nHave a pleasant day!"
-				announcer = "Spinward Stellar Coalition Police Department"
-			if(2)
-				team_size = 9
-				cops_to_send = /datum/antagonist/ert/families/beatcop/armored
-				announcement_message = "Crewmembers of [station_name()]. We have received confirmed reports of violent gang activity from your station. We are dispatching some armed officers to help keep the peace and investigate matters. Do not get in their way, and comply with any and all requests from them. We have blockaded the local warp gate, and your shuttle cannot depart for another 10 minutes.\n\nHave a secure day."
-				announcer = "Spinward Stellar Coalition Police Department"
-			if(3)
-				team_size = 10
-				cops_to_send = /datum/antagonist/ert/families/beatcop/swat
-				announcement_message = "Crewmembers of [station_name()]. We have received confirmed reports of extreme gang activity from your station resulting in heavy civilian casualties. The Spinward Stellar Coalition does not tolerate abuse towards our citizens, and we will be responding in force to keep the peace and reduce civilian casualties. We have your station surrounded, and all gangsters must drop their weapons and surrender peacefully.\n\nHave a secure day."
-				announcer = "Spinward Stellar Coalition Police Department"
-			if(4)
-				team_size = 11
-				cops_to_send = /datum/antagonist/ert/families/beatcop/fbi
-				announcement_message = "We are dispatching our top agents to [station_name()] at the request of the Spinward Stellar Coalition government due to an extreme terrorist level threat against this Daedalus Industries owned station. All gangsters must surrender IMMEDIATELY. Failure to comply can and will result in death. We have blockaded your warp gates and will not allow any escape until the situation is resolved within our standard response time of 10 minutes.\n\nSurrender now or face the consequences of your actions."
-				announcer = "Federal Bureau of Investigation"
-			if(5)
-				team_size = 12
-				cops_to_send = /datum/antagonist/ert/families/beatcop/military
-				announcement_message = "Due to an insane level of civilian casualties aboard [station_name()], we have dispatched the National Guard to curb any and all gang activity on board the station. We have heavy cruisers watching the shuttle. Attempt to leave before we allow you to, and we will obliterate your station and your escape shuttle.\n\nYou brought this on yourselves by murdering so many civilians."
-				announcer = "Spinward Stellar Coalition National Guard"
-	else
-		switch(wanted_level)
-			if(1)
-				team_size = 5
-				cops_to_send = /datum/antagonist/ert/families/beatcop
-				announcement_message = "Hello, crewmembers of [station_name()]! We've received a few calls about some potential violent gang activity on board your station, so we're sending some beat cops to check things out. Nothing extreme, just a courtesy call. However, while they check things out for about 10 minutes, we're going to have to ask that you keep your escape shuttle parked.\n\nHave a pleasant day!"
-				announcer = "Spinward Stellar Coalition Police Department"
-			if(2)
-				team_size = 6
-				cops_to_send = /datum/antagonist/ert/families/beatcop/armored
-				announcement_message = "Crewmembers of [station_name()]. We have received confirmed reports of violent gang activity from your station. We are dispatching some armed officers to help keep the peace and investigate matters. Do not get in their way, and comply with any and all requests from them. We have blockaded the local warp gate, and your shuttle cannot depart for another 10 minutes.\n\nHave a secure day."
-				announcer = "Spinward Stellar Coalition Police Department"
-			if(3)
-				team_size = 7
-				cops_to_send = /datum/antagonist/ert/families/beatcop/swat
-				announcement_message = "Crewmembers of [station_name()]. We have received confirmed reports of extreme gang activity from your station resulting in heavy civilian casualties. The Spinward Stellar Coalition does not tolerate abuse towards our citizens, and we will be responding in force to keep the peace and reduce civilian casualties. We have your station surrounded, and all gangsters must drop their weapons and surrender peacefully.\n\nHave a secure day."
-				announcer = "Spinward Stellar Coalition Police Department"
-			if(4)
-				team_size = 8
-				cops_to_send = /datum/antagonist/ert/families/beatcop/fbi
-				announcement_message = "We are dispatching our top agents to [station_name()] at the request of the Spinward Stellar Coalition government due to an extreme terrorist level threat against this Daedalus Industries owned station. All gangsters must surrender IMMEDIATELY. Failure to comply can and will result in death. We have blockaded your warp gates and will not allow any escape until the situation is resolved within our standard response time of 10 minutes.\n\nSurrender now or face the consequences of your actions."
-				announcer = "Federal Bureau of Investigation"
-			if(5)
-				team_size = 10
-				cops_to_send = /datum/antagonist/ert/families/beatcop/military
-				announcement_message = "Due to an insane level of civilian casualties aboard [station_name()], we have dispatched the National Guard to curb any and all gang activity on board the station. We have heavy cruisers watching the shuttle. Attempt to leave before we allow you to, and we will obliterate your station and your escape shuttle.\n\nYou brought this on yourselves by murdering so many civilians."
-				announcer = "Spinward Stellar Coalition National Guard"
-
-	priority_announce(announcement_message, announcer, sound_type = 'sound/effects/families_police.ogg')
-	var/list/candidates = poll_ghost_candidates("Do you want to help clean up crime on this station?", "deathsquad")
-
-
-	if(candidates.len)
-		//Pick the (un)lucky players
-		var/numagents = min(team_size,candidates.len)
-
-		var/list/spawnpoints = GLOB.emergencyresponseteamspawn
-		var/index = 0
-		while(numagents && candidates.len)
-			var/spawnloc = spawnpoints[index+1]
-			//loop through spawnpoints one at a time
-			index = (index + 1) % spawnpoints.len
-			var/mob/dead/observer/chosen_candidate = pick(candidates)
-			candidates -= chosen_candidate
-			if(!chosen_candidate.key)
-				continue
-
-			//Spawn the body
-			var/mob/living/carbon/human/cop = new(spawnloc)
-			chosen_candidate.client.prefs.safe_transfer_prefs_to(cop, is_antag = TRUE)
-			cop.key = chosen_candidate.key
-
-			//Give antag datum
-			var/datum/antagonist/ert/families/ert_antag = new cops_to_send
-
-			cop.mind.add_antag_datum(ert_antag)
-			cop.mind.set_assigned_role(SSjob.GetJobType(ert_antag.ert_job_path))
-			SSjob.SendToLateJoin(cop)
-
-			//Logging and cleanup
-			log_game("[key_name(cop)] has been selected as an [ert_antag.name]")
-			numagents--
-	cops_arrived = TRUE
-	update_wanted_level(wanted_level) // gotta make sure everyone's wanted level display looks nice
-	return TRUE

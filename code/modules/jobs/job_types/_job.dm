@@ -475,7 +475,7 @@ GLOBAL_LIST_INIT(job_display_order, list(
 
 	spawnpoint.used = TRUE
 
-	return spawnpoint
+	return spawnpoint.get_spawn_location()
 
 /// Finds a valid latejoin spawn point, checking for events and special conditions.
 /datum/job/proc/get_latejoin_spawn_point()

@@ -47,8 +47,13 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	var/high_priority = FALSE
 	/// Does what it says on the tin.
 	var/delete_after_roundstart = TRUE
+	/// Does this delete itself if the marked atom is deleted?
+	var/delete_if_marked_atom_deleted = FALSE
 	/// Tracks if this spawn has been used or not.
 	var/used = FALSE
+
+	/// The atom we're tracking.
+	var/atom/marked_atom
 
 /obj/effect/landmark/start/proc/after_round_start()
 	if(delete_after_roundstart)
@@ -56,17 +61,48 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 
 /obj/effect/landmark/start/Initialize(mapload)
 	. = ..()
+	set_marked_atom(find_marked_atom())
+
 	GLOB.start_landmarks_list += src
 	LAZYADD(GLOB.start_landmarks_by_name[name], src)
 	if(high_priority)
 		LAZYADD(GLOB.high_priority_spawns[name], src)
 
 /obj/effect/landmark/start/Destroy()
+	if(marked_atom)
+		unset_marked_atom()
+
 	GLOB.start_landmarks_list -= src
 	LAZYREMOVE(GLOB.start_landmarks_by_name[name], src)
 	if(high_priority)
 		LAZYREMOVE(GLOB.high_priority_spawns[name], src)
 	return ..()
+
+/// Returns the landmark atom. Allows job landmarks to define the actual atom to call JoinPlayerHere() on.
+/obj/effect/landmark/start/proc/find_marked_atom()
+	return locate(/obj/structure/chair, loc) || src
+
+/// Call this to get the actual spawn location of the atom.
+/obj/effect/landmark/start/proc/get_spawn_location()
+	return marked_atom
+
+/obj/effect/landmark/start/proc/set_marked_atom(atom/new_atom)
+	PRIVATE_PROC(TRUE)
+
+	marked_atom = new_atom
+	if(marked_atom != src)
+		RegisterSignal(marked_atom, COMSIG_PARENT_QDELETING, PROC_REF(marked_gone))
+
+/obj/effect/landmark/start/proc/unset_marked_atom()
+	PRIVATE_PROC(TRUE)
+
+	marked_atom = null
+
+/obj/effect/landmark/start/proc/marked_gone(datum/source)
+	SIGNAL_HANDLER
+	unset_marked_atom()
+	if(delete_if_marked_atom_deleted)
+		qdel(src)
 
 // START LANDMARKS FOLLOW. Don't change the names unless
 // you are refactoring shitty landmark code.

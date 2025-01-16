@@ -110,6 +110,11 @@
 
 	var/datum/alarm_handler/alarm_manager
 
+	/// A lazylist of ckeys that have entered this area. See display_flavor()
+	var/list/ckeys_that_have_been_here
+	/// A weighted list of flavor texts for display_flavor().
+	var/list/flavor_texts
+
 /**
  * A list of teleport locations
  *
@@ -478,7 +483,11 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 
 /// Called when a living mob that spawned here, joining the round, receives the player client.
 /area/proc/on_joining_game(mob/living/boarder)
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	if(prob(5) && boarder.client && ishuman(boarder))
+		LAZYADDASSOC(ckeys_that_have_been_here, boarder.ckey, TRUE)
+		spawn(0)
+			display_flavor(boarder)
 
 ///Called by airalarms and firealarms to communicate the status of the area to relevant machines
 /area/proc/communicate_fire_alert(code)
@@ -505,3 +514,9 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	var/old = spook_level
 	spook_level += adj
 	SEND_SIGNAL(src, AREA_SPOOK_LEVEL_CHANGED, src, old)
+
+/area/proc/display_flavor(mob/living/carbon/human/pawn)
+	if(!length(flavor_texts))
+		return
+
+	to_chat(pawn, pick_weight(flavor_texts))

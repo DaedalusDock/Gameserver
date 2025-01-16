@@ -72,6 +72,8 @@
 	var/tmp/chat_color
 	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
 	var/tmp/chat_color_darkened
+	/// Class to attach to runechat.
+	var/tmp/chat_class
 
 	///Holds merger groups currently active on the atom. Do not access directly, use GetMergeGroup() instead.
 	var/tmp/list/datum/merger/mergers

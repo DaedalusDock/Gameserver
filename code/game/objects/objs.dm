@@ -2,6 +2,8 @@
 /obj
 	animate_movement = SLIDE_STEPS
 	speech_span = SPAN_ROBOT
+	chat_class = "small"
+
 	var/obj_flags = CAN_BE_HIT
 
 	var/damtype = BRUTE
