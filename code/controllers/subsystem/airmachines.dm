@@ -2,8 +2,10 @@ SUBSYSTEM_DEF(airmachines)
 	name = "Air (Machines)"
 	priority = FIRE_PRIORITY_AIRMACHINES
 	init_order = INIT_ORDER_AIRMACHINES
-	flags = SS_KEEP_TIMING
+	flags = SS_POST_FIRE_TIMING
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+
+	wait = 0.5 SECONDS
 
 	var/cached_cost
 

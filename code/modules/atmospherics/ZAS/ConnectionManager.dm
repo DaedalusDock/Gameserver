@@ -31,9 +31,6 @@ Macros:
 
 */
 
-// macro-ized to cut down on proc calls
-#define check(c) (c && c.valid())
-
 /turf
 	var/tmp/connection_manager/connections
 
@@ -48,28 +45,30 @@ Macros:
 	var/connection/D
 #endif
 
-/connection_manager/proc/get(d)
+/// Return a valid connection for a given direction.
+/connection_manager/proc/get_connection_for_dir(d)
 	switch(d)
 		if(NORTH)
-			if(check(N)) return N
-			else return null
+			if(N?.valid())
+				return N
+
 		if(SOUTH)
-			if(check(S)) return S
-			else return null
+			if(S?.valid())
+				return S
 		if(EAST)
-			if(check(E)) return E
-			else return null
+			if(E?.valid())
+				return E
 		if(WEST)
-			if(check(W)) return W
-			else return null
+			if(W?.valid())
+				return W
 
 		#ifdef MULTIZAS
 		if(UP)
-			if(check(U)) return U
-			else return null
+			if(U?.valid())
+				return U
 		if(DOWN)
-			if(check(D)) return D
-			else return null
+			if(D?.valid())
+				return D
 		#endif
 
 /connection_manager/proc/place(connection/c, d)
@@ -85,23 +84,22 @@ Macros:
 		#endif
 
 /connection_manager/proc/update_all()
-	if(check(N)) N.update()
-	if(check(S)) S.update()
-	if(check(E)) E.update()
-	if(check(W)) W.update()
+	if(N?.valid()) N.update()
+	if(S?.valid()) S.update()
+	if(E?.valid()) E.update()
+	if(W?.valid()) W.update()
 	#ifdef MULTIZAS
-	if(check(U)) U.update()
-	if(check(D)) D.update()
+	if(U?.valid()) U.update()
+	if(D?.valid()) D.update()
 	#endif
 
 /connection_manager/proc/erase_all()
-	if(check(N)) N.erase()
-	if(check(S)) S.erase()
-	if(check(E)) E.erase()
-	if(check(W)) W.erase()
+	if(N?.valid()) N.erase()
+	if(S?.valid()) S.erase()
+	if(E?.valid()) E.erase()
+	if(W?.valid()) W.erase()
 	#ifdef MULTIZAS
-	if(check(U)) U.erase()
-	if(check(D)) D.erase()
+	if(U?.valid()) U.erase()
+	if(D?.valid()) D.erase()
 	#endif
 
-#undef check

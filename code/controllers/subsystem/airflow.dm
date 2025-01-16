@@ -48,10 +48,7 @@ SUBSYSTEM_DEF(airflow)
 			target.airflow_process_delay -= 1
 			continue
 
-		else if (target.airflow_process_delay)
-			target.airflow_process_delay = 0
-
-		target.airflow_speed = min(target.airflow_speed, 15)
+		target.airflow_speed = clamp(0, target.airflow_speed, 15)
 		target.airflow_speed -= zas_settings.airflow_speed_decay
 
 		if (target.airflow_skip_speedcheck)
@@ -119,43 +116,3 @@ SUBSYSTEM_DEF(airflow)
 /datum/controller/subsystem/airflow/proc/HandleDel(datum/source)
 	SIGNAL_HANDLER
 	processing -= source
-
-/atom/movable/proc/prepare_airflow(strength)
-	if (!airflow_dest || airflow_speed < 0 || last_airflow > world.time - zas_settings.airflow_delay)
-		return FALSE
-	if (airflow_speed)
-		airflow_speed = strength / max(get_dist(src, airflow_dest), 1)
-		return FALSE
-	if(!check_airflow_movable(strength*10)) //Repel/Gotoairflowdest() divide the differential by a max of 10, so we're undoing that here
-		return FALSE
-	if (airflow_dest == loc)
-		step_away(src, loc)
-	if (ismob(src))
-		to_chat(src, span_warning("You are pushed away by a rush of air!"))
-
-	last_airflow = world.time
-
-	var/airflow_falloff = 9 - sqrt((x - airflow_dest.x) ** 2 + (y - airflow_dest.y) ** 2)
-	if (airflow_falloff < 1)
-		airflow_dest = null
-		return FALSE
-
-	airflow_speed = min(max(strength * (9 / airflow_falloff), 1), 9)
-	return TRUE
-
-
-/atom/movable/proc/GotoAirflowDest(strength)
-	if (!prepare_airflow(strength))
-		return
-	airflow_xo = airflow_dest.x - x
-	airflow_yo = airflow_dest.y - y
-	airflow_dest = null
-	SSairflow.Enqueue(src)
-
-/atom/movable/proc/RepelAirflowDest(strength)
-	if (!prepare_airflow(strength))
-		return
-	airflow_xo = -(airflow_dest.x - x)
-	airflow_yo = -(airflow_dest.y - y)
-	airflow_dest = null
-	SSairflow.Enqueue(src)

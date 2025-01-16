@@ -64,7 +64,7 @@
 			handle_random_events(delta_time, times_fired)
 
 		//Handle temperature/pressure differences between body and environment
-		var/datum/gas_mixture/environment = loc.return_air()
+		var/datum/gas_mixture/environment = loc.unsafe_return_air()
 		if(environment)
 			if(handle_environment(environment, delta_time, times_fired))
 				updatehealth()
@@ -98,7 +98,7 @@
 /mob/living/proc/handle_chemicals()
 	return
 
-// Base mob environment handler for body temperature
+// Base mob environment handler for body temperature. This proc assumes you're not changing the air mix, so don't do it!
 /mob/living/proc/handle_environment(datum/gas_mixture/environment, delta_time, times_fired)
 	var/loc_temp = get_temperature(environment)
 	var/temp_delta = loc_temp - bodytemperature

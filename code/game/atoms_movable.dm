@@ -626,13 +626,22 @@
 	if(!bumped_atom)
 		CRASH("Bump was called with no argument.")
 	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, bumped_atom)
+
 	. = ..()
+
 	if(!QDELETED(throwing))
 		throwing.finalize(hit = TRUE, target = bumped_atom)
 		. = TRUE
 		if(QDELETED(bumped_atom))
 			return
+
 	bumped_atom.BumpedBy(src)
+
+	if(moving_by_airflow && !QDELING(src))
+		if(airflow_speed >= 1 && airflow_dest)
+			AirflowBump(bumped_atom)
+		else
+			SSairflow.Dequeue(src)
 
 /atom/movable/Exited(atom/movable/gone, direction)
 	. = ..()

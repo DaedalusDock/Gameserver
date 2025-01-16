@@ -43,7 +43,7 @@
 	if(!on)
 		return
 
-	var/datum/gas_mixture/air_sample = unsafe_return_air()
+	var/datum/gas_mixture/air_sample = loc.unsafe_return_air()
 	var/datum/signal/signal = new(src, list(
 		"sigtype" = "status",
 		"tag" = id_tag,

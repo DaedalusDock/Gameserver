@@ -210,6 +210,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/debug_spell_requirements,
 	/client/proc/analyze_openturf,
 	/client/proc/debug_health,
+	/client/proc/change_zas_settings,
 )
 
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, GLOBAL_PROC_REF(release)))
@@ -1031,3 +1032,12 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		to_chat(world, span_boldannounce("The gamemode is now: [fake_name ? SSticker.mode_display_name : SSticker.mode.name]."))
 
 	message_admins("[key_name_admin(usr)] has set the gamemode to [SSticker.mode.type].")
+
+/client/proc/change_zas_settings()
+	set name = "ZAS Settings"
+	set category = "Debug"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	zas_settings.ui_interact(mob)

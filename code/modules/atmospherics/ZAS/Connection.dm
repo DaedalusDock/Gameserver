@@ -236,4 +236,5 @@ Class Procs:
 	#endif
 
 /connection_edge/proc/queue_spacewind()
+	set waitfor = FALSE
 	return

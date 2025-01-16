@@ -63,9 +63,9 @@ SUBSYSTEM_DEF(zas)
 	name = "Air Core"
 	priority = FIRE_PRIORITY_AIR
 	init_order = INIT_ORDER_AIR
-	flags = SS_KEEP_TIMING
+	flags = SS_POST_FIRE_TIMING
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
-	wait = 2 SECONDS
+	wait = 0.5 SECONDS
 
 	var/cached_cost = 0
 	var/cost_tiles = 0
@@ -463,9 +463,9 @@ SUBSYSTEM_DEF(zas)
 	if(!B.connections)
 		B.connections = new
 
-	if(A.connections.get(a_to_b))
+	if(A.connections.get_connection_for_dir(a_to_b))
 		return
-	if(B.connections.get(b_to_a))
+	if(B.connections.get_connection_for_dir(b_to_a))
 		return
 	if(!space && (A.zone == B.zone))
 		return

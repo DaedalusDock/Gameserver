@@ -68,6 +68,8 @@ Class Procs:
 
 	///The last time the "woosh" airflow sound played, world.time
 	var/last_woosh
+	/// Prevents spacewind from happening until the last one is done.
+	var/flowing = FALSE
 
 	#ifdef ZASDBG
 	///Set this to TRUE during testing to get verbose debug information.
@@ -126,44 +128,80 @@ Class Procs:
 
 ///Airflow proc causing all objects in movable to be checked against a pressure differential. See file header for more info.
 /connection_edge/proc/flow(list/movable, differential, repelled)
-	set waitfor = FALSE
 	for(var/atom/movable/M as anything in movable)
 		//Non simulated objects dont get tossed
 		if(!M.simulated)
 			continue
 		//If they're already being tossed, don't do it again.
-		if(M.last_airflow > world.time - zas_settings.airflow_delay)
+		if(!COOLDOWN_FINISHED(M, airflow_push_cooldown))
 			continue
 		if(M.airflow_speed)
 			continue
 
 		//Check for knocking people over
+		var/send_message = FALSE
 		if(ismob(M) && differential > zas_settings.airflow_stun_pressure)
-			if(M:status_flags & GODMODE)
-				continue
-			if(!M:airflow_stun())
-				to_chat(M, span_notice("A gust of air rushes past you."))
-
-		if(M.check_airflow_movable(differential))
-			//Check for things that are in range of the midpoint turfs.
-			var/list/close_turfs = list()
-			for(var/turf/T as anything in connecting_turfs)
-				if(get_dist(M, T) < world.view)
-					close_turfs += T
-
-			if(!length(close_turfs))
+			var/mob/living/living_mob = M
+			if(living_mob.status_flags & GODMODE)
 				continue
 
+			if(!living_mob.airflow_stun())
+				send_message = TRUE
 
-			if(HAS_TRAIT(M, TRAIT_EXPERIENCING_AIRFLOW))
-				SSairflow.Dequeue(M)
+		if(!M.can_airflow_move(differential))
+			if(send_message)
+				to_chat(M, span_warning("A gust of air rushes past you."))
+			continue
 
-			M.airflow_dest = pick(close_turfs) //Pick a random midpoint to fly towards.
+		//Check for things that are in range of the midpoint turfs.
+		var/list/close_turfs = list()
+		for(var/turf/T as anything in connecting_turfs)
+			if(get_dist(M, T) < world.view)
+				close_turfs += T
 
-			if(repelled)
-				M.RepelAirflowDest(differential/5)
-			else
-				M.GotoAirflowDest(differential/10)
+		if(!length(close_turfs))
+			continue
+
+		if(HAS_TRAIT(M, TRAIT_EXPERIENCING_AIRFLOW))
+			SSairflow.Dequeue(M)
+
+		M.airflow_dest = pick(close_turfs) //Pick a random midpoint to fly towards.
+
+		if(M.airflow_dest == M.loc)
+			M.airflow_dest = null
+
+			var/list/nearby_turfs = RANGE_TURFS(1, M) - M.loc
+			shuffle_inplace(nearby_turfs)
+			for(var/turf/open/open_turf as anything in nearby_turfs)
+				// A < B (Move away from B)
+				if(repelled)
+					if(open_turf.zone != A)
+						M.airflow_dest = open_turf
+						break
+					continue
+
+				// A > B (Move towards B)
+				if(istype(src, /connection_edge/zone))
+					var/connection_edge/zone/zone_edge = src
+
+					if(open_turf.zone == zone_edge.B)
+						M.airflow_dest = open_turf
+						break
+					continue
+
+				// A > B (Move towards B)
+				if(!open_turf.zone)
+					M.airflow_dest = open_turf
+					break
+
+			if(!M.airflow_dest)
+				continue
+
+
+		if(repelled)
+			M.RepelAirflowDest(differential/5)
+		else
+			M.GotoAirflowDest(differential/10)
 
 		CHECK_TICK
 
@@ -213,8 +251,9 @@ Class Procs:
 		return
 
 	var/equiv = A.air.shareRatio(B.air, coefficient)
-
+	#ifndef UNIT_TESTS
 	queue_spacewind()
+	#endif
 
 	if(equiv)
 		if(direct)
@@ -234,21 +273,28 @@ Class Procs:
 		SSzas.excite_edge(src)
 
 /connection_edge/zone/queue_spacewind()
+	if(flowing)
+		return
+
 	var/differential = A.air.returnPressure() - B.air.returnPressure()
-	if(abs(differential) >= zas_settings.airflow_lightest_pressure)
-		var/list/attracted
-		var/list/repelled
-		if(differential > 0)
-			attracted = A.movables()
-			repelled = B.movables()
-		else
-			attracted = B.movables()
-			repelled = A.movables()
+	if(abs(differential) < zas_settings.airflow_lightest_pressure)
+		return
 
-		WOOSH
+	flowing = TRUE
+	var/list/attracted
+	var/list/repelled
+	if(differential > 0)
+		attracted = A.movables()
+		repelled = B.movables()
+	else
+		attracted = B.movables()
+		repelled = A.movables()
 
-		flow(attracted, abs(differential), 0)
-		flow(repelled, abs(differential), 1)
+	WOOSH
+
+	flow(attracted, abs(differential), 0)
+	flow(repelled, abs(differential), 1)
+	flowing = FALSE
 
 /connection_edge/unsimulated
 	var/turf/B
@@ -299,7 +345,9 @@ Class Procs:
 
 	var/equiv = A.air.shareSpace(air)
 
+	#ifndef UNIT_TESTS
 	queue_spacewind()
+	#endif
 
 	if(equiv)
 		A.air.copyFrom(air)
@@ -315,17 +363,19 @@ Class Procs:
 		SSzas.excite_edge(src)
 
 /connection_edge/unsimulated/queue_spacewind()
-	#ifdef UNIT_TESTS
-	return
-	#endif
-
+	if(flowing)
+		return
 	var/differential = A.air.returnPressure() - air.returnPressure()
-	if(abs(differential) >= zas_settings.airflow_lightest_pressure)
-		var/list/attracted = A.movables()
+	if(abs(differential) < zas_settings.airflow_lightest_pressure)
+		return
 
-		WOOSH
+	flowing = TRUE
+	var/list/attracted = A.movables()
 
-		flow(attracted, abs(differential), differential < 0)
+	WOOSH
+
+	flow(attracted, abs(differential), differential < 0)
+	flowing = FALSE
 
 /proc/ShareHeat(datum/gas_mixture/A, datum/gas_mixture/B, connecting_tiles)
 	//This implements a simplistic version of the Stefan-Boltzmann law.

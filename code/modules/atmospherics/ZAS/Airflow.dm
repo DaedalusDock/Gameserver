@@ -14,8 +14,8 @@ This entire system is an absolute mess.
 	var/tmp/airflow_speed = 0
 	///Time (ticks) spent in airflow
 	var/tmp/airflow_time = 0
-	///Time (ticks) since last airflow movement
-	var/tmp/last_airflow = 0
+	/// Cooldown for airflow push.
+	COOLDOWN_DECLARE(airflow_push_cooldown)
 	var/tmp/airborne_acceleration = 0
 
 	var/tmp/airflow_xo
@@ -34,24 +34,26 @@ This entire system is an absolute mess.
 	return
 
 /mob/living/airflow_stun(delta_p)
-	if(stat == 2)
+	if(stat == DEAD)
 		return FALSE
+
 	if(last_airflow_stun > world.time - zas_settings.airflow_stun_cooldown)
 		return FALSE
-	if(!(status_flags & CANSTUN) && !(status_flags & CANKNOCKDOWN))
+
+	if(!(status_flags & CANSTUN) || !(status_flags & CANKNOCKDOWN))
 		return FALSE
-	if(buckled)
-		return FALSE
+
 	if(HAS_TRAIT(src, TRAIT_NEGATES_GRAVITY)) //Magboots
 		return FALSE
-	if(IsKnockdown()) //Uhhh maybe?
+
+	if(body_position == LYING_DOWN)
 		return FALSE
 
 	Knockdown(zas_settings.airflow_stun * clamp((delta_p / zas_settings.airflow_stun_pressure), 1, 3))
+
 	visible_message(
-		span_danger("[src] is thrown to the floor by a gust of air!"),
-		span_danger("A sudden rush of air knocks you over!"),
-		span_hear("You hear a gust of air, followed by a soft thud.")
+		span_danger("[src] is thrown to the floor!"),
+		blind_message = span_hear("You hear a gust of air, followed by a soft thud.")
 	)
 
 	last_airflow_stun = world.time
@@ -62,42 +64,46 @@ This entire system is an absolute mess.
 /mob/living/simple_animal/slime/airflow_stun(delta_p)
 	return
 
-///Checks to see if airflow can move this movable.
-/atom/movable/proc/check_airflow_movable(n)
+/// Checks to see if airflow can move this movable.
+/atom/movable/proc/can_airflow_move(delta_p)
 	//We're just hoping nothing goes wrong
 	return TRUE
 
-/mob/check_airflow_movable(n)
+/mob/can_airflow_move(delta_p)
 	if(status_flags & GODMODE)
 		return FALSE
-	if(n < zas_settings.airflow_heavy_pressure)
+	if(buckled)
+		return FALSE
+	if(delta_p < zas_settings.airflow_mob_pressure)
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_NEGATES_GRAVITY)) //Magboots
 		return FALSE
 	return ..()
 
-/mob/living/silicon/check_airflow_movable()
-	return 0
+/mob/living/silicon/can_airflow_move(delta_p)
+	return FALSE
 
-/obj/check_airflow_movable(n)
-	if(anchored)
+/obj/can_airflow_move(delta_p)
+	if(anchored) // zone/proc/movables() checks this already for real spacewind, but other things may use this proc.
 		return FALSE
-	if(density && n < zas_settings.airflow_dense_pressure)
+	if(density && (delta_p < zas_settings.airflow_dense_pressure))
 		return FALSE
 	return ..()
 
-/obj/item/check_airflow_movable(n)
+/obj/item/can_airflow_move(delta_p)
 	switch(w_class)
-		if(0,1,2)
-			if(n < zas_settings.airflow_lightest_pressure) return 0
-		if(3)
-			if(n < zas_settings.airflow_light_pressure) return 0
-		if(4,5)
-			if(n < zas_settings.airflow_medium_pressure) return 0
-		if(6)
-			if(n < zas_settings.airflow_heavy_pressure) return 0
-		if(7 to INFINITY)
-			if(n < zas_settings.airflow_dense_pressure) return 0
+		if(0,WEIGHT_CLASS_TINY,WEIGHT_CLASS_SMALL)
+			if(delta_p < zas_settings.airflow_lightest_pressure)
+				return FALSE
+		if(WEIGHT_CLASS_NORMAL)
+			if(delta_p < zas_settings.airflow_light_pressure)
+				return FALSE
+		if(WEIGHT_CLASS_BULKY, WEIGHT_CLASS_HUGE)
+			if(delta_p < zas_settings.airflow_medium_pressure)
+				return FALSE
+		if(WEIGHT_CLASS_GIGANTIC)
+			if(delta_p < zas_settings.airflow_mob_pressure)
+				return FALSE
 	return ..()
 
 ///The typecache of objects airflow can't push objects into the same tile of
@@ -106,49 +112,41 @@ GLOBAL_LIST_INIT(airflow_step_blacklist, typecacheof(list(
 	/obj/machinery/door
 	)))
 
-/atom/movable/Bump(atom/A)
-	. = ..()
-	if(!moving_by_airflow)
-		return
+/// Called when a movable Bump()s another atom due to forced airflow movement.
+/atom/movable/proc/AirflowBump(atom/A)
+	var/turf/T = get_turf(A)
+	if(airborne_acceleration > 1)
+		airflow_hit(A)
+		A.airflow_hit_act(src)
 
-	if(airflow_speed > 0 && airflow_dest)
-		var/turf/T = get_turf(A)
-		if(airborne_acceleration > 1)
-			airflow_hit(A)
-			A.airflow_hit_act(src)
-		else if(istype(src, /mob/living/carbon/human))
-			if((A:density))
-				to_chat(src, "<span class='notice'>You are pinned against \the [A] by airflow!</span>")
-				src:Stun(1 SECONDS) // :)
-				airflow_speed = 0
-				airflow_time = 0
-				airborne_acceleration = 0
-				return
-		/*
-		If the turf of the atom we bumped is NOT dense, then we check if the flying object is dense.
-		We check the special var because flying objects gain density so they can Bump() objects.
-		If the object is NOT normally dense, we remove our density and the target's density,
-		enabling us to step into their turf. Then, we set the density back to the way its supposed to be for airflow.
-		*/
-		if(!T.density)
-			if(ismovable(A) && !(GLOB.airflow_step_blacklist[A.type]) && !A:airflow_old_density)
-				set_density(FALSE)
-				A.set_density(FALSE)
-				step_towards(src, airflow_dest)
-				set_density(TRUE)
-				A.set_density(TRUE)
-	else
-		airflow_speed = 0
-		airflow_time = 0
-		airborne_acceleration = 0
+	else if(istype(src, /mob/living/carbon/human) && A.density)
+		var/mob/living/carbon/human/human_src = src
+		to_chat(human_src, span_warning("You are pinned against \the [A] by airflow.</span>"))
+		human_src.Stun(2 SECONDS) // :)
+		SSairflow.Dequeue(src)
+		return
+	/*
+	If the turf of the atom we bumped is NOT dense, then we check if the flying object is dense.
+	We check the special var because flying objects gain density so they can Bump() objects.
+	If the object is NOT normally dense, we remove our density and the target's density,
+	enabling us to step into their turf. Then, we set the density back to the way its supposed to be for airflow.
+	*/
+	if(!T.density && ismovable(A) && !(GLOB.airflow_step_blacklist[A.type]))
+		var/atom/movable/bumped_movable = A
+		if(bumped_movable.airflow_old_density)
+			return
+
+		set_density(FALSE)
+		bumped_movable.set_density(FALSE)
+		step_towards(src, airflow_dest)
+		set_density(TRUE)
+		bumped_movable.set_density(TRUE)
 
 
 ///Called when src collides with A during airflow
 /atom/movable/proc/airflow_hit(atom/A)
 	SHOULD_CALL_PARENT(TRUE)
-	airflow_speed = 0
-	airflow_dest = null
-	airborne_acceleration = 0
+	SSairflow.Dequeue(src)
 
 /mob/living/airflow_hit(atom/A)
 	var/b_loss = AIRBORNE_DAMAGE(src)
@@ -156,24 +154,26 @@ GLOBAL_LIST_INIT(airflow_step_blacklist, typecacheof(list(
 	return ..()
 
 /mob/living/carbon/airflow_hit(atom/A)
-	if(istype(A, /obj/structure) || iswallturf(A))
-		if(airflow_speed > 10)
-			Paralyze(round(airflow_speed * zas_settings.airflow_stun))
-			Stun(round(airflow_speed * zas_settings.airflow_stun) + 3)
-			loc.add_blood_DNA(return_blood_DNA())
-			visible_message(
-				span_danger("[src] splats against \the [A]!"),
-				span_userdanger("You slam into \the [A] with tremendous force!"),
-				span_hear("You hear a loud thud.")
-			)
-			INVOKE_ASYNC(emote("scream"))
-		else
-			Stun(round(airflow_speed * zas_settings.airflow_stun/2))
-			visible_message(
-				span_danger("[src] slams into \the [A]!"),
-				span_userdanger("You're thrown against \the [A] by pressure!"),
-				span_hear("You hear a loud thud.")
-			)
+	if(!(istype(A, /obj/structure) || iswallturf(A)))
+		return ..()
+
+	if(airflow_speed > 10)
+		Paralyze(round(airflow_speed * zas_settings.airflow_stun))
+		Stun(round(airflow_speed * zas_settings.airflow_stun) + 3)
+		loc.add_blood_DNA(return_blood_DNA())
+		visible_message(
+			span_danger("[src] splats against \the [A]!"),
+			span_userdanger("You slam into \the [A] with tremendous force!"),
+			span_hear("You hear a loud thud.")
+		)
+		INVOKE_ASYNC(emote("scream"))
+	else
+		Stun(round(airflow_speed * zas_settings.airflow_stun/2))
+		visible_message(
+			span_danger("[src] slams into \the [A]!"),
+			span_userdanger("You're thrown against \the [A] by pressure!"),
+			span_hear("You hear a loud thud.")
+		)
 
 	return ..()
 
@@ -183,13 +183,12 @@ GLOBAL_LIST_INIT(airflow_step_blacklist, typecacheof(list(
 
 /mob/living/airflow_hit_act(atom/movable/flying)
 	. = ..()
-	src.visible_message(
+	visible_message(
 		span_danger("A flying [flying.name] slams into \the [src]!"),
-		span_danger("You're hit by a flying [flying]!"),
-		span_danger("You hear a soft thud.")
+		blind_message = span_danger("You hear a soft thud.")
 	)
 
-	playsound(src.loc, "punch", 25, 1, -1)
+	playsound(loc, "punch", 25, 1, -1)
 	var/weak_amt
 	if(istype(flying,/obj/item))
 		weak_amt = flying:w_class*2 ///Heheheh
@@ -198,18 +197,18 @@ GLOBAL_LIST_INIT(airflow_step_blacklist, typecacheof(list(
 	else
 		weak_amt = rand(1, 3)
 
-	src.Knockdown(weak_amt SECONDS)
+	Knockdown(weak_amt SECONDS)
 
 /obj/airflow_hit_act(atom/movable/flying)
 	. = ..()
 	if(flying.airflow_old_density)
-		src.visible_message(
+		visible_message(
 			span_danger("A flying [flying.name] slams into \the [src]!"),
 			null,
 			span_danger("You hear a loud slam!")
 		)
 
-	playsound(src.loc, "smash.ogg", 25, 1, -1)
+	playsound(loc, "smash.ogg", 25, 1, -1)
 
 	if(!uses_integrity)
 		return
@@ -243,5 +242,43 @@ GLOBAL_LIST_INIT(airflow_step_blacklist, typecacheof(list(
 			if(!A.simulated || A.anchored)
 				continue
 			. += A
+
+/atom/movable/proc/prepare_airflow(strength)
+	if (!airflow_dest || airflow_dest == loc) // This should no longer happen, but just in case, ignore it.
+		return FALSE
+
+	COOLDOWN_START(src, airflow_push_cooldown, zas_settings.airflow_retrigger_delay)
+
+	var/airflow_falloff = 9 - get_dist_euclidean(loc, airflow_dest)
+	if (airflow_falloff < 1)
+		return FALSE
+
+	airflow_speed = clamp(strength * (9 / airflow_falloff), 1, 9)
+	return TRUE
+
+/mob/prepare_airflow(strength)
+	. = ..()
+	if(!.)
+		return
+
+	to_chat(src, span_warning("A strong air current drags you away."))
+
+/atom/movable/proc/GotoAirflowDest(strength)
+	if (!prepare_airflow(strength))
+		airflow_dest = null
+		return
+	airflow_xo = airflow_dest.x - x
+	airflow_yo = airflow_dest.y - y
+	airflow_dest = null
+	SSairflow.Enqueue(src)
+
+/atom/movable/proc/RepelAirflowDest(strength)
+	if (!prepare_airflow(strength))
+		airflow_dest = null
+		return
+	airflow_xo = -(airflow_dest.x - x)
+	airflow_yo = -(airflow_dest.y - y)
+	airflow_dest = null
+	SSairflow.Enqueue(src)
 
 #undef AIRBORNE_DAMAGE
