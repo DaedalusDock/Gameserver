@@ -62,6 +62,9 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 
 /proc/log_harddel(text)
 	WRITE_LOG(GLOB.harddel_log, text)
+	#ifdef REFERENCE_DOING_IT_LIVE
+	message_admins(text)
+	#endif
 
 #elif defined(REFERENCE_TRACKING) // Doing it locally
 #define log_reftracker(msg) log_world("## REF SEARCH [msg]")
