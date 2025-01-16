@@ -294,6 +294,18 @@
 	set waitfor = FALSE
 
 /**
+ * 'Network' Intialization, for code that should run after the packet network has stabilized.
+ *
+ * To have your NetworkInitialize proc be called, you must call SSpackets.request_network_initialize(src)
+ * in your Initialize() or LateInitialize() procs.
+ *
+ * This has limited usefulness for most atoms, Mostly used for direct-access based autoconfiguration of
+ * major network equipment, such as telephone exchanges or packet routing equipment (some day, I promise)
+ */
+/atom/proc/NetworkInitialize()
+	set waitfor = FALSE
+
+/**
  * Top level of the destroy chain for most atoms
  *
  * Cleans up the following:

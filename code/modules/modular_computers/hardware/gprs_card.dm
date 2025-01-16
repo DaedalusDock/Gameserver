@@ -121,7 +121,7 @@
 		return //We can't hold volatile signals.
 	if(length(packet_queue) == queue_max)
 		pop_signal() //Discard the first signal in the queue
-	packet_queue += signal
+	packet_queue += signal.Copy()
 	return
 
 /// Get the length of the packet queue

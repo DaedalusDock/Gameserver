@@ -54,6 +54,10 @@ SUBSYSTEM_DEF(packets)
 	/// @everyone broadcast key
 	var/gprs_broadcast_packet
 
+	/// NetworkInitialize requesters
+	/// For objects that need the full network ready. You probably don't need this.
+	VAR_PRIVATE/list/atom/network_initializers
+
 /// Generates a unique (at time of read) ID for an atom, It just plays silly with the ref.
 /// Pass the target atom in as arg[1]
 /datum/controller/subsystem/packets/proc/generate_net_id(invoker)
@@ -78,12 +82,23 @@ SUBSYSTEM_DEF(packets)
 	return ..()
 
 /datum/controller/subsystem/packets/Initialize(start_timeofday)
+
+	//Calculate the stupid magic bullshit
 	detomatix_magic_packet = random_string(rand(16,32), GLOB.hex_characters)
 	clownvirus_magic_packet = random_string(rand(16,32), GLOB.hex_characters)
 	mimevirus_magic_packet = random_string(rand(16,32), GLOB.hex_characters)
 	framevirus_magic_packet = random_string(rand(16,32), GLOB.hex_characters)
 	gprs_broadcast_packet = random_string(rand(16,32), GLOB.hex_characters)
 	pda_exploitable_register = pick_list(PACKET_STRING_FILE, "packet_field_names")
+
+	// We're late enough in init order that all network devices have late initialized,
+	// so the network *should* be stable, we can now safely re-wake anything that has requested network readiness.
+	if(network_initializers) //...If there are any, of course
+		for(var/atom/initializer in network_initializers)
+			initializer.NetworkInitialize()
+			CHECK_TICK
+		network_initializers.Cut() //Drop the refs.
+
 	. = ..()
 
 /datum/controller/subsystem/packets/Recover()
@@ -504,3 +519,11 @@ SUBSYSTEM_DEF(packets)
 				ASSOC_UNSETEMPTY(recursive_contents, RECURSIVE_CONTENTS_RADIO_NONATMOS)
 				UNSETEMPTY(location.important_recursive_contents)
 
+/datum/controller/subsystem/packets/proc/request_network_initialize(atom/initializer)
+	if(initialized)
+		//Hi. If you're here, you might have tried to load a device that requests this as part of a
+		//post-roundstart map load. I apologize that the idea of touching the code required to support that
+		//at the current time of 02:09:24 EST is... Not on the table. Suck my dick.
+		CRASH("Attempted to request NetworkInitialize() after SSpackets has initialized!")
+
+	LAZYADD(network_initializers, initializer)

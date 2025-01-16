@@ -29,7 +29,9 @@
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..() //Should the subtype *probably* stop caring about this packet?
 	if(isnull(signal))
-		return
+		return RECEIVE_SIGNAL_FINISHED
+	if(machine_stat & (BROKEN|NOPOWER))
+		return RECEIVE_SIGNAL_FINISHED
 	var/sigdat = signal.data //cache for sanic speed this joke is getting old.
 	if(sigdat[PACKET_DESTINATION_ADDRESS] != src.net_id)//This packet doesn't belong to us directly
 		if(sigdat[PACKET_DESTINATION_ADDRESS] == NET_ADDRESS_PING)// But it could be a ping, if so, reply
@@ -37,7 +39,16 @@
 			if(!isnull(tmp_filter) && tmp_filter != net_class)
 				return RECEIVE_SIGNAL_FINISHED
 			//Blame kapu for how stupid this looks :3
-			post_signal(create_signal(sigdat[PACKET_SOURCE_ADDRESS], list("command"=NET_COMMAND_PING_REPLY,"netclass"=src.net_class,"netaddr"=src.net_id)+src.ping_addition))
+			post_signal(
+				create_signal(
+					sigdat[PACKET_SOURCE_ADDRESS],
+					list(
+						"command"=NET_COMMAND_PING_REPLY,
+						"netclass"=src.net_class,
+						"netaddr"=src.net_id
+						)+src.ping_addition
+					)
+				)
 		return RECEIVE_SIGNAL_FINISHED//regardless, return 1 so that machines don't process packets not intended for them.
 	return RECEIVE_SIGNAL_CONTINUE // We are the designated recipient of this packet, we need to handle it.
 
@@ -66,3 +77,8 @@
 	if(!netjack)
 		return
 	netjack.disconnect_machine(src)
+
+/// Called just before the network jack is removed.
+/// Cannot be used to abort disconnection.
+/obj/machinery/proc/netjack_disconnected(var/obj/machinery/power/data_terminal/disconnecting)
+	return

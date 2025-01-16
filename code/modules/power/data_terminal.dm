@@ -13,9 +13,9 @@
 	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
 /obj/machinery/power/data_terminal/Destroy()
-	. = ..()
 	// Disconnect from the seizing machine.
 	disconnect_machine(connected_machine)
+	return ..()
 
 /obj/machinery/power/data_terminal/should_have_node()
 	return TRUE
@@ -80,10 +80,11 @@
 
 /// Attempt to disconnect from a data terminal.
 /obj/machinery/power/data_terminal/proc/disconnect_machine(obj/machinery/leaving_machine)
-	if(!leaving_machine && !connected_machine) // No connected machine in the first place
+	if(!leaving_machine || !connected_machine) // One of these is null, beating you with a hammer.
 		return
 	if(leaving_machine != connected_machine)//Let's just be sure.
 		CRASH("[leaving_machine] [REF(leaving_machine)] attempted to disconnect despite not owning the data terminal (owned by [connected_machine] [REF(connected_machine)])!")
+	leaving_machine.netjack_disconnected(src)
 	UnregisterSignal(leaving_machine, COMSIG_MOVABLE_MOVED)
 	leaving_machine.netjack = null
 	connected_machine = null
@@ -126,7 +127,7 @@
 		"You start screwing [src] into \the [T]",
 		"You hear quiet metal scraping.")
 	tool.play_tool_sound(src, 50)
-	if(!do_after(user, src, 10 SECONDS, DO_PUBLIC))
+	if(!do_after(user, src, 5 SECONDS, DO_PUBLIC))
 		to_chat(user, span_warning("You need to stand still to install [src]!"))
 		return TOOL_ACT_TOOLTYPE_SUCCESS
 

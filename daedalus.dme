@@ -4789,4 +4789,12 @@
 #include "modular_pariah\modules\indicators\code\typing_indicator.dm"
 #include "modular_pariah\modules\pixel_shift\code\pixel_shift.dm"
 #include "modular_pariah\modules\radiosound\code\headset.dm"
+#include "WorkInProgress\francinum\cphones_new\_defines.dm"
+#include "WorkInProgress\francinum\cphones_new\exchange.dm"
+#include "WorkInProgress\francinum\cphones_new\reg_info.dm"
+#include "WorkInProgress\francinum\cphones_new\phone\_packet_handler.dm"
+#include "WorkInProgress\francinum\cphones_new\phone\phone.dm"
+#include "WorkInProgress\francinum\cphones_new\phone\sip_call.dm"
+#include "WorkInProgress\francinum\cphones_new\phone\sip_handler.dm"
+#include "WorkInProgress\francinum\cphones_new\phone\voice_data_handler.dm"
 // END_INCLUDE

@@ -171,7 +171,7 @@
 	/// A short string shown to players fingerprinting the device type as part of `command:ping`
 	var/net_class = "PNET_CALL_A_PRIEST"
 	/// Additional data stapled to pings, reduces network usage for some machines.
-	var/ping_addition = null
+	var/list/ping_addition = null
 
 	///Used by SSairmachines for optimizing scrubbers and vent pumps.
 	COOLDOWN_DECLARE(hibernating)

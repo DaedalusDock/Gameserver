@@ -226,3 +226,15 @@ GLOBAL_LIST_INIT(freq2icon, list(
 	src.data = data || list()
 	src.transmission_method = transmission_method
 	src.logging_data = logging_data
+
+/// Create a duplicate of the signal that's safe for store-and-forward situations.
+/// No assurance is made that the *data* can survive this, of course.
+/datum/signal/proc/Copy()
+	var/datum/signal/duplicate = new(null, data.Copy(), transmission_method, logging_data)
+	// Now for the vars new doesn't do for us.
+	duplicate.author = author
+	duplicate.frequency_datum = frequency_datum
+	duplicate.frequency = frequency
+	duplicate.range = range
+	duplicate.filter_list = filter_list
+	duplicate.has_magic_data = has_magic_data

@@ -1,0 +1,67 @@
+//Var
+list(
+	//Extension
+	"0003" = list(
+		//Authentication secret.
+		"secret" = "auth_secret",
+		//Caller Name. Replacement for p2p_phone friendly_name. Optional, Uses the extension number otherwise.
+		"cnam" = "Bar",
+		//Registered phones.
+		"reg" = list(
+			"net_addr_here" = bool:busy
+		)
+	)
+)
+
+
+// signal protocol
+
+// Skeleton:
+{
+	"proto":"sip",
+	"verb": VERB,
+	"seq": $RAND_SEQ // Used to associate ACKs with various flows. - NOT ANYMORE THIS IS ANNOYING
+}
+
+//Verbs:
+/*
+ * REGISTER: Grants a reauth token upon login, allows placing calls via INVITE
+ * REAUTH: like register, returns a new auth token (via ACK) upon successful reauth, else NACK
+ * INVITE: Request to start a call with another extension.
+ * RINGING: Informs the station that the far side is now ringing.
+ * CANCEL: Sent by the requesting client. Cancel the call, free all equipment.
+ *
+ */
+
+// Registration
+user send:
+{
+	"proto":"sip",
+	"verb":"register",
+	"user":"$EXTNUM",
+	"auth":"$SECRET",
+}
+exchange reply:
+{
+	"proto":"sip",
+	"verb":"ack",
+	"user":"$EXTNUM",
+	"auth_token":"$token",
+}
+
+
+//keepalive, Use the auth token instead.
+{
+	"proto":"sip",
+	"verb":"reauth",
+	"user":"$EXTNUM",
+	"auth_token":"$REAUTHTOKEN",
+}
+
+// Start Call
+{
+	"proto":"sip",
+	"verb": "invite",
+	"to" : "$EXT",
+	"auth_token":"$token",
+}
