@@ -25,12 +25,10 @@
 		glow.reagents.add_reagent(type, reac_volume)
 
 //Mutagenic chem side-effects.
-/datum/reagent/uranium/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	mytray.mutation_roll(user)
-	if(chems.has_reagent(src.type, 1))
-		mytray.adjust_plant_health(-round(chems.get_reagent_amount(src.type) * 1))
-		mytray.adjust_toxic(round(chems.get_reagent_amount(src.type) * 2))
+/datum/reagent/uranium/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.radiation_damage += 2
+		plant_tick.mutation_power += 0.2
 
 /datum/reagent/uranium/radium
 	name = "Radium"
@@ -42,11 +40,10 @@
 	material = null
 
 
-/datum/reagent/uranium/radium/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(src.type, 1))
-		mytray.adjust_plant_health(-round(chems.get_reagent_amount(src.type) * 1))
-		mytray.adjust_toxic(round(chems.get_reagent_amount(src.type) * 1))
+/datum/reagent/uranium/radium/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.radiation_damage += 2
+		plant_tick.mutation_power += 0.2
 
 /datum/reagent/fuel/oil
 	name = "Oil"
@@ -228,13 +225,10 @@
 	color = "#515151"
 	taste_description = "ash"
 
-
-// Ash is also used IRL in gardening, as a fertilizer enhancer and weed killer
-/datum/reagent/ash/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(src.type, 1))
-		mytray.adjust_plant_health(round(chems.get_reagent_amount(src.type) * 1))
-		mytray.adjust_weedlevel(-1)
+/datum/reagent/ash/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.plant_growth_delta += 0.4
+		plant_tick.plant_health_delta += 0.2
 
 // [Original ants concept by Keelin on Goon]
 /datum/reagent/ants

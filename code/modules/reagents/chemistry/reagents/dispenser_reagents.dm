@@ -271,13 +271,9 @@
 
 
 // You're an idiot for thinking that one of the most corrosive and deadly gasses would be beneficial
-/datum/reagent/fluorine/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(src.type, 1))
-		mytray.adjust_plant_health(-round(chems.get_reagent_amount(src.type) * 2))
-		mytray.adjust_toxic(round(chems.get_reagent_amount(src.type) * 2.5))
-		mytray.adjust_waterlevel(-round(chems.get_reagent_amount(src.type) * 0.5))
-		mytray.adjust_weedlevel(-rand(1,4))
+/datum/reagent/fluorine/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.tox_damage += 5
 
 /datum/reagent/fluorine/affect_blood(mob/living/carbon/C, removed)
 	C.adjustToxLoss(0.5*removed, 0, cause_of_death = "Ammonia poisoning")
@@ -327,15 +323,9 @@
 
 
 // You're an idiot for thinking that one of the most corrosive and deadly gasses would be beneficial
-/datum/reagent/chlorine/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(src.type, 1))
-		mytray.adjust_plant_health(-round(chems.get_reagent_amount(src.type) * 1))
-		mytray.adjust_toxic(round(chems.get_reagent_amount(src.type) * 1.5))
-		mytray.adjust_waterlevel(-round(chems.get_reagent_amount(src.type) * 0.5))
-		mytray.adjust_weedlevel(-rand(1,3))
-		// White Phosphorous + water -> phosphoric acid. That's not a good thing really.
-
+/datum/reagent/chlorine/on_hydroponics_apply(datum/plant_tick/plant_tick, datum/reagents/chems, volume, obj/machinery/hydroponics/mytray, mob/user)
+	if(volume >= 1)
+		plant_tick.tox_damage += 5
 
 /datum/reagent/chlorine/affect_blood(mob/living/carbon/C, removed)
 	C.adjustToxLoss(3 * removed, FALSE, cause_of_death = "Chlorine poisoning")

@@ -1,23 +1,29 @@
+/datum/plant/aloe
+	name = "aloe"
+	species = "aloe"
 
-// aloe
+	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
+	growthstages = 5
+
+	seed_path = /obj/item/seeds/aloe
+	product_path = /obj/item/food/grown/aloe
+
+	base_harvest_yield = 3
+
+	reagents_per_potency = list(
+		/datum/reagent/consumable/nutriment/vitamin = 0.05,
+		/datum/reagent/consumable/nutriment = 0.05
+	)
+
 /obj/item/seeds/aloe
 	name = "pack of aloe seeds"
 	desc = "These seeds grow into aloe."
 	icon_state = "seed-aloe"
-	species = "aloe"
-	plantname = "Aloe"
-	product = /obj/item/food/grown/aloe
-	lifespan = 60
-	endurance = 25
-	maturation = 4
-	production = 4
-	yield = 6
-	growthstages = 5
-	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
-	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.05, /datum/reagent/consumable/nutriment = 0.05)
+
+	plant_type = /datum/plant/aloe
 
 /obj/item/food/grown/aloe
-	seed = /obj/item/seeds/aloe
+	plant_datum = /datum/plant/aloe
 	name = "aloe"
 	desc = "Cut leaves from the aloe plant."
 	icon_state = "aloe"
